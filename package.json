@@ -1,0 +1,53 @@
+{
+  "name": "scope-io",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.4.0",
+    "@docusaurus/preset-classic": "3.4.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.4.0",
+    "@docusaurus/tsconfig": "3.4.0",
+    "@docusaurus/types": "3.4.0",
+    "@types/mdx": "^2.0.13",
+    "@types/react": "^18.3.3",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "~5.2.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
+  },
+  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
+}
