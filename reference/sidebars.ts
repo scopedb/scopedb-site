@@ -9,7 +9,9 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       collapsible: true,
       items: [
-        'datatypes/overview',
+        'datatypes-overview',
+        'datatypes-datetime',
+        'datatypes-variant',
       ],
     },
     {
@@ -18,9 +20,9 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       collapsible: true,
       items: [
-        'operators/arithmetic',
-        'operators/comparison',
-        'operators/logical',
+        'operators-arithmetic',
+        'operators-comparison',
+        'operators-logical',
       ],
     },
     {
@@ -29,11 +31,11 @@ const sidebars: SidebarsConfig = {
       collapsed: true,
       collapsible: true,
       items: [
-        'functions/aggregate',
-        'functions/conditional',
-        'functions/conversion',
-        'functions/datetime',
-        'functions/variant',
+        'functions-aggregate',
+        'functions-conditional',
+        'functions-conversion',
+        'functions-datetime',
+        'functions-variant',
       ],
     },
   ]

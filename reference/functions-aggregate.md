@@ -28,7 +28,7 @@ APPROX_QUANTILE( <expr>, <quantile> )
 
 A column that contains float values.
 
-#### `<quantile>`
+#### `<quantile>` (named)
 
 A float literal that represents the quantile to calculate.
 
@@ -96,15 +96,84 @@ Returns a value of type UINT.
 
 Returns the maximum value for the records within `<expr>`. NULL values are ignored unless all the records are NULL, in which case a NULL value is returned.
 
+If `<n>` is specified, MAX returns the N maximum values from a column, which is the same results as the regular query `FROM ... ORDER BY ... DESC LIMIT n` but as a variant list.
+
 ### Syntax
 
 ```scopeql
 MAX( <expr> )
+MAX( <expr>, <n> )
 ```
 
 ### Returns
 
 The data type of the returned value is the same as the data type of the input values.
+
+### Arguments
+
+**Required:**
+
+#### `<expr>`
+
+A column name, which can be a qualified name (for example, database.schema.table.column_name).
+
+**Optional:**
+
+#### `<n>` (named)
+
+The number of maximum values to return.
+
+### Returns
+
+* If `<n>` is not specified, MIN returns the same as the data type of the input values.
+* If `<n>` is specified, MIN returns an ARRAY that contains all the `<n>` minimum values.
+
+### Examples
+
+Get the maximum value:
+
+```scopeql
+VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
+AGGREGATE MAX($0);
+```
+
+```
++---------+
+| MAX($0) |
++---------+
+| 10      |
++---------+
+```
+
+Get the maximum N value:
+
+```scopeql
+VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
+AGGREGATE MAX($0, 5);
+```
+
+```
++-----------------------+
+| MAX($0, 5)            |
++-----------------------+
+| [10,9,8,7,6]::variant |
++-----------------------+
+```
+
+Alternatively, use the named argument syntax:
+
+```scopeql
+VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
+AGGREGATE MAX($0, n => 5);
+```
+
+```
++-----------------------+
+| MAX($0, n => 5)       |
++-----------------------+
+| [10,9,8,7,6]::variant |
++-----------------------+
+```
 
 ## MAX_BY
 
@@ -172,73 +241,84 @@ Note the following:
 * Because more than one row contains the maximum value for the `salary` column, the function is non-deterministic and might return the employee ID for a different row in subsequent executions.
 * The function ignores the NULL value in the salary column when determining the rows with the maximum values.
 
-## MAX_N
+## MIN
 
-Get the N maximum values from a column. This function gives the same results as the regular query `FROM ... ORDER BY ... DESC LIMIT n` but as a variant list.
+Returns the minimum value for the records within `<expr>`. NULL values are ignored unless all the records are NULL, in which case a NULL value is returned.
+
+If `<n>` is specified, MIN returns the N minimum values from a column, which is the same results as the regular query `FROM ... ORDER BY ... LIMIT n` but as a variant list.
 
 ### Syntax
 
 ```scopeql
-MAX_N( <expr>, <n> )
+MIN( <expr> )
+MIN( <expr>, <n> )
 ```
 
 ### Arguments
+
+**Required:**
 
 #### `<expr>`
 
 A column name, which can be a qualified name (for example, database.schema.table.column_name).
 
-#### `<n>`
+**Optional:**
 
-The number of maximum values to return.
+#### `<n>` (named)
+
+The number of minimum values to return.
 
 ### Returns
 
-An ARRAY that contains all the `<n>` maximum values.
+* If `<n>` is not specified, MIN returns the same as the data type of the input values.
+* If `<n>` is specified, MIN returns an ARRAY that contains all the `<n>` minimum values.
 
 ### Examples
 
+Get the minimum value:
+
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MAX_N($0, 5);
+AGGREGATE MIN($0);
 ```
 
 ```
-+-----------------------+
-| MAX_N($0, 5)          |
-+-----------------------+
-| [10,9,8,7,6]::variant |
-+-----------------------+
++---------+
+| MIN($0) |
++---------+
+| 1       |
++---------+
+```
+
+Get the minimum N value:
+
+```scopeql
+VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
+AGGREGATE MIN($0, 5);
+```
+
+```
++----------------------+
+| MIN($0, 5)           |
++----------------------+
+| [1,1,1,4,5]::variant |
++----------------------+
 ```
 
 Alternatively, use the named argument syntax:
 
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MAX_N($0, n => 5);
+AGGREGATE MIN($0, n => 5);
 ```
 
 ```
-+-----------------------+
-| MAX_N($0, n => 5)     |
-+-----------------------+
-| [10,9,8,7,6]::variant |
-+-----------------------+
++----------------------+
+| MIN($0, n => 5)      |
++----------------------+
+| [1,1,1,4,5]::variant |
++----------------------+
 ```
-
-## MIN
-
-Returns the minimum value for the records within `<expr>`. NULL values are ignored unless all the records are NULL, in which case a NULL value is returned.
-
-### Syntax
-
-```scopeql
-MIN( <expr> )
-```
-
-### Returns
-
-The data type of the returned value is the same as the data type of the input values.
 
 ## MIN_BY
 
@@ -305,60 +385,6 @@ Note the following:
 
 * Because more than one row contains the minimum value for the `salary` column, the function is non-deterministic and might return the employee ID for a different row in subsequent executions.
 * The function ignores the NULL value in the salary column when determining the rows with the minimum values.
-
-## MIN_N
-
-Get the N minimum values from a column. This function gives the same results as the regular query `FROM ... ORDER BY ... LIMIT n` but as a variant list.
-
-### Syntax
-
-```scopeql
-MIN_N( <expr>, <n> )
-```
-
-### Arguments
-
-#### `<expr>`
-
-A column name, which can be a qualified name (for example, database.schema.table.column_name).
-
-#### `<n>`
-
-The number of minimum values to return.
-
-### Returns
-
-An ARRAY that contains all the `<n>` minimum values.
-
-### Examples
-
-```scopeql
-VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MIN_N($0, 5);
-```
-
-```
-+----------------------+
-| MIN_N($0, 5)         |
-+----------------------+
-| [1,1,1,4,5]::variant |
-+----------------------+
-```
-
-Alternatively, use the named argument syntax:
-
-```scopeql
-VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MIN_N($0, n => 5);
-```
-
-```
-+----------------------+
-| MIN_N($0, n => 5)    |
-+----------------------+
-| [1,1,1,4,5]::variant |
-+----------------------+
-```
 
 ## MODE
 
