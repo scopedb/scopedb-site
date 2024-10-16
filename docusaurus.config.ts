@@ -25,11 +25,8 @@ const config: Config = {
       'classic',
       {
         docs: false,
+        // TODO(tisonkun): uncomment when blogs get ready
         blog: false,
-        // TODO(tisonkun): uncomment when docs and blogs ready
-        // docs: {
-        //   sidebarPath: './sidebars.ts',
-        // },
         // blog: {
         //   showReadingTime: true,
         // },
@@ -52,19 +49,15 @@ const config: Config = {
         src: 'brand-kit/horizontal-no-slogan-trimmed.svg',
       },
       items: [
-        // TODO(tisonkun): uncomment when docs and blogs ready
-        // {
-        //   type: 'docSidebar',
-        //   sidebarId: 'tutorialSidebar',
-        //   position: 'left',
-        //   label: 'Tutorial',
-        // },
+        {type: 'docSidebar', docsPluginId: 'reference', sidebarId: 'reference', position: 'right', label: 'Reference'},
+        {to: '/contact', label: 'Contact', position: 'right'},
+        // TODO(tisonkun): uncomment when blogs get ready
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/scopedb/',
           position: 'right',
           className: 'header-github-link',
-          'aria-label': 'GitHub repository',
+          'aria-label': 'GitHub Organization',
         },
       ],
     },
@@ -80,16 +73,15 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
 
   plugins: [
-    async function tailwindcssPlugin(_context, _options) {
-      return {
-        name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions) {
-          postcssOptions.plugins.push(require("tailwindcss"));
-          postcssOptions.plugins.push(require("autoprefixer"));
-          return postcssOptions;
-        },
-      };
-    },
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'reference',
+        path: 'reference',
+        routeBasePath: 'reference',
+        sidebarPath: './reference/sidebars.ts',
+      },
+    ],
   ],
 
   scripts: [{src: 'https://plausible.io/js/script.js', defer: true, 'data-domain': 'scopedb.io'}],
