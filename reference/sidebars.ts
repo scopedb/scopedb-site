@@ -16,6 +16,17 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Statements',
+      collapsed: true,
+      collapsible: true,
+      items: [
+        'stmt-query',
+        'stmt-ddl',
+        'stmt-dml',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Operators',
       collapsed: true,
       collapsible: true,
