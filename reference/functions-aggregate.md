@@ -415,7 +415,7 @@ The data type of the returned value is identical to the data type of the input e
 
 Returns the population standard deviation (square root of variance) of non-NULL values.
 
-See also [STDDEV_SAMP](#STDDEV_SAMP), which returns the sample standard deviation (square root of variance).
+See also [STDDEV_SAMP](#stddev_samp), which returns the sample standard deviation (square root of variance).
 
 ### Syntax
 
@@ -439,7 +439,7 @@ If all records inside a group are NULL, this function returns NULL.
 
 Returns the sample standard deviation (square root of sample variance) of non-NULL values.
 
-See also [STDDEV_POP](#STDDEV_POP), which returns the population standard deviation (square root of variance).
+See also [STDDEV_POP](#stddev_pop), which returns the population standard deviation (square root of variance).
 
 ### Syntax
 

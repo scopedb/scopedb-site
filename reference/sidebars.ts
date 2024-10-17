@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
         'operators-arithmetic',
         'operators-comparison',
         'operators-logical',
+        'operators-set',
       ],
     },
     {
