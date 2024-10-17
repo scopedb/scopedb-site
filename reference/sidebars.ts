@@ -16,6 +16,17 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Statements',
+      collapsed: true,
+      collapsible: true,
+      items: [
+        'stmt-query',
+        'stmt-ddl',
+        'stmt-dml',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Operators',
       collapsed: true,
       collapsible: true,
@@ -23,6 +34,7 @@ const sidebars: SidebarsConfig = {
         'operators-arithmetic',
         'operators-comparison',
         'operators-logical',
+        'operators-set',
       ],
     },
     {
@@ -35,6 +47,7 @@ const sidebars: SidebarsConfig = {
         'functions-conditional',
         'functions-conversion',
         'functions-datetime',
+        'functions-string',
         'functions-variant',
       ],
     },

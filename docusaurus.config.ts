@@ -24,7 +24,7 @@ const config: Config = {
     [
       'classic',
       {
-        docs: false,
+        docs: {},
         // TODO(tisonkun): uncomment when blogs get ready
         blog: false,
         // blog: {
@@ -81,6 +81,19 @@ const config: Config = {
         routeBasePath: 'reference',
         sidebarPath: './reference/sidebars.ts',
       },
+    ],
+  ],
+
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        indexBlog: false,
+        language: ['en'],
+        docsDir: ['reference'],
+        docsRouteBasePath: ['reference'],
+      } satisfies import("@easyops-cn/docusaurus-search-local").PluginOptions,
     ],
   ],
 

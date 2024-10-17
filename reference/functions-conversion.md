@@ -6,7 +6,7 @@ toc_max_heading_level: 2
 
 # Conversion functions
 
-This family of functions can be used to convert an expression of any Snowflake data type to another data type.
+This family of functions can be used to convert an expression of any ScopeDB data type to another data type.
 
 ## CAST, `::`
 
