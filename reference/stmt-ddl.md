@@ -114,7 +114,7 @@ DESCRIBE TABLE <name>
 
 ## CREATE NODEGROUP
 
-Creates a new node group.
+Creates a new nodegroup.
 
 ### Syntax
 
@@ -124,7 +124,7 @@ CREATE NODEGROUP <name>
 
 ## DROP NODEGROUP
 
-Removes a node group.
+Removes a nodegroup.
 
 ### Syntax
 
@@ -141,7 +141,7 @@ Creates a new task.
 ```scopeql
 CREATE TASK <name>
 SCHEDULE = '<cronexpr>'
-NODEGROUP = '<comma-separated-node-groups>'
+NODEGROUP = '<comma-separated-nodegroups>'
 AS
   <statement>
 ```

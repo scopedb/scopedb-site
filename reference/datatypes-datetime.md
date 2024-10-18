@@ -64,7 +64,7 @@ SELECT
 +-----------------------------+----------------------------+
 ```
 
-You can also create interval with string literal that follows [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339):
+You can also create interval with string literal that follows the "Durations" syntax in [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339#appendix-A):
 
 ```scopeql
 SELECT
