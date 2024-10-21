@@ -78,8 +78,15 @@ Where:
 
 ```
 match_action:
-    WHEN MATCHED [AND <extra_condition>] THEN { UPDATE ALL | DELETE }
-    WHEN NOT MATCHED [AND <extra_condition>] THEN INSERT ALL
+    WHEN MATCHED [AND <extra_condition>] THEN { 
+        UPDATE ALL 
+        | UPDATE SET <set_clause> [, <set_clause>]* 
+        | DELETE
+    }
+    | WHEN NOT MATCHED [AND <extra_condition>] THEN INSERT ALL
+
+set_clause:
+    <column_name> = <expression>
 ```
 
 ### Parameters
@@ -98,6 +105,7 @@ Specifies row matching conditions.
 
 ### Examples
 
+Straightforward example:
 ```scopeql
 CREATE TABLE target (id INT, message VARIANT, update_time INT) WITH (...);
 CREATE TABLE source (id INT, message VARIANT, update_time INT) WITH (...);
@@ -105,6 +113,18 @@ CREATE TABLE source (id INT, message VARIANT, update_time INT) WITH (...);
 FROM source
 MERGE INTO target ON target.id = source.id
 WHEN MATCHED AND source.update_time > target.update_time THEN UPDATE ALL
+WHEN NOT MATCHED THEN INSERT ALL;
+```
+
+`MERGE INTO` with multiple `WHEN MATCHED` clauses:
+```scopeql
+CREATE TABLE target (id INT, message VARIANT, update_time INT) WITH (...);
+CREATE TABLE source (id INT, message VARIANT, update_time INT) WITH (...);
+
+FROM source
+MERGE INTO target ON target.id = source.id
+WHEN MATCHED AND source.update_time > target.update_time THEN UPDATE ALL 
+WHEN MATCHED AND source.update_time < target.update_time THEN UPDATE SET update_time = now() # This action will be executed if previous condition is not met
 WHEN NOT MATCHED THEN INSERT ALL;
 ```
 
