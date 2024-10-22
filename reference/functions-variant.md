@@ -44,7 +44,7 @@ SELECT PARSE_JSON(NULL), PARSE_JSON('null');
 +------------------+--------------------+
 | PARSE_JSON(NULL) | PARSE_JSON('null') |
 +------------------+--------------------+
-| null             | null::variant      |
+| NULL             | null::variant      |
 +------------------+--------------------+
 ```
 
@@ -158,18 +158,65 @@ This function returns a VARIANT.
 Extract the first element of an ARRAY:
 
 ```scopeql
-SELECT OBJECT_KEYS({
-    "level_1_A": {"level_2": 'two'},
-    "level_1_B": 'one',
-});
+CREATE TABLE vartab (a VARIANT, o VARIANT, v VARIANT) WITH (...);
+
+VALUES
+([2.71, 3.14], {"France": 'Paris', "Germany": 'Berlin'}, {"sensorType": 'indoor', "temperature": 31.5, "timestamp": '2022-03-07T14:00:00.000-0800', "weatherStationID": 42})
+INSERT INTO vartab;
+```
+
+```scopedb
+FROM vartab;
 ```
 
 ```
-+--------------------------------------------------------------------+
-| OBJECT_KEYS({"level_1_A": {"level_2": 'two'}, "level_1_B": 'one'}) |
-+--------------------------------------------------------------------+
-| ["level_1_A","level_1_B"]::variant                                 |
-+--------------------------------------------------------------------+
++----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| a                    | o                                              | v                                                                                                                    |
++----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| [2.71,3.14]::variant | {"France":"Paris","Germany":"Berlin"}::variant | {"sensorType":"indoor","temperature":31.5,"timestamp":"2022-03-07T14:00:00.000-0800","weatherStationID":42}::variant |
++----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+```
+
+Extract the first element of an ARRAY:
+
+```scopedb
+FROM vartab SELECT GET(a, 0);
+```
+
+```
++---------------+
+| GET(a, 0)     |
++---------------+
+| 2.71::variant |
++---------------+
+```
+
+Given the name of a country, extract the name of the capital city of that country from an OBJECT containing country names and capital cities:
+
+```scopedb
+FROM vartab SELECT GET(o, 'Germany');
+```
+
+```
++-------------------+
+| GET(o, 'Germany') |
++-------------------+
+| "Berlin"::variant |
++-------------------+
+```
+
+Extract the temperature from a VARIANT that contains an OBJECT:
+
+```scopedb
+FROM vartab SELECT GET(v, 'temperature');
+```
+
+```
++-----------------------+
+| GET(v, 'temperature') |
++-----------------------+
+| 31.5::variant         |
++-----------------------+
 ```
 
 ## OBJECT_KEYS
@@ -257,17 +304,17 @@ ORDER BY n;
 ```
 
 ```
-+---+---------------------------------------+------------+
-| n | v                                     | TYPEOF(v)  |
-+---+---------------------------------------+------------+
-| 1 | null::variant                         | null_value |
-| 2 | null                                  | null       |
-| 3 | true::variant                         | bool       |
-| 4 | -17::variant                          | int        |
-| 5 | 123.12::variant                       | float      |
-| 6 | 191.2::variant                        | float      |
-| 7 | "Om ara pa ca na dhih"::variant       | string     |
-| 8 | [-1,12,289,2188,false]::variant       | array      |
-| 9 | {"x":"abc","y":false,"z":10}::variant | object     |
-+---+---------------------------------------+------------+
++---+---------------------------------------+-----------+
+| n | v                                     | TYPEOF(v) |
++---+---------------------------------------+-----------+
+| 1 | null::variant                         | null      |
+| 2 | NULL                                  | NULL      |
+| 3 | true::variant                         | bool      |
+| 4 | -17::variant                          | int       |
+| 5 | 123.12::variant                       | float     |
+| 6 | 191.2::variant                        | float     |
+| 7 | "Om ara pa ca na dhih"::variant       | string    |
+| 8 | [-1,12,289,2188,false]::variant       | array     |
+| 9 | {"x":"abc","y":false,"z":10}::variant | object    |
++---+---------------------------------------+-----------+
 ```
