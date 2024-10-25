@@ -6,49 +6,38 @@ toc_max_heading_level: 2
 
 # String functions
 
-## SEARCH
+## CONCAT
 
-Searches character data (text) in specified columns.
+Concatenates two strings.
 
 ### Syntax
 
 ```scopeql
-SEARCH( <search_data>, <query> )
+CONCAT( <expr> , <expr> )
 ```
 
 ### Arguments
 
-#### `<search_data>`
+#### `<expr>`
 
-The data you want to search.
-
-#### `<query>` (named)
-
-A string that contains one or more search terms. This argument must be a literal string; column names are not supported. Specify one pair of single quotes around the entire string.
+The input expressions must all be strings.
 
 ### Returns
 
-Returns a BOOLEAN.
-
-* The value is TRUE if any `<query>` tokens are found in `<search_data>`.
-* Returns NULL if either of these arguments is NULL.
-* Otherwise, returns FALSE.
+The data type of the returned value is STRING. If any input value is NULL, returns NULL.
 
 ### Examples
 
 ```scopeql
-VALUES ('foo bar'), ('foobar'), ('bar baz'), ('') SELECT *, search($0, query => 'foo');
+SELECT CONCAT('George Washington ', 'Carver');
 ```
 
 ```
-+---------+----------------------------+
-| $0      | search($0, query => 'foo') |
-+---------+----------------------------+
-| foo bar | true                       |
-| foobar  | false                      |
-| bar baz | false                      |
-|         | false                      |
-+---------+----------------------------+
++----------------------------------------+
+| CONCAT('George Washington ', 'Carver') |
++----------------------------------------+
+| George Washington Carver               |
++----------------------------------------+
 ```
 
 ## LENGTH
@@ -92,6 +81,135 @@ SELECT $0, LENGTH($0);
 | 圣诞节快乐        | 5          |
 | NULL            | NULL       |
 +-----------------+------------+
+```
+
+## LTRIM
+
+Removes leading characters from a string.
+
+### Syntax
+
+```scopeql
+LTRIM( <expr> [, <characters> ] )
+```
+
+### Arguments
+
+#### `<expr>`
+
+The string expression to be trimmed.
+
+#### `<characters>`
+
+One or more characters to remove from the left side of `<expr>`.
+
+The default value is `' '` (a single blank space character). If no characters are specified, only blank spaces are removed.
+
+#### Returns
+
+This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
+
+#### Examples
+
+Remove leading `0` and `#` characters from a string:
+
+```scopeql
+SELECT LTRIM('#000000123', '0#');
+```
+
+```
++---------------------------+
+| LTRIM('#000000123', '0#') |
+|---------------------------|
+| 123                       |
++---------------------------+
+```
+
+## RTRIM
+
+Removes trailing characters from a string.
+
+### Syntax
+
+```scopeql
+RTRIM( <expr> [, <characters> ] )
+```
+
+### Arguments
+
+#### `<expr>`
+
+The string expression to be trimmed.
+
+#### `<characters>`
+
+One or more characters to remove from the right side of `<expr>`.
+
+The default value is `' '` (a single blank space character). If no characters are specified, only blank spaces are removed.
+
+#### Returns
+
+This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
+
+#### Examples
+
+Remove trailing `0` and `.` characters from a string:
+
+```scopeql
+SELECT RTRIM('$125.00', '0.');
+```
+
+```
++------------------------+
+| RTRIM('$125.00', '0.') |
++------------------------+
+| $125                   |
++------------------------+
+```
+
+## SEARCH
+
+Searches character data (text) in specified columns.
+
+### Syntax
+
+```scopeql
+SEARCH( <search_data>, <query> )
+```
+
+### Arguments
+
+#### `<search_data>`
+
+The data you want to search.
+
+#### `<query>` (named)
+
+A string that contains one or more search terms. This argument must be a literal string; column names are not supported. Specify one pair of single quotes around the entire string.
+
+### Returns
+
+Returns a BOOLEAN.
+
+* The value is TRUE if any `<query>` tokens are found in `<search_data>`.
+* Returns NULL if either of these arguments is NULL.
+* Otherwise, returns FALSE.
+
+### Examples
+
+```scopeql
+VALUES ('foo bar'), ('foobar'), ('bar baz'), ('') SELECT *, search($0, query => 'foo');
+```
+
+```
++---------+----------------------------+
+| $0      | search($0, query => 'foo') |
++---------+----------------------------+
+| foo bar | true                       |
+| foobar  | false                      |
+| bar baz | false                      |
+|         | false                      |
++---------+----------------------------+
 ```
 
 ## SUBSTR
@@ -190,4 +308,48 @@ SELECT
 | mystring   | NULL        | 3            | NULL      |
 | mystring   | 3           | NULL         | NULL      |
 +------------+-------------+--------------+-----------+
+```
+
+## TRIM
+
+Removes leading and trailing characters from a string.
+
+### Syntax
+
+```scopeql
+TRIM( <expr> [, <characters> ] )
+```
+
+### Arguments
+
+#### `<expr>`
+
+The string expression to be trimmed.
+
+#### `<characters>`
+
+One or more characters to remove from the left and right side of `<expr>`.
+
+The default value is `' '` (a single blank space character). If no characters are specified, only blank spaces are removed.
+
+#### Returns
+
+This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
+
+#### Examples
+
+Remove leading and trailing * and - characters from a string:
+
+```scopeql
+SELECT
+    '*-*ABC-*-' AS original,
+    TRIM('*-*ABC-*-', '*-') AS trimmed;
+```
+
+```
++-----------+---------+
+| original  | trimmed |
++-----------+---------+
+| *-*ABC-*- | ABC     |
++-----------+---------+
 ```
