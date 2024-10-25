@@ -47,6 +47,7 @@ It is almost [the JSON format](https://datatracker.ietf.org/doc/html/rfc8259), e
 
 * Field names are identifiers. Thus, it can be `"field_name"` or `field_name` without quotes, but `'field_name'` is illegal.
 * String values are literal strings. Thus, it must be `'string_value'`. No quote or double-quoted are both illegal.
+* Values are extended for `timestamp` and `interval` types. For example, `{ "ts": '2024-10-25T10:25:17Z'::timestamp }`. These values will be formatted as string when calling `TO_JSON`.
 
 :::
 
