@@ -632,7 +632,7 @@ REGEXP_LIKE( <subject> , <regex> )
 
 The string to search for matches.
 
-#### `<regex>`
+#### `<regex>` (named)
 
 The regular expression pattern to match.
 
