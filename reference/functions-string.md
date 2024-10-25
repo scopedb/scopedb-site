@@ -83,90 +83,6 @@ SELECT $0, LENGTH($0);
 +-----------------+------------+
 ```
 
-## LTRIM
-
-Removes leading characters from a string.
-
-### Syntax
-
-```scopeql
-LTRIM( <expr> [, <chars> ] )
-```
-
-### Arguments
-
-#### `<expr>`
-
-The string expression to be trimmed.
-
-#### `<chars>` (named)
-
-One or more characters to remove from the left side of `<expr>`.
-
-The default value is `' '` (a single blank space character). If no characters are specified, only blank spaces are removed.
-
-#### Returns
-
-This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
-
-#### Examples
-
-Remove leading `0` and `#` characters from a string:
-
-```scopeql
-SELECT LTRIM('#000000123', '0#');
-```
-
-```
-+---------------------------+
-| LTRIM('#000000123', '0#') |
-|---------------------------|
-| 123                       |
-+---------------------------+
-```
-
-## RTRIM
-
-Removes trailing characters from a string.
-
-### Syntax
-
-```scopeql
-RTRIM( <expr> [, <chars> ] )
-```
-
-### Arguments
-
-#### `<expr>`
-
-The string expression to be trimmed.
-
-#### `<chars>` (named)
-
-One or more characters to remove from the right side of `<expr>`.
-
-The default value is `' '` (a single blank space character). If no characters are specified, only blank spaces are removed.
-
-#### Returns
-
-This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
-
-#### Examples
-
-Remove trailing `0` and `.` characters from a string:
-
-```scopeql
-SELECT RTRIM('$125.00', '0.');
-```
-
-```
-+------------------------+
-| RTRIM('$125.00', '0.') |
-+------------------------+
-| $125                   |
-+------------------------+
-```
-
 ## SEARCH
 
 Searches character data (text) in specified columns.
@@ -310,6 +226,90 @@ SELECT
 +------------+-------------+--------------+-----------+
 ```
 
+## LTRIM
+
+Removes leading characters from a string.
+
+### Syntax
+
+```scopeql
+LTRIM( <expr> [, <chars> ] )
+```
+
+### Arguments
+
+#### `<expr>`
+
+The string expression to be trimmed.
+
+#### `<chars>` (named) (optional)
+
+One or more characters to remove from the left side of `<expr>`.
+
+The default value is `" \t\n\r"` (common whitespace characters).
+
+#### Returns
+
+This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
+
+#### Examples
+
+Remove leading `0` and `#` characters from a string:
+
+```scopeql
+SELECT LTRIM('#000000123', '0#');
+```
+
+```
++---------------------------+
+| LTRIM('#000000123', '0#') |
+|---------------------------|
+| 123                       |
++---------------------------+
+```
+
+## RTRIM
+
+Removes trailing characters from a string.
+
+### Syntax
+
+```scopeql
+RTRIM( <expr> [, <chars> ] )
+```
+
+### Arguments
+
+#### `<expr>`
+
+The string expression to be trimmed.
+
+#### `<chars>` (named) (optional)
+
+One or more characters to remove from the right side of `<expr>`.
+
+The default value is `" \t\n\r"` (common whitespace characters).
+
+#### Returns
+
+This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
+
+#### Examples
+
+Remove trailing `0` and `.` characters from a string:
+
+```scopeql
+SELECT RTRIM('$125.00', '0.');
+```
+
+```
++------------------------+
+| RTRIM('$125.00', '0.') |
++------------------------+
+| $125                   |
++------------------------+
+```
+
 ## TRIM
 
 Removes leading and trailing characters from a string.
@@ -326,11 +326,11 @@ TRIM( <expr> [, <chars> ] )
 
 The string expression to be trimmed.
 
-#### `<chars>` (named)
+#### `<chars>` (named) (optional)
 
 One or more characters to remove from the left and right side of `<expr>`.
 
-The default value is `' '` (a single blank space character). If no characters are specified, only blank spaces are removed.
+The default value is `" \t\n\r"` (common whitespace characters).
 
 #### Returns
 
@@ -353,3 +353,310 @@ SELECT
 | *-*ABC-*- | ABC     |
 +-----------+---------+
 ```
+
+## LOWER
+
+Returns the input string with all characters converted to lowercase.
+
+### Syntax
+
+```scopeql
+LOWER( <expr> )
+```
+
+## UPPER
+
+Returns the input string with all characters converted to uppercase.
+
+### Syntax
+
+```scopeql
+UPPER( <expr> )
+```
+
+## REVERSE
+
+Reverses the order of characters in a string.
+
+The returned value is the same length as the input, but with the characters in reverse order. If subject is NULL, the result is also NULL.
+
+### Syntax
+
+```scopeql
+REVERSE(<subject>)
+```
+
+### Examples
+
+This example reverses a string:
+
+```scopeql
+SELECT REVERSE('Hello, world!');
+```
+
+```
++--------------------------+
+| REVERSE('Hello, world!') |
++--------------------------+
+| !dlrow ,olleH            |
++--------------------------+
+```
+
+## REPLACE
+
+Removes all occurrences of a specified substring, and replaces them with another substring.
+
+### Syntax
+
+```scopeql
+REPLACE( <subject> , <pattern> , <replacement> )
+```
+
+### Arguments
+
+#### `<subject>`
+
+The subject is the string in which to do the replacements. Typically, this is a column, but it can be a literal.
+
+#### `<pattern>`
+
+This is the substring that you want to replace. Typically, this is a literal, but it can be a column or expression.
+
+If this is an empty string, then the `REPLACE` function simply return the original `<subject>` value.
+
+#### `<replacement>`
+
+This is the value used as a replacement for the `<pattern>`.
+
+If this is an empty string, then the `REPLACE` function simply deletes all occurrences of the `<pattern>`.
+
+### Returns
+
+The returned value is the string after all replacements have been done.
+
+If any of the arguments is a NULL, the result is also a NULL.
+
+### Examples
+
+Replace the string "down" with the string "up":
+
+```scopeql
+SELECT REPLACE('down', 'down', 'up');
+```
+
+```
++-------------------------------+
+| REPLACE('down', 'down', 'up') |
++-------------------------------+
+| up                            |
++-------------------------------+
+```
+
+Replace the substring "Athens" in the string "Vacation in Athens" with the substring "Rome":
+
+```scopeql
+SELECT REPLACE('Vacation in Athens', 'Athens', 'Rome');
+```
+
+```
++-------------------------------------------------+
+| REPLACE('Vacation in Athens', 'Athens', 'Rome') |
++-------------------------------------------------+
+| Vacation in Rome                                |
++-------------------------------------------------+
+```
+
+Delete the substring "bc" in the string "abcd":
+
+```scopeql
+SELECT REPLACE('abcd', 'bc', '');
+```
+
+```
++---------------------------+
+| REPLACE('abcd', 'bc', '') |
++---------------------------+
+| ad                        |
++---------------------------+
+```
+
+## SPLIT
+
+Splits a given string with a given separator and returns the result in an array of strings.
+
+Contiguous split strings in the source string, or the presence of a split string at the beginning or end of the source string, results in an empty string in the output. An empty separator string results in an array containing only the source string. If either parameter is a NULL, a NULL is returned.
+
+### Syntax
+
+```scopeql
+SPLIT(<string>, <separator>)
+```
+
+### Arguments
+
+#### `<string>`
+
+Text to be split into parts.
+
+#### `<separator>` (named)
+
+Text to split string by.
+
+### Returns
+
+The data type of the returned value is ARRAY.
+
+### Examples
+
+Split the localhost IP address "127.0.0.1" into an array consisting of each of the four parts:
+
+```scopeql
+SELECT SPLIT('127.0.0.1', '.');
+```
+
+```
++------------------------------+
+| SPLIT('127.0.0.1', '.')      |
++------------------------------+
+| ['127','0','0','1']::variant |
++------------------------------+
+```
+
+Split a string that contains vertical lines as separators (note that the output will contain empty strings):
+
+```scopeql
+SELECT SPLIT('|a||', '|');
+```
+
+```
++-------------------------+
+| SPLIT('|a||', '|')      |
++-------------------------+
+| ['','a','','']::variant |
++-------------------------+
+```
+
+## CONTAINS
+
+Returns true if `<expr1>` contains `<expr2>`. Both expressions must be strings.
+
+### Syntax
+
+```scopeql
+CONTAINS( <expr1> , <expr2> )
+```
+
+### Arguments
+
+#### `<expr1>`
+
+The string to search in.
+
+#### `<expr2>`
+
+The string to search for.
+
+### Returns
+
+Returns a BOOLEAN or NULL:
+
+* Returns TRUE if `<expr2>` is found inside `<expr1>`.
+* Returns FALSE if `<expr2>` is not found inside `<expr1>`.
+* Returns NULL if either input expression is NULL.
+
+### Examples
+
+Determine whether column values contain a string:
+
+```scopeql
+VALUES
+  ('coffee'),
+  ('ice tea'),
+  ('latte'),
+  ('tea'),
+  (NULL)
+WHERE CONTAINS($0, 'te');
+```
+
+```
++---------+
+| $0      |
++---------+
+| ice tea |
+| latte   |
+| tea     |
++---------+
+```
+
+## STARTS_WITH
+
+Returns true if `<expr1>` starts with `<expr2>`. Both expressions must be strings.
+
+### Syntax
+
+```scopeql
+STARTS_WITH( <expr1> , <expr2> )
+```
+
+### Returns
+
+Returns a BOOLEAN. The value is TRUE if `<expr1>` starts with `<expr2>`. Returns NULL if either input expression is NULL. Otherwise, returns FALSE.
+
+## ENDS_WITH
+
+Returns true if `<expr1>` ends with `<expr2>`. Both expressions must be strings.
+
+### Syntax
+
+```scopeql
+ENDS_WITH( <expr1> , <expr2> )
+```
+
+### Returns
+
+Returns a BOOLEAN. The value is TRUE if `<expr1>` ends with `<expr2>`. Returns NULL if either input expression is NULL. Otherwise, returns FALSE.
+
+## REGEXP_LIKE
+
+Performs a comparison to determine whether a string matches a specified pattern. Both inputs must be strings.
+
+### Syntax
+
+```scopeql
+REGEXP_LIKE( <subject> , <regex> )
+```
+
+### Arguments
+
+#### `<subject>`
+
+The string to search for matches.
+
+#### `<regex>`
+
+The regular expression pattern to match.
+
+### Returns
+
+Returns a BOOLEAN or NULL. The value is TRUE if there is a match. Otherwise, returns FALSE. Returns NULL if any argument is NULL.
+
+### Examples
+
+```scopeql
+VALUES
+  ('Sacramento'),
+  ('San Francisco'),
+  ('San Jose'),
+  (NULL)
+WHERE REGEXP_LIKE($0, 'San.*');
+```
+
+```
++---------------+
+| $0            |
++---------------+
+| San Francisco |
+| San Jose      |
++---------------+
+```
+
