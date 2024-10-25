@@ -660,3 +660,42 @@ An expression that evaluates to a numeric value. This is the expression on which
 The data type of the returned value is FLOAT.
 
 If all records inside a group are NULL, this function returns NULL.
+
+## OBJECT_SCHEMA
+
+Returns the aggregated schema of values of the input object column as a VARIANT. The schema is a VARIANT that contains the keys and their types.
+
+### Syntax
+
+```scopeql
+OBJECT_SCHEMA( <object> )
+```
+
+### Arguments
+
+#### `<object>`
+
+The VARIANT column for which you want the aggregated schema. The input rows that is _not_ an object will be ignored.
+
+### Returns
+
+An OBJECT that contains the outermost keys and their types.
+
+### Examples
+
+```scopeql
+VALUES {
+  (1, {}),
+  (2, {"a": 1, "b": ['hello', 'world']}),
+  (3, {"a": {"b": 1}}),
+}
+AGGREGATE object_schema($1);
+```
+
+```
++--------------------------------------------------------------------------------------------+
+| object_schema($1)                                                                          |
++--------------------------------------------------------------------------------------------+
+| [{"key":'a',"type":'int'},{"key":'a',"type":'object'},{"key":'b',"type":'array'}]::variant |
++--------------------------------------------------------------------------------------------+
+```
