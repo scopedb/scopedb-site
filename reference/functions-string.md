@@ -90,7 +90,7 @@ Removes leading characters from a string.
 ### Syntax
 
 ```scopeql
-LTRIM( <expr> [, <characters> ] )
+LTRIM( <expr> [, <chars> ] )
 ```
 
 ### Arguments
@@ -99,7 +99,7 @@ LTRIM( <expr> [, <characters> ] )
 
 The string expression to be trimmed.
 
-#### `<characters>`
+#### `<chars>` (named)
 
 One or more characters to remove from the left side of `<expr>`.
 
@@ -132,7 +132,7 @@ Removes trailing characters from a string.
 ### Syntax
 
 ```scopeql
-RTRIM( <expr> [, <characters> ] )
+RTRIM( <expr> [, <chars> ] )
 ```
 
 ### Arguments
@@ -141,7 +141,7 @@ RTRIM( <expr> [, <characters> ] )
 
 The string expression to be trimmed.
 
-#### `<characters>`
+#### `<chars>` (named)
 
 One or more characters to remove from the right side of `<expr>`.
 
@@ -317,7 +317,7 @@ Removes leading and trailing characters from a string.
 ### Syntax
 
 ```scopeql
-TRIM( <expr> [, <characters> ] )
+TRIM( <expr> [, <chars> ] )
 ```
 
 ### Arguments
@@ -326,7 +326,7 @@ TRIM( <expr> [, <characters> ] )
 
 The string expression to be trimmed.
 
-#### `<characters>`
+#### `<chars>` (named)
 
 One or more characters to remove from the left and right side of `<expr>`.
 
