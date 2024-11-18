@@ -11,18 +11,18 @@ The VARIANT data type can contain a value of any other data type.
 To insert VARIANT data directly, use `SELECT ... INSERT INTO ...`. The following example shows how to insert JSON-formatted data into a VARIANT value:
 
 ```scopeql
-CREATE TABLE variant_insert (v VARIANT) WITH (...);
+CREATE TABLE variant_insert (v VARIANT);
 
 SELECT PARSE_JSON('{"key1": "value1", "key2": "value2"}') INSERT INTO variant_insert;
 FROM variant_insert;
 ```
 
 ```
-+--------------------------------------------+
-| v                                          |
-+--------------------------------------------+
-| {"key1":"value1","key2":"value2"}::variant |
-+--------------------------------------------+
++-----------------------------------+
+| v                                 |
++-----------------------------------+
+| {"key1":'value1',"key2":'value2'} |
++-----------------------------------+
 ```
 
 Alternatively, you can use the variant literal syntax:
@@ -34,11 +34,11 @@ FROM variant_insert;
 ```
 
 ```
-+--------------------------------------------+
-| v                                          |
-+--------------------------------------------+
-| {"key3":"value3","key4":"value4"}::variant |
-+--------------------------------------------+
++-----------------------------------+
+| v                                 |
++-----------------------------------+
+| {"key3":'value3',"key4":'value4'} |
++-----------------------------------+
 ```
 
 :::info[Syntax of variant literal]

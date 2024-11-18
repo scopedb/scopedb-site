@@ -25,8 +25,8 @@ This example demonstrates the basic usage of the UNION ALL operator. It also dem
 Start by creating the tables and inserting some data:
 
 ```scopeql
-CREATE TABLE t1 (v STRING) WITH (...);
-CREATE TABLE t2 (i INT) WITH (...);
+CREATE TABLE t1 (v STRING);
+CREATE TABLE t2 (i INT);
 VALUES ('Adams, Douglas') INSERT INTO t1;
 VALUES (42) INSERT INTO t2;
 ```
