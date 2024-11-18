@@ -15,15 +15,15 @@ Updates a table by inserting one or more rows into the table. The values inserte
 Inserts with constants:
 
 ```scopeql
-CREATE TABLE t (a INT) WITH (...);
+CREATE TABLE t (a INT);
 VALUES (1), (2), (3) INSERT INTO t;
 ```
 
 Inserts from the results of a query:
 
 ```scopeql
-CREATE TABLE t1 (a INT) WITH (...);
-CREATE TABLE t2 (a INT) WITH (...);
+CREATE TABLE t1 (a INT);
+CREATE TABLE t2 (a INT);
 
 VALUES (1), (2), (3) INSERT INTO t1;
 FROM t1 WHERE a > 1 SELECT a + 1 AS b INSERT INTO t2;
@@ -78,9 +78,9 @@ Where:
 
 ```
 match_action:
-    WHEN MATCHED [AND <extra_condition>] THEN { 
-        UPDATE ALL 
-        | UPDATE SET <set_clause> [, <set_clause>]* 
+    WHEN MATCHED [AND <extra_condition>] THEN {
+        UPDATE ALL
+        | UPDATE SET <set_clause> [, <set_clause>]*
         | DELETE
     }
     | WHEN NOT MATCHED [AND <extra_condition>] THEN INSERT ALL
@@ -107,8 +107,8 @@ Specifies row matching conditions.
 
 Straightforward example:
 ```scopeql
-CREATE TABLE target (id INT, message VARIANT, update_time INT) WITH (...);
-CREATE TABLE source (id INT, message VARIANT, update_time INT) WITH (...);
+CREATE TABLE target (id INT, message VARIANT, update_time INT);
+CREATE TABLE source (id INT, message VARIANT, update_time INT);
 
 FROM source
 MERGE INTO target ON target.id = source.id
@@ -118,12 +118,12 @@ WHEN NOT MATCHED THEN INSERT ALL;
 
 `MERGE INTO` with multiple `WHEN MATCHED` clauses:
 ```scopeql
-CREATE TABLE target (id INT, message VARIANT, update_time INT) WITH (...);
-CREATE TABLE source (id INT, message VARIANT, update_time INT) WITH (...);
+CREATE TABLE target (id INT, message VARIANT, update_time INT);
+CREATE TABLE source (id INT, message VARIANT, update_time INT);
 
 FROM source
 MERGE INTO target ON target.id = source.id
-WHEN MATCHED AND source.update_time > target.update_time THEN UPDATE ALL 
+WHEN MATCHED AND source.update_time > target.update_time THEN UPDATE ALL
 WHEN MATCHED AND source.update_time < target.update_time THEN UPDATE SET update_time = now() # This action will be executed if previous condition is not met
 WHEN NOT MATCHED THEN INSERT ALL;
 ```
@@ -135,10 +135,10 @@ When multiple rows in `<source_table>` matches one row in `<target_table>`, the 
 For example,
 
 ```scopeql
-CREATE TABLE target (id INT, value INT) WITH (...);
+CREATE TABLE target (id INT, value INT);
 VALUES(1, 1) INSERT INTO target;
 
-CREATE TABLE source (id INT, value INT) WITH (...);
+CREATE TABLE source (id INT, value INT);
 VALUES(1, 2), (1, 3) INSERT INTO source;
 
 FROM source

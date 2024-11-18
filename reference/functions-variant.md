@@ -44,7 +44,7 @@ SELECT PARSE_JSON(NULL), PARSE_JSON('null');
 +------------------+--------------------+
 | PARSE_JSON(NULL) | PARSE_JSON('null') |
 +------------------+--------------------+
-| NULL             | null::variant      |
+| NULL             | null               |
 +------------------+--------------------+
 ```
 
@@ -58,7 +58,7 @@ SELECT PARSE_JSON('{"b":1,"a":2}');
 +-----------------------------+
 | PARSE_JSON('{"b":1,"a":2}') |
 +-----------------------------+
-| {"a":2,"b":1}::variant      |
+| {"a":2,"b":1}               |
 +-----------------------------+
 ```
 
@@ -96,7 +96,7 @@ SELECT TO_JSON(NULL), TO_JSON('null'::VARIANT);
 +---------------+--------------------------+
 | TO_JSON(NULL) | TO_JSON('null'::VARIANT) |
 +---------------+--------------------------+
-| null          | "null"                   |
+| NULL          | "null"                   |
 +---------------+--------------------------+
 ```
 
@@ -158,7 +158,7 @@ This function returns a VARIANT.
 Extract the first element of an ARRAY:
 
 ```scopeql
-CREATE TABLE vartab (a VARIANT, o VARIANT, v VARIANT) WITH (...);
+CREATE TABLE vartab (a VARIANT, o VARIANT, v VARIANT);
 
 VALUES
 ([2.71, 3.14], {"France": 'Paris', "Germany": 'Berlin'}, {"sensorType": 'indoor', "temperature": 31.5, "timestamp": '2022-03-07T14:00:00.000-0800', "weatherStationID": 42})
@@ -170,11 +170,11 @@ FROM vartab;
 ```
 
 ```
-+----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
-| a                    | o                                              | v                                                                                                                    |
-+----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
-| [2.71,3.14]::variant | {"France":"Paris","Germany":"Berlin"}::variant | {"sensorType":"indoor","temperature":31.5,"timestamp":"2022-03-07T14:00:00.000-0800","weatherStationID":42}::variant |
-+----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
++-------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| a           | o                                     | v                                                                                                           |
++-------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------+
+| [2.71,3.14] | {"France":'Paris',"Germany":'Berlin'} | {"sensorType":'indoor',"temperature":31.5,"timestamp":'2022-03-07T14:00:00.000-0800',"weatherStationID":42} |
++-------------+---------------------------------------+-------------------------------------------------------------------------------------------------------------+
 ```
 
 Extract the first element of an ARRAY:
@@ -184,11 +184,11 @@ FROM vartab SELECT GET(a, 0);
 ```
 
 ```
-+---------------+
-| GET(a, 0)     |
-+---------------+
-| 2.71::variant |
-+---------------+
++-----------+
+| GET(a, 0) |
++-----------+
+| 2.71      |
++-----------+
 ```
 
 Given the name of a country, extract the name of the capital city of that country from an OBJECT containing country names and capital cities:
@@ -201,7 +201,7 @@ FROM vartab SELECT GET(o, 'Germany');
 +-------------------+
 | GET(o, 'Germany') |
 +-------------------+
-| "Berlin"::variant |
+| 'Berlin'          |
 +-------------------+
 ```
 
@@ -215,7 +215,7 @@ FROM vartab SELECT GET(v, 'temperature');
 +-----------------------+
 | GET(v, 'temperature') |
 +-----------------------+
-| 31.5::variant         |
+| 31.5                  |
 +-----------------------+
 ```
 
@@ -251,7 +251,7 @@ SELECT OBJECT_KEYS({"a": 1, "b": 2, "c": 3});
 +---------------------------------------+
 | OBJECT_KEYS({"a": 1, "b": 2, "c": 3}) |
 +---------------------------------------+
-| ["a","b","c"]::variant                |
+| ['a','b','c']                         |
 +---------------------------------------+
 ```
 
@@ -280,7 +280,7 @@ Returns a STRING that contains the data type of the input expression, such as BO
 Create and populate a table. Note that the INSERT statement uses the PARSE_JSON function.
 
 ```scopeql
-CREATE TABLE vartab (n INT, v VARIANT) WITH (...);
+CREATE TABLE vartab (n INT, v VARIANT);
 VALUES
     (1, 'null'),
     (2, null),
@@ -304,17 +304,17 @@ ORDER BY n;
 ```
 
 ```
-+---+---------------------------------------+-----------+
-| n | v                                     | TYPEOF(v) |
-+---+---------------------------------------+-----------+
-| 1 | null::variant                         | null      |
-| 2 | NULL                                  | NULL      |
-| 3 | true::variant                         | bool      |
-| 4 | -17::variant                          | int       |
-| 5 | 123.12::variant                       | float     |
-| 6 | 191.2::variant                        | float     |
-| 7 | "Om ara pa ca na dhih"::variant       | string    |
-| 8 | [-1,12,289,2188,false]::variant       | array     |
-| 9 | {"x":"abc","y":false,"z":10}::variant | object    |
-+---+---------------------------------------+-----------+
++---+------------------------------+-----------+
+| n | v                            | TYPEOF(v) |
++---+------------------------------+-----------+
+| 1 | null                         | null      |
+| 2 | NULL                         | NULL      |
+| 3 | true                         | bool      |
+| 4 | -17                          | int       |
+| 5 | 123.12                       | float     |
+| 6 | 191.2                        | float     |
+| 7 | 'Om ara pa ca na dhih'       | string    |
+| 8 | [-1,12,289,2188,false]       | array     |
+| 9 | {"x":'abc',"y":false,"z":10} | object    |
++---+------------------------------+-----------+
 ```

@@ -153,11 +153,11 @@ AGGREGATE MAX($0, 5);
 ```
 
 ```
-+-----------------------+
-| MAX($0, 5)            |
-+-----------------------+
-| [10,9,8,7,6]::variant |
-+-----------------------+
++--------------+
+| MAX($0, 5)   |
++--------------+
+| [10,9,8,7,6] |
++--------------+
 ```
 
 Alternatively, use the named argument syntax:
@@ -168,11 +168,11 @@ AGGREGATE MAX($0, n => 5);
 ```
 
 ```
-+-----------------------+
-| MAX($0, n => 5)       |
-+-----------------------+
-| [10,9,8,7,6]::variant |
-+-----------------------+
++-----------------+
+| MAX($0, n => 5) |
++-----------------+
+| [10,9,8,7,6]    |
++-----------------+
 ```
 
 ## MAX_BY
@@ -210,7 +210,7 @@ The following examples demonstrate how to use the MAX_BY function.
 To run these examples, execute the following statements to set up the table and data for the examples:
 
 ```scopeql
-CREATE TABLE employees(employee_id int, department_id int, salary int) WITH (...);
+CREATE TABLE employees(employee_id int, department_id int, salary int);
 VALUES
   (1001, 10, 10000),
   (1020, 10, 9000),
@@ -276,7 +276,7 @@ The following examples demonstrate how to use the FILTER_NULLS_MAX_BY function.
 To run these examples, execute the following statements to set up the table and data for the examples:
 
 ```scopeql
-CREATE TABLE errors(ts timestamp, error string) WITH (...);
+CREATE TABLE errors(ts timestamp, error string);
 VALUES
   ('2024-10-20T07:38:59.6519Z'::timestamp, 'divided by zero'),
   ('2024-10-20T08:21:23.7652Z'::timestamp, 'connection reset by peer'),
@@ -369,11 +369,11 @@ AGGREGATE MIN($0, 5);
 ```
 
 ```
-+----------------------+
-| MIN($0, 5)           |
-+----------------------+
-| [1,1,1,4,5]::variant |
-+----------------------+
++-------------+
+| MIN($0, 5)  |
++-------------+
+| [1,1,1,4,5] |
++-------------+
 ```
 
 Alternatively, use the named argument syntax:
@@ -384,11 +384,11 @@ AGGREGATE MIN($0, n => 5);
 ```
 
 ```
-+----------------------+
-| MIN($0, n => 5)      |
-+----------------------+
-| [1,1,1,4,5]::variant |
-+----------------------+
++-----------------+
+| MIN($0, n => 5) |
++-----------------+
+| [1,1,1,4,5]     |
++-----------------+
 ```
 
 ## MIN_BY
@@ -426,7 +426,7 @@ The following examples demonstrate how to use the MIN_BY function.
 To run these examples, execute the following statements to set up the table and data for the examples:
 
 ```scopeql
-CREATE TABLE employees(employee_id int, department_id int, salary int) WITH (...);
+CREATE TABLE employees(employee_id int, department_id int, salary int);
 VALUES
   (1001, 10, 10000),
   (1020, 10, 9000),
@@ -492,7 +492,7 @@ The following examples demonstrate how to use the FILTER_NULLS_MIN_BY function.
 To run these examples, execute the following statements to set up the table and data for the examples:
 
 ```scopeql
-CREATE TABLE errors(ts timestamp, error string) WITH (...);
+CREATE TABLE errors(ts timestamp, error string);
 VALUES
   ('2024-10-20T08:21:23.7652Z'::timestamp, 'connection reset by peer'),
   ('2024-10-20T07:38:59.6519Z'::timestamp, 'divided by zero'),
@@ -693,9 +693,9 @@ AGGREGATE object_schema($1);
 ```
 
 ```
-+---------------------------------------------------------------------------------------------------------------+
-| object_schema($1)                                                                                             |
-+---------------------------------------------------------------------------------------------------------------+
-| [{"key":'a',"type":'int'},{"key":'a',"type":'object'},{"items":['string'],"key":'b',"type":'array'}]::variant |
-+---------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------+
+| object_schema($1)                                                                                    |
++------------------------------------------------------------------------------------------------------+
+| [{"key":'a',"type":'int'},{"key":'a',"type":'object'},{"items":['string'],"key":'b',"type":'array'}] |
++------------------------------------------------------------------------------------------------------+
 ```

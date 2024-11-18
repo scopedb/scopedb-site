@@ -31,7 +31,7 @@ CREATE TABLE employee_table (
     last_name STRING,
     first_name STRING,
     department_ID INT,
-) WITH (...);
+);
 
 VALUES
     (101, 'Montgomery', 'Pat', 1),
@@ -113,7 +113,7 @@ FROM reads all the data from a table.
 Create a table and load data into it:
 
 ```scopeql
-CREATE TABLE ftable1 (retail_price FLOAT, wholesale_cost FLOAT, description STRING) WITH (...);
+CREATE TABLE ftable1 (retail_price FLOAT, wholesale_cost FLOAT, description STRING);
 VALUES (14.00, 6.00, 'bling') INSERT INTO ftable1;
 ```
 
@@ -343,7 +343,7 @@ CREATE TABLE sales (
   quantity INT,
   city STRING,
   state STRING,
-) WITH (...);
+);
 
 VALUES
   (1, 2.00,  1, 'SF', 'CA'),
