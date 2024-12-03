@@ -53,6 +53,75 @@ The syntax or variant literal extends [the JSON format](https://datatracker.ietf
 
 To convert a value to or from the VARIANT data type, you can explicitly cast using the CAST function or the `::` operator (e.g. `<expr>::VARIANT`).
 
+Create a table and insert values:
+
+```scopeql
+CREATE TABLE vartab (n INT, v VARIANT);
+VALUES
+    (1, 'null'),
+    (2, null),
+    (3, 'true'),
+    (4, '-17'),
+    (5, '123.12'),
+    (6, '1.912e2'),
+    (7, '"Om ara pa ca na dhih"  '),
+    (8, '[-1, 12, 289, 2188, false]'),
+    (9, '{ "x" : "abc", "y" : false, "z": 10} ')
+SELECT $0 AS n, PARSE_JSON($1) AS v
+INSERT INTO vartab;
+```
+
+Query the data:
+
+```scopeql
+FROM vartab
+SELECT n, v, TYPEOF(v)
+ORDER BY n;
+```
+
+```
++---+------------------------------+-----------+
+| n | v                            | TYPEOF(v) |
++---+------------------------------+-----------+
+| 1 | null                         | null      |
+| 2 | NULL                         | NULL      |
+| 3 | true                         | bool      |
+| 4 | -17                          | int       |
+| 5 | 123.12                       | float     |
+| 6 | 191.2                        | float     |
+| 7 | 'Om ara pa ca na dhih'       | string    |
+| 8 | [-1,12,289,2188,false]       | array     |
+| 9 | {"x":'abc',"y":false,"z":10} | object    |
++---+------------------------------+-----------+
+```
+
+VARIANT data has a total ordering, which means you can use the `ORDER BY` clause to sort the data.
+
+```scopeql
+FROM vartab WHERE v IS NOT NULL ORDER BY v DESC;
+```
+
+```
++---+------------------------------+
+| n | v                            |
++---+------------------------------+
+| 9 | {"x":'abc',"y":false,"z":10} |
+| 8 | [-1,12,289,2188,false]       |
+| 3 | true                         |
+| 6 | 191.2                        |
+| 5 | 123.12                       |
+| 4 | -17                          |
+| 7 | 'Om ara pa ca na dhih'       |
+| 1 | null                         |
++---+------------------------------+
+```
+
+Between different variant types, the order is as follows:
+
+```
+Object > Array > Binary > Timestamp > Interval > Boolean > Number > String > Null
+```
+
 ## Related content
 
 See also [variant data functions](functions-variant.md).
