@@ -47,6 +47,7 @@ const sidebars: SidebarsConfig = {
         'functions-conditional',
         'functions-conversion',
         'functions-datetime',
+        'functions-numeric',
         'functions-string',
         'functions-variant',
       ],
