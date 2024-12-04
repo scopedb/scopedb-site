@@ -175,3 +175,12 @@ Lists the tasks for which you have access privileges.
 SHOW TASKS
 ```
 
+## OPTIMIZE TABLE
+
+Optimizing a table. Do compaction or purge historical data to save storage space and enhance query performance.
+
+### Syntax
+
+```scopeql
+OPTIMIZE TABLE <name>
+```
