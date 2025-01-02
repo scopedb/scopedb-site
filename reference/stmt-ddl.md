@@ -132,7 +132,7 @@ CREATE <index_type> INDEX <name> ON <table_name> (<index_expression>)
   - `SMART`: A general-purpose index that improves performance of queries involving the indexed expression
   - `SEARCH`: A specialized index that optimizes performance of text search operations using the `search` function
 
-- `<name>`: The name of the index (must be unique within the schema)
+- `<name>`: The name of the index (must be unique within the table)
 
 - `<table_name>`: The name of the table to create the index on
 
