@@ -146,7 +146,7 @@ CREATE <index_type> INDEX <name> ON <table_name> (<index_expression>)
 -- Create a table with different column types
 CREATE TABLE logs (
     id INT,
-    timestamp TIMESTAMP,
+    time TIMESTAMP,
     message STRING,
     level STRING,
     var VARIANT,
@@ -156,10 +156,10 @@ CREATE TABLE logs (
 CREATE SMART INDEX idx_log_id ON logs (id);
 
 -- SMART index on a timestamp expression
-CREATE SMART INDEX idx_log_date ON logs (trunc(timestamp, 'hour'));
+CREATE SMART INDEX idx_log_hour ON logs (trunc(time, unit => 'hour'));
 
 -- SMART index on a computed expression
-CREATE SMART INDEX idx_log_var ON logs (var['type']::string);
+CREATE SMART INDEX idx_log_var_type ON logs (var['type']::string);
 
 -- SEARCH index for text searching in log messages
 CREATE SEARCH INDEX idx_log_message ON logs (message);
