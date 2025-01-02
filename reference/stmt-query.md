@@ -405,3 +405,98 @@ AGGREGATE SUM(retail_price * quantity) AS gross_revenue;
 | 626.0         |
 +---------------+
 ```
+
+## DISTINCT ON
+
+The `DISTINCT ON` clause allows you to select unique rows based on specific columns, with optional ordering control. When used with the `BY` clause, it keeps the first row for each set of duplicates according to the specified ordering criteria.
+
+When used without the `BY` clause, it returns unique rows based on the specified columns, the rest part will be output with undetermined order.
+
+### Syntax
+
+```scopeql
+FROM ...
+DISTINCT ON expr [, expr, ...]
+[ BY <order_item> [, <order_item>, ...] ]
+```
+
+### Parameters
+
+#### `expr`
+
+One or more expressions that define the uniqueness criteria. Only the first row encountered for each unique combination of these expressions will be returned.
+
+#### `order_item`
+
+The same syntax as the [`ORDER BY`](#order-by) clause.
+
+### Examples
+
+Setting up the data for the examples:
+
+```scopeql
+CREATE TABLE t (
+  a INT,
+  b INT,
+);
+
+VALUES
+  (1, 2),
+  (2, 2),
+  (2, 2),
+  (2, 3)
+INSERT INTO t;
+```
+
+```scopeql
+FROM t DISTINCT ON a BY b DESC;
+```
+
+```
++---+---+
+| a | b |
++---+---+
+| 1 | 2 |
+| 2 | 3 |
++---+---+
+```
+
+This query returns unique rows based on column `a`, keeping the row with the highest value of `b` for each value of `a`.
+
+```scopeql
+FROM t DISTINCT ON a BY b ASC;
+```
+
+```
++---+---+
+| a | b |
++---+---+
+| 1 | 2 |
+| 2 | 2 |
++---+---+
+```
+
+This query returns unique rows based on column `a`, keeping the row with the lowest value of `b` for each value of `a`.
+
+```scopeql
+FROM t DISTINCT ON a, b;
+```
+
+```
++---+---+
+| a | b |
++---+---+
+| 1 | 2 |
+| 2 | 2 |
+| 2 | 3 |
++---+---+
+```
+
+This query returns rows that are unique across the combination of both columns `a` and `b`.
+
+### Usage Notes
+
+* The `BY` clause can contain multiple ordering expressions to provide fine-grained control over which rows to keep when there are duplicates.
+* Each ordering expression in the `BY` clause can have its own sort direction (ASC or DESC).
+* When used without a `BY` clause, `DISTINCT ON` returns the first encountered row for each unique combination of the specified expressions. This may result in undetermined query results.
+* The `BY` clause is particularly useful when you want to select specific representative rows (e.g., the most recent by multiple criteria) from each group of duplicate values.
