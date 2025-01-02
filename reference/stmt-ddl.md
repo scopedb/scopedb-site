@@ -119,7 +119,7 @@ Creates a new index on a table to improve query performance.
 ### Syntax
 
 ```scopeql
-CREATE <index_type> INDEX [ IF NOT EXISTS ] <name> ON <table_name> (<index_expression>)
+CREATE <index_type> INDEX <name> ON <table_name> (<index_expression>)
 
 <index_type>:
     SMART
