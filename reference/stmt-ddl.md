@@ -92,6 +92,99 @@ Removes a table from the current schema.
 DROP TABLE [ IF EXISTS ] <name>
 ```
 
+## CREATE VIEW
+
+Creates a new view in the current schema. A view is a virtual table based on the result set of a query. Views can help simplify complex queries and provide an abstraction layer over the underlying tables.
+
+### Syntax
+
+```scopeql
+CREATE [ OR REPLACE ] VIEW <name> 
+AS <query>
+[ COMMENT = '<string_literal>' ]
+```
+
+### Parameters
+
+#### `[ OR REPLACE ]`
+Optional clause that allows you to replace an existing view if it already exists.
+
+#### `<name>`
+The name of the view to create.
+
+#### `COMMENT`
+Optional comment to describe the purpose of the view.
+
+#### `<query>`
+The SELECT query that defines the view's contents.
+
+### Examples
+
+```scopeql
+-- Create a table to store user events
+CREATE TABLE user_events (
+    user_id INT,
+    event_time TIMESTAMP,
+    status STRING,
+    score INT
+);
+
+-- Insert sample data
+VALUES 
+    (1, '2024-01-01T10:00:00Z', 'active', 85),
+    (1, '2024-01-02T15:30:00Z', 'inactive', 75),
+    (2, '2024-01-01T09:00:00Z', 'active', 90),
+    (2, '2024-01-03T14:20:00Z', 'active', 95)
+INSERT INTO user_events;
+
+-- Create a view that keeps only the latest record for each user
+CREATE VIEW latest_user_status AS
+FROM user_events 
+DISTINCT ON user_id 
+BY event_time DESC;
+
+-- Create or replace a view with a comment
+CREATE OR REPLACE VIEW highest_user_scores 
+AS
+FROM user_events
+DISTINCT ON user_id
+BY score DESC
+COMMENT = 'Users highest achieved scores';
+```
+
+### Usage Notes
+
+* Views are read-only and cannot be used as targets for INSERT, UPDATE, or DELETE operations
+* Views are useful for:
+  * Simplifying repeated queries
+  * Creating logical abstractions of the data
+  * Storing commonly used DISTINCT ON operations
+
+## DROP VIEW
+
+Removes a view from the current schema.
+
+### Syntax
+
+```scopeql
+DROP VIEW <name>
+```
+
+### Parameters
+
+#### `<name>`
+The name of the view to drop.
+
+### Examples
+
+```scopeql
+-- Drop a view
+DROP VIEW latest_user_status;
+
+-- Drop a view if it exists
+DROP VIEW highest_user_scores;
+```
+
 ## SHOW TABLES
 
 Lists the tables for which you have access privileges.
