@@ -112,6 +112,99 @@ Describes the columns in a table.
 DESCRIBE TABLE <name>
 ```
 
+## CREATE INDEX
+
+Creates a new index on a table to improve query performance.
+
+### Syntax
+
+```scopeql
+CREATE <index_type> INDEX <name> ON <table_name> (<index_expression>)
+
+<index_type>:
+    SMART
+    | SEARCH
+```
+
+### Parameters
+
+- `<index_type>`: The type of index to create:
+  - `SMART`: A general-purpose index that improves performance of queries involving the indexed expression
+  - `SEARCH`: A specialized index that optimizes performance of text search operations using the `search` function
+
+- `<name>`: The name of the index (must be unique within the table)
+
+- `<table_name>`: The name of the table to create the index on
+
+- `<index_expression>`: 
+  * For SMART indexes: Any valid expression that returns a deterministic value
+  * For SEARCH indexes: Must be a string column that will be used with the `search` function
+
+### Examples
+
+```scopeql
+-- Create a table with different column types
+CREATE TABLE logs (
+    id INT,
+    time TIMESTAMP,
+    message STRING,
+    level STRING,
+    var VARIANT,
+);
+
+-- SMART index on a column
+CREATE SMART INDEX idx_log_id ON logs (id);
+
+-- SMART index on a timestamp expression
+CREATE SMART INDEX idx_log_hour ON logs (trunc(time, unit => 'hour'));
+
+-- SMART index on a computed expression
+CREATE SMART INDEX idx_log_var_type ON logs (var['type']::string);
+
+-- SEARCH index for text searching in log messages
+CREATE SEARCH INDEX idx_log_message ON logs (message);
+```
+
+### When to Use Each Index Type
+
+1. Use `SMART` indexes when:
+   - You frequently filter on specific columns or expressions
+   - You need to optimize queries that use range conditions or equality comparisons
+   - You want to improve performance of queries involving computed expressions(e.g. path access on variant columns like `var['type']::string`)
+
+2. Use `SEARCH` indexes when:
+   - You need to perform text search operations using the `search` function
+   - You want to optimize queries that look for specific text patterns in string columns
+
+### Notes
+
+- Indexes improve query performance but require additional storage space
+- Creating too many indexes can slow down write operations and increase query latency
+- The query optimizer automatically determines when to use available indexes
+
+## DROP INDEX
+
+Removes an index from a table.
+
+### Syntax
+
+```scopeql
+DROP INDEX <name> ON <table_name>
+```
+
+### Parameters
+
+- `<name>`: The name of the index to drop
+- `<table_name>`: The name of the table containing the index
+
+### Examples
+
+```scopeql
+-- Drop indexes created in the previous examples
+DROP INDEX idx_log_id ON logs;
+DROP INDEX idx_log_message ON logs;
+```
+
 ## CREATE NODEGROUP
 
 Creates a new nodegroup.
