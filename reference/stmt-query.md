@@ -205,12 +205,12 @@ VALUES (1, 'one'), (2, 'two'), (3, 'three') SELECT $0 AS col0, $1;
 
 Returns a subset of rows sampled randomly from the specified table. The following sampling methods are supported:
 
-* Sample a fraction of a table, with a specified probability for including a given row. The number of rows returned depends on the size of the table and the requested probability. A seed can be specified to make the sampling deterministic.
+* Sample a fraction of a table, with a specified probability for including a given row. The number of rows returned depends on the size of the table and the requested probability.
 
 ### Syntax
 
 ```scopeql
-FROM ... SAMPLE <probability> PERCENT SEED <seed>
+FROM ... SAMPLE <probability> PERCENT
 ```
 
 ### Parameters
@@ -218,10 +218,6 @@ FROM ... SAMPLE <probability> PERCENT SEED <seed>
 #### `<probability> PERCENT`
 
 Specifies the percentage probability to use for selecting the sample. Can be any number between 0 (no rows selected) and 100 (all rows selected) inclusive.
-
-#### `SEED <seed>`
-
-Specifies a seed value to make the sampling deterministic.
 
 ## WHERE
 
