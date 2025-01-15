@@ -684,11 +684,10 @@ An OBJECT that contains the outermost keys and their types.
 ### Examples
 
 ```scopeql
-VALUES {
+VALUES
   (1, {}),
   (2, {"a": 1, "b": ['hello', 'world']}),
   (3, {"a": {"b": 1}}),
-}
 AGGREGATE object_schema($1);
 ```
 

@@ -10,7 +10,5 @@ ScopeDB currently supports the following data types.
 | string    | UTF-8 encoded string                         |
 | interval  | duration stored as 64-bit nanoseconds        |
 | timestamp | UNIX epoch stored as 64-bit nanoseconds      |
-| bool      | `true` or `false` [^1]                       |
+| bool      | `true` or `false`                            |
 | variant   | semi-structured data; analogy to JSON values |
-
-[^1]: Currently, booleans can only be used in calculation, but cannot be stored.
