@@ -1,4 +1,4 @@
-# Overview
+# Data types reference
 
 ScopeDB currently supports the following data types.
 
@@ -12,3 +12,9 @@ ScopeDB currently supports the following data types.
 | timestamp | UNIX epoch stored as 64-bit nanoseconds      |
 | bool      | `true` or `false`                            |
 | variant   | semi-structured data; analogy to JSON values |
+
+For more information about ScopeDB data types, see the following topics:
+
+* [Date and time data types](datatypes-datetime.md)
+* [Variant data type](datatypes-variant.md)
+* [Data type conversion](datatypes-conversion.md)

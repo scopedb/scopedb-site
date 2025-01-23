@@ -49,3 +49,7 @@ Convert a string to an interval:
 SELECT CAST('PT24h' AS interval);
 SELECT 'PT60s'::interval;
 ```
+
+## Related content
+
+See also [data type conversion](datatypes-conversion.md).

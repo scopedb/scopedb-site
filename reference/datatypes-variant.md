@@ -12,7 +12,6 @@ To insert VARIANT data directly, use `SELECT ... INSERT INTO ...`. The following
 
 ```scopeql
 CREATE TABLE variant_insert (v VARIANT);
-
 SELECT PARSE_JSON('{"key1": "value1", "key2": "value2"}') INSERT INTO variant_insert;
 FROM variant_insert;
 ```
@@ -53,7 +52,9 @@ The syntax or variant literal extends [the JSON format](https://datatracker.ietf
 
 To convert a value to or from the VARIANT data type, you can explicitly cast using the CAST function or the `::` operator (e.g. `<expr>::VARIANT`).
 
-Create a table and insert values:
+In some situations, a value can be implicitly cast to a VARIANT value. For details, see [data type conversion](datatypes-conversion.md).
+
+To understand the VARIANT data, consider the following example:
 
 ```scopeql
 CREATE TABLE vartab (n INT, v VARIANT);
@@ -71,7 +72,7 @@ SELECT $0 AS n, PARSE_JSON($1) AS v
 INSERT INTO vartab;
 ```
 
-Query the data:
+Query the data with their value type:
 
 ```scopeql
 FROM vartab
@@ -119,7 +120,7 @@ FROM vartab WHERE v IS NOT NULL ORDER BY v DESC;
 Between different variant types, the order is as follows:
 
 ```
-Object > Array > Binary > Timestamp > Interval > Boolean > Number > String > Null
+Object > Array > Timestamp > Interval > Boolean > Number > String > Null
 ```
 
 ## Related content

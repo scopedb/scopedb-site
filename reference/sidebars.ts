@@ -8,10 +8,11 @@ const sidebars: SidebarsConfig = {
       label: 'Data types',
       collapsed: true,
       collapsible: true,
+      link: { type: 'doc', id: 'datatypes-overview' },
       items: [
-        'datatypes-overview',
         'datatypes-datetime',
         'datatypes-variant',
+        'datatypes-conversion',
       ],
     },
     {
@@ -42,6 +43,7 @@ const sidebars: SidebarsConfig = {
       label: 'Functions',
       collapsed: true,
       collapsible: true,
+      link: { type: 'doc', id: 'functions-overview' },
       items: [
         'functions-aggregate',
         'functions-conditional',
