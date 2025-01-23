@@ -6,11 +6,24 @@ import Layout from "@theme/Layout";
 function HomepageHeader() {
   return (
     <header className={clsx('hero', styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">Manage Data in Petabytes</h1>
-        <h1 className="hero__title">with Massive Write</h1>
-        <h1 className="hero__title">with Any Scale Read</h1>
-        <h1 className="hero__title">with Flexible Schema</h1>
+      <div className={clsx(styles.heroContainer)}>
+        <img className={clsx(styles.heroBannerImg)} src="/brand-kit/homepage-programmer.webp"
+             alt="Programmer"/>
+        <div className={clsx(styles.heroTitleBanner)}>
+          <h1 className="hero__title">
+            <div>Manage Data in Petabytes</div>
+            <div className={clsx(styles.heroTitleRounds)}>
+              with{' '}
+              <span className={clsx(styles.heroTitleRound)}>Massive Write</span>
+              <span className={clsx(styles.heroTitleRound)}>Any Scale Read</span>
+              <span className={clsx(styles.heroTitleRound)}>Flexible Schema</span>
+            </div>
+          </h1>
+          <div className={clsx(styles.heroBtns)}>
+            <a href="/contact" className={clsx(styles.heroBtn)}>Contact Us</a>
+            <a href="/blog" className={clsx(styles.heroBtn)}>Blog</a>
+          </div>
+        </div>
       </div>
     </header>
   );

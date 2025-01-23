@@ -5,9 +5,10 @@
 
 .heroBanner {
     padding: 4rem 0;
-    text-align: center;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 996px) {
@@ -20,4 +21,79 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.heroContainer {
+    display: flex;
+}
+
+.heroBannerImg {
+    height: 700px;
+}
+
+.heroTitleBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.heroTitleRounds {
+    display: flex;
+    width: 200px;
+    overflow: visible;
+}
+
+.heroTitleRound {
+    opacity: 0;
+    animation: fadeInOut 9s infinite;
+    white-space: nowrap;
+    color: #3071a9;
+}
+
+.heroTitleRound:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.heroTitleRound:nth-child(2) {
+    animation-delay: 3s;
+}
+
+.heroTitleRound:nth-child(3) {
+    animation-delay: 6s;
+}
+
+@keyframes fadeInOut {
+    0%, 33.33% {
+        opacity: 1;
+    }
+    33.33%, 100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.heroBtns {
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+    margin-top: 20px;;
+    scale: 1.1;
+}
+
+.heroBtn {
+    padding: 10px 16px;
+    border-radius: 12px;
+    margin: 5px;
+    background: rgb(25 91 255);
+    color: #fff;
+    font-family: Poppins, sans-serif;
+    transition: all .25s;
+    cursor: pointer;
+}
+
+.heroBtn:hover {
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 10px 20px -10px rgb(25 91 255);
+    transform: translateY(-3px);
 }
