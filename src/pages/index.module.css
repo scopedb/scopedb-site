@@ -3,21 +3,105 @@
  * and scoped locally.
  */
 
-.heroBanner {
-    padding: 4rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-@media screen and (max-width: 996px) {
-    .heroBanner {
-        padding: 2rem;
-    }
-}
-
 .buttons {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.fadingTextIn {
+    animation: textFadeIn .5s;
+}
+
+.fadingTextOut {
+    animation: textFadeOut .5s;
+}
+
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes textFadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.scopeBtns {
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    margin-top: 20px;;
+}
+
+.scopeBtn {
+    padding: 6px 16px;
+    border-radius: 12px;
+    margin: 5px;
+    background: rgb(25 91 255);
+    color: #fff;
+    font-family: Poppins, sans-serif;
+    transition: all .25s;
+    cursor: pointer;
+}
+
+.scopeBtn:hover {
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 10px 20px -10px rgb(25 91 255);
+    transform: translateY(-3px);
+}
+
+.scopeBanner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 80px auto;
+
+    .scopeBannerContent {
+        padding: 48px 60px;
+
+        .scopeBannerText {
+            font-size: 48px;
+        }
+
+    }
+
+    .scopeBannerImg {
+        width: 600px;
+    }
+
+}
+
+.scopeIntros {
+    background: rgb(25 91 255);
+    color: white;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 200px;
+    padding-right: 150px;
+
+    .scopeIntro {
+        width: 300px;
+
+        .scopeIntroTitle {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .scopeIntroDesc {
+            font-size: 14px;
+        }
+    }
 }
