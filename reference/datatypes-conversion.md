@@ -97,8 +97,8 @@ Therefore, the query results in an error message because the unary minus can't b
 Currently, the following explicit casts are supported:
 
 * Between any numeric types (INT, UINT, FLOAT).
-* Between INT and TIMESTAMP.
-* Between INT and INTERVAL.
+* Between INT and TIMESTAMP (TIMESTAMP internally stores UNIX epoch in nanoseconds in 64-bit integer).
+* Between INT and INTERVAL (INTERVAL internally stores nanoseconds in 64-bit integer).
 * Between STRING and any numeric types, BOOLEAN, TIMESTAMP, or INTERVAL.
 * Between VARIANT and any data type.
 * From NULL to any data type.
