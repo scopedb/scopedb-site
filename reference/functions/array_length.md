@@ -7,7 +7,7 @@ A variation of ARRAY_LENGTH takes a VARIANT value as input. If the VARIANT value
 ## Syntax
 
 ```scopeql
-ARRAY_SIZE( <array> )
+ARRAY_LENGTH( <array> )
 ```
 
 ## Returns
