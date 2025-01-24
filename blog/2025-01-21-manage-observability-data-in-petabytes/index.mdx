@@ -89,7 +89,7 @@ The `ingest` nodegroup illustrates a typical setup for real-time ingestion, with
 The ingest API is as simple as one HTTP POST request:
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -d @- https://ingest-node:6543/api/v1/ingest <<EOF
+curl -X POST -H 'Content-Type: application/json' http://ingest-node:6543/v1/ingest -d @- <<EOF
 {
   "data": {
     "format": "json",
@@ -97,6 +97,7 @@ curl -X POST -H "Content-Type: application/json" -d @- https://ingest-node:6543/
   },
   "statement": "INSERT INTO scopedb.tenant.logs"
 }
+EOF
 ```
 
 As it's a one-shot, stateless request, ingest nodes can handle massive ingestion requests independently. The data will be decoded into the internal table format, and written to S3 directly. No local disks or data replication are needed.
