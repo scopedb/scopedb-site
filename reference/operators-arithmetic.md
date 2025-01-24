@@ -17,7 +17,9 @@ The input expressions must be numeric (integer or floating point), except in the
 
 | Operator    | Syntax  | Description                                                                            |
 |-------------|---------|----------------------------------------------------------------------------------------|
-| `+`         | `a + b` | Adds two numeric expressions (`a` and `b`).                                            |
 | `-` (unary) | `-a`    | Negates the input numeric expression.                                                  |
-| `*`         | `-a`    | Multiplies two numeric expressions (`a` and `b`).                                      |
+| `+`         | `a + b` | Adds two numeric expressions (`a` and `b`).                                            |
+| `-`         | `a - b` | Subtracts one numeric expression (`b`) from another (`a`).                             |
+| `*`         | `a * b` | Multiplies two numeric expressions (`a` and `b`).                                      |
 | `/`         | `a / b` | Divides one numeric expression (`a`) by another (`b`). Divide by `0` returns infinity. |
+| `%`         | `a % b` | Computes the modulo of numeric expression `a` by `b`.                                  |

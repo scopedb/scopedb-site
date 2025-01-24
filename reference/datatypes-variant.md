@@ -12,7 +12,6 @@ To insert VARIANT data directly, use `SELECT ... INSERT INTO ...`. The following
 
 ```scopeql
 CREATE TABLE variant_insert (v VARIANT);
-
 SELECT PARSE_JSON('{"key1": "value1", "key2": "value2"}') INSERT INTO variant_insert;
 FROM variant_insert;
 ```
@@ -51,9 +50,9 @@ The syntax or variant literal extends [the JSON format](https://datatracker.ietf
 
 ## Using VARIANT values
 
-To convert a value to or from the VARIANT data type, you can explicitly cast using the CAST function or the `::` operator (e.g. `<expr>::VARIANT`).
+To convert a value to or from the VARIANT data type, you can explicitly cast using the CAST function or the `::` operator (e.g. `<expr>::VARIANT`). For details, see [data type conversion](datatypes-conversion.md).
 
-Create a table and insert values:
+To understand the VARIANT data, consider the following example:
 
 ```scopeql
 CREATE TABLE vartab (n INT, v VARIANT);
@@ -71,7 +70,7 @@ SELECT $0 AS n, PARSE_JSON($1) AS v
 INSERT INTO vartab;
 ```
 
-Query the data:
+Query the data with their value type:
 
 ```scopeql
 FROM vartab
@@ -85,7 +84,7 @@ ORDER BY n;
 +---+------------------------------+-----------+
 | 1 | null                         | null      |
 | 2 | NULL                         | NULL      |
-| 3 | true                         | bool      |
+| 3 | true                         | boolean   |
 | 4 | -17                          | int       |
 | 5 | 123.12                       | float     |
 | 6 | 191.2                        | float     |
@@ -93,6 +92,24 @@ ORDER BY n;
 | 8 | [-1,12,289,2188,false]       | array     |
 | 9 | {"x":'abc',"y":false,"z":10} | object    |
 +---+------------------------------+-----------+
+```
+
+You can extract a field from an OBJECT, or an element from an ARRAY, using the `[]` operator. For example:
+
+```scopeql
+FROM vartab
+SELECT n, v['x'] AS x, v[1] AS a1,
+WHERE x IS NOT NULL AND a1 IS NOT NULL
+ORDER BY n
+```
+
+```
++---+-------+------+
+| n | x     | a1   |
++---+-------+------+
+| 8 | NULL  | 12   |
+| 9 | 'abc' | NULL |
++---+-------+------+
 ```
 
 VARIANT data has a total ordering, which means you can use the `ORDER BY` clause to sort the data.
@@ -119,7 +136,7 @@ FROM vartab WHERE v IS NOT NULL ORDER BY v DESC;
 Between different variant types, the order is as follows:
 
 ```
-Object > Array > Binary > Timestamp > Interval > Boolean > Number > String > Null
+Object > Array > Timestamp > Interval > Boolean > Number > String > Null
 ```
 
 ## Related content

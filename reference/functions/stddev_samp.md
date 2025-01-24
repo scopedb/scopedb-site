@@ -1,0 +1,23 @@
+# STDDEV_SAMP
+
+Returns the sample standard deviation (square root of sample variance) of non-NULL values.
+
+See also [STDDEV_POP](stddev_pop.md), which returns the population standard deviation (square root of variance).
+
+## Syntax
+
+```scopeql
+STDDEV_SAMP ( <expr> )
+```
+
+## Arguments
+
+### `<expr>`
+
+An expression that evaluates to a numeric value. This is the expression on which the standard deviation is calculated.
+
+## Returns
+
+The data type of the returned value is FLOAT.
+
+If all records inside a group are NULL, this function returns NULL.

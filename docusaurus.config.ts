@@ -25,11 +25,10 @@ const config: Config = {
       'classic',
       {
         docs: {},
-        // TODO(tisonkun): uncomment when blogs get ready
-        blog: false,
-        // blog: {
-        //   showReadingTime: true,
-        // },
+        blog: {
+          showReadingTime: true,
+          blogSidebarCount: 0,
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -50,15 +49,8 @@ const config: Config = {
       },
       items: [
         {type: 'docSidebar', docsPluginId: 'reference', sidebarId: 'reference', position: 'right', label: 'Reference'},
+        {to: '/blog', label: 'Blog', position: 'right'},
         {to: '/contact', label: 'Contact', position: 'right'},
-        // TODO(tisonkun): uncomment when blogs get ready
-        // {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/scopedb/',
-          position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub Organization',
-        },
       ],
     },
     footer: {
@@ -70,6 +62,11 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      }
+    }
   } satisfies Preset.ThemeConfig,
 
   plugins: [
