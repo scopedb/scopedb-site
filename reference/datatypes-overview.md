@@ -13,7 +13,7 @@ ScopeDB currently supports the following data types.
 | bool      | `true` or `false`                            |
 | variant   | semi-structured data; analogy to JSON values |
 
-For more information about ScopeDB data types, see the following topics:
+For more information about ScopeQL data types, see the following topics:
 
 * [Date and time data types](datatypes-datetime.md)
 * [Variant data type](datatypes-variant.md)

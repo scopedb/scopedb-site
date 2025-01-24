@@ -7,15 +7,22 @@ sidebar_label: Overview
 Reference information on various areas of ScopeDB.
 
 <dl>
-<dt>[**Data types reference**](datatypes-overview.md)</dt>
-<dd>Reference for ScopeDB data types.</dd>
+<dt>[**Data type reference**](datatypes-overview.md)</dt>
+<dd>Reference for ScopeQL data types.</dd>
 </dl>
 
 ---
 
 <dl>
-<dt>[**Functions reference**](functions-overview.md)</dt>
-<dd>Reference for ScopeDB functions.</dd>
+<dt>[**Command reference**](commands-overview.md)</dt>
+<dd>Reference for ScopeQL commands.</dd>
+</dl>
+
+---
+
+<dl>
+<dt>[**Function reference**](functions-overview.md)</dt>
+<dd>Reference for ScopeQL functions.</dd>
 </dl>
 
 ---
