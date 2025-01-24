@@ -26,7 +26,7 @@ Column containing the minimum value.
 
 The function returns a value of the same type as `col_to_return`.
 
-## Example
+## Examples
 
 The following examples demonstrate how to use the FILTER_NULLS_MIN_BY function.
 

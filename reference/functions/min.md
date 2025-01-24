@@ -19,9 +19,7 @@ MIN( <expr>, <n> )
 
 A column name, which can be a qualified name (for example, database.schema.table.column_name).
 
-**Optional:**
-
-### `<n>` (named)
+### `<n>` (named) (optional)
 
 The number of minimum values to return.
 

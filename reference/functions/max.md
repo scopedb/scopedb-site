@@ -23,9 +23,7 @@ The data type of the returned value is the same as the data type of the input va
 
 A column name, which can be a qualified name (for example, database.schema.table.column_name).
 
-**Optional:**
-
-### `<n>` (named)
+### `<n>` (named) (optional)
 
 The number of maximum values to return.
 
