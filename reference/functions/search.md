@@ -5,7 +5,7 @@ Searches character data (text) in specified columns.
 ## Syntax
 
 ```scopeql
-SEARCH( <search_data>, <query> )
+SEARCH( <search_data>, <query>, <analyzer> )
 ```
 
 ## Arguments
