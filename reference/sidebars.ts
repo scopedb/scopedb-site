@@ -57,8 +57,6 @@ const sidebars: SidebarsConfig = {
             'functions/approx_quantile',
             'functions/avg',
             'functions/count',
-            'functions/filter_nulls_max_by',
-            'functions/filter_nulls_min_by',
             'functions/max',
             'functions/max_by',
             'functions/min',
