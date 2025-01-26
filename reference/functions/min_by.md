@@ -9,7 +9,7 @@ If multiple rows contain the specified minimum value, the function is non-determ
 ## Syntax
 
 ```scopeql
-min_by( <col_to_return>, <col_containing_mininum> )
+min_by( <col_to_return>, <col_containing_minimum> )
 ```
 
 ## Arguments
