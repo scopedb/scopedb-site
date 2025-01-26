@@ -22,7 +22,7 @@ Otherwise, let's begin with the story!
 
 ## When Your Observability Data Grows to Petabytes
 
-Here is a story about an observability platform team that is evolving its data infrastructure to manage the growing volume of observability data.
+Here is a story about an observability platform team evolving its data infrastructure to manage the growing volume of observability data.
 
 Observability is the lifeblood of modern software development. It provides insights into the health and performance of applications, infrastructure, and services. As the scale of modern systems grows, so does the volume of observability data generated.
 
@@ -38,7 +38,7 @@ The team had successfully stored logs and traces with Elasticsearch. Elasticsear
 * **Complexity**: Managing Elasticsearch clusters is hard. Especially, it's incredibly challenging to implement data tiers for offloading cold data in the real world.
 * **Limited Analysis**: Search is not the only requirement for querying data. The team received requirements for aggregation and multi-dimension analysis. Elasticsearch is not designed for these complex analytical queries: poor indexing support, no columnar data format, and no vectorized query engine.
 
-Although Elasticsearch works well on search queries, general purpose search engine is too expensive for log data. Considering the cost, complexity, and limited analysis, the team decided to explore other solutions.
+Although Elasticsearch works well on search queries, a general-purpose search engine is too expensive for log data. Considering the cost, complexity, and limited analysis, the team decided to explore other solutions.
 
 In recent years, platform engineers have been exploring _data warehouse_ solutions for observability data. A famous column-oriented data warehouse has been gaining popularity as an observability data solution for cutting costs and supporting aggregations.
 
@@ -52,13 +52,13 @@ However, before the team could roll out the data warehouse solution to productio
 
 Instead of jumping into solving these challenges from the platform side, the team decided to look around for other solutions that could better fit the observability data use case.
 
-## Cloud Services Make Difference
+## Cloud Services Make Differences
 
-Prior to building ScopeDB, we have been developing databases for over ten years. We built distributed databases with shared-nothing architecture. They work well when deployed on bare-metal servers. But when deployed in the cloud, many essential assumptions are broken.
+Prior to building ScopeDB, we have been developing databases for over ten years. We built distributed databases with shared-nothing architecture. They work well when deployed on bare-metal servers. However, when deployed in the cloud, many essential assumptions are broken.
 
 Local disks are necessary for shared-nothing databases. However, the only available commodity block device in the cloud is EBS, which is more than expensive when storing petabytes of data. Even one petabyte of EBS storage costs \$80,000 to \$125,000 per month.
 
-In the contrast, object storage can provide a much more cost-effective solution. As a comparison, storing one petabyte of data on S3 costs \$21,550 per month. Considering the price difference of IOPS and throughput, the cost of EBS can be ten times higher than S3. In the meantime, S3 still provides competitive reliability, scalability, and elasticity.
+In contrast, object storage can provide a much more cost-effective solution. As a comparison, storing one petabyte of data on S3 costs \$21,550 per month. Considering the price difference of IOPS and throughput, the cost of EBS can be ten times higher than S3. In the meantime, S3 still provides competitive reliability, scalability, and elasticity.
 
 Therefore, databases in the cloud should move from local disks to object storage, which would mean a paradigm shift from shared-nothing to shared-disk.
 
@@ -68,7 +68,7 @@ Besides, in the cloud, you can dynamically scale out and scale in the number of 
 
 Unfortunately, shared-nothing databases use stateful nodes. Each node needs to handle part of data partitions for both its reads and writes (ingest or replicate). They are not designed for workload isolation. You have to select an instance type that satisfies all workloads, which always wastes resources.
 
-We met the observability platform team and discussed the challenges they faced. We agreed on that patching shared-nothing database in the cloud is a waste of time. Instead, a database designed from the ground up around commodity object storage could naturally eliminate the issues of total cost and stateful scaling. With additional features to support observability data that have flexible schema, we could provide a better solution for the platform.
+We met the observability platform team and discussed the challenges they faced. We agreed that patching a shared-nothing database in the cloud is a waste of time. Instead, a database designed from the ground up around commodity object storage could naturally eliminate the issues of total cost and stateful scaling. With additional features to support observability data that have a flexible schema, we could provide a better solution for the platform.
 
 ScopeDB is our product implementing this idea. Currently, it serves all the workload of the observability platform.
 
@@ -82,7 +82,7 @@ Let's start with a glance at the architecture of ScopeDB:
 
 ## Real-time Ingestion
 
-By getting rid of stateful nodes, ScopeDB deployments can have different nodegroups for different workloads. Each nodegroup can have a different number of stateless nodes with different instance types, unleashing the power of workload isolation
+By getting rid of stateful nodes, ScopeDB deployments can have different nodegroups for different workloads. Each nodegroup can have a different number of stateless nodes with varying types of instance, unleashing the power of workload isolation
 
 The `ingest` nodegroup illustrates a typical setup for real-time ingestion, with two nodes of small, general-purpose instances.
 
@@ -100,7 +100,7 @@ curl -X POST -H 'Content-Type: application/json' http://ingest-node:6543/v1/inge
 EOF
 ```
 
-As it's a one-shot, stateless request, ingest nodes can handle massive ingestion requests independently. The data will be decoded into the internal table format, and written to S3 directly. No local disks or data replication are needed.
+As it's a one-shot, stateless request, ingest nodes can handle massive ingestion requests independently. The data will be decoded into the internal table format and written directly into S3. No local disks or data replication are needed.
 
 Data compaction happens in the background. So, even if you frequently ingest data in small sets, the background task will compact them into larger files to reduce the cost of S3 storage and improve the query performance.
 
@@ -134,9 +134,9 @@ Performance is significant for executing queries with data at any scale. The pri
 
 Moreover, ScopeDB stores data in columnar format, which means it only reads the columns needed for the query. This is desired for most analytical queries, as they usually only need a few columns. ScopeDB's query engine is a vectorized query engine that processes multiple rows in a batch, further unleashing the benefit of columnar data format.
 
-When performing aggregation on high-cardinality fields, one single node may not be able to handle the entire workload. Thanks to ScopeDB's distribute query engine, we can scale out the query to multiple nodes. The query engine will distribute the workload to multiple nodes and merge the results in parallel. This not only makes running heavy queries possible but also accelerates queries in general.
+When performing aggregation on high-cardinality fields, one single node may not be able to handle the entire workload. Thanks to ScopeDB's distributed query engine, we can scale out the query to multiple nodes. The query engine will distribute the workload to multiple nodes and merge the results in parallel. This not only makes running heavy queries possible but also accelerates queries in general.
 
-Back to the architecture diagram, there are both `default` and `heavy` nodegroups. The `default` nodegroup is a long-running nodegroup for general queries. When a heavy query comes in (often ad-hoc query), the deployment can temporarily scale out a new nodegroup (`heavy`) to handle the query, and then scale in after the query is done. In this way, heavy queries won't affect the performance of general queries.
+Back to the architecture diagram, there are both `default` and `heavy` nodegroups. The `default` nodegroup is a long-running nodegroup for general queries. When a heavy query comes in (often an ad-hoc query), the deployment can temporarily scale out a new nodegroup (`heavy`) to handle the query, and then scale in after the query is done. In this way, heavy queries won't affect the performance of general queries.
 
 ## Flexible Data Schema
 
@@ -194,7 +194,7 @@ It outputs:
 +---+------------------------------+-----------+
 ```
 
-In case of some log fields are fixed and frequently queried, the observability platform can define a table with both fixed fields and variant fields. The fixed fields are stored in separate columns and users can create index on them to accelerate the query. Here is an example for the log table:
+In case some log fields are fixed and frequently queried, the observability platform can define a table with both fixed fields and variant fields. The fixed fields are stored in separate columns and users can create indexes on them to accelerate the query. Here is an example for the log table:
 
 ```scopeql
 CREATE TABLE scopedb.tenant.logs (
@@ -215,7 +215,7 @@ CREATE TABLE scopedb.tenant.logs (
 );
 ```
 
-The `time` column is primarily used for filtering and sorting. The `var` column stores the original log message as variant value. Other columns are tags extracted from the log message. Users can then create index on `time` and tags to accelerate the query.
+The `time` column is primarily used for filtering and sorting. The `var` column stores the original log message as a variant value. Other columns are tags extracted from the log message. Users can then create index on `time` and tags to accelerate the query.
 
 For querying over variant data, ScopeDB provides a set of functions to extract, cast, and compare variant values:
 
@@ -232,7 +232,7 @@ AGGREGATE max(time) as time, count(true);
 
 We've nearly reached the end, and some of you may be disappointed that we omit many details of ScopeDB's features and implementation, such as how to handle the metadata, how the distributed query engine works, and more demos to work with variant data.
 
-We'll talk about that more in future blog posts, stay tuned!
+We'll talk about that more in future blog posts; stay tuned!
 
 If you just want to get your hands dirty, you can try out our playground:
 
