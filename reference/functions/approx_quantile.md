@@ -1,11 +1,11 @@
-# APPROX_QUANTILE
+# approx_quantile
 
 Returns the approximate boundaries for `<expr>`. If all records inside a group are NULL, the function returns NULL.
 
 ## Syntax
 
 ```scopeql
-APPROX_QUANTILE( <expr>, <quantile> )
+approx_quantile( <expr>, <quantile> )
 ```
 
 ## Arguments
@@ -27,11 +27,11 @@ A float value that identifies the approximate quantile.
 ```scopeql
 VALUES (1.0), (1.0), (1.0), (4.0), (5.0), (6.0), (7.0), (8.0), (9.0), (10.0)
 AGGREGATE
-    APPROX_QUANTILE($0, quantile => 0.1) as p10,
-    APPROX_QUANTILE($0, quantile => 0.5) as p50,
-    APPROX_QUANTILE($0, quantile => 0.9) as p90,
-    APPROX_QUANTILE($0, quantile => 0.95) as p90,
-    APPROX_QUANTILE($0, quantile => 0.99) as p99;
+    approx_quantile($0, quantile => 0.1) as p10,
+    approx_quantile($0, quantile => 0.5) as p50,
+    approx_quantile($0, quantile => 0.9) as p90,
+    approx_quantile($0, quantile => 0.95) as p90,
+    approx_quantile($0, quantile => 0.99) as p99;
 ```
 
 ```

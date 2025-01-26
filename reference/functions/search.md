@@ -1,11 +1,11 @@
-# SEARCH
+# search
 
 Searches character data (text) in specified columns.
 
 ## Syntax
 
 ```scopeql
-SEARCH( <search_data>, <query>, <analyzer> )
+search( <search_data>, <query>, <analyzer> )
 ```
 
 ## Arguments
@@ -28,7 +28,7 @@ The default value is `log`.
 
 ## Returns
 
-Returns a BOOLEAN.
+Returns a boolean.
 
 * The value is TRUE if any `<query>` tokens are found in `<search_data>`.
 * Returns NULL if either of these arguments is NULL.

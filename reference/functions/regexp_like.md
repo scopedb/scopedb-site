@@ -1,11 +1,11 @@
-# REGEXP_LIKE
+# regexp_like
 
 Performs a comparison to determine whether a string matches a specified pattern. Both inputs must be strings.
 
 ## Syntax
 
 ```scopeql
-REGEXP_LIKE( <subject> , <regex> )
+regexp_like( <subject> , <regex> )
 ```
 
 ## Arguments
@@ -20,7 +20,7 @@ The regular expression pattern to match.
 
 ## Returns
 
-Returns a BOOLEAN or NULL. The value is TRUE if there is a match. Otherwise, returns FALSE. Returns NULL if any argument is NULL.
+Returns a boolean or NULL. The value is TRUE if there is a match. Otherwise, returns FALSE. Returns NULL if any argument is NULL.
 
 ## Examples
 
@@ -30,7 +30,7 @@ VALUES
   ('San Francisco'),
   ('San Jose'),
   (NULL)
-WHERE REGEXP_LIKE($0, 'San.*');
+WHERE regexp_like($0, 'San.*');
 ```
 
 ```

@@ -1,11 +1,11 @@
-# COUNT
+# count
 
 Returns either the number of non-NULL records for the specified columns.
 
 ## Syntax
 
 ```scope
-COUNT( <expr> )
+count( <expr> )
 ```
 
 ## Arguments
@@ -16,4 +16,4 @@ A column name, which can be a qualified name (for example, database.schema.table
 
 ## Returns
 
-Returns a value of type INT.
+Returns a value of type int.

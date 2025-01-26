@@ -1,11 +1,11 @@
-# SUM
+# sum
 
 Returns the sum of non-NULL records for `<expr>`. If all records inside a group are NULL, the function returns NULL.
 
 ## Syntax
 
 ```scopeql
-SUM( [ DISTINCT ] <expr1> )
+sum( <expr1> )
 ```
 
 ## Arguments

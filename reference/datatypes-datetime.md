@@ -8,16 +8,16 @@ ScopeDB supports data types for managing timestamps.
 
 ## Data types
 
-ScopeDB supports TIMESTAMP and INTERVAL for manipulating times.
+ScopeDB supports timestamp and interval for manipulating times.
 
-### TIMESTAMP
+### timestamp
 
-TIMESTAMP internally stores UNIX epoch in nanoseconds in 64-bit integer. Thus, the minimum and maximum value of TIMESTAMP are:
+timestamp internally stores UNIX epoch in nanoseconds in 64-bit integer. Thus, the minimum and maximum value of timestamp are:
 
 ```scopeql
 SELECT
-    (-9223372036854775808)::timestamp AS MIN_TS,
-    (9223372036854775807)::timestamp AS MAX_TS;
+    (-9223372036854775808)::timestamp AS min_ts,
+    (9223372036854775807)::timestamp AS max_ts;
 ```
 
 ```
@@ -46,14 +46,14 @@ SELECT
 +-------------------------+-------------------------+----------------------+----------------------+
 ```
 
-### INTERVAL
+### interval
 
-INTERVAL internally stores nanoseconds in 64-bit integer. Thus, the minimum and maximum value of INTERVAL are:
+interval internally stores nanoseconds in 64-bit integer. Thus, the minimum and maximum value of interval are:
 
 ```scopeql
 SELECT
-    (-9223372036854775808)::interval AS MIN_INTERVAL,
-    (9223372036854775807)::interval AS MAX_INTERVAL;
+    (-9223372036854775808)::interval AS min_interval,
+    (9223372036854775807)::interval AS max_interval;
 ```
 
 ```
@@ -107,7 +107,7 @@ SELECT
 
 :::warning[Interval's unit]
 
-INTERVAL is always accurate in nanoseconds. Thus, you cannot specify a string containing parts with days or greater (weeks, months, years, etc.), even though ISO 8601 allows them.
+Interval is always accurate in nanoseconds. Thus, you cannot specify a string containing parts with days or greater (weeks, months, years, etc.), even though ISO 8601 allows them.
 
 :::
 

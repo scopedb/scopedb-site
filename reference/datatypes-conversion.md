@@ -20,13 +20,13 @@ Users can explicitly cast a value by using any of the following options:
 * The `::` operator (called the cast operator).
 * The typed literal syntax `typename expression`.
 
-For example, each query casts a string value to a TIMESTAMP value:
+For example, each query casts a string value to a timestamp value:
 
 ```scopeql
 SELECT
-    CAST('2024-12-24T00:00:00Z' AS TIMESTAMP) AS t1,
-    '2024-12-24T00:00:00Z'::TIMESTAMP AS t2,
-    TIMESTAMP '2024-12-24T00:00:00Z' AS t3;
+    CAST('2024-12-24T00:00:00Z' AS timestamp) AS t1,
+    '2024-12-24T00:00:00Z'::timestamp AS t2,
+    timestamp '2024-12-24T00:00:00Z' AS t3;
 ```
 
 Casting is allowed in most contexts in which a general expression is allowed, including the WHERE clause. For example:
@@ -34,7 +34,7 @@ Casting is allowed in most contexts in which a general expression is allowed, in
 ```scopeql
 FROM log
 SELECT ts
-WHERE ts >= '2024-12-24T00:00:00Z'::TIMESTAMP;
+WHERE ts >= '2024-12-24T00:00:00Z'::timestamp;
 ```
 
 ### Implicit casting (coercion)
@@ -44,7 +44,7 @@ Coercion occurs when a function (or operator) requires a data type that is diffe
 Currently, the following implicit casts are supported:
 
 * Cast NULL to any data type.
-* Cast between INT and UINT if the value is within the range of both types.
+* Cast between int and uint if the value is within the range of both types.
 
 ## Casting and precedence
 
@@ -54,32 +54,32 @@ Consider the following example:
 
 ```scopeql
 FROM dimensions
-SELECT height * width::STRING || ' square meters';
+SELECT height * width::string || ' square meters';
 ```
 
 The cast operator has higher precedence than the arithmetic operator * (multiply), so the statement is interpreted as:
 
 ```scopeql
-... height * (width::STRING) ...
+... height * (width::string) ...
 ```
 
 To cast the result of the expression `height * width`, use parentheses, as shown below:
 
 ```scopeql
 FROM dimensions
-SELECT (height * width)::STRING || ' square meters';
+SELECT (height * width)::string || ' square meters';
 ```
 
 As another example, consider the following statement:
 
 ```scopeql
-SELECT -0.0::FLOAT::STRING;
+SELECT -0.0::float::string;
 ```
 
 You might expect this to be interpreted as:
 
 ```scopeql
-SELECT (-0.0::FLOAT)::STRING;
+SELECT (-0.0::float)::string;
 ```
 
 Therefore, it would be expected to return `-0.0`.
@@ -87,18 +87,18 @@ Therefore, it would be expected to return `-0.0`.
 However, the cast operator has higher precedence than the unary minus (negation) operator, so the statement is interpreted as:
 
 ```scopeql
-SELECT -(0.0::FLOAT::STRING);
+SELECT -(0.0::float::string);
 ```
 
-Therefore, the query results in an error message because the unary minus can't be applied to a STRING.
+Therefore, the query results in an error message because the unary minus can't be applied to a string.
 
 ## Data types that can be cast
 
 Currently, the following explicit casts are supported:
 
-* Between any numeric types (INT, UINT, FLOAT).
-* Between INT and TIMESTAMP (TIMESTAMP internally stores UNIX epoch in nanoseconds in 64-bit integer).
-* Between INT and INTERVAL (INTERVAL internally stores nanoseconds in 64-bit integer).
-* Between STRING and any numeric types, BOOLEAN, TIMESTAMP, or INTERVAL.
-* Between VARIANT and any data type.
+* Between any numeric types (int, uint, float).
+* Between int and timestamp (timestamp internally stores UNIX epoch in nanoseconds in 64-bit integer).
+* Between int and interval (interval internally stores nanoseconds in 64-bit integer).
+* Between string and any numeric types, boolean, timestamp, or interval.
+* Between variant and any data type.
 * From NULL to any data type.

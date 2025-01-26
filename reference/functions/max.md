@@ -1,4 +1,4 @@
-# MAX
+# max
 
 Returns the maximum value for the records within `<expr>`. NULL values are ignored unless all the records are NULL, in which case a NULL value is returned.
 
@@ -7,8 +7,8 @@ If `<n>` is specified, MAX returns the N maximum values from a column, which is 
 ## Syntax
 
 ```scopeql
-MAX( <expr> )
-MAX( <expr>, <n> )
+max( <expr> )
+max( <expr>, <n> )
 ```
 
 ## Returns
@@ -38,12 +38,12 @@ Get the maximum value:
 
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MAX($0);
+AGGREGATE max($0);
 ```
 
 ```
 +---------+
-| MAX($0) |
+| max($0) |
 +---------+
 | 10      |
 +---------+
@@ -53,12 +53,12 @@ Get the maximum N value:
 
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MAX($0, 5);
+AGGREGATE max($0, 5);
 ```
 
 ```
 +--------------+
-| MAX($0, 5)   |
+| max($0, 5)   |
 +--------------+
 | [10,9,8,7,6] |
 +--------------+
@@ -68,12 +68,12 @@ Alternatively, use the named argument syntax:
 
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MAX($0, n => 5);
+AGGREGATE max($0, n => 5);
 ```
 
 ```
 +-----------------+
-| MAX($0, n => 5) |
+| max($0, n => 5) |
 +-----------------+
 | [10,9,8,7,6]    |
 +-----------------+

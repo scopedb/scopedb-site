@@ -1,4 +1,4 @@
-# REVERSE
+# reverse
 
 Reverses the order of characters in a string.
 
@@ -7,7 +7,7 @@ The returned value is the same length as the input, but with the characters in r
 ## Syntax
 
 ```scopeql
-REVERSE(<subject>)
+reverse(<subject>)
 ```
 
 ## Examples
@@ -15,12 +15,12 @@ REVERSE(<subject>)
 This example reverses a string:
 
 ```scopeql
-SELECT REVERSE('Hello, world!');
+SELECT reverse('Hello, world!');
 ```
 
 ```
 +--------------------------+
-| REVERSE('Hello, world!') |
+| reverse('Hello, world!') |
 +--------------------------+
 | !dlrow ,olleH            |
 +--------------------------+

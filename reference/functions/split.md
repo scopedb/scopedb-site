@@ -1,4 +1,4 @@
-# SPLIT
+# split
 
 Splits a given string with a given separator and returns the result in an array of strings.
 
@@ -7,7 +7,7 @@ Contiguous split strings in the source string, or the presence of a split string
 ## Syntax
 
 ```scopeql
-SPLIT(<string>, <separator>)
+split(<string>, <separator>)
 ```
 
 ## Arguments
@@ -29,12 +29,12 @@ The data type of the returned value is ARRAY.
 Split the localhost IP address "127.0.0.1" into an array consisting of each of the four parts:
 
 ```scopeql
-SELECT SPLIT('127.0.0.1', '.');
+SELECT split('127.0.0.1', '.');
 ```
 
 ```
 +-------------------------+
-| SPLIT('127.0.0.1', '.') |
+| split('127.0.0.1', '.') |
 +-------------------------+
 | ['127','0','0','1']     |
 +-------------------------+
@@ -43,12 +43,12 @@ SELECT SPLIT('127.0.0.1', '.');
 Split a string that contains vertical lines as separators (note that the output will contain empty strings):
 
 ```scopeql
-SELECT SPLIT('|a||', '|');
+SELECT split('|a||', '|');
 ```
 
 ```
 +--------------------+
-| SPLIT('|a||', '|') |
+| split('|a||', '|') |
 +--------------------+
 | ['','a','','']     |
 +--------------------+

@@ -1,11 +1,11 @@
-# REPLACE
+# replace
 
 Removes all occurrences of a specified substring, and replaces them with another substring.
 
 ## Syntax
 
 ```scopeql
-REPLACE( <subject> , <pattern> , <replacement> )
+replace( <subject> , <pattern> , <replacement> )
 ```
 
 ## Arguments
@@ -37,12 +37,12 @@ If any of the arguments is a NULL, the result is also a NULL.
 Replace the string "down" with the string "up":
 
 ```scopeql
-SELECT REPLACE('down', 'down', 'up');
+SELECT replace('down', 'down', 'up');
 ```
 
 ```
 +-------------------------------+
-| REPLACE('down', 'down', 'up') |
+| replace('down', 'down', 'up') |
 +-------------------------------+
 | up                            |
 +-------------------------------+
@@ -51,12 +51,12 @@ SELECT REPLACE('down', 'down', 'up');
 Replace the substring "Athens" in the string "Vacation in Athens" with the substring "Rome":
 
 ```scopeql
-SELECT REPLACE('Vacation in Athens', 'Athens', 'Rome');
+SELECT replace('Vacation in Athens', 'Athens', 'Rome');
 ```
 
 ```
 +-------------------------------------------------+
-| REPLACE('Vacation in Athens', 'Athens', 'Rome') |
+| replace('Vacation in Athens', 'Athens', 'Rome') |
 +-------------------------------------------------+
 | Vacation in Rome                                |
 +-------------------------------------------------+
@@ -65,12 +65,12 @@ SELECT REPLACE('Vacation in Athens', 'Athens', 'Rome');
 Delete the substring "bc" in the string "abcd":
 
 ```scopeql
-SELECT REPLACE('abcd', 'bc', '');
+SELECT replace('abcd', 'bc', '');
 ```
 
 ```
 +---------------------------+
-| REPLACE('abcd', 'bc', '') |
+| replace('abcd', 'bc', '') |
 +---------------------------+
 | ad                        |
 +---------------------------+

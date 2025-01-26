@@ -1,4 +1,4 @@
-# STDDEV_POP
+# stddev_pop
 
 Returns the population standard deviation (square root of variance) of non-NULL values.
 
@@ -7,7 +7,7 @@ See also [STDDEV_SAMP](stddev_samp.md), which returns the sample standard deviat
 ## Syntax
 
 ```scopeql
-STDDEV_POP( <expr>)
+stddev_pop( <expr>)
 ```
 
 ## Arguments
@@ -18,6 +18,6 @@ An expression that evaluates to a numeric value. This is the expression on which
 
 ## Returns
 
-The data type of the returned value is FLOAT.
+The data type of the returned value is float.
 
 If all records inside a group are NULL, this function returns NULL.

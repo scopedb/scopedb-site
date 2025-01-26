@@ -1,4 +1,4 @@
-# MAX_BY
+# max_by
 
 Finds the row(s) containing the maximum value for a column and returns the value of another column in that row.
 
@@ -9,7 +9,7 @@ If multiple rows contain the specified maximum value, the function is non-determ
 ## Syntax
 
 ```scopeql
-MAX_BY( <col_to_return>, <col_containing_maximum> )
+max_by( <col_to_return>, <col_containing_maximum> )
 ```
 
 ## Arguments
@@ -48,12 +48,12 @@ INSERT INTO employees;
 The following example returns the ID of the employee with the highest salary:
 
 ```scopeql
-FROM employees aggregate MAX_BY(employee_id, salary);
+FROM employees aggregate max_by(employee_id, salary);
 ```
 
 ```
 +-----------------------------+
-| MAX_BY(employee_id, salary) |
+| max_by(employee_id, salary) |
 +-----------------------------+
 | 2010                        |
 +-----------------------------+

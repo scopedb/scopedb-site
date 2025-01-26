@@ -1,11 +1,11 @@
-# MODE
+# mode
 
 Returns the most frequent value for the values within `<expr>`. NULL values are ignored. If all the values are NULL, or there are 0 rows, then the function returns NULL.
 
 ## Syntax
 
 ```scopeql
-MODE( <expr1> )
+mode( <expr1> )
 ```
 
 ## Arguments

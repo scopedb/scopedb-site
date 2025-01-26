@@ -1,18 +1,18 @@
-# SUBSTR
+# substr
 
 Returns the portion of the string value from `<base_expr>`, starting from the character specified by `<start_expr>`, with optionally limited length.
 
 ## Syntax
 
 ```scopeql
-SUBSTR( <base_expr>, <start_expr> [ , <length_expr> ] )
+substr( <base_expr>, <start_expr> [ , <length_expr> ] )
 ```
 
 ## Arguments
 
 ### `<base_expr>`
 
-An expression that evaluates to a STRING value.
+An expression that evaluates to a string value.
 
 ### `<start_expr>`
 
@@ -28,19 +28,19 @@ Specify a length that is greater than or equal to zero. If the length is a negat
 
 ## Returns
 
-The data type of the returned value is STRING. If any of the inputs are NULL, NULL is returned.
+The data type of the returned value is string. If any of the inputs are NULL, NULL is returned.
 
 ## Examples
 
-The following example uses the SUBSTR function to return the portion of the string that starts at the ninth character and limits the length of the returned value to three characters:
+The following example uses the substr function to return the portion of the string that starts at the ninth character and limits the length of the returned value to three characters:
 
 ```scopeql
-SELECT SUBSTR('testing 1 2 3', 8, 3);
+SELECT substr('testing 1 2 3', 8, 3);
 ```
 
 ```
 +-------------------------------+
-| SUBSTR('testing 1 2 3', 8, 3) |
+| substr('testing 1 2 3', 8, 3) |
 +-------------------------------+
 | 1 2                           |
 +-------------------------------+
@@ -70,7 +70,7 @@ SELECT
   $0 as base_value,
   $1 as start_value,
   $2 as length_value,
-  SUBSTR($0, $1, $2) as substring;
+  substr($0, $1, $2) as substring;
 ```
 
 ```

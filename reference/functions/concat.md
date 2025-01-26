@@ -1,4 +1,4 @@
-# CONCAT, `||`
+# concat, `||`
 
 Concatenates two strings.
 
@@ -7,7 +7,7 @@ The `||` operator provides alternative syntax for CONCAT and can concatenate mor
 ## Syntax
 
 ```scopeql
-CONCAT( <expr> , <expr> )
+concat( <expr> , <expr> )
 <expr> || <expr> [ || <expr> ... ]
 ```
 
@@ -19,17 +19,17 @@ The input expressions must all be strings.
 
 ## Returns
 
-The data type of the returned value is STRING. If any input value is NULL, returns NULL.
+The data type of the returned value is string. If any input value is NULL, returns NULL.
 
 ## Examples
 
 ```scopeql
-SELECT CONCAT('George Washington ', 'Carver');
+SELECT concat('George Washington ', 'Carver');
 ```
 
 ```
 +----------------------------------------+
-| CONCAT('George Washington ', 'Carver') |
+| concat('George Washington ', 'Carver') |
 +----------------------------------------+
 | George Washington Carver               |
 +----------------------------------------+

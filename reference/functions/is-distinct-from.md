@@ -8,13 +8,6 @@ Compares whether two expressions are equal (or not equal). The function is NULL-
 <expr1> IS [ NOT ] DISTINCT FROM <expr2>
 ```
 
-Alternatively, you can use the function syntax:
-
-```scopeql
-IS_DISTINCT_FROM(<expr1>, <expr2>)
-IS_NOT_DISTINCT_FROM(<expr1>, <expr2>)
-```
-
 ## Returns
 
 The value returned depends on whether any of the inputs are NULL values:
