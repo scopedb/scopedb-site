@@ -1,11 +1,11 @@
-# ARRAY_SLICE
+# array_slice
 
 Returns an array constructed from a specified subset of elements of the input array.
 
 ## Syntax
 
 ```scopeql
-ARRAY_SLICE( <array> , <start> , <end> , <step> )
+array_slice( <array> , <start> , <end> , <step> )
 ```
 
 ## Arguments
@@ -50,11 +50,11 @@ Here is a simple example:
 ```scopeql
 SELECT ["a", "b", "c", "d", "e", "f", "g"] AS v
 SELECT
-    ARRAY_SLICE(v, 1, 3, NULL) AS s1,
-    ARRAY_SLICE(v, 5, NULL, NULL) AS s2,
-    ARRAY_SLICE(v, 1, 5, 2) AS s3,
-    ARRAY_SLICE(v, 5, 1, -2) AS s4,
-    ARRAY_SLICE(v, NULL, NULL, -1) AS s5;
+    array_slice(v, 1, 3, NULL) AS s1,
+    array_slice(v, 5, NULL, NULL) AS s2,
+    array_slice(v, 1, 5, 2) AS s3,
+    array_slice(v, 5, 1, -2) AS s4,
+    array_slice(v, NULL, NULL, -1) AS s5;
 ```
 
 ```

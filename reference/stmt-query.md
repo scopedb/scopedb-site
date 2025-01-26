@@ -27,10 +27,10 @@ SELECT defines the set of columns returned by a query, corresponding to a **proj
 
 ```scopeql
 CREATE TABLE employee_table (
-    employee_ID INT,
-    last_name STRING,
-    first_name STRING,
-    department_ID INT,
+    employee_ID int,
+    last_name string,
+    first_name string,
+    department_ID int,
 );
 
 VALUES
@@ -113,7 +113,7 @@ FROM reads all the data from a table.
 Create a table and load data into it:
 
 ```scopeql
-CREATE TABLE ftable1 (retail_price FLOAT, wholesale_cost FLOAT, description STRING);
+CREATE TABLE ftable1 (retail_price float, wholesale_cost float, description string);
 VALUES (14.00, 6.00, 'bling') INSERT INTO ftable1;
 ```
 
@@ -300,7 +300,6 @@ Constrains the maximum number of rows returned by a statement or subquery.
 ```scopeql
 FROM ...
 [ ... ]
-[ ORDER BY ... ]
 LIMIT <count> [ OFFSET <start> ]
 [ ... ]
 ```
@@ -334,11 +333,11 @@ Setting up the data for the examples:
 
 ```scopeql
 CREATE TABLE sales (
-  product_ID INT,
-  retail_price FLOAT,
-  quantity INT,
-  city STRING,
-  state STRING,
+  product_id int,
+  retail_price float,
+  quantity int,
+  city string,
+  state string,
 );
 
 VALUES
@@ -356,12 +355,12 @@ Group by one column:
 
 ```scopeql
 FROM sales
-GROUP BY product_ID AGGREGATE SUM(retail_price * quantity) AS gross_revenue;
+GROUP BY product_id AGGREGATE SUM(retail_price * quantity) AS gross_revenue;
 ```
 
 ```
 +------------+---------------+
-| product_ID | gross_revenue |
+| product_id | gross_revenue |
 +------------+---------------+
 | 1          | 6.0           |
 | 2          | 620.0         |
@@ -406,7 +405,7 @@ AGGREGATE SUM(retail_price * quantity) AS gross_revenue;
 
 The `DISTINCT ON` clause allows you to select unique rows based on specific columns, with optional ordering control. When used with the `BY` clause, it keeps the first row for each set of duplicates according to the specified ordering criteria.
 
-When used without the `BY` clause, it returns unique rows based on the specified columns, the rest part will be output with undetermined order.
+When used without the `BY` clause, it returns a random row for each set of duplicates.
 
 ### Syntax
 
@@ -432,8 +431,8 @@ Setting up the data for the examples:
 
 ```scopeql
 CREATE TABLE t (
-  a INT,
-  b INT,
+  a int,
+  b int,
 );
 
 VALUES

@@ -1,4 +1,4 @@
-# MIN
+# min
 
 Returns the minimum value for the records within `<expr>`. NULL values are ignored unless all the records are NULL, in which case a NULL value is returned.
 
@@ -7,8 +7,8 @@ If `<n>` is specified, MIN returns the N minimum values from a column, which is 
 ## Syntax
 
 ```scopeql
-MIN( <expr> )
-MIN( <expr>, <n> )
+min( <expr> )
+min( <expr>, <n> )
 ```
 
 ## Arguments
@@ -34,7 +34,7 @@ Get the minimum value:
 
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MIN($0);
+AGGREGATE min($0);
 ```
 
 ```
@@ -49,7 +49,7 @@ Get the minimum N value:
 
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MIN($0, 5);
+AGGREGATE min($0, 5);
 ```
 
 ```
@@ -64,7 +64,7 @@ Alternatively, use the named argument syntax:
 
 ```scopeql
 VALUES (1), (1), (1), (4), (5), (6), (7), (8), (9), (10)
-AGGREGATE MIN($0, n => 5);
+AGGREGATE min($0, n => 5);
 ```
 
 ```

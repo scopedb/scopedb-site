@@ -10,7 +10,7 @@ ScopeDB currently supports the following data types.
 | string    | UTF-8 encoded string                         |
 | interval  | duration stored as 64-bit nanoseconds        |
 | timestamp | UNIX epoch stored as 64-bit nanoseconds      |
-| bool      | `true` or `false`                            |
+| boolean   | `true` or `false`                            |
 | variant   | semi-structured data; analogy to JSON values |
 
 For more information about ScopeQL data types, see the following topics:

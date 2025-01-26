@@ -1,11 +1,11 @@
-# CONTAINS
+# contains
 
 Returns true if `<expr1>` contains `<expr2>`. Both expressions must be strings.
 
 ## Syntax
 
 ```scopeql
-CONTAINS( <expr1> , <expr2> )
+contains( <expr1> , <expr2> )
 ```
 
 ## Arguments
@@ -20,7 +20,7 @@ The string to search for.
 
 ## Returns
 
-Returns a BOOLEAN or NULL:
+Returns a boolean or NULL:
 
 * Returns TRUE if `<expr2>` is found inside `<expr1>`.
 * Returns FALSE if `<expr2>` is not found inside `<expr1>`.
@@ -37,7 +37,7 @@ VALUES
   ('latte'),
   ('tea'),
   (NULL)
-WHERE CONTAINS($0, 'te');
+WHERE contains($0, 'te');
 ```
 
 ```

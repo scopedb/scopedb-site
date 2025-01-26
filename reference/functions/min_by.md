@@ -1,4 +1,4 @@
-# MIN_BY
+# min_by
 
 Finds the row(s) containing the minimum value for a column and returns the value of another column in that row.
 
@@ -9,7 +9,7 @@ If multiple rows contain the specified minimum value, the function is non-determ
 ## Syntax
 
 ```scopeql
-MIN_BY( <col_to_return>, <col_containing_mininum> )
+min_by( <col_to_return>, <col_containing_mininum> )
 ```
 
 ## Arguments
@@ -48,12 +48,12 @@ INSERT INTO employees;
 The following example returns the ID of the employee with the lowest salary:
 
 ```scopeql
-FROM employees aggregate MIN_BY(employee_id, salary);
+FROM employees aggregate min_by(employee_id, salary);
 ```
 
 ```
 +-----------------------------+
-| MIN_BY(employee_id, salary) |
+| min_by(employee_id, salary) |
 +-----------------------------+
 | 2020                        |
 +-----------------------------+

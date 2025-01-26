@@ -1,11 +1,11 @@
-# ARRAY_APPEND
+# array_append
 
 Returns an array containing all elements from the source array as well as the new element. The new element is located at the end of the array.
 
 ## Syntax
 
 ```scopeql
-ARRAY_APPEND( <array> , <new_element> )
+array_append( <array> , <new_element> )
 ```
 
 ## Arguments

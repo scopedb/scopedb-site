@@ -1,11 +1,11 @@
-# ARRAY_EXCEPT
+# array_except
 
 Returns a new ARRAY that contains the elements from one input ARRAY that are not in another input ARRAY.
 
 ## Syntax
 
 ```scopeql
-ARRAY_EXCEPT( <source_array> , <array_of_elements_to_exclude> )
+array_except( <source_array> , <array_of_elements_to_exclude> )
 ```
 
 ## Arguments
@@ -33,7 +33,7 @@ The order of the values within the returned array is unspecified.
 The following example demonstrates how to use the function:
 
 ```scopeql
-SELECT ARRAY_EXCEPT(['A', 'B'], ['B', 'C']);
+SELECT array_except(['A', 'B'], ['B', 'C']);
 ```
 
 ```
@@ -47,7 +47,7 @@ SELECT ARRAY_EXCEPT(['A', 'B'], ['B', 'C']);
 The following example adds the element `'C'` to `<source_array>`. The returned ARRAY excludes `'C'` because `'C'` is also specified in `<array_of_elements_to_exclude>`.
 
 ```scopeql
-SELECT ARRAY_EXCEPT(['A', 'B', 'C'], ['B', 'C']);
+SELECT array_except(['A', 'B', 'C'], ['B', 'C']);
 ```
 
 ```
@@ -61,7 +61,7 @@ SELECT ARRAY_EXCEPT(['A', 'B', 'C'], ['B', 'C']);
 In the following example, `<source_array>` contains 3 elements with the value `'B'`. Because `<array_of_elements_to_exclude>` contains only 1 `'B'` element, the function excludes all `'B'` element and returns an ARRAY containing no `'B'` elements.
 
 ```scopeql
-SELECT ARRAY_EXCEPT(['A', 'B', 'B', 'B', 'C'], ['B']);
+SELECT array_except(['A', 'B', 'B', 'B', 'C'], ['B']);
 ```
 
 ```
@@ -75,7 +75,7 @@ SELECT ARRAY_EXCEPT(['A', 'B', 'B', 'B', 'C'], ['B']);
 In the following example, no elements remain after excluding the elements in `<array_of_elements_to_exclude>` from `<source_array>`. As a result, the function returns an empty ARRAY.
 
 ```scopeql
-SELECT ARRAY_EXCEPT(['A', 'B'], ['A', 'B']);
+SELECT array_except(['A', 'B'], ['A', 'B']);
 ```
 
 ```
@@ -89,7 +89,7 @@ SELECT ARRAY_EXCEPT(['A', 'B'], ['A', 'B']);
 The following example demonstrates how the function treats NULL elements as known values. As explained earlier, the returned ARRAY excludes all the NULL elements.
 
 ```scopeql
-SELECT ARRAY_EXCEPT(['A', NULL, NULL], ['B', NULL]);
+SELECT array_except(['A', NULL, NULL], ['B', NULL]);
 ```
 
 ```
@@ -103,7 +103,7 @@ SELECT ARRAY_EXCEPT(['A', NULL, NULL], ['B', NULL]);
 The following example demonstrates how specifying the same object in `<source_array>` and `<array_of_elements_to_exclude>` excludes that object from the returned ARRAY:
 
 ```scopeql
-SELECT ARRAY_EXCEPT([{'a': 1, 'b': 2}, 1], [{'a': 1, 'b': 2}, 3]);
+SELECT array_except([{'a': 1, 'b': 2}, 1], [{'a': 1, 'b': 2}, 3]);
 ```
 
 ```
@@ -117,7 +117,7 @@ SELECT ARRAY_EXCEPT([{'a': 1, 'b': 2}, 1], [{'a': 1, 'b': 2}, 3]);
 The following example demonstrates that passing in NULL results in the function returning NULL:
 
 ```scopeql
-SELECT ARRAY_EXCEPT(['A', 'B'], NULL);
+SELECT array_except(['A', 'B'], NULL);
 ```
 
 ```

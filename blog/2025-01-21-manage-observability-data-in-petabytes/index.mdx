@@ -171,8 +171,8 @@ VALUES
   (7, '"Om ara pa ca na dhih"  '),
   (8, '[-1, 12, 289, 2188, false]'),
   (9, '{ "x" : "abc", "y" : false, "z": 10} '),
-SELECT $0 AS n, PARSE_JSON($1) AS v,
-SELECT n, v, TYPEOF(v),
+SELECT $0 AS n, parse_json($1) AS v,
+SELECT n, v, typeof(v),
 ORDER BY n
 ```
 
@@ -180,11 +180,11 @@ It outputs:
 
 ```
 +---+------------------------------+-----------+
-| n | v                            | TYPEOF(v) |
+| n | v                            | typeof(v) |
 +---+------------------------------+-----------+
 | 1 | null                         | null      |
 | 2 | NULL                         | NULL      |
-| 3 | true                         | bool      |
+| 3 | true                         | boolean   |
 | 4 | -17                          | int       |
 | 5 | 123.12                       | float     |
 | 6 | 191.2                        | float     |
@@ -198,20 +198,20 @@ In case of some log fields are fixed and frequently queried, the observability p
 
 ```scopeql
 CREATE TABLE scopedb.tenant.logs (
-  time TIMESTAMP,
-  container_id STRING,
-  container_name STRING,
-  container_runtime_name STRING,
-  container_type STRING,
-  filename STRING,
-  filepath STRING,
-  host STRING,
-  message STRING,
-  message_length INT,
-  name STRING,
-  source STRING,
-  status STRING,
-  var VARIANT,
+  time timestamp,
+  container_id string,
+  container_name string,
+  container_runtime_name string,
+  container_type string,
+  filename string,
+  filepath string,
+  host string,
+  message string,
+  message_length int,
+  name string,
+  source string,
+  status string,
+  var variant,
 );
 ```
 

@@ -1,11 +1,11 @@
-# LTRIM
+# ltrim
 
 Removes leading characters from a string.
 
 ## Syntax
 
 ```scopeql
-LTRIM( <expr> [, <chars> ] )
+ltrim( <expr> [, <chars> ] )
 ```
 
 ## Arguments
@@ -22,19 +22,19 @@ The default value is `" \t\n\r"` (common whitespace characters).
 
 ### Returns
 
-This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
+This function returns a value of string data type or NULL. If either argument is NULL, returns NULL.
 
 ### Examples
 
 Remove leading `0` and `#` characters from a string:
 
 ```scopeql
-SELECT LTRIM('#000000123', '0#');
+SELECT ltrim('#000000123', '0#');
 ```
 
 ```
 +---------------------------+
-| LTRIM('#000000123', '0#') |
+| ltrim('#000000123', '0#') |
 |---------------------------|
 | 123                       |
 +---------------------------+

@@ -1,13 +1,13 @@
-# ARRAY_LENGTH
+# array_length
 
 Returns the length of the input array.
 
-A variation of ARRAY_LENGTH takes a VARIANT value as input. If the VARIANT value contains an array, the length of the array is returned; otherwise, NULL is returned if the value is not an array.
+A variation of ARRAY_LENGTH takes a variant value as input. If the variant value contains an array, the length of the array is returned; otherwise, NULL is returned if the value is not an array.
 
 ## Syntax
 
 ```scopeql
-ARRAY_LENGTH( <array> )
+array_length( <array> )
 ```
 
 ## Returns
@@ -19,7 +19,7 @@ The data type of the returned value is INTEGER.
 Here is a simple example:
 
 ```scopeql
-SELECT ARRAY_LENGTH([1, 2, 3]);
+SELECT array_length([1, 2, 3]);
 ```
 
 ```
@@ -30,10 +30,10 @@ SELECT ARRAY_LENGTH([1, 2, 3]);
 +-------------------------+
 ```
 
-Here is a slightly more complex example, this time using VARIANT data type:
+Here is a slightly more complex example, this time using variant data type:
 
 ```scopeql
-CREATE TABLE colors (v VARIANT);
+CREATE TABLE colors (v variant);
 
 VALUES
      ('[{"r":255,"g":12,"b":0},{"r":0,"g":255,"b":0},{"r":0,"g":0,"b":255}]'),
@@ -42,10 +42,10 @@ SELECT parse_json($0)
 INSERT INTO colors;
 ```
 
-Retrieve the length for each array in the VARIANT column:
+Retrieve the length for each array in the variant column:
 
 ```scopeql
-FROM colors SELECT ARRAY_LENGTH(v);
+FROM colors SELECT array_length(v);
 ```
 
 ```
@@ -57,10 +57,10 @@ FROM colors SELECT ARRAY_LENGTH(v);
 +-----------------+
 ```
 
-Retrieve the last element of each array in the VARIANT column:
+Retrieve the last element of each array in the variant column:
 
 ```scopeql
-FROM colors SELECT GET(v, ARRAY_LENGTH(v)-1);
+FROM colors SELECT get(v, array_length(v)-1);
 ```
 
 ```

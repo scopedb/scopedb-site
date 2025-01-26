@@ -71,7 +71,7 @@ WITH (
 ### Examples
 
 ```scopeql
-CREATE TABLE t1 (a INT)
+CREATE TABLE t1 (a int)
 with (
     'storage.type' = 's3',
     'storage.endpoint' = 'http://127.0.0.1:9000/',
@@ -123,10 +123,10 @@ The SELECT query that defines the view's contents.
 ```scopeql
 -- Create a table to store user events
 CREATE TABLE user_events (
-    user_id INT,
-    event_time TIMESTAMP,
-    status STRING,
-    score INT
+    user_id int,
+    event_time timestamp,
+    status string,
+    score int
 );
 
 -- Insert sample data
@@ -215,8 +215,8 @@ Creates a new index on a table to improve query performance.
 CREATE <index_type> INDEX <name> ON <table_name> (<index_expression>)
 
 <index_type>:
-    SMART
-    | SEARCH
+    smart
+    | search
 ```
 
 ### Parameters
@@ -238,11 +238,11 @@ CREATE <index_type> INDEX <name> ON <table_name> (<index_expression>)
 ```scopeql
 -- Create a table with different column types
 CREATE TABLE logs (
-    id INT,
-    time TIMESTAMP,
-    message STRING,
-    level STRING,
-    var VARIANT,
+    id int,
+    time timestamp,
+    message string,
+    level string,
+    var variant,
 );
 
 -- SMART index on a column

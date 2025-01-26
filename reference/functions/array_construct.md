@@ -1,11 +1,11 @@
-# ARRAY_CONSTRUCT
+# array_construct
 
 Returns an array constructed from zero, one, or more inputs.
 
 ## Syntax
 
 ```scopeql
-ARRAY_CONSTRUCT( [ <expr1> ] [ , <expr2> [ , ... ] ] )
+array_construct( [ <expr1> ] [ , <expr2> [ , ... ] ] )
 ```
 
 ## Arguments
@@ -21,7 +21,7 @@ The data type of the returned value is ARRAY.
 Construct a basic array consisting of numeric data types:
 
 ```scopeql
-SELECT ARRAY_CONSTRUCT(10, 20, 30);
+SELECT array_construct(10, 20, 30);
 ```
 
 ```
@@ -35,7 +35,7 @@ SELECT ARRAY_CONSTRUCT(10, 20, 30);
 Construct a basic array consisting of different data types:
 
 ```scopeql
-SELECT ARRAY_CONSTRUCT(NULL, 'hello', 3::DOUBLE, 4, 5);
+SELECT array_construct(NULL, 'hello', 3::DOUBLE, 4, 5);
 ```
 
 ```
@@ -49,7 +49,7 @@ SELECT ARRAY_CONSTRUCT(NULL, 'hello', 3::DOUBLE, 4, 5);
 Construct an empty array:
 
 ```scopeql
-SELECT ARRAY_CONSTRUCT();
+SELECT array_construct();
 ```
 
 ```

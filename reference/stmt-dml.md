@@ -15,15 +15,15 @@ Updates a table by inserting one or more rows into the table. The values inserte
 Inserts with constants:
 
 ```scopeql
-CREATE TABLE t (a INT);
+CREATE TABLE t (a int);
 VALUES (1), (2), (3) INSERT INTO t;
 ```
 
 Inserts from the results of a query:
 
 ```scopeql
-CREATE TABLE t1 (a INT);
-CREATE TABLE t2 (a INT);
+CREATE TABLE t1 (a int);
+CREATE TABLE t2 (a int);
 
 VALUES (1), (2), (3) INSERT INTO t1;
 FROM t1 WHERE a > 1 SELECT a + 1 AS b INSERT INTO t2;

@@ -1,18 +1,18 @@
-# OBJECT_CONSTRUCT
+# object_construct
 
 Returns an OBJECT constructed from the arguments.
 
 ## Syntax
 
 ```scopeql
-OBJECT_CONSTRUCT( [<key>, <value> [, <key>, <value> , ...]] )
+object_construct( [<key>, <value> [, <key>, <value> , ...]] )
 ```
 
 ## Arguments
 
 ### `<key>`
 
-The key in a key-value pair. Each key is a STRING value.
+The key in a key-value pair. Each key is a string value.
 
 ### `<value>`
 
@@ -27,7 +27,7 @@ Returns a value of type OBJECT.
 This example shows how to construct a simple object:
 
 ```scopeql
-SELECT OBJECT_CONSTRUCT('a', 1, 'b', 'BBBB', 'c', NULL);
+SELECT object_construct('a', 1, 'b', 'BBBB', 'c', NULL);
 ```
 
 ```

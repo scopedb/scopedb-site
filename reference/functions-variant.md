@@ -1,22 +1,22 @@
 # Variant data functions
 
-These functions are used with semi-structured data (VARIANT).
+These functions are used with semi-structured data (variant).
 
 ## List of functions
 
-* [ARRAY_APPEND](functions/array_append.md)
-* [ARRAY_CONCAT, ||](functions/array_concat.md)
-* [ARRAY_CONSTRUCT](functions/array_construct.md)
-* [ARRAY_CONTAINS](functions/array_contains.md)
-* [ARRAY_EXCEPT](functions/array_except.md)
-* [ARRAY_LENGTH](functions/array_length.md)
-* [ARRAY_SLICE](functions/array_slice.md)
-* [GET](functions/get.md)
-* [OBJECT_CONSTRUCT](functions/object_construct.md)
-* [OBJECT_KEYS](functions/object_keys.md)
-* [PARSE_JSON](functions/parse_json.md)
-* [TO_JSON](functions/to_json.md)
-* [TYPEOF](functions/typeof.md)
+* [array_append](functions/array_append.md)
+* [array_concat, ||](functions/array_concat.md)
+* [array_construct](functions/array_construct.md)
+* [array_contains](functions/array_contains.md)
+* [array_except](functions/array_except.md)
+* [array_length](functions/array_length.md)
+* [array_slice](functions/array_slice.md)
+* [get](functions/get.md)
+* [object_construct](functions/object_construct.md)
+* [object_keys](functions/object_keys.md)
+* [parse_json](functions/parse_json.md)
+* [to_json](functions/to_json.md)
+* [typeof](functions/typeof.md)
 
 ## Related content
 

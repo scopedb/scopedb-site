@@ -1,11 +1,11 @@
-# RTRIM
+# rtrim
 
 Removes trailing characters from a string.
 
 ## Syntax
 
 ```scopeql
-RTRIM( <expr> [, <chars> ] )
+rtrim( <expr> [, <chars> ] )
 ```
 
 ## Arguments
@@ -22,19 +22,19 @@ The default value is `" \t\n\r"` (common whitespace characters).
 
 ### Returns
 
-This function returns a value of STRING data type or NULL. If either argument is NULL, returns NULL.
+This function returns a value of string data type or NULL. If either argument is NULL, returns NULL.
 
 ### Examples
 
 Remove trailing `0` and `.` characters from a string:
 
 ```scopeql
-SELECT RTRIM('$125.00', '0.');
+SELECT rtrim('$125.00', '0.');
 ```
 
 ```
 +------------------------+
-| RTRIM('$125.00', '0.') |
+| rtrim('$125.00', '0.') |
 +------------------------+
 | $125                   |
 +------------------------+

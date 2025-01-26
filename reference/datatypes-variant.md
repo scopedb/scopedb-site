@@ -4,15 +4,15 @@ sidebar_label: Variant
 
 # Variant data type
 
-The VARIANT data type can contain a value of any other data type.
+The variant data type can contain a value of any other data type.
 
-## Inserting VARIANT data
+## Inserting variant data
 
-To insert VARIANT data directly, use `SELECT ... INSERT INTO ...`. The following example shows how to insert JSON-formatted data into a VARIANT value:
+To insert variant data directly, use `SELECT ... INSERT INTO ...`. The following example shows how to insert JSON-formatted data into a variant value:
 
 ```scopeql
-CREATE TABLE variant_insert (v VARIANT);
-SELECT PARSE_JSON('{"key1": "value1", "key2": "value2"}') INSERT INTO variant_insert;
+CREATE TABLE variant_insert (v variant);
+SELECT parse_json('{"key1": "value1", "key2": "value2"}') INSERT INTO variant_insert;
 FROM variant_insert;
 ```
 
@@ -48,14 +48,14 @@ The syntax or variant literal extends [the JSON format](https://datatracker.ietf
 
 :::
 
-## Using VARIANT values
+## Using variant values
 
-To convert a value to or from the VARIANT data type, you can explicitly cast using the CAST function or the `::` operator (e.g. `<expr>::VARIANT`). For details, see [data type conversion](datatypes-conversion.md).
+To convert a value to or from the variant data type, you can explicitly cast using the CAST function or the `::` operator (e.g. `<expr>::variant`). For details, see [data type conversion](datatypes-conversion.md).
 
-To understand the VARIANT data, consider the following example:
+To understand the variant data, consider the following example:
 
 ```scopeql
-CREATE TABLE vartab (n INT, v VARIANT);
+CREATE TABLE vartab (n int, v variant);
 VALUES
     (1, 'null'),
     (2, null),
@@ -66,7 +66,7 @@ VALUES
     (7, '"Om ara pa ca na dhih"  '),
     (8, '[-1, 12, 289, 2188, false]'),
     (9, '{ "x" : "abc", "y" : false, "z": 10} ')
-SELECT $0 AS n, PARSE_JSON($1) AS v
+SELECT $0 AS n, parse_json($1) AS v
 INSERT INTO vartab;
 ```
 
@@ -74,13 +74,13 @@ Query the data with their value type:
 
 ```scopeql
 FROM vartab
-SELECT n, v, TYPEOF(v)
+SELECT n, v, typeof(v)
 ORDER BY n;
 ```
 
 ```
 +---+------------------------------+-----------+
-| n | v                            | TYPEOF(v) |
+| n | v                            | typeof(v) |
 +---+------------------------------+-----------+
 | 1 | null                         | null      |
 | 2 | NULL                         | NULL      |
@@ -112,7 +112,7 @@ ORDER BY n
 +---+-------+------+
 ```
 
-VARIANT data has a total ordering, which means you can use the `ORDER BY` clause to sort the data.
+Variant data has a total ordering, which means you can use the `ORDER BY` clause to sort the data.
 
 ```scopeql
 FROM vartab WHERE v IS NOT NULL ORDER BY v DESC;

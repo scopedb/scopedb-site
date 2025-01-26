@@ -1,11 +1,11 @@
-# VARIANCE_SAMP
+# variance_samp
 
 Returns the sample variance of non-NULL records in a group. If all records inside a group are NULL, a NULL is returned.
 
 ## Syntax
 
 ```scopeql
-VARIANCE_SAMP ( <expr> )
+variance_samp ( <expr> )
 ```
 
 ## Arguments
@@ -16,6 +16,6 @@ An expression that evaluates to a numeric value. This is the expression on which
 
 ## Returns
 
-The data type of the returned value is FLOAT.
+The data type of the returned value is float.
 
 If all records inside a group are NULL, this function returns NULL.

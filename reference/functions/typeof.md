@@ -1,29 +1,29 @@
-# TYPEOF
+# typeof
 
-Returns the type of value stored in a VARIANT column. The type is returned as a string.
+Returns the type of value stored in a variant column. The type is returned as a string.
 
 ## Syntax
 
 ```scopeql
-TYPEOF( <expr> )
+typeof( <expr> )
 ```
 
 ## Arguments
 
 ### `<expr>`
 
-The argument can be a column name or a general expression of type VARIANT. If necessary, you can cast the expr to a VARIANT.
+The argument can be a column name or a general expression of type variant. If necessary, you can cast the expr to a variant.
 
 ## Returns
 
-Returns a STRING that contains the data type of the input expression, such as BOOLEAN, DECIMAL, ARRAY, OBJECT, etc.
+Returns a string that contains the data type of the input expression, such as boolean, DECIMAL, ARRAY, OBJECT, etc.
 
 ## Examples
 
-Create and populate a table. Note that the INSERT statement uses the PARSE_JSON function.
+Create and populate a table. Note that the INSERT statement uses the parse_json function.
 
 ```scopeql
-CREATE TABLE vartab (n INT, v VARIANT);
+CREATE TABLE vartab (n int, v variant);
 VALUES
     (1, 'null'),
     (2, null),
@@ -34,7 +34,7 @@ VALUES
     (7, '"Om ara pa ca na dhih"  '),
     (8, '[-1, 12, 289, 2188, false]'),
     (9, '{ "x" : "abc", "y" : false, "z": 10} ')
-SELECT $0 AS n, PARSE_JSON($1) AS v
+SELECT $0 AS n, parse_json($1) AS v
 INSERT INTO vartab;
 ```
 
@@ -42,17 +42,17 @@ Query the data:
 
 ```scopeql
 FROM vartab
-SELECT n, v, TYPEOF(v)
+SELECT n, v, typeof(v)
 ORDER BY n;
 ```
 
 ```
 +---+------------------------------+-----------+
-| n | v                            | TYPEOF(v) |
+| n | v                            | typeof(v) |
 +---+------------------------------+-----------+
 | 1 | null                         | null      |
 | 2 | NULL                         | NULL      |
-| 3 | true                         | bool      |
+| 3 | true                         | boolean   |
 | 4 | -17                          | int       |
 | 5 | 123.12                       | float     |
 | 6 | 191.2                        | float     |
