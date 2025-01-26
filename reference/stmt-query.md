@@ -27,10 +27,10 @@ SELECT defines the set of columns returned by a query, corresponding to a **proj
 
 ```scopeql
 CREATE TABLE employee_table (
-    employee_ID int,
+    employee_id int,
     last_name string,
     first_name string,
-    department_ID int,
+    department_id int,
 );
 
 VALUES
@@ -48,7 +48,7 @@ FROM employee_table SELECT *;
 
 ```
 +-------------+------------+------------+---------------+
-| employee_ID | last_name  | first_name | department_ID |
+| employee_id | last_name  | first_name | department_id |
 +-------------+------------+------------+---------------+
 | 101         | Montgomery | Pat        | 1             |
 | 102         | Levine     | Terry      | 2             |
@@ -91,12 +91,12 @@ FROM employee_table SELECT $2;
 #### Extending a column to all columns in the output
 
 ```scopeql
-FROM employee_table SELECT employee_ID + 1000 as new_employee_ID, *;
+FROM employee_table SELECT employee_id + 1000 as new_employee_id, *;
 ```
 
 ```
 +-----------------+-------------+------------+------------+---------------+
-| new_employee_ID | employee_ID | last_name  | first_name | department_ID |
+| new_employee_id | employee_id | last_name  | first_name | department_id |
 +-----------------+-------------+------------+------------+---------------+
 | 1101            | 101         | Montgomery | Pat        | 1             |
 | 1102            | 102         | Levine     | Terry      | 2             |
