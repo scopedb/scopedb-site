@@ -100,20 +100,6 @@
             font-size: 1.2vw;
         }
 
-        .scopePartner {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10vw;
-
-            .scopePartnerText {
-                position: absolute;
-                left: 25vw;
-                font-size: 1.2vw;
-                white-space: nowrap;
-            }
-        }
     }
 
     .scopeBannerImgView {

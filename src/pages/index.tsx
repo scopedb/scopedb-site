@@ -19,9 +19,6 @@ function HomepageBanner(): React.JSX.Element {
           <a href="/reference/overview" className={clsx(styles.scopeBtn, styles.scopeBtnPrimary)}>Book a Demo</a>
           <a href="/reference/overview" className={styles.scopeBtn}>Document</a>
         </div>
-        <div className={styles.scopePartner}>
-          <div className={styles.scopePartnerText}>Providing more flexible cloud data services for startups</div>
-        </div>
       </div>
       <div className={styles.scopeBannerImgView}>
         <img src="/homepage/homepage-hero.png" className={styles.scopeBannerImg} alt="hero"/>
