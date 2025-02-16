@@ -21,3 +21,109 @@
     align-items: center;
     justify-content: center;
 }
+
+.scopeBtns {
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    margin-top: 20px;;
+}
+
+.scopeBtn {
+    padding: 6px 16px;
+    border-radius: 10px;
+    margin: 5px 5px 5px;
+    background: white;
+    color: #5b5b5b;
+    border: 1px solid rgba(215, 215, 215);
+    font-family: Poppins, sans-serif;
+    transition: all .25s;
+    cursor: pointer;
+    font-size: 1vw;
+    white-space: nowrap;
+}
+
+.scopeBtnPrimary {
+    background: rgb(73 64 60);
+    color: white;
+    border: none;
+}
+
+.scopeBtn:hover {
+    color: #5b5b5b;
+    text-decoration: none;
+    box-shadow: 0 10px 20px -10px rgba(215, 215, 215);
+    transform: translateY(-3px);
+}
+
+.scopeBtnPrimary:hover {
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 10px 20px -10px rgb(73 64 60);
+    transform: translateY(-3px);
+}
+
+@media (min-width: 997px) {
+    .scopeBanner {
+        padding-left: var(--global-padding);
+    }
+}
+
+@media (max-width: 996px) {
+    .scopeBanner {
+        padding-left: calc(var(--global-padding) / 2);
+    }
+}
+
+
+.scopeBanner {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    .scopeBannerContent {
+        margin-top: 15%;
+
+        .scopeBannerFeature {
+            font-size: 2.3vw;
+        }
+
+        .scopeBannerTitle {
+            font-size: 4.6vw;
+
+            .scopeBannerBrand {
+                color: rgba(0, 115, 213);
+            }
+        }
+
+        .scopeBannerIntro {
+            font-size: 1.2vw;
+        }
+
+        .scopePartner {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10vw;
+
+            .scopePartnerText {
+                position: absolute;
+                left: 25vw;
+                font-size: 1.2vw;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .scopeBannerImgView {
+        height: 100%;
+        width: 100vw;
+
+        .scopeBannerImg {
+
+        }
+    }
+}
+
+
