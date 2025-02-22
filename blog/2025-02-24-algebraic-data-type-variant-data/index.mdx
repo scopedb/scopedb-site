@@ -1,0 +1,317 @@
+---
+slug: algebraic-data-type-variant-data
+title: "Algebraic Data Types in Database: Where Variant Data Can Help"
+tags: [engineering]
+---
+
+## What is an Algebraic Data Type?
+
+An algebraic data type is a structured type that is formed by combining other types. Most programming languages support algebraic data types in some form. The two most common types are:
+
+1. **Product Types**: A product type is a type that is composed of other types, such as tuples and records. For example, a `Person` type might be composed of a `name` and an `age`:
+    ```rust
+    struct Person {
+        name: String.
+        age: u64,
+    }
+    ```
+2. **Sum Types**: A sum type is a type that can be one of several types, such as tagged or disjoint unions. For example, a `Shape` type might be a `Circle` or a `Square`.
+     ```rust
+    enum Shape {
+        Circle { radius: f64 },
+        Rectangle { length: f64, width: f64 }
+    }
+    ```
+
+Algebraic data types are a common and powerful tool for modeling complex data structures in programming. While you can map some product types to database tables, sum types are more challenging to represent in a relational database. This lack of expression causes impedance mismatches between the application and the database. In this article, we'll explore how sum types can be implemented in ScopeDB using variant data types.
+
+<!-- truncate -->
+
+## Sum Types in Database
+
+Every database provides its primitive data types, such as numbers, strings, and booleans. While you may represent an object in a database by creating tables with columns for each field, you can't directly express sum types in traditional relational databases.
+
+For example, considering a type of arbitrary JSON value:
+
+```rust
+enum Value {
+    Null,
+    Bool(bool),
+    Number(Number),
+    String(String),
+    Array(Vec<Value>),
+    Object(Map<String, Value>),
+}
+```
+
+One common solution to represent this data structure is using an ID column that joins against multiple tables, one for each possible type:
+
+```sql
+create table json_value(id int);
+create table json_bool(id int, value bool)
+create table json_number(id int, value double);
+create table json_string(id int, value text);
+create table json_array(id int);
+create table json_array_elements(id int, position int, value int);
+create table json_object(id int);
+create table json_object_properties(id int, key text, value int);
+```
+
+When querying the JSON value, you need to join all the tables to reconstruct the original data structure. This approach is cumbersome and inefficient, especially when dealing with deeply nested sum types.
+
+Another approach is to use a single table with optionally populated columns for each possible type:
+
+```sql
+create table json_value(
+    id int primary key,
+    bool_value bool null,
+    number_value double null,
+    string_value text null,
+    array_value int null,
+    object_value int null
+);
+create table json_array_elements(id int, position int, value int);
+create table json_object_properties(id int, key text, value int);
+```
+
+This approach would create a sparse table with many nullable columns, which can be inefficient and hard to maintain. And you still need to join additional tables for arrays and objects. What's worse, it doesn't enforce the sum type's constraints, allowing invalid combinations of values. For example, you could have both `bool_value` and `number_value` set to non-null values.
+
+Specific database systems may provide extensions to represent sum types, such as the `enum`, `json`, and `jsonb` data types in PostgreSQL.
+
+PostgreSQL's enumerated types are data types that comprise a static, ordered set of values. For example:
+
+```sql
+CREATE TYPE mood AS ENUM ('sad', 'ok', 'happy');
+```
+
+PostgreSQL's `json` and `jsonb` data types allow you to store JSON data in a column. For example:
+
+```sql
+SELECT '5'::json;
+SELECT '[1, 2, "foo", null]'::json;
+SELECT '{"bar": "baz", "balance": 7.77, "active": false}'::json;
+SELECT '{"foo": [true, "bar"], "tags": {"a": 1, "b": null}}'::json;
+```
+
+## Implementing Sum Types with Variant Data Types
+
+ScopeDB introduces a data type called `variant` to represent sum types in the database. The simplest analogy for a variant is a JSON value. You can consider `variant` as a superset of `jsonb`.
+
+A variant value can contain a value of any other data type, a list of variant values, or a map of variant values. This flexibility allows you to model complex data structures with sum types in a single column.
+
+Reuse the JSON example above, you can define a variant column to represent JSON values:
+
+```scopeql
+CREATE TABLE vartab (n int, v variant);
+VALUES
+    (1, PARSE_JSON('null')),
+    (2, null),
+    (3, PARSE_JSON('true')),
+    (4, PARSE_JSON('-17')),
+    (5, PARSE_JSON('123.12')),
+    (6, PARSE_JSON('1.912e2')),
+    (7, PARSE_JSON('"Om ara pa ca na dhih"')),
+    (8, PARSE_JSON('[-1, 12, 289, 2188, false]')),
+    (9, PARSE_JSON('{ "x" : "abc", "y" : false, "z": 10}')),
+    (10, "PT42h"::interval::variant),
+    (11, "2025-01-16T14:56:00Z"::timestamp::variant),
+INSERT INTO vartab;
+```
+
+Query the data with their value type:
+
+```scopeql
+FROM vartab
+SELECT n, v, typeof(v)
+ORDER BY n;
+```
+
+The result will be:
+
+```
++----+------------------------------+-----------+
+| n  | v                            | typeof(v) |
++----+------------------------------+-----------+
+| 1  | null                         | null      |
+| 2  | NULL                         | NULL      |
+| 3  | true                         | boolean   |
+| 4  | -17                          | int       |
+| 5  | 123.12                       | float     |
+| 6  | 191.2                        | float     |
+| 7  | "Om ara pa ca na dhih"       | string    |
+| 8  | [-1,12,289,2188,false]       | array     |
+| 9  | {"x":"abc","y":false,"z":10} | object    |
+| 10 | PT42H                        | interval  |
+| 11 | 2025-01-16T14:56:00Z         | timestamp |
++----+------------------------------+-----------+
+```
+
+You can arbitrarily nest variant values to represent complex data structures. ScopeQL provides a native syntax support for constructing and querying variant values:
+
+```scopeql
+VALUES
+    ({ "store": {
+        "book": [
+          { "category": "reference",
+            "author": "Nigel Rees",
+            "title": "Sayings of the Century",
+            "price": 8.95
+          },
+          { "category": "fiction",
+            "author": "Evelyn Waugh",
+            "title": "Sword of Honour",
+            "price": 12.99
+          },
+          { "category": "fiction",
+            "author": "Herman Melville",
+            "title": "Moby Dick",
+            "isbn": "0-553-21311-3",
+            "price": 8.99
+          },
+          { "category": "fiction",
+            "author": "J. R. R. Tolkien",
+            "title": "The Lord of the Rings",
+            "isbn": "0-395-19395-8",
+            "price": 22.99
+          }
+        ],
+        "bicycle": {
+          "color": "red",
+          "price": 399
+        }
+      }
+    })
+SELECT
+    $0["store"]["book"][-1]["title"] AS title_of_last_book,
+    $0["store"]["book"][0:3] as first_three_books,
+    $0["store"]["bicycle"] AS bicycle;
+```
+
+The result will be:
+
+```
++-------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
+| title_of_last_book      | first_three_books                                                                                                                                                                                                                                                                               | bicycle                     |
++-------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
+| "The Lord of the Rings" | [{"author":"Nigel Rees","category":"reference","price":8.95,"title":"Sayings of the Century"},{"author":"Evelyn Waugh","category":"fiction","price":12.99,"title":"Sword of Honour"},{"author":"Herman Melville","category":"fiction","isbn":"0-553-21311-3","price":8.99,"title":"Moby Dick"}] | {"color":"red","price":399} |
++-------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
+```
+
+## Case Study: Application Logs
+
+Application logs are structured records of events and activities generated by software applications. They capture a wide range of information, including error messages, user interactions, and application-specific data.
+
+While most application logs have several common fields, such as timestamp, hostname, and message, they can also have additional fields that vary depending on the log type. These fields often evolve, requiring a flexible sum-type schema.
+
+Here is an example how our customers might define a schema for their application logs:
+
+```scopeql
+CREATE TABLE scopedb.tenant.logs (
+  time timestamp,
+  container_id string,
+  container_name string,
+  container_runtime_name string,
+  container_type string,
+  filename string,
+  filepath string,
+  host string,
+  message string,
+  message_length int,
+  name string,
+  source string,
+  status string,
+  var variant,
+);
+```
+
+The `time` column is primarily used for filtering and sorting. The `var` column stores the original log event as a variant value. Other columns are tags extracted from the log event. Users can then create index on `time` and tags to accelerate the query.
+
+When inserting a log event, users can submit a batch of logs as JSON lines and extract the common fields into the corresponding columns:
+
+```shell
+curl -X POST -H 'Content-Type: application/json' http://ingest-node:6543/v1/ingest -d @- <<EOF
+{
+  "data": {
+    "format": "json",
+    "rows": "<json-lines>"
+  },
+  "statement": "
+    SELECT
+        $0["time"]::timestamp as time,
+        $0["container_id"]::string as container_id,
+        $0["container_name"]::string as container_name,
+        $0["container_runtime_name"]::timestamp as container_runtime_name,
+        $0["container_type"]::string as container_type,
+        $0["filename"]::string as filename,
+        $0["filepath"]::string as filepath,
+        $0["host"]::string as host,
+        $0["message"]::string as message,
+        $0["name"]::string as name,
+        $0["source"]::string as source,
+        $0["status"]::string as status,
+        $0 as var,
+    SELECT *, LENGTH(message) AS message_length,
+    WHERE time > now() - "PT336h"::interval and time < now() + "PT24h"::interval
+    INSERT INTO scopedb.tenant.logs
+  "
+}
+EOF
+```
+
+When querying over log events, ScopeDB provides a set of functions to extract, cast, and compare variant values:
+
+```scopeql
+FROM scopedb.tenant.logs
+WHERE var["meta"]["peer.hostname"]::string = "192.128.10.75"
+  AND time >= now() - "PT6h"::interval
+  AND time < now()
+GROUP BY source
+AGGREGATE max(time) as time, count(true);
+
+FROM scopedb.tenant.logs
+WHERE time >= "2025-01-16T14:56:00Z"::timestamp
+  AND time < "2025-01-16T15:01:00Z"::timestamp
+  AND search(message, "Service")
+  AND search(message, "Unavailable")
+  AND status != "info"
+  AND source = "ServiceName"
+GROUP BY `source`, var["my_site"]::string
+AGGREGATE max(time) as time, count(true)
+ORDER BY time;
+```
+
+## Performance Considerations
+
+As described above, traditional approaches to represent sum types in a relational database can be inefficient and cumbersome. When implementing variant data types in ScopeDB, we optimize the storage and query processing to achieve better performance.
+
+First of all, we have a free lunch by leveraging Rust's compacted enum representation:
+
+```rust
+enum VariantRef<'a> {
+    Null,
+    String(&'a str),
+    Number(VariantNumber),
+    Boolean(bool),
+    Timestamp(Timestamp),
+    Interval(Interval),
+    Binary(&'a [u8]),
+    Array(ArrayRef<'a>),
+    Object(ObjectRef<'a>),
+}
+```
+
+You may notice that we use references to arrays and objects when processing variant values, instead of using a parsed owned value. This is because the underneath representation of variant values is a compact binary format, and ScopeDB ensures that the data is not deeply copied when processing queries. In addition, all the payload of `VariantNumber`, `Timestamp`, and `Interval` are stored as a 64-bit field. This design allows us to represent all the variant values in 24 bytes.
+
+What's more, ScopeDB allows you to create smart indexes on the variant column to accelerate the query:
+
+```scopeql
+CREATE SMART INDEX var_idx ON scopedb.tenant.logs(var);
+```
+
+Internally, ScopeDB creates a set of indexes on the variant column considering potential keys, values, and value types. When processing a query, ScopeDB can leverage these indexes to filter out irrelevant rows and accelerate the query.
+
+## Conclusion
+
+User applications often need to model complex data structures with algebraic data types like sum types. While traditional relational databases struggle to represent sum types efficiently, ScopeDB introduces a variant data type to address this challenge. By using variant data types, you can model sum-type data with a single column, improving efficiency and flexibility. This approach enables you to build applications that better reflect the data model, reducing impedance mismatches between the application and the database.
+
+It's possible to support more algebraic data types in the future, such as enums, tuples and structs. We are excited to see how users leverage variant data types to build their applications. If you have any questions or feedback, please feel free to reach out to us. We'd love to hear from you!
