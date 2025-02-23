@@ -314,4 +314,12 @@ Internally, ScopeDB creates a set of indexes on the variant column considering p
 
 User applications often need to model complex data structures with algebraic data types like sum types. While traditional relational databases struggle to represent sum types efficiently, ScopeDB introduces a variant data type to address this challenge. By using variant data types, you can model sum-type data with a single column, improving efficiency and flexibility. This approach enables you to build applications that better reflect the data model, reducing impedance mismatches between the application and the database.
 
-It's possible to support more algebraic data types in the future, such as enums, tuples and structs. We are excited to see how users leverage variant data types to build their applications. If you have any questions or feedback, please feel free to reach out to us. We'd love to hear from you!
+It's possible to support more algebraic data types in the future, such as enums, tuples and structs. We are excited to see how users leverage variant data types to build their applications. You can try out our playground:
+
+```shell
+git clone https://github.com/scopedb/community.git
+docker compose -f ./community/playground/docker-compose.yml up -d
+docker run -it --rm --entrypoint /bin/scopeql --network host scopedb/scopedb
+```
+
+If you have any questions or feedback, please feel free to reach out to us. We'd love to hear from you!
