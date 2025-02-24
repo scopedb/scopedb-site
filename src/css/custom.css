@@ -4,6 +4,22 @@
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
     --ifm-footer-background-color: rgba(115, 150, 233, 0.61);
     --global-padding: 10vw;
+
+    --font-primary: rgba(24, 24, 24);
+    --font-secondary: rgba(91, 91, 91);
+    --font-tertiary: rgba(181, 181, 181);
+    --font-brand: rgba(53, 119, 217);
+
+    --button-primary-bg: rgba(33, 34, 34);
+    --button-primary-border: rgba(33, 34, 34);
+    --button-primary-font: rgba(255, 255, 255);
+    --button-secondary-bg: rgba(255, 255, 255);
+    --button-secondary-border: rgba(215, 215, 215);
+    --button-secondary-font: rgba(91, 91, 91);
+
+    --color-background: rgba(255, 255, 255);
+    --color-module: rgba(247, 247, 247);
+    --color-brand: rgba(53, 119, 217);
 }
 
 [data-theme='dark'] {
