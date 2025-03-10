@@ -4,11 +4,48 @@ title: "Why Not SQL: The Origin of ScopeQL"
 tags: [engineering]
 ---
 
-SQL has been standing the test of time for 50 years, as the primary language for structured data processing. However, SQL is also an old language with significant design problems, especially on its non-composable and inconsistent syntax.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-When developing the query language for ScopeQL, we decided to go against SQL and design a new language, ScopeQL, from scratch to fix SQL's problems. Nevertheless, we recognized the goodness of relational algebra and decided to implement it in ScopeQL.
+SQL has dominated structured data processing for 50 years. However, its age reveals significant design flaws, notably non-composable and inconsistent syntax.
 
-In this post, we will discuss where SQL falls short and the design principles behind ScopeQL.
+When developing the query language for ScopeQL, we decided to go against SQL and design a new language, ScopeQL, from scratch to fix SQL's problems. In this post, we will discuss where SQL falls short and the design principles behind ScopeQL.
+
+## TL;DR
+
+* Both SQL and ScopeQL are based on relational algebra, which is a powerful, elegant, proven theory.
+* SQL's clause order is very different from its semantic order; ScopeQL fixes it with a linear pipelined syntax.
+* SQL has an inside-out data flow that can be hard to reason; ScopeQL's data flow is intuitively top-down.
+* SQL has a rigid and arbitrary syntax; ScopeQL's syntax is consistent and composable.
+* SQL relies on subqueries heavily, while ScopeQL eliminates most of them.
+
+Here is a showcase:
+
+<Tabs>
+    <TabItem value="sql" label="SQL" default>
+        ```sql
+        SELECT
+          country,
+          MAX(salary) AS max_salary
+        FROM
+          employees
+        WHERE
+          start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
+        GROUP BY
+          country
+        HAVING
+          MAX(salary) > 100000
+        ```
+    </TabItem>
+    <TabItem value="scopeql" label="ScopeQL">
+        ```sql
+        FROM employees
+        WHERE start_date > '2021-01-01 00:00:00+00:00'::timestamp
+        GROUP BY country AGGREGATE max(salary) AS max_salary
+        WHERE max_salary > 100000
+        ```
+    </TabItem>
+</Tabs>
 
 <!-- truncate -->
 
@@ -33,7 +70,7 @@ HAVING SUM(r.e) > 3
 ORDER BY r.d
 ```
 
-The first and probably most significant problem is that, **the syntactic order of the query above is not the semantic order**. The query above would be actually interpreted in the following order:
+The biggest problem? **The order you write SQL doesn't match the order it executes**. The query above would be actually interpreted in the following order:
 
 1. Join `r` and `s` on `r.a = s.b`. It produces the source relation for all the following operations.
 2. Filter the source relation by `r.c < 15`.
@@ -42,8 +79,6 @@ The first and probably most significant problem is that, **the syntactic order o
 5. Calculate `RANK()` for each row over the grouped relation.
 6. Project the columns `r.d`, `SUM(r.e)`, and `RANK()`.
 7. Sort the result by `r.d`.
-
-Totally out of order, isn't it?
 
 You may also notice that `SUM(r.e)` is repeated in both `SELECT` and `HAVING` clauses. This is a living example of **incompressible expression**: the `HAVING` clause cannot simply use the alias `sum` in the `SELECT` clause. To do so, you need to use a subquery:
 
@@ -63,7 +98,7 @@ FROM (
 WHERE sum > 3
 ```
 
-When subqueries are used, the mismatch between the syntactic order and the semantic order becomes even more apparent. The subquery is evaluated first, and then the outer query is evaluated on the result of the subquery. Typical analytical queries can have multiple levels of subqueries, which makes the query even harder to read and understand.
+When subqueries are used, the mismatch between the syntactic order and the semantic order becomes even more apparent. SQL evaluates the subquery first, then evaluates the outer query on that result. Typical analytical queries can have multiple levels of subqueries, which makes the query even harder to read and understand.
 
 What's worse, **SQL relies on subqueries heavily**, even for many common query patterns. A subquery is necessary if you want to:
 
@@ -85,7 +120,7 @@ FROM (
 GROUP BY c_count ORDER BY custdist DESC, c_count DESC
 ```
 
-As a preview, equivalent logic can be expressed sequentially in ScopeQL:
+As a preview, in ScopeQL, you can express the equivalent logic sequentially:
 
 ```scopeql
 FROM customer
@@ -145,7 +180,7 @@ FROM (
 GROUP BY category
 ```
 
-To sum up, all these syntax issues combine to make SQL difficult to learn, and excessively difficult to work with, even for SQL experts.
+In summary, the cumulative impact of syntax issues makes SQL difficult to learn, and excessively difficult to work with, even for SQL experts.
 
 ## ScopeQL To The Rescue
 
