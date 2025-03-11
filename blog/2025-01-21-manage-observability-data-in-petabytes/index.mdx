@@ -82,7 +82,7 @@ Let's start with a glance at the architecture of ScopeDB:
 
 ## Real-time Ingestion
 
-By getting rid of stateful nodes, ScopeDB deployments can have different nodegroups for different workloads. Each nodegroup can have a different number of stateless nodes with varying types of instance, unleashing the power of workload isolation
+By getting rid of stateful nodes, ScopeDB deployments can have different nodegroups for different workloads. Each nodegroup can have a different number of stateless nodes with varying types of instances, unleashing the power of workload isolation.
 
 The `ingest` nodegroup illustrates a typical setup for real-time ingestion, with two nodes of small, general-purpose instances.
 
@@ -132,7 +132,7 @@ For example, the platform team initially used Elasticsearch as their data store,
 
 Performance is significant for executing queries with data at any scale. The primary performance factor is minimizing the data scanned. Especially when the data is stored in S3, you'd want to read as few objects as possible. ScopeDB can create various indexes on columns. Combined with pushdown filters and real-time data distribution, ScopeDB can significantly reduce the amount of data scanned.
 
-Moreover, ScopeDB stores data in columnar format, which means it only reads the columns needed for the query. This is desired for most analytical queries, as they usually only need a few columns. ScopeDB's query engine is a vectorized query engine that processes multiple rows in a batch, further unleashing the benefit of columnar data format.
+Moreover, ScopeDB stores data in a columnar format, which means it only reads the columns needed for the query. This is desired for most analytical queries, as they usually only need a few columns. ScopeDB's query engine is a vectorized query engine that processes multiple rows in a batch, further unleashing the benefit of the columnar data format.
 
 When performing aggregation on high-cardinality fields, one single node may not be able to handle the entire workload. Thanks to ScopeDB's distributed query engine, we can scale out the query to multiple nodes. The query engine will distribute the workload to multiple nodes and merge the results in parallel. This not only makes running heavy queries possible but also accelerates queries in general.
 
@@ -194,7 +194,7 @@ It outputs:
 +---+------------------------------+-----------+
 ```
 
-In case some log fields are fixed and frequently queried, the observability platform can define a table with both fixed fields and variant fields. The fixed fields are stored in separate columns and users can create indexes on them to accelerate the query. Here is an example for the log table:
+In case some log fields are fixed and frequently queried, the observability platform can define a table with both fixed fields and variant fields. The fixed fields are stored in separate columns, and users can create indexes on them to accelerate the query. Here is an example of log tables:
 
 ```scopeql
 CREATE TABLE scopedb.tenant.logs (

@@ -14,9 +14,8 @@ When developing the query language for ScopeDB, we decided to go against SQL and
 ## TL;DR
 
 * Both SQL and ScopeQL are based on relational algebra, a powerful, elegant, proven theory.
-* SQL's clause order differs greatly from its semantic order; ScopeQL fixes it with a linear pipelined syntax.
-* SQL has an inside-out data flow that can be hard to reason; ScopeQL's data flow is intuitively top-down.
-* SQL has a rigid and arbitrary syntax; ScopeQL's syntax is consistent and composable.
+* SQL query is out of its semantic order; ScopeQL fixes it with a linear pipelined syntax.
+* SQL has a rigid and arbitrary syntax; ScopeQL's syntax is consistent, composable, and reduced.
 * SQL relies on subqueries heavily, while ScopeQL eliminates most of them.
 
 Here is a showcase:
@@ -237,8 +236,8 @@ Corresponding to the query clauses listed above, ScopeQL supports querying using
 [ FROM ... [ SAMPLE ... ] | VALUES ... ]
 [ SELECT ... ]
 [ WHERE ... ]
-[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] WINDOW ... ]
-[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] AGGREGATE ... ]
+[ [ GOURP BY ... ] [ ORDER BY ... ] WINDOW ... ]
+[ [ GOURP BY ... ] [ ORDER BY ... ] AGGREGATE ... ]
 [ ORDER BY ... ]
 [ LIMIT ... ]
 ```
@@ -282,7 +281,7 @@ WHERE r.c < 15
 GROUP BY r.d
 AGGREGATE SUM(r.e) AS sum
 WHERE sum > 3
-WITHIN GROUP ORDER BY r.d WINDOW RANK() AS rank
+ORDER BY r.d WINDOW RANK() AS rank
 SELECT r.d AS d, sum, rank
 ORDER BY d
 ```
@@ -293,9 +292,7 @@ ScopeQL's pipelined syntax also improves the consistency of the language. For ex
 
 Compared to SQL, due to the arbitrary operator order and pseudo-English syntax, you need to use `HAVING` for aggregations, `WHERE` for filtering before aggregations, and subqueries for filtering elsewhere. A few SQL databases have introduced a `QUALIFY` clause to filter the result of window functions, which adds even more inconsistency and a new keyword.
 
-Furthermore, the pipelined syntax fixes the "inside-out" data flow problem of SQL. In standard SQL, the data flow starts at the deepest nested subquery. Then logic builds outwards, applying operations both above and below the starting point, while traversing outwards through layers of nested subqueries.
-
-For instance, a nested SQL query like this:
+Furthermore, the pipelined syntax has an intuitively top-down. For instance, a nested SQL query like this:
 
 ```sql
 SELECT category, max(rk)
@@ -312,13 +309,13 @@ can be written in ScopeQL as:
 
 ```scopeql
 FROM orders
-GROUP BY category WITHIN GROUP ORDER BY unit_sales WINDOW RANK() AS rk
+GROUP BY category ORDER BY unit_sales WINDOW RANK() AS rk
 GROUP BY category AGGREGATE MAX(rk)
 ```
 
 As you can see, the ScopeQL query perfectly matches the semantic order. The data flows from the top down, and the query is read from top to bottom. In addition, you don't need subqueries for multi-level aggregation, window, or their mix.
 
-If you write aggregations frequently, you'll notice that ScopeQL does not require you to repeat the group by expressions in a `SELECT` clause. Actually, the `SELECT` clause is totally optional. By default, ScopeQL will return all the columns in the result table. And the `GROUP BY` modifier would retain the group by expressions in the result table.
+If you write aggregations frequently, you'll notice that ScopeQL does not require you to repeat the group by expressions in a `SELECT` clause. Actually, the `SELECT` clause is totally optional. By default, ScopeQL will return all the columns in the result table. The `GROUP BY` modifier would retain the group by expressions in the result table.
 
 This feature improves query compression. For example, if the group by expressions are non-trivial, to include them in the final result, you need to repeat them in the `SELECT` clause in SQL:
 
@@ -360,7 +357,7 @@ ScopeQL can flexibly adjust select targets:
 * `SELECT *, exprs` to extend additional expressions.
 * `SELECT ... EXCLUDE (colmuns)` to exclude columns.
 * `SELECT ... RENAME (old_names TO new_names)` to rename columns.
-* `SELECT ... REPLACE (exprs AS old_names)` to replace the value of columns with new expression.
+* `SELECT ... REPLACE (exprs AS old_names)` to replace the value of columns with new expressions.
 
 The first one is commonly used to reuse computed expressions. The rest are useful for data cleaning and transformation.
 
@@ -369,11 +366,11 @@ The first one is commonly used to reuse computed expressions. The rest are usefu
 Now, return to grouping and aggregation. You may notice that the `GROUP BY` is referred to as a modifier, not as a clause. This is because it's only a modifier of an `AGGREGATE` clause or a `WINDOW` clause. You always need to specify an aggregate function or window function after `GROUP BY`:
 
 ```
-[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] WINDOW ... ]
-[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] AGGREGATE ... ]
+[ [ GOURP BY ... ] [ ORDER BY ... ] WINDOW ... ]
+[ [ GOURP BY ... ] [ ORDER BY ... ] AGGREGATE ... ]
 ```
 
-No more `OVER` and `PARTITION BY` keywords specifically for window functions. ScopeQL respects the similarity between aggregations and window functions, and thus, they share a similar syntax. Both of them compute a value based on other tuples of the input relation. But aggregations reduce the number of tuples, while window functions adds a new attribute to each tuple.
+No more `OVER` and `PARTITION BY` keywords specifically for window functions. ScopeQL respects the similarity between aggregations and window functions, and thus, they share a similar syntax. Both of them compute a value based on other tuples of the input relation. But aggregations reduce the number of tuples, while window functions add a new attribute to each tuple.
 
 How to write a query the same as SQL's `GROUP BY` without any aggregation? You can use the `DISTINCT ON` clause:
 
@@ -398,7 +395,7 @@ WHERE
 
 Except for the syntax, ScopeQL also introduces a data type system based on algebraic data types. Notably, ScopeQL defines a **variant data type** that can represent sum types in the database.
 
-As a comparison, SQL doesn't have a built-in sum type for a long time. To represent a real-world sum type, the usual solution is using an id column that joins against multiple tables, one for each possible type:
+In comparison, SQL hasn't had a built-in sum type for a long time. To represent a real-world sum type, the usual solution is using an ID column that joins against multiple tables, one for each possible type:
 
 ```sql
 create table json_value(id int);
@@ -423,7 +420,7 @@ You can read our previous blog post ["Algebraic Data Types in Database: Where Va
 
 **What about the interoperability with SQL?**
 
-There are libraries and tools that enable developers to write queries in a new syntax and translate them to SQL (e.g., [PRQL](https://prql-lang.org/), [SaneQL](https://www.cidrdb.org/cidr2024/papers/p48-neumann.pdf), etc.). The existing SQL ecosystem provides solid database implementations and a rich set of data tools. People always tend to think you must speak SQL; otherwise, you lose the whole ecosystem.
+Some libraries and tools enable developers to write queries in a new syntax and translate them to SQL (e.g., [PRQL](https://prql-lang.org/), [SaneQL](https://www.cidrdb.org/cidr2024/papers/p48-neumann.pdf), etc.). The existing SQL ecosystem provides solid database implementations and a rich set of data tools. People always tend to think you must speak SQL; otherwise, you lose the whole ecosystem.
 
 But wait a minute, those libraries translate their new language to SQL because they don't implement the query engine (i.e., the database) themselves, so they have to talk to SQL databases in SQL. However, ScopeQL is the query language of ScopeDB, and ScopeDB is already a database built directly on top of S3.
 
@@ -431,7 +428,7 @@ Thus, what we can leverage from the SQL ecosystem are data tools, such as BI too
 
 **Project Foo has already implemented similar features. Why not follow them?**
 
-ScopeQL is developed from scratch, but is not invented from scratch. We learn a lot from existing solutions, research, and discussions with their adopters. It includes the syntax of PRQL, SaneQL, and SQL extensions provided by other analytical databases. Also, we deeply empathize with the challenges outlined in the [GoogleSQL](https://research.google/pubs/sql-has-problems-we-can-fix-them-pipe-syntax-in-sql/) paper.
+ScopeQL was developed from scratch but was not invented in isolation. We learn a lot from existing solutions, research, and discussions with their adopters. It includes the syntax of PRQL, SaneQL, and SQL extensions provided by other analytical databases. We also deeply empathize with the challenges outlined in the [GoogleSQL](https://research.google/pubs/sql-has-problems-we-can-fix-them-pipe-syntax-in-sql/) paper.
 
 However, as answered in the previous question, we first developed ScopeDB as a relational database. Then, we learned users' scenarios where an enhanced syntax helps maintain their business logic and increases their productivity. So, directly implementing the enhanced syntax is the most efficient way.
 
@@ -445,7 +442,7 @@ Data Manipulation Language (DML) commands are mostly trivial. ScopeQL's `DELETE`
 VALUES (...), (...), ... INSERT INTO table
 ```
 
-Data Definition Language (DDL) commands are mainly about maintenance. DDL commands are typically used to create, manipulate, and modify objects in ScopeDB, such as databases, schemas, tables, views, columns, etc. Most of the DDL commands are similar to SQL, while ScopeDB can introduce some new commands for our specific operations.
+Data Definition Language (DDL) commands are mainly about maintenance. DDL commands are typically used to create, manipulate, and modify objects in ScopeDB, such as databases, schemas, tables, views, columns, etc. Most DDL commands are similar to SQL, while ScopeDB can introduce new commands for our specific operations.
 
 **Where can I get a full reference of ScopeQL?**
 
