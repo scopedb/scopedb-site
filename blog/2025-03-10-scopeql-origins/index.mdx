@@ -9,12 +9,12 @@ import TabItem from '@theme/TabItem';
 
 SQL has dominated structured data processing for 50 years. However, its age reveals significant design flaws, notably non-composable and inconsistent syntax.
 
-When developing the query language for ScopeQL, we decided to go against SQL and design a new language, ScopeQL, from scratch to fix SQL's problems. In this post, we will discuss where SQL falls short and the design principles behind ScopeQL.
+When developing the query language for ScopeDB, we decided to go against SQL and design a new language, ScopeQL, from scratch to fix SQL's problems. In this post, we will discuss where SQL falls short and the design principles behind ScopeQL.
 
 ## TL;DR
 
-* Both SQL and ScopeQL are based on relational algebra, which is a powerful, elegant, proven theory.
-* SQL's clause order is very different from its semantic order; ScopeQL fixes it with a linear pipelined syntax.
+* Both SQL and ScopeQL are based on relational algebra, a powerful, elegant, proven theory.
+* SQL's clause order differs greatly from its semantic order; ScopeQL fixes it with a linear pipelined syntax.
 * SQL has an inside-out data flow that can be hard to reason; ScopeQL's data flow is intuitively top-down.
 * SQL has a rigid and arbitrary syntax; ScopeQL's syntax is consistent and composable.
 * SQL relies on subqueries heavily, while ScopeQL eliminates most of them.
