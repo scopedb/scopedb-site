@@ -429,6 +429,12 @@ But wait a minute, those libraries translate their new language to SQL because t
 
 Thus, what we can leverage from the SQL ecosystem are data tools, such as BI tools, that generate SQL queries to implement business logic. For this purpose, one should write a translator that converts SQL queries to ScopeQL queries. Since both ScopeQL and SQL are based on relational algebra, the translation must be doable.
 
+**Project Foo has already implemented similar features. Why not follow them?**
+
+ScopeQL is developed from scratch, but is not invented from scratch. We learn a lot from existing solutions, research, and discussions with their adopters. It includes the syntax of PRQL, SaneQL, and SQL extensions provided by other analytical databases. Also, we deeply empathize with the challenges outlined in the [GoogleSQL](https://research.google/pubs/sql-has-problems-we-can-fix-them-pipe-syntax-in-sql/) paper.
+
+However, as answered in the previous question, we first developed ScopeDB as a relational database. Then, we learned users' scenarios where an enhanced syntax helps maintain their business logic and increases their productivity. So, directly implementing the enhanced syntax is the most efficient way.
+
 **What about DDL and DML?**
 
 The most significant part of a query language is the query part. ScopeQL's innovation is mainly on the query syntax, as introduced in this post.
