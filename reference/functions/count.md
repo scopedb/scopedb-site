@@ -1,6 +1,6 @@
 # count
 
-Returns either the number of non-NULL records for the specified columns.
+Returns the number of non-NULL records for the specified columns.
 
 ## Syntax
 
