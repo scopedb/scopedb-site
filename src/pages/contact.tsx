@@ -1,4 +1,4 @@
-import {JSX, useEffect} from "react";
+import { JSX, useEffect } from "react";
 import Layout from "@theme/Layout";
 
 export default function Contact(): JSX.Element {
@@ -6,10 +6,10 @@ export default function Contact(): JSX.Element {
     <Layout>
       <main>
         <div className="container margin--xl">
-          <h1>Contact Us</h1><br/>
+          <h1>Contact Us</h1><br />
           <div className="row">
             <div className="col col--6">
-              <ContactUsForm/>
+              <ContactUsForm />
             </div>
           </div>
         </div>
@@ -39,6 +39,6 @@ function ContactUsForm(): JSX.Element {
     });
   }, []);
   return (
-    <div id="contact-us-form"/>
+    <div id="contact-us-form" />
   );
 }
