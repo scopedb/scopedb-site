@@ -23,7 +23,7 @@ function HomepageBanner(): React.JSX.Element {
         </div>
       </div>
       <div className={styles.scopeBannerImgView}>
-        <img src="/homepage/homepage-hero.png" className={styles.scopeBannerImg} alt="hero"/>
+        <img src="/homepage/homepage-hero.png" className={styles.scopeBannerImg} alt="hero" />
       </div>
     </div>
   );
@@ -33,7 +33,7 @@ export default function Home(): React.JSX.Element {
   return (
     <Layout
       description="ScopeDB is a database built directly on top of S3 and unleashes the power of cloud elasticity and workload isolation.">
-      <HomepageBanner/>
+      <HomepageBanner />
     </Layout>
   );
 }
