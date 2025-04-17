@@ -56,15 +56,15 @@ When the ingestion backlog grows, we temporarily instantiate additional nodes of
 
 To observe a complex distributed system like ScopeDB, we need to correlate metrics, traces, and logs. By correlating all three pillars of observability, we are able to get a complete picture of what is happening in ScopeDB.
 
-For example, when we see a spike in the number of slow queries in the metrics, we can list slow query logs, and then look into their associated traces. By analyzing the traces, we can identify which spans are taking a long time to complete. We can then look at the attributions or related logs for those spans to find out what is causing the delay. We can also take the workload metrics during the same time into consideration, to see if there is any correlation between the workload and the performance issues.
+For example, when there is a spike in the number of slow queries in the metrics, we can list the slow query logs and then look into the associated traces. By analyzing the traces, we'll know which spans are taking longer to complete. Then, we could look at the attributes or related logs of these spans to find out the reason for the delay. Additionally, it is possible to take the workload metrics during the same period into consideration, and see if there is any correlation between workload and performance issues.
 
-Properly correlating metrics, traces, and logs requires the system to be instrumented correctly. This is especially challenging for a distributed system, where you need to propagate trace IDs and other metadata across different components.
+However, to properly correlate metrics, traces, and logs of a system, it requires that the system be instrumented correctly. This is especially challenging in a distributed system, where trace IDs and other metadata can be propagated across various components.
 
-Currently, ScopeDB leverages OpenTelemetry to instrument its codebase. ScopeDB is written in Rust, and there is no good enough distributed tracing solution at the time of writing. Thus, we developed a complete solution for distributed tracing in Rust, and open-sourced it. You can read more about the solution in this blog post: [_A Modern Approach to Distributed Tracing in Rust_](https://fast.github.io/blog/fastrace-a-modern-approach-to-distributed-tracing-in-rust/).
+Currently, ScopeDB leverages OpenTelemetry to instrument its codebase. ScopeDB is written in Rust, but at the time of writing, there isn't a sufficiently mature distributed tracing solution available. Thus, we developed a complete solution for distributed tracing in Rust and open-sourced it. Read more about the solution in this blog post: [_A Modern Approach to Distributed Tracing in Rust_](https://fast.github.io/blog/fastrace-a-modern-approach-to-distributed-tracing-in-rust/).
 
 ## Looking Forward: Bootstrapping Self-observability
 
-In the previous introductory, we shared how an observability platform uses ScopeDB to manage metrics, logs, and trace in petabytes. A straightforward question is: can we store ScopeDB's self-observability data in ScopeDB itself? The answer is yes.
+In the previous introduction, we explored how an observability platform uses ScopeDB to store and manage metrics, logs, and traces at a petabyte scale. A natural question then arises: can ScopeDB store its self-observability data? 🤯  The answer? Yes. 100% it can. ⚡ 
 
 The referred observability platform is using ScopeDB for all its observability data, including ScopeDB's self-observability data. To avoid endless recursive events, it's necessary to turn of INFO level logs and traces for data ingestion of ScopeDB. In this way, when self-observability data ingested, it won't generate new events and the recursion will stop.
 
