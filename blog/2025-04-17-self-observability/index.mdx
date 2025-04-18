@@ -66,6 +66,6 @@ Currently, ScopeDB leverages OpenTelemetry to instrument its codebase. ScopeDB i
 
 In the previous introduction, we explored how an observability platform uses ScopeDB to store and manage metrics, logs, and traces at a petabyte scale. A natural question then arises: Can ScopeDB store its self-observability data? Surely, the answer is YES!
 
-The referred observability platform is using ScopeDB for all its observability data, including ScopeDB's self-observability data. To avoid endless recursive events, it's necessary to turn of INFO level logs and traces for data ingestion of ScopeDB. In this way, when self-observability data ingested, it won't generate new events and the recursion will stop.
+The observability platform is using ScopeDB for all its observability data, including ScopeDB's self-observability data. To avoid endless recursive events, it's necessary to turn off INFO level logs and traces for data ingestion of ScopeDB. In this way, when self-observability data ingested, it won't generate new events and the recursion will stop.
 
 We're working on a demo on adapting ScopeDB into the OpenTelemetry ecosystem so that you can easily collect telemetry data into ScopeDB with minimal effort, as well as bootstrapping ScopeDB's self-observability. Stay tuned!
