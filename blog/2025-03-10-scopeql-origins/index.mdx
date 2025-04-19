@@ -116,7 +116,8 @@ FROM (
         AND o_comment NOT LIKE '%unusual%packages%'
     GROUP BY c_custkey
 ) AS c_orders
-GROUP BY c_count ORDER BY custdist DESC, c_count DESC
+GROUP BY c_count
+ORDER BY custdist DESC, c_count DESC
 ```
 
 As a preview, in ScopeQL, you can express the equivalent logic sequentially:
@@ -236,8 +237,8 @@ Corresponding to the query clauses listed above, ScopeQL supports querying using
 [ FROM ... [ SAMPLE ... ] | VALUES ... ]
 [ SELECT ... ]
 [ WHERE ... ]
-[ [ GOURP BY ... ] [ ORDER BY ... ] WINDOW ... ]
-[ [ GOURP BY ... ] [ ORDER BY ... ] AGGREGATE ... ]
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] WINDOW ... ]
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] AGGREGATE ... ]
 [ ORDER BY ... ]
 [ LIMIT ... ]
 ```
@@ -281,7 +282,7 @@ WHERE r.c < 15
 GROUP BY r.d
 AGGREGATE SUM(r.e) AS sum
 WHERE sum > 3
-ORDER BY r.d WINDOW RANK() AS rank
+WITHIN GROUP ORDER BY r.d WINDOW RANK() AS rank
 SELECT r.d AS d, sum, rank
 ORDER BY d
 ```
@@ -309,7 +310,7 @@ can be written in ScopeQL as:
 
 ```scopeql
 FROM orders
-GROUP BY category ORDER BY unit_sales WINDOW RANK() AS rk
+GROUP BY category WITHIN GROUP ORDER BY unit_sales WINDOW RANK() AS rk
 GROUP BY category AGGREGATE MAX(rk)
 ```
 
@@ -366,8 +367,8 @@ The first one is commonly used to reuse computed expressions. The rest are usefu
 Now, return to grouping and aggregation. You may notice that the `GROUP BY` is referred to as a modifier, not as a clause. This is because it's only a modifier of an `AGGREGATE` clause or a `WINDOW` clause. You always need to specify an aggregate function or window function after `GROUP BY`:
 
 ```
-[ [ GOURP BY ... ] [ ORDER BY ... ] WINDOW ... ]
-[ [ GOURP BY ... ] [ ORDER BY ... ] AGGREGATE ... ]
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] WINDOW ... ]
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] AGGREGATE ... ]
 ```
 
 No more `OVER` and `PARTITION BY` keywords specifically for window functions. ScopeQL respects the similarity between aggregations and window functions, and thus, they share a similar syntax. Both of them compute a value based on other tuples of the input relation. But aggregations reduce the number of tuples, while window functions add a new attribute to each tuple.
