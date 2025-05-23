@@ -1,0 +1,472 @@
+---
+import { Image } from "astro:assets";
+import bg1 from "./assets/bg-1.png";
+import imageHero from "./assets/hero.png";
+import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.png";
+import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.png";
+import imageOptimalStorageFormat from "./assets/optimal-storage-format.png";
+import imageMultipleAnalysisScenarios from "./assets/multiple-analysis-scenarios.png";
+import FeaturesRow from "./FeaturesRow.astro";
+---
+
+<div class="container mx-auto px-2 pb-[160px] relative">
+  <section
+    class="max-w-[736px] xl:max-w-[536px] 2xl:max-w-[736px] pt-[260px] pb-[520px] xl:pr-0"
+  >
+    <Image
+      class="absolute top-[-80px] right-[-87px] hidden xl:block max-w-[936px]"
+      src={imageHero}
+      alt="ScopeDB"
+    />
+
+    <h2 class="text-[50px] text-[var(--color-brand)] leading-[1.2] font-bold">
+      Born for the cloud.
+    </h2>
+    <blockquote class="text-[50px] leading-[1.2] font-bold">
+      Develop your data application with the flexible database.
+    </blockquote>
+    <p
+      class="text-[var(--color-secondary)] text-[20px] leading-[1.4] mt-[30px]"
+    >
+      ScopeDB is a database that runs directly on top of any commodity object
+      storage. It is designed explicitly for data workloads with massive writes,
+      any-scale analysis, and flexible schema.
+    </p>
+
+    <div class="mt-[68px] flex gap-[9px]">
+      <a href="/contact">
+        <button
+          class="bg-black text-white px-[21px] py-[11px] rounded-[10px] border-[1px]"
+        >
+          Book a demo
+        </button>
+      </a>
+      <a href="https://docs.scopedb.io">
+        <button
+          class="px-[21px] py-[11px] rounded-[10px] border-[1px] border-[var(--color-secondary)]"
+        >
+          Document
+        </button>
+      </a>
+    </div>
+  </section>
+
+  <section
+    class="flex items-center justify-center text-[20px] font-normal text-center"
+  >
+    <h2>Providing more flexible cloud data services for startups</h2>
+    <div class="grid grid-cols-4 gap-4"></div>
+  </section>
+
+  <section class="relative mt-[140px] px-4">
+    <div
+      class="flex items-center justify-center absolute top-[-78px] left-0 w-full"
+    >
+      <Image class="" src={bg1} alt="" width={456} height={76} />
+    </div>
+    <div
+      class="max-w-[1028px] mx-auto flex flex-col items-center pt-[80px] pb-[160px] bg-[#F7F7F7] rounded-[24px]"
+    >
+      <h2 class="text-[20px] font-normal">WHY SCOPEDB?</h2>
+      <blockquote
+        class="max-w-[763px] mt-[40px] text-[50px] font-semibold leading-[normal] text-center"
+      >
+        “Unleash the Full Power of Cloud Elasticity and Workload Isolation”
+      </blockquote>
+      <div class="max-w-[652px] mt-[70px]">
+        <p
+          class="text-[20px] font-normal leading-[1.4] text-[var(--color-secondary)]"
+        >
+          The stateless node design fully leverages cloud elasticity. It enables
+          effortless scaling without data reconciliation or replication.
+          Dynamically scale out the cluster for peak workload in no time, and
+          scale in when the peak has gone, delivering up to 100x elasticity
+          tailored to your needs.
+        </p>
+
+        <p
+          class="text-[20px] font-normal leading-[1.4] text-[var(--color-tertiary)] mt-[50px]"
+        >
+          Workload isolation is built on top of shared storage. Both read and
+          write groups access object storage directly without coordinating with
+          a leader server. This absolute isolation ensures that ingestion
+          jitters won't affect read performance. Users can further isolate read
+          workloads by creating separate read groups for different businesses so
+          that they can have their own dedicated resources.
+        </p>
+
+        <p class="text-[20px] text-[var(--color-tertiary)] mt-[80px]">
+          Read <a
+            class="underline text-[var(--color-primary)]"
+            href="https://www.scopedb.io/blog/manage-observability-data-in-petabytes"
+            >our introductory blog</a
+          > for more details.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-[210px]">
+    <h2 class="text-[60px] font-semibold pl-[55px]">Key Features</h2>
+    <div class="flex flex-col">
+      <div class="key-feature-grid-row min-h-[32px] flex">
+        <div class="w-[45px]"></div>
+        <div class="flex-1 key-feature-grid-body"></div>
+        <div class="w-[45px]"></div>
+      </div>
+
+      <FeaturesRow>
+        <div class="flex flex-col xl:flex-row">
+          <div class="flex-1 pl-[50px] pr-[30px] pt-[150px] pb-[190px]">
+            <h3 class="text-[40px] font-normal">Real-time Ingestion</h3>
+            <p
+              class="text-[18px] text-[var(--color-secondary)] mt-[20px] max-w-[512px]"
+            >
+              ScopeDB ingestion nodes handle massive requests independently
+              without sharding or partition leaders. They dynamically scale to
+              manage peak traffic efficiently.
+            </p>
+          </div>
+          <div
+            class="flex-1 flex items-center justify-center xl:border-l border-[#f0f0f0] pt-[28px] pb-[70px]"
+          >
+            <Image
+              src={imageFeatureRealtimeIngestion}
+              alt=""
+              height={334}
+              width={201}
+            />
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="flex flex-col xl:flex-row">
+          <div class="flex-1 pl-[50px] pr-[30px] pt-[50px] pb-[65px]">
+            <h3 class="text-[40px] font-normal">Any-scale Analysis</h3>
+            <p
+              class="text-[18px] text-[var(--color-secondary)] mt-[20px] max-w-[512px]"
+            >
+              ScopeDB fully leverages cloud resources to ensure that businesses
+              can obtain optimal performance support without increasing
+              additional hardware investment, achieving more efficient business
+              operations.
+            </p>
+          </div>
+
+          <div
+            class="flex-1 flex items-center justify-center border-l border-[#f0f0f0] pb-[70px]"
+          >
+            <Image
+              src={imageFeatureAnyScaleAnalysis}
+              alt=""
+              width={239}
+              height={98}
+              format="png"
+              quality="100"
+            />
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="flex flex-col xl:flex-row">
+          <div class="pl-[50px] pr-[30px] pt-[50px] pb-[65px] xl:w-[761.5px]">
+            <h3 class="text-[32px]">Optimal Storage Format</h3>
+            <p
+              class="text-[16px] text-[var(--color-secondary)] mt-[15px] max-w-[440px]"
+            >
+              Unleash the benefits of the compact columnar data format with a
+              vectorized query engine. Implement dedicated compression
+              algorithms depending on data types.
+            </p>
+            <div class="mt-[70px]">
+              <Image
+                class="mx-auto"
+                src={imageOptimalStorageFormat}
+                alt=""
+                width={512}
+                height={202}
+                format="png"
+                quality="100"
+              />
+            </div>
+          </div>
+          <div class="flex-1 xl:border-l border-[#f0f0f0] pt-[38px] pl-[32px]">
+            <h3 class="text-[32px]">Multiple Analysis Scenarios</h3>
+            <p
+              class="text-[16px] text-[var(--color-secondary)] max-w-[459px] mt-[15px]"
+            >
+              Get insights from the data via searching, aggregations,
+              time-series analytics, etc.
+            </p>
+            <div class="mt-[28px]">
+              <Image
+                class="mx-auto"
+                src={imageMultipleAnalysisScenarios}
+                alt=""
+                width={259}
+                height={274}
+              />
+            </div>
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="flex flex-col xl:flex-row">
+          <div class="pl-[50px] pr-[30px] pt-[50px] pb-[65px] xl:w-[761.5px]">
+            <h3 class="text-[32px]">Adaptive Indexes</h3>
+            <p class="text-[16px] text-[var(--color-secondary)]">
+              Accelerate queries with smart indexes, search indexes, variant
+              indexes, and more.
+            </p>
+            <div
+              class="mt-[28px] flex items-center justify-center bg-gray-200 rounded-[18px] h-[314px]"
+            >
+              IMAGE PLACEHOLDER
+            </div>
+          </div>
+          <div class="flex-1 xl:border-l border-[#f0f0f0] pt-[38px] pl-[32px] pr-[32px]">
+            <h3 class="text-[32px]">Dedicated Query Group Resources</h3>
+            <p class="text-[16px] text-[var(--color-secondary)] pr-[72px]">
+              You can have multiple query groups, either long-running or
+              ephemeral. Each group has its dedicated compute resources. All
+              groups share the same object storage as the primary data backend.
+            </p>
+            <div
+              class="mt-[28px] flex items-center justify-center bg-gray-200 rounded-[18px] h-[314px]"
+            >
+              IMAGE PLACEHOLDER
+            </div>
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="flex flex-col xl:flex-row">
+          <div class="pl-[50px] pr-[30px] pt-[180px] pb-[65px] xl:w-[761.5px]">
+            <h3 class="text-[48px] font-normal">Flexible Data Schema</h3>
+            <p
+              class="text-[18px] text-[var(--color-secondary)] xl:max-w-[504px] mt-[23px]"
+            >
+              ScopeDB's flexible data schema enables users to partially define
+              schemas while storing additional data in a variant column,
+              allowing for efficient handling and analysis of semi-structured
+              data.
+            </p>
+          </div>
+          <div
+            class="flex-1 bg-gray-200 rounded-[18px] m-12 flex items-center justify-center h-[502px]"
+          >
+            IMAGE PLACEHOLDER
+          </div>
+        </div>
+      </FeaturesRow>
+      <div class="min-h-[32px] flex">
+        <div class="w-[45px]"></div>
+        <div class="flex-1 key-feature-grid-body"></div>
+        <div class="w-[45px]"></div>
+      </div>
+
+      <blockquote
+        class="text-[48px] text-[var(--color-primary)] font-medium max-w-[800px] text-center mx-auto mt-[300px] mb-[143px]"
+      >
+        Maximize the effectiveness of ScopeDB in various scenarios.
+      </blockquote>
+      <div class="key-feature-grid-row min-h-[32px] flex">
+        <div class="w-[45px]"></div>
+        <div class="flex-1 key-feature-grid-body"></div>
+        <div class="w-[45px]"></div>
+      </div>
+      <FeaturesRow>
+        <div class="p-[37px]">
+          <h3 class="text-[48px]">Cloud Application Observability</h3>
+          <p
+            class="text-[18px] text-[var(--color-secondary)] xl:max-w-[563px] mt-[18px]"
+          >
+            Analyze application logs for complete visibility and accelerated
+            troubleshooting. Unify scattered logs for processing and analysis to
+            gain greater insights.
+          </p>
+          <div
+            class="flex items-center justify-center xl:h-[634px] bg-gray-200 rounded-[18px] mt-[20px]"
+          >
+            IMAGE PLACEHOLDER
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="p-[37px]">
+          <h3 class="text-[48px]">Real-time Behavior Analysis</h3>
+          <p
+            class="text-[18px] text-[var(--color-secondary)] xl:max-w-[563px] mt-[18px]"
+          >
+            Process millions of daily user interactions to power personalized
+            recommendations and dynamic pricing for e-commerce platforms, or
+            detect market manipulation and fraud patterns for social media.
+          </p>
+          <div
+            class="flex items-center justify-center xl:h-[634px] bg-gray-200 rounded-[18px] mt-[20px]"
+          >
+            IMAGE PLACEHOLDER
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="p-[37px]">
+          <h3 class="text-[48px]">Monetization & Revenue Reports</h3>
+          <p
+            class="text-[18px] text-[var(--color-secondary)] xl:max-w-[666px] mt-[18px]"
+          >
+            Process and analyze customer purchases, advertising performance, and
+            revenue streams with minimal latency. Make data-driven decisions to
+            optimize pricing strategies and maximize revenue while maintaining
+            complete visibility into your financial metrics.
+          </p>
+          <div
+            class="flex items-center justify-center xl:h-[634px] bg-gray-200 rounded-[18px] mt-[20px]"
+          >
+            IMAGE PLACEHOLDER
+          </div>
+        </div>
+      </FeaturesRow>
+      <div class="min-h-[32px] flex">
+        <div class="w-[45px]"></div>
+        <div class="flex-1 key-feature-grid-body"></div>
+        <div class="w-[45px]"></div>
+      </div>
+    </div>
+
+    <section class="mt-[108px]">
+      <h2 class="text-[60px] font-semibold mx-auto text-center">
+        ScopeQL vs SQL
+      </h2>
+      <div class="flex flex-col xl:flex-row mt-[114px]">
+        <div class="p-4">
+          <p
+            class="text-[32px] text-[var(--color-primary)] xl:max-w-[524px] leading-[1.4] pb-[20px]"
+          >
+            ScopeQL isn't SQL 2.0.<br /> We rebuilt from relational algebra foundations
+            with three radical simplifications:
+          </p>
+          <ul>
+            <li>
+              <h4 class="text-[16px] font-medium pb-[18px]">Execution Flow</h4>
+              <p
+                class="text-[16px] text-[var(--color-secondary)] max-w-[380px] pb-[28px]"
+              >
+                SQL's inside-out execution becomes ScopeQL's linear top-down
+                pipeline
+              </p>
+            </li>
+            <li>
+              <h4 class="text-[16px] font-medium pb-[18px]">
+                Syntax Integrity
+              </h4>
+              <p
+                class="text-[16px] text-[var(--color-secondary)] max-w-[380px] pb-[28px]"
+              >
+                SQL's fragmented keywords become ScopeQL's orthogonal
+                composability
+              </p>
+            </li>
+            <li>
+              <h4 class="text-[16px] font-medium pb-[18px]">
+                Compressible Expressions
+              </h4>
+              <p
+                class="text-[16px] text-[var(--color-secondary)] max-w-[380px] pb-[28px]"
+              >
+                SQL's subquery labyrinths become ScopeQL's native expressions
+                reuse
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="flex-1 flex items-center justify-center my-4 mx-16 bg-gray-200 rounded-[18px]"
+        >
+          ScopeQL vs SQL
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-[124px]">
+      <h2 class="text-[60px] font-semibold text-center">
+        Frequently asked questions
+      </h2>
+
+      <ul class="flex flex-col gap-4 items-center justify-center mt-[80px]">
+        <li
+          class="w-full xl:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[18px]"
+        >
+          <p class="text-[16px] font-semibold">How do you secure my data?</p>
+          <p class="text-[16px] text-[var(--color-secondary)] mt-[16px]">
+            ScopeDB supports brining your own cloud (BYOC). That means your user
+            data will never leave your environment.
+          </p>
+        </li>
+        <li
+          class="w-full xl:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[18px]"
+        >
+          <p class="text-[16px] font-semibold">
+            In which cloud platforms does ScopeDB work?
+          </p>
+          <p class="text-[16px] text-[var(--color-secondary)] mt-[16px]">
+            ScopeDB works on all major cloud platforms, including AWS, Azure,
+            GCP, and more.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="mt-[360px]">
+      <h2 class="text-[40px] font-semibold">
+        Explore More About <br /><span class="text-[50px]">ScopeDB</span>
+      </h2>
+
+      <div class="grid grid-cols-4 gap-[54px] mt-[80px]">
+        <div>
+          <h3 class="text-[18px] font-semibold mb-[16px]">
+            Join the community
+          </h3>
+          <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
+            More than 10,000 users share questions and best practices in our
+            Slack community.
+          </p>
+          <a class="text-[14px] text-[var(--color-primary)]"> Join Discord </a>
+        </div>
+        <div>
+          <h3 class="text-[18px] font-semibold mb-[16px]">
+            General communicate
+          </h3>
+          <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
+            For other queries, please get in touch with us via email.
+          </p>
+          <a
+            class="text-[14px] text-[var(--color-primary)]"
+            href="mailto:hello@scopedb.com">hello@scopedb.com</a
+          >
+        </div>
+        <div>
+          <h3 class="text-[18px] font-semibold mb-[16px]">Documentation</h3>
+          <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
+            Get an overview of ScopeDB's features, integrations, and how to use
+            them.
+          </p>
+          <a
+            class="text-[14px] text-[var(--color-primary)]"
+            href="https://docs.scopedb.io">ScopeDB Docs</a
+          >
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+
+<style>
+  .key-feature-grid-row {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .key-feature-grid-body {
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+  }
+</style>
