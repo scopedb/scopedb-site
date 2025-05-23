@@ -1,0 +1,39 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+import Image from "astro:assets";
+---
+
+<header>
+  <nav class="container mx-auto
+	 flex justify-between items-center
+	 py-5">
+    <div>
+      <a href="/">
+        <img
+          src="/scopedb-logo.png"
+          alt="{SITE_TITLE}"
+          width={120}
+          height={35}
+        />
+      </a>
+    </div>
+    <div class="flex gap-8
+	 text-[14px]">
+      <!-- <HeaderLink href="/products">Products</HeaderLink> -->
+      <HeaderLink href="https://docs.scopedb.io/reference/"
+        >Reference</HeaderLink
+      >
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/contact">Contact</HeaderLink>
+      <!-- <HeaderLink href="/changelog">Changelog</HeaderLink> -->
+    </div>
+    <div
+      class="px-[22px] py-[8px] rounded-[10px]"
+      style="border: 1px solid #CECECE;"
+    >
+      <button class="text-[16px] font-medium"> Book a demo </button>
+    </div>
+  </nav>
+</header>
+<style></style>
