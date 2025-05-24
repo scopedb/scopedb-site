@@ -45,7 +45,7 @@ const config: Config = {
         src: 'brand-kit/horizontal-no-slogan-trimmed.svg',
       },
       items: [
-        { to: 'https://docs.scopedb.io/reference/overview', label: 'Reference', position: 'right' },
+        { to: 'https://docs.scopedb.io/reference/', label: 'Reference', position: 'right' },
         { to: '/blog', label: 'Blog', position: 'right' },
         { to: '/contact', label: 'Contact', position: 'right' },
       ],
