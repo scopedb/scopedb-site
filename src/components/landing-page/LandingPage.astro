@@ -6,6 +6,13 @@ import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.p
 import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.png";
 import imageOptimalStorageFormat from "./assets/optimal-storage-format.png";
 import imageMultipleAnalysisScenarios from "./assets/multiple-analysis-scenarios.png";
+import imageAdaptiveIndexes from "./assets/adaptive-indexes.png";
+import imageDedicatedQueryGroupResources from "./assets/dedicated-query-group-resources.png";
+import imageFlexibleDataSchema from "./assets/flexible-data-schema.png";
+import imageCloudApplicationObservability from "./assets/cloud-application-observability.png";
+import imageRealTimeBehaviorAnalysis1 from "./assets/real-time-behavior-analysis-1.png";
+import imageRealTimeBehaviorAnalysis2 from "./assets/real-time-behavior-analysis-2.png";
+import imageMonetizationRevenueReports from "./assets/monetization-revenue-reports.png";
 import FeaturesRow from "./FeaturesRow.astro";
 ---
 
@@ -198,7 +205,7 @@ import FeaturesRow from "./FeaturesRow.astro";
               Get insights from the data via searching, aggregations,
               time-series analytics, etc.
             </p>
-            <div class="mt-[28px]">
+            <div class="py-[20px]">
               <Image
                 class="mx-auto"
                 src={imageMultipleAnalysisScenarios}
@@ -212,36 +219,48 @@ import FeaturesRow from "./FeaturesRow.astro";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col xl:flex-row">
-          <div class="pl-[50px] pr-[30px] pt-[50px] pb-[65px] xl:w-[761.5px]">
+          <div
+            class="pl-[50px] pr-[30px] pt-[50px] xl:w-[761.5px] flex flex-col"
+          >
             <h3 class="text-[32px]">Adaptive Indexes</h3>
             <p class="text-[16px] text-[var(--color-secondary)]">
               Accelerate queries with smart indexes, search indexes, variant
               indexes, and more.
             </p>
-            <div
-              class="mt-[28px] flex items-center justify-center bg-gray-200 rounded-[18px] h-[314px]"
-            >
-              IMAGE PLACEHOLDER
+            <div class="py-[20px] flex-1 flex items-center justify-center">
+              <Image
+                src={imageAdaptiveIndexes}
+                alt=""
+                width={557}
+                height={221}
+              />
             </div>
           </div>
-          <div class="flex-1 xl:border-l border-[#f0f0f0] pt-[38px] pl-[32px] pr-[32px]">
+          <div
+            class="flex-1 xl:border-l border-[#f0f0f0] pt-[38px] pl-[32px] pr-[32px]"
+          >
             <h3 class="text-[32px]">Dedicated Query Group Resources</h3>
             <p class="text-[16px] text-[var(--color-secondary)] pr-[72px]">
               You can have multiple query groups, either long-running or
               ephemeral. Each group has its dedicated compute resources. All
               groups share the same object storage as the primary data backend.
             </p>
-            <div
-              class="mt-[28px] flex items-center justify-center bg-gray-200 rounded-[18px] h-[314px]"
-            >
-              IMAGE PLACEHOLDER
+            <div class="py-[20px] flex items-center justify-center">
+              <Image
+                src={imageDedicatedQueryGroupResources}
+                alt=""
+                width={468}
+                height={314}
+              />
             </div>
           </div>
         </div>
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col xl:flex-row">
-          <div class="pl-[50px] pr-[30px] pt-[180px] pb-[65px] xl:w-[761.5px]">
+          <div
+            class="pl-[50px] pr-[30px] pt-[130px] xl:w-[761.5px] flex flex-col"
+          >
             <h3 class="text-[48px] font-normal">Flexible Data Schema</h3>
             <p
               class="text-[18px] text-[var(--color-secondary)] xl:max-w-[504px] mt-[23px]"
@@ -253,9 +272,14 @@ import FeaturesRow from "./FeaturesRow.astro";
             </p>
           </div>
           <div
-            class="flex-1 bg-gray-200 rounded-[18px] m-12 flex items-center justify-center h-[502px]"
+            class="flex-1 flex items-center justify-center pt-[50px] pb-[80px]"
           >
-            IMAGE PLACEHOLDER
+            <Image
+              src={imageFlexibleDataSchema}
+              alt=""
+              width={427}
+              height={502}
+            />
           </div>
         </div>
       </FeaturesRow>
@@ -285,10 +309,8 @@ import FeaturesRow from "./FeaturesRow.astro";
             troubleshooting. Unify scattered logs for processing and analysis to
             gain greater insights.
           </p>
-          <div
-            class="flex items-center justify-center xl:h-[634px] bg-gray-200 rounded-[18px] mt-[20px]"
-          >
-            IMAGE PLACEHOLDER
+          <div class="flex items-center justify-center mt-[20px]">
+            <Image src={imageCloudApplicationObservability} alt="" />
           </div>
         </div>
       </FeaturesRow>
@@ -303,9 +325,24 @@ import FeaturesRow from "./FeaturesRow.astro";
             detect market manipulation and fraud patterns for social media.
           </p>
           <div
-            class="flex items-center justify-center xl:h-[634px] bg-gray-200 rounded-[18px] mt-[20px]"
+            class="flex flex-col xl:flex-row mt-[20px] gap-[30px] justify-center"
           >
-            IMAGE PLACEHOLDER
+            <div class="flex items-center justify-center py-[150px]">
+              <Image
+                src={imageRealTimeBehaviorAnalysis1}
+                alt=""
+                width={628}
+                height={307}
+              />
+            </div>
+            <div class="flex items-center justify-center">
+              <Image
+                src={imageRealTimeBehaviorAnalysis2}
+                alt=""
+                width={593}
+                height={634}
+              />
+            </div>
           </div>
         </div>
       </FeaturesRow>
@@ -320,10 +357,8 @@ import FeaturesRow from "./FeaturesRow.astro";
             optimize pricing strategies and maximize revenue while maintaining
             complete visibility into your financial metrics.
           </p>
-          <div
-            class="flex items-center justify-center xl:h-[634px] bg-gray-200 rounded-[18px] mt-[20px]"
-          >
-            IMAGE PLACEHOLDER
+          <div class="flex items-center justify-center mt-[20px]">
+            <Image src={imageMonetizationRevenueReports} alt="" />
           </div>
         </div>
       </FeaturesRow>
@@ -422,40 +457,32 @@ import FeaturesRow from "./FeaturesRow.astro";
         Explore More About <br /><span class="text-[50px]">ScopeDB</span>
       </h2>
 
-      <div class="grid grid-cols-4 gap-[54px] mt-[80px]">
-        <div>
-          <h3 class="text-[18px] font-semibold mb-[16px]">
-            Join the community
-          </h3>
-          <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
-            More than 10,000 users share questions and best practices in our
-            Slack community.
-          </p>
-          <a class="text-[14px] text-[var(--color-primary)]"> Join Discord </a>
-        </div>
-        <div>
-          <h3 class="text-[18px] font-semibold mb-[16px]">
-            General communicate
-          </h3>
-          <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
-            For other queries, please get in touch with us via email.
-          </p>
-          <a
-            class="text-[14px] text-[var(--color-primary)]"
-            href="mailto:hello@scopedb.com">hello@scopedb.com</a
-          >
-        </div>
-        <div>
-          <h3 class="text-[18px] font-semibold mb-[16px]">Documentation</h3>
-          <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
-            Get an overview of ScopeDB's features, integrations, and how to use
-            them.
-          </p>
-          <a
-            class="text-[14px] text-[var(--color-primary)]"
-            href="https://docs.scopedb.io">ScopeDB Docs</a
-          >
-        </div>
+      <div
+        class="grid grid-flow-col grid-cols-3 xl:grid-cols-4 grid-rows-3 gap-x-[16px] mt-[80px]"
+      >
+        <h3 class="text-[18px] font-semibold mb-[16px]">Join the community</h3>
+        <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
+          More than 10,000 users share questions and best practices in our Slack
+          community.
+        </p>
+        <a class="text-[14px] text-[var(--color-primary)]"> Join Discord </a>
+        <h3 class="text-[18px] font-semibold mb-[16px]">General communicate</h3>
+        <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
+          For other queries, please get in touch with us via email.
+        </p>
+        <a
+          class="text-[14px] text-[var(--color-primary)]"
+          href="mailto:hello@scopedb.io">hello@scopedb.io</a
+        >
+        <h3 class="text-[18px] font-semibold mb-[16px]">Documentation</h3>
+        <p class="text-[14px] text-[var(--color-secondary)] mb-[16px]">
+          Get an overview of ScopeDB's features, integrations, and how to use
+          them.
+        </p>
+        <a
+          class="text-[14px] text-[var(--color-primary)]"
+          href="https://docs.scopedb.io">ScopeDB Docs</a
+        >
       </div>
     </section>
   </section>
