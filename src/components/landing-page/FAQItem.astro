@@ -1,0 +1,66 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<li
+  class="w-full xl:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[18px] faq-item"
+>
+  <div class="flex items-center justify-between cursor-pointer faq-header">
+    <p class="text-[16px] font-semibold flex-1">
+      {question}
+    </p>
+    <ChevronDown height={20} width={20} class="chevron-icon transition-transform duration-200" />
+  </div>
+  <div class="faq-content hidden">
+    <p class="text-[16px] text-[var(--color-secondary)] mt-[16px]">
+      {answer}
+    </p>
+  </div>
+</li>
+
+<style>
+  .faq-content {
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .faq-content.hidden {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .faq-content:not(.hidden) {
+    max-height: 200px;
+  }
+  
+  .chevron-icon.rotated {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqHeaders = document.querySelectorAll('.faq-header');
+    
+    faqHeaders.forEach((header) => {
+      const headerElement = header as HTMLElement;
+      headerElement.addEventListener('click', function(event) {
+        const target = event.currentTarget as HTMLElement;
+        const faqItem = target.closest('.faq-item') as HTMLElement;
+        const content = faqItem.querySelector('.faq-content') as HTMLElement;
+        const chevron = faqItem.querySelector('.chevron-icon') as HTMLElement;
+        
+        content.classList.toggle('hidden');
+        chevron.classList.toggle('rotated');
+      });
+    });
+  });
+</script> 

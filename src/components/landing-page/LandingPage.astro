@@ -1,18 +1,19 @@
 ---
 import { Image } from "astro:assets";
-import bg1 from "./assets/bg-1.png";
-import imageHero from "./assets/hero.png";
-import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.png";
-import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.png";
-import imageOptimalStorageFormat from "./assets/optimal-storage-format.png";
-import imageMultipleAnalysisScenarios from "./assets/multiple-analysis-scenarios.png";
 import imageAdaptiveIndexes from "./assets/adaptive-indexes.png";
-import imageDedicatedQueryGroupResources from "./assets/dedicated-query-group-resources.png";
-import imageFlexibleDataSchema from "./assets/flexible-data-schema.png";
+import bg1 from "./assets/bg-1.png";
 import imageCloudApplicationObservability from "./assets/cloud-application-observability.png";
+import imageDedicatedQueryGroupResources from "./assets/dedicated-query-group-resources.png";
+import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.png";
+import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.png";
+import imageFlexibleDataSchema from "./assets/flexible-data-schema.png";
+import imageHero from "./assets/hero.png";
+import imageMonetizationRevenueReports from "./assets/monetization-revenue-reports.png";
+import imageMultipleAnalysisScenarios from "./assets/multiple-analysis-scenarios.png";
+import imageOptimalStorageFormat from "./assets/optimal-storage-format.png";
 import imageRealTimeBehaviorAnalysis1 from "./assets/real-time-behavior-analysis-1.png";
 import imageRealTimeBehaviorAnalysis2 from "./assets/real-time-behavior-analysis-2.png";
-import imageMonetizationRevenueReports from "./assets/monetization-revenue-reports.png";
+import FAQItem from "./FAQItem.astro";
 import FeaturesRow from "./FeaturesRow.astro";
 ---
 
@@ -78,7 +79,7 @@ import FeaturesRow from "./FeaturesRow.astro";
       <blockquote
         class="max-w-[763px] mt-[40px] text-[50px] font-semibold leading-[normal] text-center"
       >
-        “Unleash the Full Power of Cloud Elasticity and Workload Isolation”
+        "Unleash the Full Power of Cloud Elasticity and Workload Isolation"
       </blockquote>
       <div class="max-w-[652px] mt-[70px]">
         <p
@@ -429,26 +430,14 @@ import FeaturesRow from "./FeaturesRow.astro";
       </h2>
 
       <ul class="flex flex-col gap-4 items-center justify-center mt-[80px]">
-        <li
-          class="w-full xl:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[18px]"
-        >
-          <p class="text-[16px] font-semibold">How do you secure my data?</p>
-          <p class="text-[16px] text-[var(--color-secondary)] mt-[16px]">
-            ScopeDB supports brining your own cloud (BYOC). That means your user
-            data will never leave your environment.
-          </p>
-        </li>
-        <li
-          class="w-full xl:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[18px]"
-        >
-          <p class="text-[16px] font-semibold">
-            In which cloud platforms does ScopeDB work?
-          </p>
-          <p class="text-[16px] text-[var(--color-secondary)] mt-[16px]">
-            ScopeDB works on all major cloud platforms, including AWS, Azure,
-            GCP, and more.
-          </p>
-        </li>
+        <FAQItem
+          question="How do you secure my data?"
+          answer="ScopeDB supports brining your own cloud (BYOC). That means your user data will never leave your environment."
+        />
+        <FAQItem
+          question="In which cloud platforms does ScopeDB work?"
+          answer="ScopeDB works on all major cloud platforms, including AWS, Azure, GCP, and more."
+        />
       </ul>
     </section>
 
