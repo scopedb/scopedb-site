@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { calculateReadingTime } from "../../utils/reading-time/reading-time";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<section>
+  <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
+    {
+      posts.map((post) => {
+        const readingTime = calculateReadingTime(post.body || "");
+        return (
+          <li>
+            <a href={`/blog/${post.id}/`}>
+              <img width={720} height={360} src={post.data.heroImage} alt="" />
+              <h4 class="title">{post.data.title}</h4>
+              <p class="date">
+                <FormattedDate date={post.data.pubDate} />
+                <span class="ml-2 text-gray-500">• {readingTime}</span>
+              </p>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
