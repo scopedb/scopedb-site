@@ -1,0 +1,170 @@
+---
+import { CalendarDays, ChevronDown } from "@lucide/astro";
+import { Image } from "astro:assets";
+import ExploreMore from "../ExploreMore.astro";
+import CircleCheck from "./assets/circlecheck.png";
+---
+
+<div class="container mx-auto px-[16px]">
+  <h1
+    class:list={[
+      "text-[60px] font-medium text-center",
+      "mx-auto",
+      "mt-[100px]",
+    ]}
+  >
+    How can we Help?
+  </h1>
+  <p
+    class:list={[
+      "text-[24px] font-medium text-center",
+      "max-w-[705px] mx-auto",
+      "mt-[50px]",
+    ]}
+  >
+    Contact our sales and support teams for demos, onboarding guidance, or
+    answers to product questions.
+  </p>
+
+  <div
+    class:list={[
+      "max-w-[1020px] mx-auto mt-[60px]",
+      "flex bg-[#F7F7F7] rounded-[16px] p-[64px]",
+      "flex-col",
+      "md:flex-row md:items-center md:justify-between",
+    ]}
+  >
+    <div>
+      <h2 class="text-[24px] font-semibold">Sales</h2>
+      <p
+        class="mt-[20px] text-[18px] text-[var(--color-secondary)] max-w-[400px]"
+      >
+        Speak to our sales team about plans, pricing, enterprise contracts, or
+        request a demo. Talk to sales.
+      </p>
+      <ul
+        class="mt-[32px] flex flex-col gap-[16px] text-[16px] text-[var(--color-secondary)]"
+      >
+        <li>
+          <span class="flex items-center gap-[16px]">
+            <Image
+              class="w-[20px] h-[20px]"
+              src={CircleCheck}
+              alt="Circle Check"
+            />
+            Request a demo
+          </span>
+        </li>
+        <li>
+          <span class="flex items-center gap-[16px]">
+            <Image
+              class="w-[20px] h-[20px]"
+              src={CircleCheck}
+              alt="Circle Check"
+            />
+            Understand what problems ScopedDB can actually solve.
+          </span>
+        </li>
+        <li>
+          <span class="flex items-center gap-[16px]">
+            <Image
+              class="w-[20px] h-[20px]"
+              src={CircleCheck}
+              alt="Circle Check"
+            />
+            Get onboarding help
+          </span>
+        </li>
+      </ul>
+
+      <button
+        class="mt-[32px] bg-[var(--color-brand)] py-[10px] px-[16px] rounded-[10px] cursor-pointer"
+      >
+        <span class="flex items-center gap-[10px] text-[14px] text-[white]">
+          <CalendarDays width={20} height={20} />
+          Book A Demo
+        </span>
+      </button>
+    </div>
+    <div class="md:w-[360px] md:mt-0 mt-[40px]">
+      <form class="flex flex-col gap-[24px]">
+        <div class="flex flex-col gap-[12px]">
+          <label for="name" class="text-[14px] text-[var(--color-primary)]"
+            >Full Name</label
+          >
+          <input
+            class="rounded-[10px] border border-[#ECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Kevin"
+          />
+        </div>
+        <div class="flex flex-col gap-[12px]">
+          <label for="email" class="text-[14px] text-[var(--color-primary)]"
+            >Email</label
+          >
+          <input
+            class="rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="kevin@gmail.com"
+          />
+        </div>
+        <!-- company size -->
+        <div class="flex flex-col gap-[12px]">
+          <label
+            for="company-size"
+            class="text-[14px] text-[var(--color-primary)]">Company Size</label
+          >
+          <div class="relative">
+            <select
+              class="w-full rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+              id="company-size"
+              name="company-size"
+              style="appearance: none"
+            >
+              <option value="1-10">1-10</option>
+              <option value="11-50">11-50</option>
+              <option value="51-200">51-200</option>
+              <option value="201-1000">201-1000</option>
+              <option value="1000+">1000+</option>
+            </select>
+            <ChevronDown
+              class:list={[
+                "absolute right-[12px] top-[50%] translate-y-[-50%] w-[20px] h-[20px]",
+                "text-[var(--color-primary)]",
+                "pointer-events-none",
+              ]}
+            />
+          </div>
+        </div>
+        <!-- text area how can we help you -->
+        <div class="flex flex-col gap-[12px]">
+          <label for="message" class="text-[14px] text-[var(--color-primary)]"
+            >How can we help you?</label
+          >
+          <textarea
+            class="rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+            id="message"
+            name="message"
+            placeholder="I'm interested in ScopeDB..."
+            rows={4}></textarea>
+        </div>
+        <!-- button submit -->
+        <button
+          type="submit"
+          class="bg-[var(--color-brand)] py-[10px] px-[16px] rounded-[10px] cursor-pointer w-full"
+        >
+          <span class="gap-[10px] text-[14px] text-[white] text-center">
+            Send Message
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="mt-[80px] max-w-[1008px] mx-auto">
+    <ExploreMore />
+  </div>
+</div>
