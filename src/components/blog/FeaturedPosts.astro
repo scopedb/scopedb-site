@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import {
+  calculateReadingTime,
+  digest,
+} from "../../utils/reading-time/reading-time";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const titleOfFeaturedPosts = [
+  "Self-observability of ScopeDB",
+  "Why Not SQL: The Origin of ScopeQL",
+  "Algebraic Data Types in Database: Where Variant Data Can Help",
+];
+
+const featuredPosts = titleOfFeaturedPosts
+  .map((title) => posts.find((post) => post.data.title === title))
+  .filter((post): post is NonNullable<typeof post> => Boolean(post))
+  .slice(0, 3);
+---
+
+<section>
+  <ul class="grid grid-cols-1 lg:grid-cols-5 gap-[20px] auto-rows-fr">
+    {
+      featuredPosts.map((post) => {
+        const readingTime = calculateReadingTime(post.body || "");
+        return (
+          <li class="">
+            <div class="bg-[#F7F7F7] rounded-[16px] p-[12px] w-full h-full">
+              <a href={`/blog/${post.id}/`}>
+                <img
+                  class="rounded-[12px] mb-[20px]"
+                  src={post.data.heroImage}
+                  alt=""
+                />
+                <div class="flex flex-col gap-[16px] mt-[12px]">
+                  <p class="text-[16px] font-medium px-[12px]">
+                    <FormattedDate date={post.data.pubDate} />
+                    <span class="ml-2">• {readingTime}</span>
+                  </p>
+                  <div class="flex-1">
+                    <h4 class="text-[28px] font-semibold px-[12px]">
+                      {post.data.title}
+                    </h4>
+                  </div>
+                  <p class="text-[16px] text-[var(--color-secondary)] px-[12px] line-clamp-2">
+                    {digest(post.data.description || post.body || "")}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    li:first-child {
+      @apply col-span-3 row-span-2;
+    }
+
+    li:not(:first-child) {
+      @apply col-span-2;
+    }
+
+    li:not(:first-child) img {
+      @apply hidden;
+    }
+  }
+</style>
