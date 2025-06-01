@@ -1,28 +1,48 @@
 ---
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
-import { calculateReadingTime } from "../../utils/reading-time/reading-time";
+import {
+  calculateReadingTime,
+  digest,
+} from "../../utils/reading-time/reading-time";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const latestPosts = posts.slice(0, 9);
 ---
 
-<section>
+<section class="pb-[32px]">
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
     {
-      posts.map((post) => {
+      latestPosts.map((post) => {
         const readingTime = calculateReadingTime(post.body || "");
         return (
-          <li>
-            <a href={`/blog/${post.id}/`}>
-              <img width={720} height={360} src={post.data.heroImage} alt="" />
-              <h4 class="title">{post.data.title}</h4>
-              <p class="date">
-                <FormattedDate date={post.data.pubDate} />
-                <span class="ml-2 text-gray-500">• {readingTime}</span>
-              </p>
-            </a>
+          <li class="">
+            <div class="bg-[#F7F7F7] rounded-[16px] p-[12px] w-full h-full">
+              <a href={`/blog/${post.id}/`}>
+                <img
+                  class="rounded-[12px] mb-[20px]"
+                  src={post.data.heroImage}
+                  alt=""
+                />
+                <div class="flex flex-col gap-[16px] mt-[12px]">
+                  <p class="text-[16px] font-medium px-[12px]">
+                    <FormattedDate date={post.data.pubDate} />
+                    <span class="ml-2">• {readingTime}</span>
+                  </p>
+                  <div class="flex-1">
+                    <h4 class="text-[24px] font-semibold px-[12px]">
+                      {post.data.title}
+                    </h4>
+                  </div>
+                  <p class="text-[16px] text-[var(--color-secondary)] px-[12px] line-clamp-2">
+                    {digest(post.data.description || post.body || "")}
+                  </p>
+                </div>
+              </a>
+            </div>
           </li>
         );
       })

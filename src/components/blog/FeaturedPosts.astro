@@ -22,7 +22,7 @@ const featuredPosts = titleOfFeaturedPosts
   .slice(0, 3);
 ---
 
-<section>
+<section class="pb-[32px]">
   <ul class="grid grid-cols-1 lg:grid-cols-5 gap-[20px] auto-rows-fr">
     {
       featuredPosts.map((post) => {
@@ -42,7 +42,7 @@ const featuredPosts = titleOfFeaturedPosts
                     <span class="ml-2">• {readingTime}</span>
                   </p>
                   <div class="flex-1">
-                    <h4 class="text-[28px] font-semibold px-[12px]">
+                    <h4 class="text-[24px] font-semibold px-[12px]">
                       {post.data.title}
                     </h4>
                   </div>
@@ -63,6 +63,9 @@ const featuredPosts = titleOfFeaturedPosts
   @media (min-width: 1024px) {
     li:first-child {
       @apply col-span-3 row-span-2;
+    }
+    li:first-child h4 {
+      font-size: 28px;
     }
 
     li:not(:first-child) {
