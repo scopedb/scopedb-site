@@ -6,11 +6,29 @@ import {
   digest,
 } from "../../utils/reading-time/reading-time";
 
+interface Props {
+  category?: string;
+}
+
+const { category = "all" } = Astro.props;
+
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const latestPosts = posts.slice(0, 9);
+function getPostsByCategory(categoryFilter: string) {
+  if (categoryFilter === "all") {
+    return posts.slice(0, 9);
+  }
+
+  const filteredPosts = posts.filter(
+    (post) => post.data.category === categoryFilter
+  );
+
+  return filteredPosts.slice(0, 9);
+}
+
+const latestPosts = getPostsByCategory(category);
 ---
 
 <section class="pb-[32px]">
@@ -19,7 +37,7 @@ const latestPosts = posts.slice(0, 9);
       latestPosts.map((post) => {
         const readingTime = calculateReadingTime(post.body || "");
         return (
-          <li class="">
+          <li class="post-item">
             <div class="bg-[#F7F7F7] rounded-[16px] p-[12px] w-full h-full">
               <a href={`/blog/${post.id}/`}>
                 <img
@@ -48,4 +66,12 @@ const latestPosts = posts.slice(0, 9);
       })
     }
   </ul>
+
+  {
+    latestPosts.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-gray-500 text-lg">No posts found for this category.</p>
+      </div>
+    )
+  }
 </section>

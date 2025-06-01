@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import BaseHead from "../../components/BaseHead.astro";
 import AllPosts from "../../components/blog/AllPosts.astro";
 import BlogTabs from "../../components/blog/BlogTabs.astro";
@@ -7,12 +6,23 @@ import FeaturedPosts from "../../components/blog/FeaturedPosts.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { ClientRouter } from 'astro:transitions';
+
+export async function getStaticPaths() {
+  return [
+    { params: { category: 'insights' } },
+    { params: { category: 'product' } },
+    { params: { category: 'company' } },
+  ];
+}
+
+const { category } = Astro.params;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={`${SITE_TITLE} - ${category}`} description={SITE_DESCRIPTION} />
     <ClientRouter />
   </head>
   <body>
@@ -20,10 +30,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
     <main class="container mx-auto px-4">
       <FeaturedPosts />
       <div class="mt-[74px]">
-        <BlogTabs activeTab="all" />
-        <AllPosts category="all" />
+        <BlogTabs activeTab={category} />
+        <AllPosts category={category} />
       </div>
     </main>
     <Footer />
   </body>
-</html>
+</html> 
