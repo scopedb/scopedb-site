@@ -7,6 +7,8 @@ import FeaturedPosts from "../../components/blog/FeaturedPosts.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { Rss } from '@lucide/astro';
+
 ---
 
 <!doctype html>
@@ -18,6 +20,19 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
   <body>
     <Header />
     <main class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-[64px]">
+        <div class="text-[40px] font-medium">ScopeDB Blog</div>
+        <div class="flex items-center gap-[12px]">
+          <span class="text-[16px] text-[var(--color-secondary)]">Subscribe via</span>
+          <a 
+            href="/rss.xml" 
+            class="w-[36px] h-[36px] bg-[#282828] rounded-full flex items-center justify-center hover:bg-[#E55A2B] transition-colors"
+            title="Subscribe to RSS feed"
+          >
+            <Rss width={16} height={16} color="white" />
+          </a>
+        </div>
+      </div>
       <FeaturedPosts />
       <div class="mt-[74px]">
         <BlogTabs activeTab="all" />

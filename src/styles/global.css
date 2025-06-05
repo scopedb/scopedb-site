@@ -5,6 +5,7 @@
  */
 
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 :root {
   --color-primary: hsla(0, 0%, 0%, 1);

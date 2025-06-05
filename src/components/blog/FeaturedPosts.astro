@@ -29,24 +29,25 @@ const featuredPosts = titleOfFeaturedPosts
         const readingTime = calculateReadingTime(post.body || "");
         return (
           <li class="">
-            <div class="bg-[#F7F7F7] rounded-[16px] p-[12px] w-full h-full">
+            <div class="bg-[#f9f9f9] rounded-[16px] p-[12px] w-full h-full">
               <a href={`/blog/${post.id}/`}>
                 <img
-                  class="rounded-[12px] mb-[20px]"
+                  class="rounded-[10px] mb-[20px]"
                   src={post.data.heroImage}
                   alt=""
                 />
-                <div class="flex flex-col gap-[16px] mt-[12px]">
-                  <p class="text-[16px] font-medium px-[12px]">
+                <div class="flex flex-col gap-[4px] my-[12px]">
+                  <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--color-secondary)] ">
                     <FormattedDate date={post.data.pubDate} />
-                    <span class="ml-2">• {readingTime}</span>
+                    <span class="ml-2 text-[12px]">•</span>
+                    <span class="ml-2"> {readingTime}</span>
                   </p>
                   <div class="flex-1">
-                    <h4 class="text-[24px] font-semibold px-[12px]">
+                    <h4 class="text-[20px] font-medium  px-[12px]">
                       {post.data.title}
                     </h4>
                   </div>
-                  <p class="text-[16px] text-[var(--color-secondary)] px-[12px] line-clamp-2">
+                  <p class="text-[14px] text-[var(--color-secondary)] px-[12px] line-clamp-4">
                     {digest(post.data.description || post.body || "")}
                   </p>
                 </div>

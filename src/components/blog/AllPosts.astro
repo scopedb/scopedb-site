@@ -31,31 +31,32 @@ function getPostsByCategory(categoryFilter: string) {
 const latestPosts = getPostsByCategory(category);
 ---
 
-<section class="pb-[32px]">
+<section class="pb-[200px]">
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
     {
       latestPosts.map((post) => {
         const readingTime = calculateReadingTime(post.body || "");
         return (
           <li class="post-item">
-            <div class="bg-[#F7F7F7] rounded-[16px] p-[12px] w-full h-full">
+            <div class="bg-[#f9f9f9] rounded-[16px] p-[12px] w-full h-full">
               <a href={`/blog/${post.id}/`}>
                 <img
                   class="rounded-[12px] mb-[20px]"
                   src={post.data.heroImage}
                   alt=""
                 />
-                <div class="flex flex-col gap-[16px] mt-[12px]">
-                  <p class="text-[16px] font-medium px-[12px]">
+                <div class="flex flex-col gap-[4px] my-[12px]">
+                  <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--color-secondary)]">
                     <FormattedDate date={post.data.pubDate} />
-                    <span class="ml-2">• {readingTime}</span>
+                    <span class="ml-[4px] text-[12px]">•</span>
+                    <span class="ml-[4px]">{readingTime}</span>
                   </p>
                   <div class="flex-1">
-                    <h4 class="text-[24px] font-semibold px-[12px]">
+                    <h4 class="text-[20px] font-medium px-[12px] leading-1.1">
                       {post.data.title}
                     </h4>
                   </div>
-                  <p class="text-[16px] text-[var(--color-secondary)] px-[12px] line-clamp-2">
+                  <p class="text-[14px] text-[var(--color-secondary)] px-[12px] line-clamp-2">
                     {digest(post.data.description || post.body || "")}
                   </p>
                 </div>
@@ -70,7 +71,7 @@ const latestPosts = getPostsByCategory(category);
   {
     latestPosts.length === 0 && (
       <div class="text-center py-12">
-        <p class="text-gray-500 text-lg">No posts found for this category.</p>
+        <p class="text-gray-500 text-[14px]">No posts found for this category</p>
       </div>
     )
   }

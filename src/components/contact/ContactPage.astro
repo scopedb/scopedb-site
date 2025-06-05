@@ -8,7 +8,7 @@ import CircleCheck from "./assets/circlecheck.png";
 <div class="container mx-auto px-[16px]">
   <h1
     class:list={[
-      "text-[60px] font-medium text-center",
+      "text-[40px] font-medium text-center",
       "mx-auto",
       "mt-[100px]",
     ]}
@@ -17,9 +17,9 @@ import CircleCheck from "./assets/circlecheck.png";
   </h1>
   <p
     class:list={[
-      "text-[24px] font-medium text-center",
-      "max-w-[705px] mx-auto",
-      "mt-[50px]",
+      "text-[20px] font-normal text-[var(--color-secondary)] text-center",
+      "max-w-[600px] mx-auto leading-tight",
+      "mt-[24px]",
     ]}
   >
     Contact our sales and support teams for demos, onboarding guidance, or
@@ -28,8 +28,8 @@ import CircleCheck from "./assets/circlecheck.png";
 
   <div
     class:list={[
-      "max-w-[1020px] mx-auto mt-[60px]",
-      "flex bg-[#F7F7F7] rounded-[16px] p-[64px]",
+      "max-w-[1200px] mx-auto mt-[60px]",
+      "flex bg-[#F7F7F7] rounded-[12px] p-[64px]",
       "flex-col",
       "md:flex-row md:items-center md:justify-between",
     ]}
@@ -37,16 +37,16 @@ import CircleCheck from "./assets/circlecheck.png";
     <div>
       <h2 class="text-[24px] font-semibold">Sales</h2>
       <p
-        class="mt-[20px] text-[18px] text-[var(--color-secondary)] max-w-[400px]"
+        class="mt-[20px] text-[16px] leading-tight text-[var(--color-secondary)] max-w-[420px]"
       >
         Speak to our sales team about plans, pricing, enterprise contracts, or
         request a demo. Talk to sales.
       </p>
       <ul
-        class="mt-[32px] flex flex-col gap-[16px] text-[16px] text-[var(--color-secondary)]"
+        class="mt-[32px] flex flex-col gap-[12px] text-[14px] text-[var(--color-secondary)]"
       >
         <li>
-          <span class="flex items-center gap-[16px]">
+          <span class="flex items-center gap-[12px]">
             <Image
               class="w-[20px] h-[20px]"
               src={CircleCheck}
@@ -56,7 +56,7 @@ import CircleCheck from "./assets/circlecheck.png";
           </span>
         </li>
         <li>
-          <span class="flex items-center gap-[16px]">
+          <span class="flex items-center gap-[12px]">
             <Image
               class="w-[20px] h-[20px]"
               src={CircleCheck}
@@ -66,7 +66,7 @@ import CircleCheck from "./assets/circlecheck.png";
           </span>
         </li>
         <li>
-          <span class="flex items-center gap-[16px]">
+          <span class="flex items-center gap-[12px]">
             <Image
               class="w-[20px] h-[20px]"
               src={CircleCheck}
@@ -81,12 +81,12 @@ import CircleCheck from "./assets/circlecheck.png";
         class="mt-[32px] bg-[var(--color-brand)] py-[10px] px-[16px] rounded-[10px] cursor-pointer"
       >
         <span class="flex items-center gap-[10px] text-[14px] text-[white]">
-          <CalendarDays width={20} height={20} />
+          <CalendarDays width={16} height={16} />
           Book A Demo
         </span>
       </button>
     </div>
-    <div class="md:w-[360px] md:mt-0 mt-[40px]">
+    <div class="md:w-[420px] md:mt-0 mt-[40px]">
       <form class="flex flex-col gap-[24px]">
         <div class="flex flex-col gap-[12px]">
           <label for="name" class="text-[14px] text-[var(--color-primary)]"
@@ -155,16 +155,16 @@ import CircleCheck from "./assets/circlecheck.png";
         <!-- button submit -->
         <button
           type="submit"
-          class="bg-[var(--color-brand)] py-[10px] px-[16px] rounded-[10px] cursor-pointer w-full"
+          class="bg-[#FFFFFF] border border-[#ECECEC] py-[10px] px-[16px] rounded-[10px] cursor-pointer w-full"
         >
-          <span class="gap-[10px] text-[14px] text-[white] text-center">
+          <span class="gap-[10px] text-[14px] text-[var-(--color-primary)] text-center">
             Send Message
           </span>
         </button>
       </form>
     </div>
   </div>
-  <div class="mt-[80px] max-w-[1008px] mx-auto">
+  <div class="mt-[80px] max-w-[1200px] mx-auto">
     <ExploreMore />
   </div>
 </div>
