@@ -5,9 +5,10 @@ import imageAdaptiveIndexes from "./assets/adaptive-indexes.png";
 import bg1 from "./assets/bg-1.png";
 import imageCloudApplicationObservability from "./assets/cloud-application-observability.png";
 import imageDedicatedQueryGroupResources from "./assets/dedicated-query-group-resources.png";
-import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.png";
-import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.png";
+import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.svg";
+import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.svg";
 import imageFlexibleDataSchema from "./assets/flexible-data-schema.png";
+import imageScopeQLCheckBox from "./assets/scopeql-checkbox.svg";
 import imageHero from "./assets/hero.png";
 import imageMonetizationRevenueReports from "./assets/monetization-revenue-reports.png";
 import imageMultipleAnalysisScenarios from "./assets/multiple-analysis-scenarios.png";
@@ -18,24 +19,24 @@ import FAQItem from "./FAQItem.astro";
 import FeaturesRow from "./FeaturesRow.astro";
 ---
 
-<div class="container mx-auto px-2 pb-[160px] relative">
+<div class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] pb-[160px] relative">
   <section
-    class="max-w-[736px] xl:max-w-[536px] 2xl:max-w-[736px] pt-[260px] pb-[520px] xl:pr-0"
+    class="max-w-[536px] xl:max-w-[620px] 2xl:max-w-[736px] pt-[260px] pb-[520px] xl:pr-0"
   >
     <Image
-      class="absolute top-[-80px] right-[-87px] hidden xl:block max-w-[936px]"
+      class="absolute top-[-80px] right-[-87px] hidden lg:block  xl:block max-w-[836px]"
       src={imageHero}
       alt="ScopeDB"
     />
 
-    <h2 class="text-[50px] text-[var(--color-brand)] leading-[1.2] font-bold">
+    <h2 class="text-[50px] text-[var(--color-brand)] leading-[1.2] font-medium">
       Born for the cloud.
     </h2>
-    <blockquote class="text-[50px] leading-[1.2] font-bold">
+    <blockquote class="text-[50px] leading-[1.2] font-medium">
       Develop your data application with the flexible database.
     </blockquote>
     <p
-      class="text-[var(--color-secondary)] text-[20px] leading-[1.4] mt-[30px]"
+      class="text-[var(--color-secondary)] font-normal  text-[20px] leading-[1.4] mt-[30px]"
     >
       ScopeDB is a database that runs directly on top of any commodity object
       storage. It is designed explicitly for data workloads with massive writes,
@@ -45,14 +46,14 @@ import FeaturesRow from "./FeaturesRow.astro";
     <div class="mt-[68px] flex gap-[9px]">
       <a href="/contact">
         <button
-          class="bg-black text-white px-[21px] py-[11px] rounded-[10px] border-[1px]"
+          class="bg-black text-white px-[16px] py-[8px] rounded-[10px] border-[1px]"
         >
           Book a demo
         </button>
       </a>
       <a href="https://docs.scopedb.io">
         <button
-          class="px-[21px] py-[11px] rounded-[10px] border-[1px] border-[var(--color-secondary)]"
+          class="px-[16px] py-[8px] rounded-[10px] border-[1px] border-[var(--color-button-secondary-border)]"
         >
           Document
         </button>
@@ -61,7 +62,7 @@ import FeaturesRow from "./FeaturesRow.astro";
   </section>
 
   <section
-    class="flex items-center justify-center text-[20px] font-normal text-center"
+    class="flex items-center justify-center text-[16px] text-[var(--color-secondary)] font-normal text-center"
   >
     <h2>Providing more flexible cloud data services for startups</h2>
     <div class="grid grid-cols-4 gap-4"></div>
@@ -71,20 +72,20 @@ import FeaturesRow from "./FeaturesRow.astro";
     <div
       class="flex items-center justify-center absolute top-[-78px] left-0 w-full"
     >
-      <Image class="" src={bg1} alt="" width={456} height={76} />
+      <Image class="" src={bg1}  alt="" width={456} height={76} />
     </div>
     <div
-      class="max-w-[1028px] mx-auto flex flex-col items-center pt-[80px] pb-[160px] bg-[#F7F7F7] rounded-[24px]"
+      class="max-w-[1200px] mx-auto flex flex-col items-center pt-[80px] pb-[160px] bg-[#F7F7F7] rounded-[16px]"
     >
-      <h2 class="text-[20px] font-normal">WHY SCOPEDB?</h2>
+      <h2 class="text-[18px] font-normal">WHY SCOPEDB?</h2>
       <blockquote
-        class="max-w-[763px] mt-[40px] text-[50px] font-semibold leading-[normal] text-center"
+        class="max-w-[580px] mt-[40px] text-[40px] font-medium leading-[normal] text-center"
       >
         "Unleash the Full Power of Cloud Elasticity and Workload Isolation"
       </blockquote>
-      <div class="max-w-[652px] mt-[70px]">
+      <div class="max-w-[600px] mt-[70px]">
         <p
-          class="text-[20px] font-normal leading-[1.4] text-[var(--color-secondary)]"
+          class="text-[18px] font-normal leading-[1.4] text-[var(--color-secondary)]"
         >
           The stateless node design fully leverages cloud elasticity. It enables
           effortless scaling without data reconciliation or replication.
@@ -94,7 +95,7 @@ import FeaturesRow from "./FeaturesRow.astro";
         </p>
 
         <p
-          class="text-[20px] font-normal leading-[1.4] text-[var(--color-tertiary)] mt-[50px]"
+          class="text-[18px] font-normal leading-[1.4] text-[var(--color-secondary)] mt-[50px]"
         >
           Workload isolation is built on top of shared storage. Both read and
           write groups access object storage directly without coordinating with
@@ -104,7 +105,7 @@ import FeaturesRow from "./FeaturesRow.astro";
           that they can have their own dedicated resources.
         </p>
 
-        <p class="text-[20px] text-[var(--color-tertiary)] mt-[80px]">
+        <p class="text-[16px] text-[var(--color-tertiary)] mt-[80px]">
           Read <a
             class="underline text-[var(--color-primary)]"
             href="https://www.scopedb.io/blog/manage-observability-data-in-petabytes"
@@ -116,7 +117,13 @@ import FeaturesRow from "./FeaturesRow.astro";
   </section>
 
   <section class="mt-[210px]">
-    <h2 class="text-[60px] font-semibold pl-[55px]">Key Features</h2>
+    <div class="flex items-end gap-[16px] pl-[55px] mb-[40px]">
+      <h2 class="text-[40px] font-medium">Key Features</h2>
+      <div class="flex gap-[2px] items-end mb-[14px]">
+        <div class="w-[16px] h-[6px] bg-[#4D4A4A] rounded-[2px] animate-pulse"></div>
+        <div class="w-[16px] h-[6px] bg-[#8C8C8C] rounded-[2px] animate-pulse" style="animation-delay: 0.6s;"></div>
+      </div>
+    </div>
     <div class="flex flex-col">
       <div class="key-feature-grid-row min-h-[32px] flex">
         <div class="w-[45px]"></div>
@@ -125,11 +132,11 @@ import FeaturesRow from "./FeaturesRow.astro";
       </div>
 
       <FeaturesRow>
-        <div class="flex flex-col xl:flex-row">
-          <div class="flex-1 pl-[50px] pr-[30px] pt-[150px] pb-[190px]">
-            <h3 class="text-[40px] font-normal">Real-time Ingestion</h3>
+        <div class="flex flex-col lg:flex-row">
+          <div class="p-[50px] lg:w-1/2 flex flex-col justify-center min-h-[500px]">
+            <h3 class="text-[32px] font-medium">Real-time Ingestion</h3>
             <p
-              class="text-[18px] text-[var(--color-secondary)] mt-[20px] max-w-[512px]"
+              class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
             >
               ScopeDB ingestion nodes handle massive requests independently
               without sharding or partition leaders. They dynamically scale to
@@ -137,23 +144,23 @@ import FeaturesRow from "./FeaturesRow.astro";
             </p>
           </div>
           <div
-            class="flex-1 flex items-center justify-center xl:border-l border-[#f0f0f0] pt-[28px] pb-[70px]"
+            class="flex-1 flex items-center justify-center py-[24px]  lg:w-1/2"
           >
             <Image
               src={imageFeatureRealtimeIngestion}
               alt=""
-              height={334}
-              width={201}
+              height={620}
+              width={680}
             />
           </div>
         </div>
       </FeaturesRow>
       <FeaturesRow>
-        <div class="flex flex-col xl:flex-row">
-          <div class="flex-1 pl-[50px] pr-[30px] pt-[50px] pb-[65px]">
-            <h3 class="text-[40px] font-normal">Any-scale Analysis</h3>
+        <div class="flex flex-col lg:flex-row">
+          <div class="px-[50px] pt-[50px] pb-[50px] lg:w-1/2 min-h-[300px] flex flex-col justify-center ">
+            <h3 class="text-[32px] font-medium">Any-scale Analysis</h3>
             <p
-              class="text-[18px] text-[var(--color-secondary)] mt-[20px] max-w-[512px]"
+              class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
             >
               ScopeDB fully leverages cloud resources to ensure that businesses
               can obtain optimal performance support without increasing
@@ -161,33 +168,33 @@ import FeaturesRow from "./FeaturesRow.astro";
               operations.
             </p>
           </div>
-
           <div
-            class="flex-1 flex items-center justify-center border-l border-[#f0f0f0] pb-[70px]"
+            class=" flex-1 flex bg-[#FCFCFC] items-center justify-center lg:border-l border-[#f0f0f0] pt-[28px] pb-[70px] lg:w-1/2"
           >
             <Image
               src={imageFeatureAnyScaleAnalysis}
               alt=""
-              width={239}
-              height={98}
+              width={560}
+              height={192}
               format="png"
               quality="100"
+              class="mt-[100px]"
             />
           </div>
         </div>
       </FeaturesRow>
       <FeaturesRow>
-        <div class="flex flex-col xl:flex-row">
-          <div class="pl-[50px] pr-[30px] pt-[50px] pb-[65px] xl:w-[761.5px]">
-            <h3 class="text-[32px]">Optimal Storage Format</h3>
+        <div class="flex flex-col lg:flex-row">
+          <div class="p-[50px] pb-[50px] lg:w-1/2 min-h-[680px]">
+            <h3 class="text-[24px] font-normal">Optimal Storage Format</h3>
             <p
-              class="text-[16px] text-[var(--color-secondary)] mt-[15px] max-w-[440px]"
+              class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
             >
               Unleash the benefits of the compact columnar data format with a
               vectorized query engine. Implement dedicated compression
               algorithms depending on data types.
             </p>
-            <div class="mt-[70px]">
+            <div class="mt-[100px]">
               <Image
                 class="mx-auto"
                 src={imageOptimalStorageFormat}
@@ -199,15 +206,15 @@ import FeaturesRow from "./FeaturesRow.astro";
               />
             </div>
           </div>
-          <div class="flex-1 xl:border-l border-[#f0f0f0] pt-[38px] pl-[32px]">
-            <h3 class="text-[32px]">Multiple Analysis Scenarios</h3>
+          <div class="flex-1 lg:border-l border-[#f0f0f0] p-[50px] lg:w-1/2 min-h-[680px]">
+            <h3 class="text-[24px] font-normal">Multiple Analysis Scenarios</h3>
             <p
-              class="text-[16px] text-[var(--color-secondary)] max-w-[459px] mt-[15px]"
+              class="text-[16px] font-normal text-[var(--color-secondary)] max-w-[459px] mt-[12px]"
             >
               Get insights from the data via searching, aggregations,
               time-series analytics, etc.
             </p>
-            <div class="py-[20px]">
+            <div class="pt-[100px]">
               <Image
                 class="mx-auto"
                 src={imageMultipleAnalysisScenarios}
@@ -220,16 +227,14 @@ import FeaturesRow from "./FeaturesRow.astro";
         </div>
       </FeaturesRow>
       <FeaturesRow>
-        <div class="flex flex-col xl:flex-row">
-          <div
-            class="pl-[50px] pr-[30px] pt-[50px] xl:w-[761.5px] flex flex-col"
-          >
-            <h3 class="text-[32px]">Adaptive Indexes</h3>
-            <p class="text-[16px] text-[var(--color-secondary)]">
+        <div class="flex flex-col lg:flex-row">
+          <div class="p-[50px] lg:w-1/2 flex flex-col min-h-[600px]">
+            <h3 class="text-[24px] font-normal">Adaptive Indexes</h3>
+            <p class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px] max-w-[440px]">
               Accelerate queries with smart indexes, search indexes, variant
               indexes, and more.
             </p>
-            <div class="py-[20px] flex-1 flex items-center justify-center">
+            <div class="flex-1 flex items-center justify-center">
               <Image
                 src={imageAdaptiveIndexes}
                 alt=""
@@ -238,11 +243,9 @@ import FeaturesRow from "./FeaturesRow.astro";
               />
             </div>
           </div>
-          <div
-            class="flex-1 xl:border-l border-[#f0f0f0] pt-[38px] pl-[32px] pr-[32px]"
-          >
-            <h3 class="text-[32px]">Dedicated Query Group Resources</h3>
-            <p class="text-[16px] text-[var(--color-secondary)] pr-[72px]">
+          <div class="flex-1 lg:border-l border-[#f0f0f0] pt-[50px] p-[50px] lg:w-1/2 min-h-[680px]">
+            <h3 class="text-[24px] font-normal">Dedicated Query Group Resources</h3>
+            <p class="text-[16px] font-normal text-[var(--color-secondary)] pr-[72px] mt-[12px] ">
               You can have multiple query groups, either long-running or
               ephemeral. Each group has its dedicated compute resources. All
               groups share the same object storage as the primary data backend.
@@ -259,13 +262,11 @@ import FeaturesRow from "./FeaturesRow.astro";
         </div>
       </FeaturesRow>
       <FeaturesRow>
-        <div class="flex flex-col xl:flex-row">
-          <div
-            class="pl-[50px] pr-[30px] pt-[130px] xl:w-[761.5px] flex flex-col"
-          >
-            <h3 class="text-[48px] font-normal">Flexible Data Schema</h3>
+        <div class="flex flex-col lg:flex-row">
+          <div class="pl-[50px] pr-[30px] pt-[50px] lg:w-1/2 flex flex-col">
+            <h3 class="text-[32px] font-medium">Flexible Data Schema</h3>
             <p
-              class="text-[18px] text-[var(--color-secondary)] xl:max-w-[504px] mt-[23px]"
+              class="text-[16px] font-normal text-[var(--color-secondary)] max-w-[504px] mt-[12px]"
             >
               ScopeDB's flexible data schema enables users to partially define
               schemas while storing additional data in a variant column,
@@ -273,9 +274,7 @@ import FeaturesRow from "./FeaturesRow.astro";
               data.
             </p>
           </div>
-          <div
-            class="flex-1 flex items-center justify-center pt-[50px] pb-[80px]"
-          >
+          <div class="flex-1 flex items-center justify-center pt-[50px] pb-[50px] lg:w-1/2">
             <Image
               src={imageFlexibleDataSchema}
               alt=""
@@ -292,7 +291,7 @@ import FeaturesRow from "./FeaturesRow.astro";
       </div>
 
       <blockquote
-        class="text-[48px] text-[var(--color-primary)] font-medium max-w-[800px] text-center mx-auto mt-[300px] mb-[143px]"
+        class="text-[40px] text-[var(--color-primary)] font-medium max-w-[800px] text-center mx-auto mt-[300px] mb-[143px]"
       >
         Maximize the effectiveness of ScopeDB in various scenarios.
       </blockquote>
@@ -303,33 +302,33 @@ import FeaturesRow from "./FeaturesRow.astro";
       </div>
       <FeaturesRow>
         <div class="p-[37px]">
-          <h3 class="text-[48px]">Cloud Application Observability</h3>
+          <h3 class="text-[32px] font-medium">Cloud Application Observability</h3>
           <p
-            class="text-[18px] text-[var(--color-secondary)] xl:max-w-[563px] mt-[18px]"
+            class="text-[16px] font-normal text-[var(--color-secondary)] xl:max-w-[563px] mt-[12px]"
           >
             Analyze application logs for complete visibility and accelerated
             troubleshooting. Unify scattered logs for processing and analysis to
             gain greater insights.
           </p>
-          <div class="flex items-center justify-center mt-[20px]">
+          <div class="flex items-center justify-center my-[60px]">
             <Image src={imageCloudApplicationObservability} alt="" />
           </div>
         </div>
       </FeaturesRow>
       <FeaturesRow>
         <div class="p-[37px]">
-          <h3 class="text-[48px]">Real-time Behavior Analysis</h3>
+          <h3 class="text-[32px] font-medium">Real-time Behavior Analysis</h3>
           <p
-            class="text-[18px] text-[var(--color-secondary)] xl:max-w-[563px] mt-[18px]"
+            class="text-[16px] font-normal text-[var(--color-secondary)] xl:max-w-[563px] mt-[12px]"
           >
             Process millions of daily user interactions to power personalized
             recommendations and dynamic pricing for e-commerce platforms, or
             detect market manipulation and fraud patterns for social media.
           </p>
           <div
-            class="flex flex-col xl:flex-row mt-[20px] gap-[30px] justify-center"
+            class="flex flex-col xl:flex-row my-[60px] gap-[30px] justify-center"
           >
-            <div class="flex items-center justify-center py-[150px]">
+            <div class="flex items-center justify-center my-[60px]">
               <Image
                 src={imageRealTimeBehaviorAnalysis1}
                 alt=""
@@ -350,16 +349,16 @@ import FeaturesRow from "./FeaturesRow.astro";
       </FeaturesRow>
       <FeaturesRow>
         <div class="p-[37px]">
-          <h3 class="text-[48px]">Monetization & Revenue Reports</h3>
+          <h3 class="text-[32px] font-medium">Monetization & Revenue Reports</h3>
           <p
-            class="text-[18px] text-[var(--color-secondary)] xl:max-w-[666px] mt-[18px]"
+            class="text-[16px] font-normal text-[var(--color-secondary)] xl:max-w-[666px] mt-[12px]"
           >
             Process and analyze customer purchases, advertising performance, and
             revenue streams with minimal latency. Make data-driven decisions to
             optimize pricing strategies and maximize revenue while maintaining
             complete visibility into your financial metrics.
           </p>
-          <div class="flex items-center justify-center mt-[20px]">
+          <div class="flex items-center justify-center my-[60px]">
             <Image src={imageMonetizationRevenueReports} alt="" />
           </div>
         </div>
@@ -372,20 +371,28 @@ import FeaturesRow from "./FeaturesRow.astro";
     </div>
 
     <section class="mt-[108px]">
-      <h2 class="text-[60px] font-semibold mx-auto text-center">
+      <h2 class="text-[40px] font-medium mx-auto text-center">
         ScopeQL vs SQL
       </h2>
       <div class="flex flex-col xl:flex-row mt-[114px]">
         <div class="p-4">
           <p
-            class="text-[32px] text-[var(--color-primary)] xl:max-w-[524px] leading-[1.4] pb-[20px]"
+            class="text-[24px] font-medium text-[var(--color-primary)] xl:max-w-[520px] leading-[1.4] pb-[24px]"
           >
             ScopeQL isn't SQL 2.0.<br /> We rebuilt from relational algebra foundations
             with three radical simplifications:
           </p>
           <ul>
             <li>
-              <h4 class="text-[16px] font-medium pb-[18px]">Execution Flow</h4>
+              <div class="flex items-center gap-[8px] pb-[8px] ">
+                <Image
+                  src={imageScopeQLCheckBox}
+                  alt=""
+                  width={20}
+                  height={20}
+                />
+                <h4 class="text-[16px] font-medium">Execution Flow</h4>
+              </div>
               <p
                 class="text-[16px] text-[var(--color-secondary)] max-w-[380px] pb-[28px]"
               >
@@ -394,9 +401,15 @@ import FeaturesRow from "./FeaturesRow.astro";
               </p>
             </li>
             <li>
-              <h4 class="text-[16px] font-medium pb-[18px]">
-                Syntax Integrity
-              </h4>
+              <div class="flex items-center gap-[8px] pb-[8px]">
+                <Image
+                  src={imageScopeQLCheckBox}
+                  alt=""
+                  width={20}
+                  height={20}
+                />
+                <h4 class="text-[16px] font-medium">Syntax Integrity</h4>
+              </div>
               <p
                 class="text-[16px] text-[var(--color-secondary)] max-w-[380px] pb-[28px]"
               >
@@ -405,9 +418,15 @@ import FeaturesRow from "./FeaturesRow.astro";
               </p>
             </li>
             <li>
-              <h4 class="text-[16px] font-medium pb-[18px]">
-                Compressible Expressions
-              </h4>
+              <div class="flex items-center gap-[8px] pb-[8px]">
+                <Image
+                  src={imageScopeQLCheckBox}
+                  alt=""
+                  width={20}
+                  height={20}
+                />
+                <h4 class="text-[16px] font-medium">Compressible Expressions</h4>
+              </div>
               <p
                 class="text-[16px] text-[var(--color-secondary)] max-w-[380px] pb-[28px]"
               >
@@ -426,7 +445,7 @@ import FeaturesRow from "./FeaturesRow.astro";
     </section>
 
     <section class="mt-[124px]">
-      <h2 class="text-[60px] font-semibold text-center">
+      <h2 class="text-[40px] font-medium mx-auto text-center">
         Frequently asked questions
       </h2>
 
@@ -442,8 +461,8 @@ import FeaturesRow from "./FeaturesRow.astro";
       </ul>
     </section>
 
-    <h2 class="mt-[360px] text-[40px] font-semibold">
-      Explore More About <br /><span class="text-[50px]">ScopeDB</span>
+    <h2 class="mt-[360px] text-[32px] font-medium">
+      Explore More About <br /><span class="text-[40px]">ScopeDB</span>
     </h2>
   
     <ExploreMore showXlCols={true} />

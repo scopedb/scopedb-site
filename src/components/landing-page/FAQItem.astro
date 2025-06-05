@@ -10,7 +10,7 @@ const { question, answer } = Astro.props;
 ---
 
 <li
-  class="w-full xl:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[18px] faq-item"
+  class="w-full xl:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[16px] faq-item"
 >
   <div class="flex items-center justify-between cursor-pointer faq-header">
     <p class="text-[16px] font-semibold flex-1">
@@ -19,7 +19,7 @@ const { question, answer } = Astro.props;
     <ChevronDown height={20} width={20} class="chevron-icon transition-transform duration-200" />
   </div>
   <div class="faq-content hidden">
-    <p class="text-[16px] text-[var(--color-secondary)] mt-[16px]">
+    <p class="text-[16px] text-[var(--color-secondary)] mt-[8px]">
       {answer}
     </p>
   </div>
