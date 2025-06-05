@@ -3,6 +3,7 @@ import { CalendarDays, ChevronDown } from "@lucide/astro";
 import { Image } from "astro:assets";
 import ExploreMore from "../ExploreMore.astro";
 import CircleCheck from "./assets/circlecheck.png";
+import { CONTACT_WEBHOOK_URL } from "../../consts";
 ---
 
 <div class="container mx-auto px-[16px]">
@@ -87,7 +88,7 @@ import CircleCheck from "./assets/circlecheck.png";
       </button>
     </div>
     <div class="md:w-[420px] md:mt-0 mt-[40px]">
-      <form class="flex flex-col gap-[24px]">
+      <form id="contact-form" class="flex flex-col gap-[24px]">
         <div class="flex flex-col gap-[12px]">
           <label for="name" class="text-[14px] text-[var(--color-primary)]"
             >Full Name</label
@@ -157,14 +158,101 @@ import CircleCheck from "./assets/circlecheck.png";
           type="submit"
           class="bg-[#FFFFFF] border border-[#ECECEC] py-[10px] px-[16px] rounded-[10px] cursor-pointer w-full"
         >
-          <span class="gap-[10px] text-[14px] text-[var-(--color-primary)] text-center">
+          <span
+            class="gap-[10px] text-[14px] text-[var-(--color-primary)] text-center"
+          >
             Send Message
           </span>
         </button>
       </form>
+
+      <!-- Success State -->
+      <div id="success-state" class="text-center hidden">
+        <div
+          class="w-[80px] h-[80px] bg-[var(--color-brand)] rounded-full flex items-center justify-center mx-auto mb-[24px]"
+        >
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 6L9 17l-5-5"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <h3
+          class="text-[24px] font-semibold text-[var(--color-primary)] mb-[16px]"
+        >
+          Thanks for contacting us!
+        </h3>
+        <p class="text-[16px] text-[var(--color-secondary)]">
+          We will get in touch with you shortly.
+        </p>
+      </div>
     </div>
   </div>
   <div class="mt-[80px] max-w-[1200px] mx-auto">
     <ExploreMore />
   </div>
 </div>
+
+<script define:vars={{ CONTACT_WEBHOOK_URL }}>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const submitButton = form?.querySelector('button[type="submit"]');
+    const successState = document.getElementById("success-state");
+
+    if (!form || !submitButton || !successState) return;
+
+    submitButton.addEventListener("click", async function (e) {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        "company-size": formData.get("company-size"),
+        message: formData.get("message"),
+      };
+
+      // Show loading state
+      submitButton.disabled = true;
+      submitButton.innerHTML =
+        '<span class="gap-[10px] text-[14px] text-[white] text-center">Sending...</span>';
+
+      try {
+        const response = await fetch(CONTACT_WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          // Hide form and show success state
+          form.classList.add("hidden");
+          successState.classList.remove("hidden");
+        } else {
+          throw new Error("Submission failed");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert(
+          "Sorry, there was an error sending your message. Please try again."
+        );
+        // Restore button state
+        submitButton.disabled = false;
+        submitButton.innerHTML =
+          '<span class="gap-[10px] text-[14px] text-[var(--color-primary)] text-center">Send Message</span>';
+      }
+    });
+  });
+</script>
