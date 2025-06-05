@@ -92,6 +92,9 @@ export default function ScopeQLVSSQL() {
                     <div className="font-[15px] overflow-x-auto">
                         <ShikiHighlighter
                             theme="min-light"
+                            // maybe introduce scopeql grammar here
+                            // https://github.com/scopedb/scopedb-docs/blob/main/shiki-scopeql-grammar.json
+                            // https://github.com/avgvstvs96/react-shiki?tab=readme-ov-file#preloading-custom-languages
                             language="sql"
                             showLanguage={false}
                         >
