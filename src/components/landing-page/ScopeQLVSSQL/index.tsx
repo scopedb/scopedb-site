@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ShikiHighlighter from "react-shiki";
 
 const categories = [{
     title: "Basic",
@@ -70,9 +71,13 @@ export default function ScopeQLVSSQL() {
                         <h3 className="text-[var(--color-secondary)] text-[12px]">SQL</h3>
                     </div>
                     <div className="font-[15px] overflow-x-auto max-w-[766px]">
-                        <pre>
-                            <code>{categories[activeTab].sql}</code>
-                        </pre>
+                        <ShikiHighlighter
+                            theme="min-light"
+                            language="sql"
+                            showLanguage={false}
+                        >
+                            {categories[activeTab].sql.trim()}
+                        </ShikiHighlighter>
                     </div>
                 </div>
 
@@ -85,9 +90,13 @@ export default function ScopeQLVSSQL() {
                         <h3 className="text-[var(--text-secondary)] text-[12px]">ScopeQL</h3>
                     </div>
                     <div className="font-[15px] overflow-x-auto">
-                        <pre>
-                            <code>{categories[activeTab].scopeql}</code>
-                        </pre>
+                        <ShikiHighlighter
+                            theme="min-light"
+                            language="sql"
+                            showLanguage={false}
+                        >
+                            {categories[activeTab].scopeql.trim()}
+                        </ShikiHighlighter>
                     </div>
                 </div>
 

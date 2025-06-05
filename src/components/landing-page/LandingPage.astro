@@ -20,12 +20,14 @@ import FeaturesRow from "./FeaturesRow.astro";
 import ScopeQLVSSQL from "./ScopeQLVSSQL";
 ---
 
-<div class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] pb-[160px] relative">
+<div
+  class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] pb-[160px] relative"
+>
   <section
     class="max-w-[536px] xl:max-w-[620px] 2xl:max-w-[736px] pt-[260px] pb-[520px] xl:pr-0"
   >
     <Image
-      class="absolute top-[-80px] right-[-87px] hidden lg:block  xl:block max-w-[836px]"
+      class="absolute top-[-80px] right-[-87px] hidden lg:block xl:block max-w-[836px]"
       src={imageHero}
       alt="ScopeDB"
     />
@@ -37,7 +39,7 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
       Develop your data application with the flexible database.
     </blockquote>
     <p
-      class="text-[var(--color-secondary)] font-normal  text-[20px] leading-[1.4] mt-[30px]"
+      class="text-[var(--color-secondary)] font-normal text-[20px] leading-[1.4] mt-[30px]"
     >
       ScopeDB is a database that runs directly on top of any commodity object
       storage. It is designed explicitly for data workloads with massive writes,
@@ -73,7 +75,7 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
     <div
       class="flex items-center justify-center absolute top-[-78px] left-0 w-full"
     >
-      <Image class="" src={bg1}  alt="" width={456} height={76} />
+      <Image class="" src={bg1} alt="" width={456} height={76} />
     </div>
     <div
       class="max-w-[1200px] mx-auto flex flex-col items-center pt-[80px] pb-[160px] bg-[#F7F7F7] rounded-[16px]"
@@ -121,8 +123,13 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
     <div class="flex items-end gap-[16px] pl-[55px] mb-[40px]">
       <h2 class="text-[40px] font-medium">Key Features</h2>
       <div class="flex gap-[2px] items-end mb-[14px]">
-        <div class="w-[16px] h-[6px] bg-[#4D4A4A] rounded-[2px] animate-pulse"></div>
-        <div class="w-[16px] h-[6px] bg-[#8C8C8C] rounded-[2px] animate-pulse" style="animation-delay: 0.6s;"></div>
+        <div class="w-[16px] h-[6px] bg-[#4D4A4A] rounded-[2px] animate-pulse">
+        </div>
+        <div
+          class="w-[16px] h-[6px] bg-[#8C8C8C] rounded-[2px] animate-pulse"
+          style="animation-delay: 0.6s;"
+        >
+        </div>
       </div>
     </div>
     <div class="flex flex-col">
@@ -134,7 +141,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
 
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="p-[50px] lg:w-1/2 flex flex-col justify-center min-h-[500px]">
+          <div
+            class="p-[50px] lg:w-1/2 flex flex-col justify-center min-h-[500px]"
+          >
             <h3 class="text-[32px] font-medium">Real-time Ingestion</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
@@ -145,7 +154,7 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
             </p>
           </div>
           <div
-            class="flex-1 flex items-center justify-center py-[24px]  lg:w-1/2"
+            class="flex-1 flex items-center justify-center py-[24px] lg:w-1/2"
           >
             <Image
               src={imageFeatureRealtimeIngestion}
@@ -158,7 +167,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="px-[50px] pt-[50px] pb-[50px] lg:w-1/2 min-h-[300px] flex flex-col justify-center ">
+          <div
+            class="px-[50px] pt-[50px] pb-[50px] lg:w-1/2 min-h-[300px] flex flex-col justify-center"
+          >
             <h3 class="text-[32px] font-medium">Any-scale Analysis</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
@@ -170,7 +181,7 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
             </p>
           </div>
           <div
-            class=" flex-1 flex bg-[#FCFCFC] items-center justify-center lg:border-l border-[#f0f0f0] pt-[28px] pb-[70px] lg:w-1/2"
+            class="flex-1 flex bg-[#FCFCFC] items-center justify-center lg:border-l border-[#f0f0f0] pt-[28px] pb-[70px] lg:w-1/2"
           >
             <Image
               src={imageFeatureAnyScaleAnalysis}
@@ -207,7 +218,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
               />
             </div>
           </div>
-          <div class="flex-1 lg:border-l border-[#f0f0f0] p-[50px] lg:w-1/2 min-h-[680px]">
+          <div
+            class="flex-1 lg:border-l border-[#f0f0f0] p-[50px] lg:w-1/2 min-h-[680px]"
+          >
             <h3 class="text-[24px] font-normal">Multiple Analysis Scenarios</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] max-w-[459px] mt-[12px]"
@@ -231,7 +244,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
         <div class="flex flex-col lg:flex-row">
           <div class="p-[50px] lg:w-1/2 flex flex-col min-h-[600px]">
             <h3 class="text-[24px] font-normal">Adaptive Indexes</h3>
-            <p class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px] max-w-[440px]">
+            <p
+              class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px] max-w-[440px]"
+            >
               Accelerate queries with smart indexes, search indexes, variant
               indexes, and more.
             </p>
@@ -244,9 +259,15 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
               />
             </div>
           </div>
-          <div class="flex-1 lg:border-l border-[#f0f0f0] pt-[50px] p-[50px] lg:w-1/2 min-h-[680px]">
-            <h3 class="text-[24px] font-normal">Dedicated Query Group Resources</h3>
-            <p class="text-[16px] font-normal text-[var(--color-secondary)] pr-[72px] mt-[12px] ">
+          <div
+            class="flex-1 lg:border-l border-[#f0f0f0] pt-[50px] p-[50px] lg:w-1/2 min-h-[680px]"
+          >
+            <h3 class="text-[24px] font-normal">
+              Dedicated Query Group Resources
+            </h3>
+            <p
+              class="text-[16px] font-normal text-[var(--color-secondary)] pr-[72px] mt-[12px]"
+            >
               You can have multiple query groups, either long-running or
               ephemeral. Each group has its dedicated compute resources. All
               groups share the same object storage as the primary data backend.
@@ -275,7 +296,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
               data.
             </p>
           </div>
-          <div class="flex-1 flex items-center justify-center pt-[50px] pb-[50px] lg:w-1/2">
+          <div
+            class="flex-1 flex items-center justify-center pt-[50px] pb-[50px] lg:w-1/2"
+          >
             <Image
               src={imageFlexibleDataSchema}
               alt=""
@@ -303,7 +326,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
       </div>
       <FeaturesRow>
         <div class="p-[37px]">
-          <h3 class="text-[32px] font-medium">Cloud Application Observability</h3>
+          <h3 class="text-[32px] font-medium">
+            Cloud Application Observability
+          </h3>
           <p
             class="text-[16px] font-normal text-[var(--color-secondary)] xl:max-w-[563px] mt-[12px]"
           >
@@ -350,7 +375,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
       </FeaturesRow>
       <FeaturesRow>
         <div class="p-[37px]">
-          <h3 class="text-[32px] font-medium">Monetization & Revenue Reports</h3>
+          <h3 class="text-[32px] font-medium">
+            Monetization & Revenue Reports
+          </h3>
           <p
             class="text-[16px] font-normal text-[var(--color-secondary)] xl:max-w-[666px] mt-[12px]"
           >
@@ -385,7 +412,7 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
           </p>
           <ul>
             <li>
-              <div class="flex items-center gap-[8px] pb-[8px] ">
+              <div class="flex items-center gap-[8px] pb-[8px]">
                 <Image
                   src={imageScopeQLCheckBox}
                   alt=""
@@ -426,7 +453,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
                   width={20}
                   height={20}
                 />
-                <h4 class="text-[16px] font-medium">Compressible Expressions</h4>
+                <h4 class="text-[16px] font-medium">
+                  Compressible Expressions
+                </h4>
               </div>
               <p
                 class="text-[16px] text-[var(--color-secondary)] max-w-[380px] pb-[28px]"
@@ -438,7 +467,7 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
           </ul>
         </div>
         <div class="flex-1">
-          <ScopeQLVSSQL client:load/>
+          <ScopeQLVSSQL client:load />
         </div>
       </div>
     </section>
@@ -475,5 +504,8 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
   .key-feature-grid-body {
     border-left: 1px solid #f0f0f0;
     border-right: 1px solid #f0f0f0;
+  }
+  .languageLabel {
+    display: none;
   }
 </style>
