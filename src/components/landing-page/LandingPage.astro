@@ -16,6 +16,7 @@ import imageRealTimeBehaviorAnalysis1 from "./assets/real-time-behavior-analysis
 import imageRealTimeBehaviorAnalysis2 from "./assets/real-time-behavior-analysis-2.png";
 import FAQItem from "./FAQItem.astro";
 import FeaturesRow from "./FeaturesRow.astro";
+import ScopeQLVSSQL from "./ScopeQLVSSQL";
 ---
 
 <div class="container mx-auto px-2 pb-[160px] relative">
@@ -417,10 +418,8 @@ import FeaturesRow from "./FeaturesRow.astro";
             </li>
           </ul>
         </div>
-        <div
-          class="flex-1 flex items-center justify-center my-4 mx-16 bg-gray-200 rounded-[18px]"
-        >
-          ScopeQL vs SQL
+        <div class="flex-1">
+          <ScopeQLVSSQL client:load/>
         </div>
       </div>
     </section>
@@ -445,7 +444,7 @@ import FeaturesRow from "./FeaturesRow.astro";
     <h2 class="mt-[360px] text-[40px] font-semibold">
       Explore More About <br /><span class="text-[50px]">ScopeDB</span>
     </h2>
-  
+
     <ExploreMore showXlCols={true} />
   </section>
 </div>
