@@ -47,14 +47,14 @@ export default function ScopeQLVSSQL() {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
-        <div className="bg-[#F9F9F9] rounded-[24px] py-[20px] px-[16px] flex flex-col h-[800px]">
+        <div className="bg-[#F9F9F9] rounded-[16px] py-[16px] px-[16px] flex flex-col h-[800px] max-w-[720px] ">
             {/* Tab Navigation */}
-            <div className="flex flex-nowrap gap-[24px] overflow-x-auto px-[8px] text-[var(--color-secondary)]">
+            <div className="flex text-[14px] flex-nowrap gap-[24px] overflow-x-auto px-[8px] text-[var(--color-secondary)]">
                 {categories.map((category, index) => (
                     <button
                         key={category.title}
                         onClick={() => setActiveTab(index)}
-                        className={`whitespace-nowrap ${activeTab === index ? 'text-[var(--color-primary)] font-semibold' : ''}`}
+                        className={`whitespace-nowrap ${activeTab === index ? 'text-[var(--color-primary)] font-medium' : ''}`}
                     >
                         {category.title}
                     </button>
@@ -63,18 +63,20 @@ export default function ScopeQLVSSQL() {
 
             <div className="mt-[16px] flex flex-col flex-1">
                 {/* SQL Section */}
-                <div className="flex-1 bg-[#FFFFFF] rounded-[16px] p-[20px] mb-[12px]"
+                <div className="flex-1 bg-[#FFFFFF] rounded-[12px] p-[20px] mb-[12px]"
                     style={{
-                        boxShadow: "0px 0px 8px 4px rgba(0, 0, 0, 0.05);"
+                        boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02);"
                     }}>
                     <div className="pb-[14px]">
-                        <h3 className="text-[var(--color-secondary)] text-[12px]">SQL</h3>
+                        <h3 className="text-[rgba(0,0,0,0.40)] text-[13px]">SQL</h3>
                     </div>
-                    <div className="font-[15px] overflow-x-auto max-w-[766px]">
+                    <div className="font-[14px] overflow-x-auto max-w-[766px]">
                         <ShikiHighlighter
                             theme="min-light"
                             language="sql"
                             showLanguage={false}
+                            className='text-[14px] whitespace-pre-wrap pr-0 pl-0'
+
                         >
                             {categories[activeTab].sql.trim()}
                         </ShikiHighlighter>
@@ -84,12 +86,12 @@ export default function ScopeQLVSSQL() {
                 {/* ScopeQL Section */}
                 <div className="flex-1 bg-[#FFFFFF] rounded-[16px] p-[20px]"
                     style={{
-                        boxShadow: "0px 0px 8px 4px rgba(0, 0, 0, 0.05);"
+                        boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02);"
                     }}>
                     <div className="pb-[14px]">
-                        <h3 className="text-[var(--text-secondary)] text-[12px]">ScopeQL</h3>
+                        <h3 className="text-[rgba(0,0,0,0.40)] text-[13px]">ScopeQL</h3>
                     </div>
-                    <div className="font-[15px] overflow-x-auto">
+                    <div className="font-[14px] overflow-x-auto ">
                         <ShikiHighlighter
                             theme="min-light"
                             // maybe introduce scopeql grammar here
@@ -97,6 +99,7 @@ export default function ScopeQLVSSQL() {
                             // https://github.com/avgvstvs96/react-shiki?tab=readme-ov-file#preloading-custom-languages
                             language="sql"
                             showLanguage={false}
+                            className='text-[14px] whitespace-pre-wrap'
                         >
                             {categories[activeTab].scopeql.trim()}
                         </ShikiHighlighter>

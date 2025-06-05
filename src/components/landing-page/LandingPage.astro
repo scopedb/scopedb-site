@@ -402,10 +402,10 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
       <h2 class="text-[40px] font-medium mx-auto text-center">
         ScopeQL vs SQL
       </h2>
-      <div class="flex flex-col xl:flex-row mt-[114px]">
-        <div class="p-4">
+      <div class="flex flex-col xl:flex-row mt-[114px] justify-between items-start xl:gap-[40px]">
+        <div class="flex-1 xl:max-w-[560px] p-4">
           <p
-            class="text-[24px] font-medium text-[var(--color-primary)] xl:max-w-[520px] leading-[1.4] pb-[24px]"
+            class="text-[24px] font-medium text-[var(--color-primary)] xl:max-w-[560px] leading-[1.4] pb-[24px]"
           >
             ScopeQL isn't SQL 2.0.<br /> We rebuilt from relational algebra foundations
             with three radical simplifications:
@@ -466,7 +466,7 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
             </li>
           </ul>
         </div>
-        <div class="flex-1">
+        <div class="flex-shrink-0 flex items-start justify-center">
           <ScopeQLVSSQL client:load />
         </div>
       </div>
