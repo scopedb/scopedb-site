@@ -32,20 +32,20 @@ const latestPosts = getPostsByCategory(category);
 ---
 
 <section class="pb-[200px]">
-  <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
+  <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16px]">
     {
       latestPosts.map((post) => {
         const readingTime = calculateReadingTime(post.body || "");
         return (
           <li class="post-item">
-            <div class="bg-[#f9f9f9] rounded-[16px] p-[12px] w-full h-full">
+            <div class="bg-[#ffffff] border border-[#f1f1f1] rounded-[12px] p-[12px] w-full h-full">
               <a href={`/blog/${post.id}/`}>
                 <img
                   class="rounded-[12px] mb-[20px]"
                   src={post.data.heroImage}
                   alt=""
                 />
-                <div class="flex flex-col gap-[4px] my-[12px]">
+                <div class="flex flex-col gap-[8px] my-[12px]">
                   <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--color-secondary)]">
                     <FormattedDate date={post.data.pubDate} />
                     <span class="ml-[4px] text-[12px]">•</span>

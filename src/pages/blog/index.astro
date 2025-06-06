@@ -19,17 +19,17 @@ import { Rss } from '@lucide/astro';
   </head>
   <body>
     <Header />
-    <main class="container mx-auto px-4">
+    <main class="container mx-auto">
       <div class="flex items-center justify-between py-[64px]">
         <div class="text-[40px] font-medium">ScopeDB Blog</div>
         <div class="flex items-center gap-[12px]">
-          <span class="text-[16px] text-[var(--color-secondary)]">Subscribe via</span>
+          <span class="text-[14px] text-[var(--color-secondary)]">Subscribe via</span>
           <a 
             href="/rss.xml" 
-            class="w-[36px] h-[36px] bg-[#282828] rounded-full flex items-center justify-center hover:bg-[#E55A2B] transition-colors"
+            class="w-[36px] h-[36px] bg-[#fff] border text-[var(--color-secondary)] border-[#f1f1f1] rounded-full flex items-center justify-center hover:bg-[#f1f1f1] transition-colors"
             title="Subscribe to RSS feed"
           >
-            <Rss width={16} height={16} color="white" />
+            <Rss width={16} height={16} />
           </a>
         </div>
       </div>

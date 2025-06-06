@@ -4,6 +4,8 @@ import { Image } from "astro:assets";
 import ExploreMore from "../ExploreMore.astro";
 import CircleCheck from "./assets/circlecheck.png";
 import { CONTACT_WEBHOOK_URL,CAL_COM_BOOKING_LINK } from "../../consts";
+import Footer from "../Footer.astro";
+
 ---
 
 <div class="container mx-auto px-[16px]">
@@ -11,7 +13,7 @@ import { CONTACT_WEBHOOK_URL,CAL_COM_BOOKING_LINK } from "../../consts";
     class:list={[
       "text-[40px] font-medium text-center",
       "mx-auto",
-      "mt-[100px]",
+      "mt-[60px]",
     ]}
   >
     How can we Help?
@@ -30,7 +32,7 @@ import { CONTACT_WEBHOOK_URL,CAL_COM_BOOKING_LINK } from "../../consts";
   <div
     class:list={[
       "max-w-[1200px] mx-auto mt-[60px]",
-      "flex bg-[#F7F7F7] rounded-[12px] p-[64px]",
+      "flex bg-[rgba(0,0,0,0.01)] rounded-[12px] p-[64px]",
       "flex-col",
       "md:flex-row md:items-center md:justify-between",
     ]}
@@ -198,11 +200,12 @@ import { CONTACT_WEBHOOK_URL,CAL_COM_BOOKING_LINK } from "../../consts";
       </div>
     </div>
   </div>
-  <div class="mt-[80px] max-w-[1200px] mx-auto">
-    <ExploreMore />
+  <div class="mt-[80px] mb-[160px] max-w-[1200px] mx-auto">
+    <ExploreMore showBlog={false} />
   </div>
+  
 </div>
-
+<Footer />
 <script define:vars={{ CONTACT_WEBHOOK_URL }}>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contact-form");
