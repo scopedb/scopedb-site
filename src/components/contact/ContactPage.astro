@@ -226,7 +226,7 @@ import { CONTACT_WEBHOOK_URL,CAL_COM_BOOKING_LINK } from "../../consts";
       // Show loading state
       submitButton.disabled = true;
       submitButton.innerHTML =
-        '<span class="gap-[10px] text-[14px] text-[white] text-center">Sending...</span>';
+        '<span class="gap-[10px] text-[14px] text-[var(--color-primary)] text-center">Sending...</span>';
 
       try {
         const response = await fetch(CONTACT_WEBHOOK_URL, {
