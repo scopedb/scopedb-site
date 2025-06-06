@@ -14,6 +14,13 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        external: [
+          /^virtual:astro-expressive-code\//,
+        ],
+      },
+    },
   },
   markdown: {
     shikiConfig: {
