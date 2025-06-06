@@ -1,8 +1,9 @@
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, passthroughImageService } from "astro/config";
-import react from "@astrojs/react";
+import scopeql from "./shiki-scopeql-grammar.json";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,5 +14,10 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+  },
+  markdown: {
+    shikiConfig: {
+      langs: [scopeql],
+    },
   },
 });

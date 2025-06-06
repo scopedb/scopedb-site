@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ShikiHighlighter from "react-shiki";
+import scopeql from "../../../../shiki-scopeql-grammar.json";
 
 const categories = [{
     title: "Basic",
@@ -95,8 +96,9 @@ export default function ScopeQLVSSQL() {
                             // maybe introduce scopeql grammar here
                             // https://github.com/scopedb/scopedb-docs/blob/main/shiki-scopeql-grammar.json
                             // https://github.com/avgvstvs96/react-shiki?tab=readme-ov-file#preloading-custom-languages
-                            language="sql"
+                            language="scopeql"
                             showLanguage={false}
+                            customLanguages={[scopeql as any]}
                         >
                             {categories[activeTab].scopeql.trim()}
                         </ShikiHighlighter>
