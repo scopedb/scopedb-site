@@ -3,7 +3,7 @@ import { CalendarDays, ChevronDown } from "@lucide/astro";
 import { Image } from "astro:assets";
 import ExploreMore from "../ExploreMore.astro";
 import CircleCheck from "./assets/circlecheck.png";
-import { CONTACT_WEBHOOK_URL } from "../../consts";
+import { CONTACT_WEBHOOK_URL,CAL_COM_BOOKING_LINK } from "../../consts";
 ---
 
 <div class="container mx-auto px-[16px]">
@@ -80,6 +80,7 @@ import { CONTACT_WEBHOOK_URL } from "../../consts";
 
       <button
         class="mt-[32px] bg-[var(--color-brand)] py-[10px] px-[16px] rounded-[10px] cursor-pointer"
+        data-cal-link={CAL_COM_BOOKING_LINK}
       >
         <span class="flex items-center gap-[10px] text-[14px] text-[white]">
           <CalendarDays width={16} height={16} />
@@ -225,7 +226,7 @@ import { CONTACT_WEBHOOK_URL } from "../../consts";
       // Show loading state
       submitButton.disabled = true;
       submitButton.innerHTML =
-        '<span class="gap-[10px] text-[14px] text-[white] text-center">Sending...</span>';
+        '<span class="gap-[10px] text-[14px] text-[var(--color-primary)] text-center">Sending...</span>';
 
       try {
         const response = await fetch(CONTACT_WEBHOOK_URL, {

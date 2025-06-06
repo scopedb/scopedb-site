@@ -1,10 +1,33 @@
 ---
+import { getCollection } from "astro:content";
+import { ArrowUpRight,Mail,ChevronRight } from '@lucide/astro';
+import FormattedDate from "./FormattedDate.astro";
+import {
+  calculateReadingTime,
+  digest,
+} from "../utils/reading-time/reading-time";
+
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const titleOfFeaturedPosts = [
+  "Self-observability of ScopeDB",
+  "Why Not SQL: The Origin of ScopeQL",
+  "Algebraic Data Types in Database: Where Variant Data Can Help",
+];
+
+const featuredPosts = titleOfFeaturedPosts
+  .map((title) => posts.find((post) => post.data.title === title))
+  .filter((post): post is NonNullable<typeof post> => Boolean(post))
+  .slice(0, 3);
+
 interface Props {
   showXlCols?: boolean;
 }
 
 const { showXlCols = false } = Astro.props;
-import { ArrowUpRight,Mail,ChevronRight } from '@lucide/astro';
 
 ---
 
@@ -48,5 +71,53 @@ import { ArrowUpRight,Mail,ChevronRight } from '@lucide/astro';
         ScopeDB Docs <ChevronRight width={18} height={18} />
       </a>
     </div>
+  </div>
+  <div>
+    <section class="mt-[60px]">
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
+        {
+          featuredPosts.map((post) => {
+            const readingTime = calculateReadingTime(post.body || "");
+            return (
+              <li class="post-item">
+                <div class="bg-[#f9f9f9] rounded-[16px] p-[12px] w-full h-full">
+                  <a href={`/blog/${post.id}/`}>
+                    <img
+                      class="rounded-[12px] mb-[20px]"
+                      src={post.data.heroImage}
+                      alt=""
+                    />
+                    <div class="flex flex-col gap-[4px] my-[12px]">
+                      <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--color-secondary)]">
+                        <FormattedDate date={post.data.pubDate} />
+                        <span class="ml-[4px] text-[12px]">•</span>
+                        <span class="ml-[4px]">{readingTime}</span>
+                      </p>
+                      <div class="flex-1">
+                        <h4 class="text-[20px] font-medium px-[12px] leading-1.1">
+                          {post.data.title}
+                        </h4>
+                      </div>
+                      <p class="text-[14px] text-[var(--color-secondary)] px-[12px] line-clamp-2">
+                        {digest(post.data.description || post.body || "")}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+    
+      {
+        featuredPosts.length === 0 && (
+          <div class="text-center py-12">
+            <p class="text-gray-500 text-[14px]">No posts found for this category</p>
+          </div>
+        )
+      }
+    </section>
+    
   </div>
 </section> 

@@ -7,3 +7,6 @@ export const SITE_DESCRIPTION =
 
 // Contact form webhook URL from environment variable
 export const CONTACT_WEBHOOK_URL = import.meta.env.PUBLIC_CONTACT_WEBHOOK_URL || '';
+
+// cal.com booking link
+export const CAL_COM_BOOKING_LINK = import.meta.env.PUBLIC_CAL_COM_BOOKING_LINK || 'zili-chen-qnhnon/product-walkthrough';

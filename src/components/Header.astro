@@ -1,11 +1,11 @@
 ---
+import CalcomBookingButton from "./CalcomBookingButton.astro";
 import HeaderLink from "./HeaderLink.astro";
-import { SITE_TITLE } from "../consts";
-import Image from "astro:assets";
+import { CAL_COM_BOOKING_LINK } from "../consts";
 ---
 
 <header>
-  <nav class="container mx-auto px-2
+  <nav class="md:container mx-auto px-2
 	 flex justify-between items-center
 	 py-5">
     <div>
@@ -18,10 +18,10 @@ import Image from "astro:assets";
         />
       </a>
     </div>
-    <div class="flex gap-8 
+    <div class="hidden md:flex gap-8 
 	 text-[14px]">
       <!-- <HeaderLink href="/products">Products</HeaderLink> -->
-      <HeaderLink href="https://docs.scopedb.io/reference/"
+      <HeaderLink href="https://docs.scopedb.io/"
         >Reference</HeaderLink
       >
       <HeaderLink href="/blog">Blog</HeaderLink>
@@ -29,11 +29,14 @@ import Image from "astro:assets";
       <!-- <HeaderLink href="/changelog">Changelog</HeaderLink> -->
     </div>
     <div
-      class="px-[16px] py-[6px] rounded-[10px]"
+      class="rounded-[10px]"
       style="border: 1px solid var(--color-button-secondary-border);"
     >
-      <button class="text-[14px] font-medium"> Book a demo </button>
+      <button class="text-[14px] font-medium px-[16px] py-[6px] cursor-pointer" data-cal-link={CAL_COM_BOOKING_LINK}>
+        Book a demo
+      </button>
     </div>
   </nav>
+  <CalcomBookingButton />
 </header>
 <style></style>
