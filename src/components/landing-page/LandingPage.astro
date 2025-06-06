@@ -18,6 +18,7 @@ import imageRealTimeBehaviorAnalysis2 from "./assets/real-time-behavior-analysis
 import FAQItem from "./FAQItem.astro";
 import FeaturesRow from "./FeaturesRow.astro";
 import ScopeQLVSSQL from "./ScopeQLVSSQL";
+import { CAL_COM_BOOKING_LINK } from "../../consts";
 ---
 
 <div
@@ -32,7 +33,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
       alt="ScopeDB"
     />
 
-    <h2 class="text-[50px] text-[var(--color-brand)] leading-[1.2] font-medium z-10 relative">
+    <h2
+      class="text-[50px] text-[var(--color-brand)] leading-[1.2] font-medium z-10 relative"
+    >
       Born for the cloud.
     </h2>
     <blockquote class="text-[50px] leading-[1.2] font-medium">
@@ -47,8 +50,9 @@ import ScopeQLVSSQL from "./ScopeQLVSSQL";
     </p>
 
     <div class="mt-[68px] flex gap-[9px]">
-      <a href="/contact">
+      <a href="">
         <button
+          data-cal-link={CAL_COM_BOOKING_LINK}
           class="bg-black text-white px-[16px] py-[8px] rounded-[10px] border-[1px]"
         >
           Book a demo
