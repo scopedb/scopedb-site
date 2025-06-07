@@ -1,0 +1,33 @@
+---
+import CalenderButton from "./CalenderButton.astro";
+import HeaderLink from "./HeaderLink.astro";
+import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
+---
+
+<header>
+    <nav class="
+        containermx-auto px-2 py-5
+	    flex justify-between items-center
+	 ">
+        <div>
+            <a href="/">
+                <img src="/scopedb-logo.png" alt={SITE_TITLE} width={120} height={35}/>
+            </a>
+        </div>
+        <div class="hidden md:flex gap-8 text-[14px]">
+            <!-- <HeaderLink href="/products">Products</HeaderLink> -->
+            <HeaderLink href="https://docs.scopedb.io/">Reference</HeaderLink>
+            <HeaderLink href="/blog">Blog</HeaderLink>
+            <HeaderLink href="/contact">Contact</HeaderLink>
+            <!-- <HeaderLink href="/changelog">Changelog</HeaderLink> -->
+        </div>
+        <div class="rounded-[10px]"
+             style="border: 1px solid var(--color-button-secondary-border);">
+            <button class="text-[14px] font-medium px-[16px] py-[8px] cursor-pointer"
+                    data-cal-link={BOOKING_CALENDAR_URL}>
+                Book a demo
+            </button>
+        </div>
+    </nav>
+    <CalenderButton/>
+</header>
