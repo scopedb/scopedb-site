@@ -102,6 +102,7 @@ import Footer from "../Footer.astro";
             id="name"
             name="name"
             placeholder="Kevin"
+            required
           />
         </div>
         <div class="flex flex-col gap-[12px]">
@@ -114,6 +115,7 @@ import Footer from "../Footer.astro";
             id="email"
             name="email"
             placeholder="kevin@gmail.com"
+            required
           />
         </div>
         <!-- company size -->
@@ -128,6 +130,7 @@ import Footer from "../Footer.astro";
               id="company-size"
               name="company-size"
               style="appearance: none"
+              required
             >
               <option value="1-10">1-10</option>
               <option value="11-50">11-50</option>
@@ -154,7 +157,8 @@ import Footer from "../Footer.astro";
             id="message"
             name="message"
             placeholder="I'm interested in ScopeDB..."
-            rows={4}></textarea>
+            rows={4}
+            required></textarea>
         </div>
         <!-- button submit -->
         <button
@@ -214,7 +218,7 @@ import Footer from "../Footer.astro";
 
     if (!form || !submitButton || !successState) return;
 
-    submitButton.addEventListener("click", async function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       // Get form data
