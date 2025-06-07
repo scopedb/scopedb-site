@@ -23,6 +23,79 @@ img {
   pointer-events: none;
 }
 
+.astro-code pre {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 0px;
+  }
+
+.tablist-wrapper {
+    padding: 0;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    width: fit-content;
+    padding-right: 4px;
+
+}
+
+.tablist-wrapper ul[role="tablist"] {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    list-style: none;
+    gap: 0;
+    background: transparent;
+}
+
+.tablist-wrapper .tab {
+    margin: 4px 0px 4px 0px;
+    border: none;
+    background: none;
+}
+
+.tablist-wrapper .tab a[role="tab"] {
+    display: block;
+    padding: 6px 14px;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.tablist-wrapper .tab li[role="presentation"] {
+    padding: 0 !important;
+}
+
+.tablist-wrapper .tab a[role="tab"]:focus {
+    outline: none;
+}
+
+
+.tablist-wrapper .tab a[role="tab"]:hover {
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.08);
+
+}
+
+.tablist-wrapper .tab a[role="tab"][aria-selected="true"] {
+    background-color: rgb(255, 255, 255);
+    font-weight: 600;
+    padding: 6px 14px;
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.06);
+}
+/* Starlight tabs container */
+starlight-tabs {
+    display: block;
+    margin: 1.5rem 0;
+}
+  
 .container {
       width: 100%;
       max-width: 100%;

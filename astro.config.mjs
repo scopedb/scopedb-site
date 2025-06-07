@@ -25,6 +25,7 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       langs: [scopeql],
+      theme: "github-light",
     },
   },
 });
