@@ -28,6 +28,7 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@shikijs/types": "^3.6.0",
     "@tailwindcss/typography": "^0.5.16"
   }
 }

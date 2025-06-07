@@ -18,7 +18,7 @@ import imageRealTimeBehaviorAnalysis2 from "./assets/real-time-behavior-analysis
 import FAQItem from "./FAQItem.astro";
 import FeaturesRow from "./FeaturesRow.astro";
 import ScopeQLVSSQL from "./ScopeQLVSSQL";
-import { CAL_COM_BOOKING_LINK } from "../../consts";
+import { BOOKING_CALENDAR_URL } from "../../consts";
 ---
 
 <div
@@ -52,7 +52,7 @@ import { CAL_COM_BOOKING_LINK } from "../../consts";
     <div class="mt-[68px] flex gap-[9px]">
       <a href="">
         <button
-          data-cal-link={CAL_COM_BOOKING_LINK}
+          data-cal-link={BOOKING_CALENDAR_URL}
           class="bg-black text-white px-[16px] py-[8px] rounded-[10px] border-[1px]"
         >
           Book a demo
@@ -68,12 +68,12 @@ import { CAL_COM_BOOKING_LINK } from "../../consts";
     </div>
   </section>
 
-  <section
-    class="flex items-center justify-center text-[16px] text-[var(--color-secondary)] font-normal text-center"
-  >
-    <h2>Providing more flexible cloud data services for startups</h2>
-    <div class="grid grid-cols-4 gap-4"></div>
-  </section>
+  <!--<section-->
+  <!--  class="flex items-center justify-center text-[16px] text-[var(&#45;&#45;color-secondary)] font-normal text-center"-->
+  <!--&gt;-->
+  <!--  <h2>Providing more flexible cloud data services for startups</h2>-->
+  <!--  <div class="grid grid-cols-4 gap-4"></div>-->
+  <!--</section>-->
 
   <section class="relative mt-[140px] px-4">
     <div
@@ -374,24 +374,6 @@ import { CAL_COM_BOOKING_LINK } from "../../consts";
                 height={634}
               />
             </div>
-          </div>
-        </div>
-      </FeaturesRow>
-      <FeaturesRow>
-        <div class="p-[37px]">
-          <h3 class="text-[32px] font-medium">
-            Monetization & Revenue Reports
-          </h3>
-          <p
-            class="text-[16px] font-normal text-[var(--color-secondary)] xl:max-w-[666px] mt-[12px]"
-          >
-            Process and analyze customer purchases, advertising performance, and
-            revenue streams with minimal latency. Make data-driven decisions to
-            optimize pricing strategies and maximize revenue while maintaining
-            complete visibility into your financial metrics.
-          </p>
-          <div class="flex items-center justify-center my-[60px]">
-            <Image src={imageMonetizationRevenueReports} alt="" />
           </div>
         </div>
       </FeaturesRow>

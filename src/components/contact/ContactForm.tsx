@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { CONTACT_API_URL } from '../../consts';
+import { SUBMIT_CONTACT_API_URL } from '../../consts';
 
 interface FormData {
   name: string;
@@ -42,7 +42,7 @@ const ContactForm: React.FC = () => {
         message: formData.message
       };
 
-      const response = await fetch(CONTACT_API_URL, {
+      const response = await fetch(SUBMIT_CONTACT_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

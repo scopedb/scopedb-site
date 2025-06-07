@@ -1,21 +1,21 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import LandingPageFooter from "../components/LandingPageFooter.astro";
+import HomepageFooter from "../components/HomepageFooter.astro";
 import LandingPage from "../components/landing-page/LandingPage.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import {SITE_DESCRIPTION, SITE_TITLE} from "../consts";
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main class="overflow-x-hidden">
-      <LandingPage />
-    </main>
-    <LandingPageFooter />
-  </body>
+<head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION}/>
+</head>
+<body>
+<Header/>
+<main class="overflow-x-hidden">
+    <LandingPage/>
+</main>
+<HomepageFooter/>
+</body>
 </html>

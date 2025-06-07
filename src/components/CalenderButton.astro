@@ -1,12 +1,14 @@
 ---
+import { BOOKING_CALENDAR_URL } from "../consts";
+
 export interface Props {
   calLink?: string;
   theme?: 'light' | 'dark';
   buttonText?: string;
 }
 
-const { 
-  calLink = "zili-chen-qnhnon/product-walkthrough", 
+const {
+  calLink = BOOKING_CALENDAR_URL,
   theme = "light",
   buttonText = "Book a demo"
 } = Astro.props;
@@ -45,7 +47,7 @@ const {
         p(cal, ar);
       };
   })(window, "https://app.cal.com/embed/embed.js", "init");
-  
+
   Cal("init");
   Cal("floatingButton", {
     calLink: calLink,

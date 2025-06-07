@@ -3,7 +3,7 @@ import { CalendarDays } from "@lucide/astro";
 import { Image } from "astro:assets";
 import ExploreMore from "../ExploreMore.astro";
 import CircleCheck from "./assets/circlecheck.png";
-import { CAL_COM_BOOKING_LINK } from "../../consts";
+import { BOOKING_CALENDAR_URL } from "../../consts";
 import Footer from "../Footer.astro";
 import ContactForm from "./ContactForm";
 
@@ -83,7 +83,7 @@ import ContactForm from "./ContactForm";
 
       <button
         class="mt-[32px] bg-[var(--color-brand)] py-[10px] px-[16px] rounded-[10px] cursor-pointer"
-        data-cal-link={CAL_COM_BOOKING_LINK}
+        data-cal-link={BOOKING_CALENDAR_URL}
       >
         <span class="flex items-center gap-[10px] text-[14px] text-[white]">
           <CalendarDays width={16} height={16} />
