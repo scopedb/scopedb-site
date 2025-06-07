@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { CONTACT_WEBHOOK_URL } from '../../consts';
+import { CONTACT_API_URL } from '../../consts';
 
 interface FormData {
   name: string;
@@ -35,12 +35,19 @@ const ContactForm: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(CONTACT_WEBHOOK_URL, {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        companySize: formData['company-size'],
+        message: formData.message
+      };
+
+      const response = await fetch(CONTACT_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
