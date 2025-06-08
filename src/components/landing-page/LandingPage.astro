@@ -5,9 +5,10 @@ import imageAdaptiveIndexes from "./assets/adaptive-indexes.png";
 import bg1 from "./assets/bg-1.png";
 import imageCloudApplicationObservability from "./assets/cloud-application-observability.png";
 import imageDedicatedQueryGroupResources from "./assets/dedicated-query-group-resources.png";
-import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.svg";
+import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.png";
 import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.svg";
 import imageFlexibleDataSchema from "./assets/flexible-data-schema.png";
+import imageFlexibleDataSchemaRightBg from "./assets/flexible-data-schema-right-bg.png";
 import imageScopeQLCheckBox from "./assets/scopeql-checkbox.svg";
 import imageHero from "./assets/hero.png";
 import imageMonetizationRevenueReports from "./assets/monetization-revenue-reports.png";
@@ -15,6 +16,7 @@ import imageMultipleAnalysisScenarios from "./assets/multiple-analysis-scenarios
 import imageOptimalStorageFormat from "./assets/optimal-storage-format.png";
 import imageRealTimeBehaviorAnalysis1 from "./assets/real-time-behavior-analysis-1.png";
 import imageRealTimeBehaviorAnalysis2 from "./assets/real-time-behavior-analysis-2.png";
+import imageWhyScopeDBBg from "./assets/why-scopedb-bg.png";
 import FAQItem from "./FAQItem.astro";
 import FeaturesRow from "./FeaturesRow.astro";
 import ScopeQLVSSQL from "./ScopeQLVSSQL";
@@ -121,6 +123,13 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
         </p>
       </div>
     </div>
+    <Image
+      src={imageWhyScopeDBBg}
+      alt=""
+      class="absolute bottom-[-212px] left-[300px] transform -translate-x-1/2 z-0"
+      width={139}
+      height={213}
+    />
   </section>
 
   <section class="mt-[210px]">
@@ -172,7 +181,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
           <div
-            class="px-[50px] pt-[50px] pb-[50px] lg:w-1/2 min-h-[300px] flex flex-col justify-center"
+            class="px-[50px] pt-[50px] pb-[50px] lg:w-1/2 min-h-[280px] flex flex-col justify-center"
           >
             <h3 class="text-[32px] font-medium">Any-scale Analysis</h3>
             <p
@@ -190,18 +199,18 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
             <Image
               src={imageFeatureAnyScaleAnalysis}
               alt=""
-              width={560}
-              height={192}
+              width={680}
+              height={200}
               format="png"
               quality="100"
-              class="mt-[100px]"
+              class="mb-[62px] absolute right-[100px] "
             />
           </div>
         </div>
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="p-[50px] pb-[50px] lg:w-1/2 min-h-[680px]">
+          <div class="p-[50px] pb-[50px] lg:w-1/2 min-h-[580px] relative">
             <h3 class="text-[24px] font-normal">Optimal Storage Format</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
@@ -210,12 +219,12 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
               vectorized query engine. Implement dedicated compression
               algorithms depending on data types.
             </p>
-            <div class="mt-[100px]">
+            <div class="mt-[-100px] ">
               <Image
                 class="mx-auto"
                 src={imageOptimalStorageFormat}
                 alt=""
-                width={512}
+                width={420}
                 height={202}
                 format="png"
                 quality="100"
@@ -223,7 +232,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
             </div>
           </div>
           <div
-            class="flex-1 lg:border-l border-[#f0f0f0] p-[50px] lg:w-1/2 min-h-[680px]"
+            class="flex-1 lg:border-l border-[#f0f0f0] p-[50px] lg:w-1/2 min-h-[580px] "
           >
             <h3 class="text-[24px] font-normal">Multiple Analysis Scenarios</h3>
             <p
@@ -232,13 +241,13 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
               Get insights from the data via searching, aggregations,
               time-series analytics, etc.
             </p>
-            <div class="pt-[100px]">
+            <div class="pt-[100px] ">
               <Image
                 class="mx-auto"
                 src={imageMultipleAnalysisScenarios}
                 alt=""
-                width={259}
-                height={274}
+                width={500}
+                height={367}
               />
             </div>
           </div>
@@ -246,7 +255,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="p-[50px] lg:w-1/2 flex flex-col min-h-[600px]">
+          <div class="p-[50px] lg:w-1/2 flex flex-col min-h-[580px]">
             <h3 class="text-[24px] font-normal">Adaptive Indexes</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px] max-w-[440px]"
@@ -254,17 +263,17 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
               Accelerate queries with smart indexes, search indexes, variant
               indexes, and more.
             </p>
-            <div class="flex-1 flex items-center justify-center">
+            <div class="flex-1 flex items-center justify-center ">
               <Image
                 src={imageAdaptiveIndexes}
                 alt=""
-                width={557}
-                height={221}
+                width={500}
+                height={500}
               />
             </div>
           </div>
           <div
-            class="flex-1 lg:border-l border-[#f0f0f0] pt-[50px] p-[50px] lg:w-1/2 min-h-[680px]"
+            class="flex-1 lg:border-l border-[#f0f0f0] pt-[50px] p-[50px] lg:w-1/2 min-h-[580px]"
           >
             <h3 class="text-[24px] font-normal">
               Dedicated Query Group Resources
@@ -280,8 +289,8 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
               <Image
                 src={imageDedicatedQueryGroupResources}
                 alt=""
-                width={468}
-                height={314}
+                width={388}
+                height={213}
               />
             </div>
           </div>
@@ -289,7 +298,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="pl-[50px] pr-[30px] pt-[50px] lg:w-1/2 flex flex-col">
+          <div class="pl-[50px] pr-[30px] lg:w-1/2 flex flex-col justify-center min-h-[580px]">
             <h3 class="text-[32px] font-medium">Flexible Data Schema</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] max-w-[504px] mt-[12px]"
@@ -301,13 +310,20 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
             </p>
           </div>
           <div
-            class="flex-1 flex items-center justify-center pt-[50px] pb-[50px] lg:w-1/2"
+            class="flex-1 flex items-center justify-center pt-[50px] pb-[50px] lg:w-1/2 relative"
           >
             <Image
               src={imageFlexibleDataSchema}
               alt=""
               width={427}
               height={502}
+            />
+            <Image
+              src={imageFlexibleDataSchemaRightBg}
+              alt=""
+              class="absolute bottom-[-162px] right-[200px] z-0"
+              width={100}
+              height={200}
             />
           </div>
         </div>
@@ -319,7 +335,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </div>
 
       <blockquote
-        class="text-[40px] text-[var(--color-primary)] font-medium max-w-[800px] text-center mx-auto mt-[300px] mb-[143px]"
+        class="text-[40px] text-[var(--color-primary)] font-medium max-w-[800px] text-center mx-auto mt-[200px] mb-[143px]"
       >
         Maximize the effectiveness of ScopeDB in various scenarios.
       </blockquote>
@@ -384,8 +400,8 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </div>
     </div>
 
-    <section class="mt-[108px]">
-      <h2 class="text-[40px] font-medium mx-auto text-center">
+    <section class="mt-[108px] wx-[10px] md:wx-[45px]">
+      <h2 class="text-[40px] font-medium  mx-auto text-center">
         ScopeQL vs SQL
       </h2>
       <div class="flex flex-col xl:flex-row mt-[114px] justify-between items-start xl:gap-[40px]">
