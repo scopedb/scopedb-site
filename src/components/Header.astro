@@ -6,14 +6,16 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
 
 <header>
     <nav class="
-        container mx-auto px-[12px] md:px-[24px] xl-[32px]  py-5
-	    flex justify-between items-center
+         max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]  py-5
+	    flex justify-between items-center relative
 	 ">
         <div>
             <a href="/">
                 <img src="/scopedb-logo.png" alt={SITE_TITLE} width={120} height={35}/>
             </a>
         </div>
+        
+        <!-- Desktop Navigation -->
         <div class="hidden md:flex gap-8 text-[14px]">
             <!-- <HeaderLink href="/products">Products</HeaderLink> -->
             <HeaderLink href="https://docs.scopedb.io/">Reference</HeaderLink>
@@ -21,7 +23,16 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
             <HeaderLink href="/contact">Contact</HeaderLink>
             <!-- <HeaderLink href="/changelog">Changelog</HeaderLink> -->
         </div>
-        <div class="rounded-[10px]"
+        
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden flex flex-col gap-1 w-6 h-6 justify-center items-end" id="mobile-menu-button">
+            <span class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out" id="line1"></span>
+            <span class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out" id="line2"></span>
+            <span class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out" id="line3"></span>
+        </button>
+        
+        <!-- Desktop Book Demo Button -->
+        <div class="hidden md:block rounded-[10px]"
              style="border: 1px solid var(--color-button-secondary-border);">
             <button class="text-[14px] font-medium px-[16px] py-[8px] cursor-pointer"
                     data-cal-link={BOOKING_CALENDAR_URL}>
@@ -29,5 +40,86 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
             </button>
         </div>
     </nav>
+    
+    <!-- Mobile Navigation Menu -->
+    <div class="md:hidden fixed top-0 left-0 w-full h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+        <div class="max-w-[1440px] mx-auto px-[12px] py-5">
+            <!-- Mobile Header -->
+            <div class="flex justify-between items-center mb-8">
+                <a href="/">
+                    <img src="/scopedb-logo.png" alt={SITE_TITLE} width={120} height={35}/>
+                </a>
+                <button class="flex flex-col gap-1 w-6 h-6 justify-center items-center" id="mobile-menu-close">
+                    <span class="w-[18px] h-[2px] bg-[#000]/80 transform rounded-[4px] rotate-45 translate-y-1.5"></span>
+                    <span class="w-[18px] h-[2px] bg-[#000]/80  rounded-[4px] opacity-0"></span>
+                    <span class="w-[18px] h-[2px] bg-[#000]/80  rounded-[4px] transform -rotate-45 -translate-y-1.5"></span>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation Links -->
+            <div class="flex flex-col gap-[24px] text-[14px]">
+                <HeaderLink href="https://docs.scopedb.io/">Reference</HeaderLink>
+                <HeaderLink href="/blog">Blog</HeaderLink>
+                <HeaderLink href="/contact">Contact</HeaderLink>
+                
+                <!-- Mobile Book Demo Button -->
+                <div class="mt-4 rounded-[10px] w-full"
+                     style="border: 1px solid var(--color-button-secondary-border);">
+                    <button class="text-[14px] font-medium px-[20px] py-[10px] cursor-pointer w-full"
+                            data-cal-link={BOOKING_CALENDAR_URL}>
+                        Book a demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="md:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out" id="mobile-menu-overlay"></div>
+    
     <CalenderButton/>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            const line3 = document.getElementById('line3');
+            
+            function openMenu() {
+                mobileMenu.classList.remove('-translate-x-full');
+                mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+                
+                // Animate hamburger to X
+                line1.style.transform = 'rotate(45deg) translate(6px, 6px)';
+                line2.style.opacity = '0';
+                line3.style.transform = 'rotate(-45deg) translate(6px, -6px)';
+            }
+            
+            function closeMenu() {
+                mobileMenu.classList.add('-translate-x-full');
+                mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+                
+                // Animate X back to hamburger
+                line1.style.transform = '';
+                line2.style.opacity = '';
+                line3.style.transform = '';
+            }
+            
+            mobileMenuButton.addEventListener('click', openMenu);
+            mobileMenuClose.addEventListener('click', closeMenu);
+            mobileMenuOverlay.addEventListener('click', closeMenu);
+            
+            // Close menu when clicking on navigation links
+            const mobileNavLinks = mobileMenu.querySelectorAll('a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        });
+    </script>
 </header>
