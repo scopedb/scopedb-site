@@ -1,26 +1,23 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+@import "@microflash/remark-callout-directives/theme/github";
 
 @import 'tailwindcss';
+
 @plugin '@tailwindcss/typography';
 
 :root {
-  --color-primary: hsla(0, 0%, 0%, 1);
-  --color-secondary: hsla(0, 0%, 0%, 0.6);
-  --color-tertiary: hsla(0, 0%, 0%, 0.3);
-  --color-brand: hsla(209, 93%, 45%, 1);
-  --color-button-secondary-border: rgba(0, 0, 0, 0.1);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+    --color-primary: hsla(0, 0%, 0%, 1);
+    --color-secondary: hsla(0, 0%, 0%, 0.6);
+    --color-tertiary: hsla(0, 0%, 0%, 0.3);
+    --color-brand: hsla(209, 93%, 45%, 1);
+    --color-button-secondary-border: rgba(0, 0, 0, 0.1);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 img {
-  @apply select-none;
-  pointer-events: none;
+    @apply select-none;
+    pointer-events: none;
 }
 
 .astro-code pre {
@@ -28,16 +25,14 @@ img {
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     border-radius: 12px;
     padding: 16px;
-    margin: 0px;
-  }
+    margin: 0;
+}
 
 .tablist-wrapper {
-    padding: 0;
     background: rgba(0, 0, 0, 0.02);
     border-radius: 12px;
     width: fit-content;
-    padding-right: 4px;
-
+    padding: 0 4px 0 0;
 }
 
 .tablist-wrapper ul[role="tablist"] {
@@ -50,7 +45,7 @@ img {
 }
 
 .tablist-wrapper .tab {
-    margin: 4px 0px 4px 0px;
+    margin: 4px 0 4px 0;
     border: none;
     background: none;
 }
@@ -76,11 +71,9 @@ img {
     outline: none;
 }
 
-
 .tablist-wrapper .tab a[role="tab"]:hover {
     color: #000000;
     background-color: rgba(0, 0, 0, 0.08);
-
 }
 
 .tablist-wrapper .tab a[role="tab"][aria-selected="true"] {
@@ -88,49 +81,43 @@ img {
     font-weight: 600;
     padding: 6px 14px;
     color: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.06);
 }
-
 
 .defaultStyles pre {
-  overflow: auto;
-  border-radius: 0.5rem;
-  padding-left: 0rem!important;
-  padding-right: 0rem!important;
-  padding-top: 0rem!important;
-  padding-bottom: 1.25rem;
-  font-weight: 300;
-  font-size: 13px;
+    overflow: auto;
+    border-radius: 0.5rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 1.25rem;
+    font-weight: 300;
+    font-size: 13px;
 }
 
-/* Starlight tabs container */
-starlight-tabs {
-    display: block;
-    margin: 1.5rem 0;
-}
-  
 .container {
-      width: 100%;
-      max-width: 100%;
-      padding-inline:calc(var(--spacing)*4);margin-inline: auto
-  }
+    width: 100%;
+    max-width: 100%;
+    padding-inline: calc(var(--spacing) * 4);
+    margin-inline: auto
+}
 
-  @media (min-width: 375px) {
-      .container {
-          padding-inline:calc(var(--spacing)*6);
-          max-width: 448px
-      }
-  }
+@media (min-width: 375px) {
+    .container {
+        padding-inline: calc(var(--spacing) * 6);
+        max-width: 448px
+    }
+}
 
-  @media (min-width: 768px) {
-      .container {
-          max-width:624px
-      }
-  }
+@media (min-width: 768px) {
+    .container {
+        max-width: 624px
+    }
+}
 
-  @media (min-width: 992px) {
-      .container {
-          max-width:1440px
-      }
-  }
+@media (min-width: 992px) {
+    .container {
+        max-width: 1440px
+    }
+}
 
