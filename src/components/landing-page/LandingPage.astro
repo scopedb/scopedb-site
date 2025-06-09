@@ -77,24 +77,24 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
   <!--  <div class="grid grid-cols-4 gap-4"></div>-->
   <!--</section>-->
 
-  <section class="relative mt-[140px] px-4">
+  <section class="relative mt-[140px] px-0 md:px-4">
     <div
       class="flex items-center justify-center absolute top-[-78px] left-0 w-full"
     >
       <Image class="" src={bg1} alt="" width={456} height={76} />
     </div>
     <div
-      class="max-w-[1200px] mx-auto flex flex-col items-center pt-[80px] pb-[40px] md:pb-[160px] bg-[#F7F7F7] rounded-[16px]"
+      class="max-w-[1200px] p-[12px] mx-auto flex flex-col items-center pt-[80px] pb-[40px] md:pb-[160px] bg-[#F7F7F7] rounded-[16px]"
     >
       <h2 class="text-[18px] font-normal">WHY SCOPEDB?</h2>
       <blockquote
-        class="max-w-[580px] mt-[40px] text-[32px] md:text-[40px] font-medium leading-[normal] text-center"
+        class=" max-w-[580px] mt-[40px] text-[32px] md:text-[40px] font-medium leading-[normal] text-center"
       >
         "Unleash the Full Power of Cloud Elasticity and Workload Isolation"
       </blockquote>
       <div class="max-w-[600px] mt-[70px] px-[6px] md:px-0">
         <p
-          class="text-[18px] font-normal leading-[1.4] text-[var(--color-secondary)]"
+          class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--color-secondary)]"
         >
           The stateless node design fully leverages cloud elasticity. It enables
           effortless scaling without data reconciliation or replication.
@@ -104,7 +104,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
         </p>
 
         <p
-          class="text-[18px] font-normal leading-[1.4] text-[var(--color-secondary)] mt-[50px]"
+          class="text-[16px] md:text-[18px]  font-normal leading-[1.4] text-[var(--color-secondary)] mt-[50px]"
         >
           Workload isolation is built on top of shared storage. Both read and
           write groups access object storage directly without coordinating with
@@ -114,7 +114,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
           that they can have their own dedicated resources.
         </p>
 
-        <p class="text-[16px] text-[var(--color-tertiary)] mt-[80px]">
+        <p class="text-[16px] md:text-[18px]  text-[var(--color-tertiary)] mt-[80px]">
           Read <a
             class="underline text-[var(--color-primary)]"
             href="https://www.scopedb.io/blog/manage-observability-data-in-petabytes"
@@ -134,7 +134,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
 
   <section class="mt-[210px]">
     <div class="flex items-end gap-[16px] pl-[16px] md:pl-[55px] mb-[40px]">
-      <h2 class="text-[40px] font-medium">Key Features</h2>
+      <h2 class="text-[32px] md:text-[40px] font-medium">Key Features</h2>
       <div class="flex gap-[2px] items-end mb-[14px]">
         <div class="w-[16px] h-[6px] bg-[#4D4A4A] rounded-[2px] animate-pulse">
         </div>
@@ -155,9 +155,9 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
           <div
-            class="p-[50px] lg:w-1/2 flex flex-col justify-center min-h-[500px]"
+            class="px-[24px] md:p-[50px] lg:w-1/2 flex flex-col justify-center min-h-[300px] md:min-h-[500px]"
           >
-            <h3 class="text-[32px] font-medium">Real-time Ingestion</h3>
+            <h3 class="text-[24px] md:text-[32px] font-medium">Real-time Ingestion</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
             >
@@ -181,9 +181,9 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
           <div
-            class="px-[50px] pt-[50px] pb-[50px] lg:w-1/2 min-h-[280px] flex flex-col justify-center"
+            class="p-[24px] md:p-[50px]  lg:w-1/2 min-h-[280px] flex flex-col justify-center"
           >
-            <h3 class="text-[32px] font-medium">Any-scale Analysis</h3>
+            <h3 class="text-[24px] md:text-[32px] font-medium">Any-scale Analysis</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
             >
@@ -194,7 +194,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
             </p>
           </div>
           <div
-            class="flex-1 flex bg-[#FCFCFC] items-center justify-center lg:border-l border-[#f0f0f0] pt-[28px] pb-[70px] lg:w-1/2"
+            class="flex-1 min-h-[230px] flex bg-[#FCFCFC] items-center justify-center lg:border-l border-[#f0f0f0] pt-[28px] pb-[70px] lg:w-1/2"
           >
             <Image
               src={imageFeatureAnyScaleAnalysis}
@@ -203,15 +203,15 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
               height={200}
               format="png"
               quality="100"
-              class="mb-[62px] absolute right-[100px] "
+              class="mb-[2px] md:mb-[62px] absolute right-[100px] "
             />
           </div>
         </div>
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="p-[50px] pb-[50px] lg:w-1/2 min-h-[580px] relative">
-            <h3 class="text-[24px] font-normal">Optimal Storage Format</h3>
+          <div class="p-[24px] md:p-[50px] pb-[50px] lg:w-1/2 min-h-[300px] md:min-h-[580px] relative">
+            <h3 class="text-[20px] md:text-[24px] font-normal">Optimal Storage Format</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px]"
             >
@@ -232,9 +232,9 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
             </div>
           </div>
           <div
-            class="flex-1 lg:border-l border-[#f0f0f0] p-[50px] lg:w-1/2 min-h-[580px] "
+            class="flex-1 lg:border-l border-[#f0f0f0] p-[24px] md:p-[50px] lg:w-1/2  min-h-[300px] md:min-h-[580px] "
           >
-            <h3 class="text-[24px] font-normal">Multiple Analysis Scenarios</h3>
+            <h3 class="text-[20px] md:text-[24px] font-normal">Multiple Analysis Scenarios</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] max-w-[459px] mt-[12px]"
             >
@@ -255,8 +255,8 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="p-[50px] lg:w-1/2 flex flex-col min-h-[580px]">
-            <h3 class="text-[24px] font-normal">Adaptive Indexes</h3>
+          <div class="p-[24px] md:p-[50px] lg:w-1/2 flex flex-col min-h-[300px] md:min-h-[580px]">
+            <h3 class="text-[20px] md:text-[24px] font-normal">Adaptive Indexes</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] mt-[12px] max-w-[440px]"
             >
@@ -273,9 +273,9 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
             </div>
           </div>
           <div
-            class="flex-1 lg:border-l border-[#f0f0f0] pt-[50px] p-[50px] lg:w-1/2 min-h-[580px]"
+            class="flex-1 lg:border-l border-[#f0f0f0] p-[24px] md:p-[50px] lg:w-1/2 min-h-[300px] md:min-h-[580px]"
           >
-            <h3 class="text-[24px] font-normal">
+            <h3 class="text-[20px] md:text-[24px] font-normal">
               Dedicated Query Group Resources
             </h3>
             <p
@@ -298,8 +298,8 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="pl-[50px] pr-[30px] lg:w-1/2 flex flex-col justify-center min-h-[580px]">
-            <h3 class="text-[32px] font-medium">Flexible Data Schema</h3>
+          <div class="pl-[24px] md:pl-[50px] pr-[30px] lg:w-1/2 flex flex-col justify-center min-h-[300px] md:min-h-[580px]">
+            <h3 class="text-[24px] md:text-[32px] font-medium">Flexible Data Schema</h3>
             <p
               class="text-[16px] font-normal text-[var(--color-secondary)] max-w-[504px] mt-[12px]"
             >
@@ -335,9 +335,9 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </div>
 
       <blockquote
-        class="text-[40px] text-[var(--color-primary)] font-medium max-w-[800px] text-center mx-auto mt-[200px] mb-[143px]"
+        class="text-[32px] md:text-[40px] text-[var(--color-primary)] font-medium max-w-[800px] text-center mx-auto mt-[200px] mb-[143px]"
       >
-        Maximize the effectiveness of ScopeDB in various scenarios.
+        Maximize the effectiveness of ScopeDB in various scenarios
       </blockquote>
       <div class="key-feature-grid-row min-h-[32px] flex">
         <div class="w-[10px] md:w-[45px]"></div>
@@ -345,8 +345,8 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
         <div class="w-[10px] md:w-[45px]"></div>
       </div>
       <FeaturesRow>
-        <div class="p-[37px]">
-          <h3 class="text-[32px] font-medium">
+        <div class="p-[24px] md:p-[36px]">
+          <h3 class="text-[24px] md:text-[32px] font-medium">
             Cloud Application Observability
           </h3>
           <p
@@ -362,8 +362,8 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
         </div>
       </FeaturesRow>
       <FeaturesRow>
-        <div class="p-[37px]">
-          <h3 class="text-[32px] font-medium">Real-time Behavior Analysis</h3>
+        <div class="p-[24px] md:p-[36px]">
+          <h3 class="text-[24px] md:text-[32px] font-medium">Real-time Behavior Analysis</h3>
           <p
             class="text-[16px] font-normal text-[var(--color-secondary)] xl:max-w-[563px] mt-[12px]"
           >
@@ -401,13 +401,13 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
     </div>
 
     <section class="mt-[108px] wx-[10px] md:wx-[45px]">
-      <h2 class="text-[40px] font-medium  mx-auto text-center">
+      <h2 class="text-[32px] md:text-[40px] font-medium  mx-auto text-center">
         ScopeQL vs SQL
       </h2>
       <div class="flex flex-col xl:flex-row mt-[114px] justify-between items-start xl:gap-[40px]">
         <div class="flex-1 xl:max-w-[560px] p-4">
           <p
-            class="text-[24px] font-medium text-[var(--color-primary)] xl:max-w-[560px] leading-[1.4] pb-[24px]"
+            class="text-[20px] md:text-[24px] font-medium text-[var(--color-primary)] xl:max-w-[560px] leading-[1.4] pb-[24px]"
           >
             ScopeQL isn't SQL 2.0.<br /> We rebuilt from relational algebra foundations
             with three radical simplifications:
@@ -468,14 +468,14 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
             </li>
           </ul>
         </div>
-        <div class="flex-shrink-0 flex items-start justify-center">
+        <div class="flex-shrink-0 flex items-start justify-center w-full xl:w-auto">
           <ScopeQLVSSQL client:load />
         </div>
       </div>
     </section>
 
     <section class="mt-[124px]">
-      <h2 class="text-[40px] font-medium mx-auto text-center">
+      <h2 class="text-[32px] md:text-[40px] font-medium mx-auto text-center">
         Frequently asked questions
       </h2>
 
@@ -491,8 +491,8 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
       </ul>
     </section>
 
-    <h2 class="mt-[360px] text-[32px] font-medium">
-      Explore More About <br /><span class="text-[40px]">ScopeDB</span>
+    <h2 class="mt-[360px] text-[24px] md:text-[32px] font-medium">
+      Explore More About <br /><span class="text-[32px] md:text-[40px]">ScopeDB</span>
     </h2>
 
     <ExploreMore showXlCols={true} />
