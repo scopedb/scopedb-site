@@ -4,6 +4,8 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import remarkDirective from "remark-directive";
 import remarkCalloutDirectives from '@microflash/remark-callout-directives';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { defineConfig, passthroughImageService } from "astro/config";
 import scopeql from "./shiki-scopeql-grammar.json";
 
@@ -24,7 +26,17 @@ export default defineConfig({
           title: "Info"
         }
       }
-    }]]
+    }]],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, {
+        behavior: 'wrap',
+        properties: {
+          className: ['heading-anchor'],
+          ariaLabel: 'Link to section'
+        }
+      }]
+    ]
   }), sitemap(), react()],
   image: {
     service: passthroughImageService(),
@@ -54,6 +66,16 @@ export default defineConfig({
         }
       }
     }]],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, {
+        behavior: 'wrap',
+        properties: {
+          className: ['heading-anchor'],
+          ariaLabel: 'Link to section'
+        }
+      }]
+    ],
     shikiConfig: {
       langs: [scopeql],
       theme: "github-light",

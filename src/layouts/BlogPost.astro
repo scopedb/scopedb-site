@@ -46,7 +46,7 @@ const {title, description, pubDate, updatedDate, heroImage} = Astro.props;
 					text-[16px] leading-[1.6]
 					text-[rgba(0,0,0,0.8)]
 					
-					prose-headings:font-medium prose-headings:leading-tight
+					prose-headings:font-medium prose-headings:leading-tight prose-headings:relative prose-headings:scroll-mt-[80px]
 					prose-h1:text-[32px] prose-h1:mt-[48px] prose-h1:mb-[24px] prose-h1:first:mt-0
 					prose-h2:text-[24px] prose-h2:mt-[40px] prose-h2:mb-[20px]
 					prose-h3:text-[20px] prose-h3:mt-[32px] prose-h3:mb-[16px]
@@ -96,6 +96,8 @@ const {title, description, pubDate, updatedDate, heroImage} = Astro.props;
 					prose-td:border prose-td:border-[#e5e7eb] prose-td:p-[12px]
 					
 					prose-hr:my-[48px] prose-hr:border-t prose-hr:border-[#e5e7eb]
+					
+					[&_.heading-anchor]:text-inherit [&_.heading-anchor]:no-underline
 					">
 
             <slot/>

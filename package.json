@@ -24,6 +24,8 @@
     "react-dom": "^19.1.0",
     "react-shiki": "^0.7.1",
     "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
