@@ -13,7 +13,7 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
-    "@astrojs/starlight": "^0.34.3",
+    "@lion/ui": "^0.11.5",
     "@lucide/astro": "^0.511.0",
     "@tailwindcss/vite": "^4.1.7",
     "@types/react": "^19.1.6",
@@ -28,7 +28,9 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@microflash/remark-callout-directives": "^4.4.0",
     "@shikijs/types": "^3.6.0",
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/typography": "^0.5.16",
+    "remark-directive": "^4.0.0"
   }
 }

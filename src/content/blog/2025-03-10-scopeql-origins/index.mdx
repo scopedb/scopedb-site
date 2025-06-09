@@ -7,8 +7,8 @@ category: insights
 heroImage: '/blog-covers/cover-3.png'
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
-
+import Tabs from '@/src/components/Tabs/Tabs.astro';
+import TabItem from '@/src/components/Tabs/TabItem.astro';
 
 SQL has dominated structured data processing for 50 years. However, its age reveals significant design flaws, notably non-composable and inconsistent syntax.
 
@@ -24,22 +24,22 @@ When developing the query language for ScopeDB, we decided to go against SQL and
 Here is a showcase:
 
 <Tabs>
-    <TabItem value="sql" label="SQL" default>
+    <TabItem title="SQL">
         ```sql
         SELECT
-          country,
-          MAX(salary) AS max_salary
+        country,
+        MAX(salary) AS max_salary
         FROM
-          employees
+        employees
         WHERE
-          start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
+        start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
         GROUP BY
-          country
+        country
         HAVING
-          MAX(salary) > 100000
+        MAX(salary) > 100000
         ```
     </TabItem>
-    <TabItem value="scopeql" label="ScopeQL">
+    <TabItem title="ScopeQL">
         ```scopeql
         FROM employees
         WHERE start_date > '2021-01-01 00:00:00+00:00'::timestamp

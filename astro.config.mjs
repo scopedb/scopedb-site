@@ -2,13 +2,30 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import remarkDirective from "remark-directive";
+import remarkCalloutDirectives from '@microflash/remark-callout-directives';
 import { defineConfig, passthroughImageService } from "astro/config";
 import scopeql from "./shiki-scopeql-grammar.json";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.scopedb.io",
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [mdx({
+    remarkPlugins: [remarkDirective, [remarkCalloutDirectives, {
+      aliases: {
+        info: "assert",
+        commend: "tip"
+      },
+      callouts: {
+        commend: {
+          title: "Tip"
+        },
+        assert: {
+          title: "Info"
+        }
+      }
+    }]]
+  }), sitemap(), react()],
   image: {
     service: passthroughImageService(),
   },
@@ -23,6 +40,20 @@ export default defineConfig({
     },
   },
   markdown: {
+    remarkPlugins: [remarkDirective, [remarkCalloutDirectives, {
+      aliases: {
+        info: "assert",
+        commend: "tip"
+      },
+      callouts: {
+        commend: {
+          title: "Tip"
+        },
+        assert: {
+          title: "Info"
+        }
+      }
+    }]],
     shikiConfig: {
       langs: [scopeql],
       theme: "github-light",
