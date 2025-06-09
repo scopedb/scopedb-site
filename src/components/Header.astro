@@ -2,7 +2,7 @@
 import CalenderButton from "./CalenderButton.astro";
 import HeaderLink from "./HeaderLink.astro";
 import MobileMenu from "./MobileMenu.astro";
-import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
+import {CalendarBookingUrl, SiteName} from "../consts";
 ---
 
 <header id="header" class="transition-all duration-300 ease-in-out">
@@ -12,7 +12,7 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
 	 ">
         <div>
             <a href="/">
-                <img src="/scopedb-logo.png" alt={SITE_TITLE} width={120} height={35}/>
+                <img src="/scopedb-logo.png" alt={SiteName} width={120} height={35}/>
             </a>
         </div>
         
@@ -36,7 +36,7 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
         <div class="hidden md:block rounded-[10px]"
              style="border: 1px solid var(--color-button-secondary-border);">
             <button class="text-[14px] font-medium px-[16px] py-[8px] cursor-pointer"
-                    data-cal-link={BOOKING_CALENDAR_URL}>
+                    data-cal-link={CalendarBookingUrl}>
                 Book a demo
             </button>
         </div>

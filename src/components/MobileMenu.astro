@@ -1,5 +1,5 @@
 ---
-import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
+import {CalendarBookingUrl, SiteName} from "../consts";
 ---
 
 <!-- Mobile Menu Overlay -->
@@ -9,7 +9,7 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
         <!-- Menu Header -->
         <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
             <a href="/">
-                <img src="/scopedb-logo.png" alt={SITE_TITLE} width={120} height={35}/>
+                <img src="/scopedb-logo.png" alt={SiteName} width={120} height={35}/>
             </a>
             <button id="mobile-menu-close" class="flex flex-col gap-1 w-6 h-6 justify-center items-center">
                 <span class="w-[18px] h-[2px] bg-black/80 rounded transform rotate-45 translate-x-[6px] translate-y-[6px]"></span>
@@ -26,7 +26,7 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
             
             <!-- Demo Button -->
             <div class="mt-8">
-                <button class="w-full py-[10px] px-5 bg-gray-50 border border-gray-300 rounded-[10px] text-base font-medium text-black/80 transition-colors hover:bg-gray-200" data-cal-link={BOOKING_CALENDAR_URL}>
+                <button class="w-full py-[10px] px-5 bg-gray-50 border border-gray-300 rounded-[10px] text-base font-medium text-black/80 transition-colors hover:bg-gray-200" data-cal-link={CalendarBookingUrl}>
                     Book a demo
                 </button>
             </div>

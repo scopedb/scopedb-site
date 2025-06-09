@@ -1,14 +1,15 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
+import HeadMeta from "../components/HeadMeta.astro";
 import Header from "../components/Header.astro";
 import ContactPage from "../components/contact/ContactPage.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { SideDesc, SiteName } from "../consts";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <title>{SiteName}</title>
+    <HeadMeta title={SiteName} description={SideDesc} />
   </head>
   <body>
     <Header />

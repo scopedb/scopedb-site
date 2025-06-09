@@ -1,8 +1,8 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import { SITE_TITLE } from '../consts';
+import '@/src/styles/global.css';
+import '@/src/styles/callout.css';
+
+import { SiteName } from '../consts';
 
 interface Props {
 	title: string;
@@ -23,7 +23,7 @@ const { title, description, image = '/blog-covers/cover-1.png' } = Astro.props;
 <link
 	rel="alternate"
 	type="application/rss+xml"
-	title={SITE_TITLE}
+	title={SiteName}
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
@@ -39,7 +39,6 @@ const { title, description, image = '/blog-covers/cover-1.png' } = Astro.props;
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 

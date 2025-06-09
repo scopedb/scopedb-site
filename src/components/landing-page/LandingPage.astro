@@ -20,7 +20,7 @@ import imageWhyScopeDBBg from "./assets/why-scopedb-bg.png";
 import FAQItem from "./FAQItem.astro";
 import FeaturesRow from "./FeaturesRow.astro";
 import ScopeQLVSSQL from "./ScopeQLVSSQL";
-import { BOOKING_CALENDAR_URL } from "../../consts";
+import { CalendarBookingUrl } from "../../consts";
 ---
 
 <div
@@ -54,7 +54,7 @@ import { BOOKING_CALENDAR_URL } from "../../consts";
     <div class="mt-[68px] flex gap-[9px]">
       <a href="">
         <button
-          data-cal-link={BOOKING_CALENDAR_URL}
+          data-cal-link={CalendarBookingUrl}
           class="bg-black text-white px-[16px] py-[8px] rounded-[10px] border-[1px]"
         >
           Book a demo

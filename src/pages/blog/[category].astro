@@ -1,39 +1,41 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import AllPosts from "../../components/blog/AllPosts.astro";
-import BlogTabs from "../../components/blog/BlogTabs.astro";
-import FeaturedPosts from "../../components/blog/FeaturedPosts.astro";
-import Footer from "../../components/Footer.astro";
-import Header from "../../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
-import { ClientRouter } from 'astro:transitions';
+import HeadMeta from "@/src/components/HeadMeta.astro";
+import AllPosts from "@/src/components/blog/AllPosts.astro";
+import BlogTabs from "@/src/components/blog/BlogTabs.astro";
+import FeaturedPosts from "@/src/components/blog/FeaturedPosts.astro";
+import Footer from "@/src/components/Footer.astro";
+import Header from "@/src/components/Header.astro";
+import {SideDesc, SiteName} from "@/src/consts";
+import {ClientRouter} from 'astro:transitions';
 
 export async function getStaticPaths() {
-  return [
-    { params: { category: 'insights' } },
-    { params: { category: 'product' } },
-    { params: { category: 'company' } },
-  ];
+    return [
+        {params: {category: 'insights'}},
+        {params: {category: 'product'}},
+        {params: {category: 'company'}},
+    ];
 }
 
-const { category } = Astro.params;
+const {category} = Astro.params;
+const title = `${SiteName} - ${category}`;
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <BaseHead title={`${SITE_TITLE} - ${category}`} description={SITE_DESCRIPTION} />
-    <ClientRouter />
-  </head>
-  <body>
-    <Header />
-    <main class="container mx-auto px-4">
-      <FeaturedPosts />
-      <div class="mt-[74px]">
-        <BlogTabs activeTab={category} />
-        <AllPosts category={category} />
-      </div>
-    </main>
-    <Footer />
-  </body>
+<head>
+    <title>{title}</title>
+    <HeadMeta title={title} description={SideDesc}/>
+    <ClientRouter/>
+</head>
+<body>
+<Header/>
+<main class="container mx-auto px-4">
+    <FeaturedPosts/>
+    <div class="mt-[74px]">
+        <BlogTabs activeTab={category}/>
+        <AllPosts category={category}/>
+    </div>
+</main>
+<Footer/>
+</body>
 </html> 

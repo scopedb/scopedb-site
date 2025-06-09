@@ -1,41 +1,44 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
+import type {CollectionEntry} from 'astro:content';
+import HeadMeta from '../components/HeadMeta.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const {title, description, pubDate, updatedDate, heroImage} = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
+<head>
+    <title>{title}</title>
+    <HeadMeta title={title} description={description}/>
+</head>
 
-	<body>
-		<Header />
-		<main class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]">
-			<article class="max-w-[1020px] mx-auto">
-				<div class="hero-image pt-[100px] pb-[40px] rounded-none flex justify-center">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" class="w-full max-w-[1020px] h-auto object-cover rounded-[10px]" />}
-				</div>
-				<div class="items-start max-w-[800px] mx-auto">
-					<div class="font-normal text-[14px] text-[var(--color-tertiary)] pb-[12px]">
-						<FormattedDate date={pubDate} />
-						{
-							updatedDate && (
-								<div class="">
-									Last updated on <FormattedDate date={updatedDate} />
-								</div>
-							)
-						}
-					</div>
-					<h1 class="text-[40px] font-medium">{title}</h1>
-				</div>
-				<div class="
+<body>
+<Header/>
+<main class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]">
+    <article class="max-w-[1020px] mx-auto">
+        <div class="hero-image pt-[100px] pb-[40px] rounded-none flex justify-center">
+            {heroImage && <img width={1020} height={510} src={heroImage} alt=""
+                               class="w-full max-w-[1020px] h-auto object-cover rounded-[10px]"/>}
+        </div>
+        <div class="items-start max-w-[800px] mx-auto">
+            <div class="font-normal text-[14px] text-[var(--color-tertiary)] pb-[12px]">
+                <FormattedDate date={pubDate}/>
+                {
+                    updatedDate && (
+                                <div class="">
+                                    Last updated on
+                                    <FormattedDate date={updatedDate}/>
+                                </div>
+                    )
+                }
+            </div>
+            <h1 class="text-[40px] font-medium">{title}</h1>
+        </div>
+        <div class="
 					prose prose-zinc
 					astro-code
 					
@@ -94,11 +97,11 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					
 					prose-hr:my-[48px] prose-hr:border-t prose-hr:border-[#e5e7eb]
 					">
-				
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+
+            <slot/>
+        </div>
+    </article>
+</main>
+<Footer/>
+</body>
 </html>

@@ -1,5 +1,5 @@
 ---
-import { BOOKING_CALENDAR_URL } from "../consts";
+import { CalendarBookingUrl } from "../consts";
 
 export interface Props {
   calLink?: string;
@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const {
-  calLink = BOOKING_CALENDAR_URL,
+  calLink = CalendarBookingUrl,
   theme = "light",
   buttonText = "Book a demo"
 } = Astro.props;
