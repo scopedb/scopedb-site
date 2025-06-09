@@ -1,6 +1,7 @@
 ---
 import CalenderButton from "./CalenderButton.astro";
 import HeaderLink from "./HeaderLink.astro";
+import MobileMenu from "./MobileMenu.astro";
 import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
 ---
 
@@ -41,129 +42,114 @@ import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
         </div>
     </nav>
     
-    <!-- Mobile Navigation Menu -->
-    <div class="md:hidden fixed top-0 left-0 w-full h-full bg-white z-[110] transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
-        <div class="max-w-[1440px] mx-auto px-[12px] py-5">
-            <!-- Mobile Header -->
-            <div class="flex justify-between items-center mb-8">
-                <a href="/">
-                    <img src="/scopedb-logo.png" alt={SITE_TITLE} width={120} height={35}/>
-                </a>
-                <button class="flex flex-col gap-1 w-6 h-6 justify-center items-center" id="mobile-menu-close">
-                    <span class="w-[18px] h-[2px] bg-[#000]/80 transform rounded-[4px] rotate-45 translate-y-1.5"></span>
-                    <span class="w-[18px] h-[2px] bg-[#000]/80  rounded-[4px] opacity-0"></span>
-                    <span class="w-[18px] h-[2px] bg-[#000]/80  rounded-[4px] transform -rotate-45 -translate-y-1.5"></span>
-                </button>
-            </div>
-            
-            <!-- Mobile Navigation Links -->
-            <div class="flex flex-col gap-[24px] text-[14px]">
-                <HeaderLink href="https://docs.scopedb.io/">Reference</HeaderLink>
-                <HeaderLink href="/blog">Blog</HeaderLink>
-                <HeaderLink href="/contact">Contact</HeaderLink>
-                
-                <!-- Mobile Book Demo Button -->
-                <div class="mt-4 rounded-[10px] w-full"
-                     style="border: 1px solid var(--color-button-secondary-border);">
-                    <button class="text-[14px] font-medium px-[20px] py-[10px] cursor-pointer w-full"
-                            data-cal-link={BOOKING_CALENDAR_URL}>
-                        Book a demo
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Mobile Menu Overlay -->
-    <div class="md:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[105] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out" id="mobile-menu-overlay"></div>
-    
+
     <CalenderButton/>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-            const line1 = document.getElementById('line1');
-            const line2 = document.getElementById('line2');
-            const line3 = document.getElementById('line3');
-            const header = document.getElementById('header');
-            
-            // Sticky header functionality
-            let lastScrollY = window.scrollY;
-            let scrollThreshold = 100; // Pixels to scroll before header becomes sticky
-            
-            function handleScroll() {
-                const currentScrollY = window.scrollY;
-                
-                if (header) {
-                    if (currentScrollY > scrollThreshold) {
-                        // Make header sticky
-                        header.classList.add('fixed', 'top-0', 'left-0', 'right-0', 'z-[100]', 'bg-white/95', 'backdrop-blur-sm',);
-                    } else {
-                        // Remove sticky behavior
-                        header.classList.remove('fixed', 'top-0', 'left-0', 'right-0', 'z-[100]', 'bg-white/95', 'backdrop-blur-sm',);
-                    }
-                }
-                
-                lastScrollY = currentScrollY;
-            }
-            
-            // Add scroll event listener with throttling
-            let ticking = false;
-            function requestTick() {
-                if (!ticking) {
-                    requestAnimationFrame(handleScroll);
-                    ticking = true;
-                    setTimeout(() => {
-                        ticking = false;
-                    }, 16); // ~60fps
-                }
-            }
-            
-            window.addEventListener('scroll', requestTick);
-            
-            // Mobile menu functionality
-            function openMenu() {
-                if (mobileMenu && mobileMenuOverlay) {
-                    mobileMenu.classList.remove('-translate-x-full');
-                    mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-                    document.body.style.overflow = 'hidden';
-                }
-                
-                // Animate hamburger to X
-                if (line1 && line2 && line3) {
-                    line1.style.transform = 'rotate(45deg) translate(6px, 6px)';
-                    line2.style.opacity = '0';
-                    line3.style.transform = 'rotate(-45deg) translate(6px, -6px)';
-                }
-            }
-            
-            function closeMenu() {
-                if (mobileMenu && mobileMenuOverlay && line1 && line2 && line3) {
-                    mobileMenu.classList.add('-translate-x-full');
-                    mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
-                    document.body.style.overflow = '';
-                    
-                    // Animate X back to hamburger
-                    line1.style.transform = '';
-                    line2.style.opacity = '';
-                    line3.style.transform = '';
-                }
-            }
-            
-            if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMenu);
-            if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
-            if (mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMenu);
-            
-            // Close menu when clicking on navigation links
-            if (mobileMenu) {
-                const mobileNavLinks = mobileMenu.querySelectorAll('a');
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', closeMenu);
-                });
-            }
-        });
-    </script>
 </header>
+
+<!-- Mobile Menu Component -->
+<MobileMenu />
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const header = document.getElementById('header');
+    const line1 = document.getElementById('line1');
+    const line2 = document.getElementById('line2');
+    const line3 = document.getElementById('line3');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenuContainer = document.getElementById('mobile-menu-container');
+    
+    let mobileMenuOpen = false;
+    
+    // Sticky header functionality
+    let scrollThreshold = 100;
+    
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        if (header) {
+            if (currentScrollY > scrollThreshold) {
+                header.classList.add('fixed', 'top-0', 'left-0', 'right-0', 'z-[100]', 'bg-white/95', 'backdrop-blur-sm',);
+            } else {
+                header.classList.remove('fixed', 'top-0', 'left-0', 'right-0', 'z-[100]', 'bg-white/95', 'backdrop-blur-sm',);
+            }
+        }
+    }
+    
+    // 节流滚动事件
+    let ticking = false;
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+            setTimeout(() => { ticking = false; }, 16);
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick);
+    
+    // 打开移动菜单
+    function openMobileMenu() {
+        if (mobileMenuOpen) return;
+        
+        mobileMenuOpen = true;
+        
+        // 显示菜单 - 使用 Tailwind 类
+        if (mobileMenuOverlay && mobileMenuContainer) {
+            // 显示遮罩层
+            mobileMenuOverlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+            mobileMenuOverlay.classList.add('opacity-100', 'visible');
+            
+            // 显示菜单容器
+            mobileMenuContainer.classList.remove('translate-x-full');
+            mobileMenuContainer.classList.add('translate-x-0');
+        }
+        
+        // 禁用页面滚动
+        document.body.style.overflow = 'hidden';
+        
+        // 汉堡包动画
+        if (line1 && line2 && line3) {
+            line1.style.transform = 'rotate(45deg) translate(6px, 6px)';
+            line2.style.opacity = '0';
+            line3.style.transform = 'rotate(-45deg) translate(6px, -6px)';
+        }
+    }
+    
+    // 关闭移动菜单
+    function closeMobileMenu() {
+        if (!mobileMenuOpen) return;
+        
+        mobileMenuOpen = false;
+        
+        // 隐藏菜单 - 使用 Tailwind 类
+        if (mobileMenuOverlay && mobileMenuContainer) {
+            // 隐藏遮罩层
+            mobileMenuOverlay.classList.remove('opacity-100', 'visible');
+            mobileMenuOverlay.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+            
+            // 隐藏菜单容器
+            mobileMenuContainer.classList.remove('translate-x-0');
+            mobileMenuContainer.classList.add('translate-x-full');
+        }
+        
+        // 恢复页面滚动
+        document.body.style.overflow = '';
+        
+        // 汉堡包动画还原
+        if (line1 && line2 && line3) {
+            line1.style.transform = '';
+            line2.style.opacity = '';
+            line3.style.transform = '';
+        }
+    }
+    
+    // 绑定菜单按钮事件
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+    }
+    
+    // 监听移动菜单组件的关闭事件
+    window.addEventListener('closeMobileMenu', closeMobileMenu);
+});
+</script>

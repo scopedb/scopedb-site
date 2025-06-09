@@ -1,0 +1,75 @@
+---
+import {BOOKING_CALENDAR_URL, SITE_TITLE} from "../consts";
+---
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[9998] transition-all duration-300 ease-in-out opacity-0 invisible pointer-events-none">
+    <!-- Mobile Menu Container -->
+    <div id="mobile-menu-container" class="fixed top-0 right-0 w-full h-full bg-white transition-transform duration-300 ease-in-out overflow-y-auto p-[16px] flex flex-col translate-x-full">
+        <!-- Menu Header -->
+        <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
+            <a href="/">
+                <img src="/scopedb-logo.png" alt={SITE_TITLE} width={120} height={35}/>
+            </a>
+            <button id="mobile-menu-close" class="flex flex-col gap-1 w-6 h-6 justify-center items-center">
+                <span class="w-[18px] h-[2px] bg-black/80 rounded transform rotate-45 translate-x-[6px] translate-y-[6px]"></span>
+                <span class="w-[18px] h-[2px] bg-black/80 rounded opacity-0"></span>
+                <span class="w-[18px] h-[2px] bg-black/80 rounded transform -rotate-45 translate-x-[6px] -translate-y-[6px]"></span>
+            </button>
+        </div>
+        
+        <!-- Menu Navigation -->
+        <nav class="flex flex-col gap-[8px] flex-1">
+            <a href="https://docs.scopedb.io/" class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60  ">Reference</a>
+            <a href="/blog" class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60  ">Blog</a>
+            <a href="/contact" class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60  ">Contact</a>
+            
+            <!-- Demo Button -->
+            <div class="mt-8">
+                <button class="w-full py-[10px] px-5 bg-gray-50 border border-gray-300 rounded-[10px] text-base font-medium text-black/80 transition-colors hover:bg-gray-200" data-cal-link={BOOKING_CALENDAR_URL}>
+                    Book a demo
+                </button>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuLinks = document.querySelectorAll('nav a');
+    
+    // 关闭菜单函数
+    function closeMobileMenu() {
+        // 派发自定义事件通知父组件
+        window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+    }
+    
+    // 关闭按钮点击事件
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // 遮罩层点击事件
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', function(e) {
+            if (e.target === mobileMenuOverlay) {
+                closeMobileMenu();
+            }
+        });
+    }
+    
+    // 菜单链接点击事件
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+    
+    // ESC键关闭菜单
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+        }
+    });
+});
+</script>
