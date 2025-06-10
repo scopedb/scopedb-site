@@ -1,16 +1,22 @@
 :root {
-    --callout-bg-info: hsl(223, 14%, 61%, 0.14);
-    --callout-bg-tip: hsl(146, 76%, 48%, 0.14);
-    --callout-bg-important: hsl(237, 100%, 70%, 0.14);
-    --callout-bg-warning: hsl(45, 93%, 47%, 0.14);
-    --callout-bg-danger: hsl(350, 89%, 60%, 0.14);
+    --callout-bg-info: #f5f9fe;
+    --callout-border-color-info: #ecf1f6;
+    --callout-bg-tip: #f3fef9;
+    --callout-border-color-tip: #c6dbd4;
+    --callout-bg-important: #f7f5fe;
+    --callout-border-color-important: #efe8fa;
+    --callout-bg-warning: #fefbf0;
+    --callout-border-color-warning: #f8ede0;
+    --callout-bg-danger: #fff7f7;
+    --callout-border-color-danger: #f6e6e6;
 }
 
 .callout {
-    --calloutBackgroundColor: var(--callout-bg-color, var(--callout-bg-info));
-    background-color: var(--calloutBackgroundColor);
-    border-radius: 8px;
+    background-color: var(--callout-bg-color, var(--callout-bg-info));
+    border-radius: 12px;
     padding: 16px;
+    margin: 12px 0px;
+    border: 1px solid var(--callout-border-color, var(--callout-border-color-info));
 }
 
 .callout-indicator {
@@ -45,16 +51,24 @@
 
 .callout-commend {
     --callout-bg-color: var(--callout-bg-tip);
+    --callout-border-color: var(--callout-border-color-tip);
 }
 
 .callout-warn {
     --callout-bg-color: var(--callout-bg-warning);
+    --callout-border-color: var(--callout-border-color-warning);
 }
 
 .callout-deter {
     --callout-bg-color: var(--callout-bg-danger);
+    --callout-border-color: var(--callout-border-color-danger);
 }
 
 .callout-assert {
     --callout-bg-color: var(--callout-bg-important);
+    --callout-border-color: var(--callout-border-color-important);
+}
+.callout-commend {
+    --callout-bg-color: var(--callout-bg-important);
+    --callout-border-color: var(--callout-border-color-important);
 }

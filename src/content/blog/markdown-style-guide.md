@@ -212,3 +212,32 @@ X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 Press <kbd>CTRL</kbd> + <kbd>ALT</kbd> + <kbd>Delete</kbd> to end the session.
 
 Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and other small creatures.
+
+## Callouts
+
+Callouts are special highlighted sections that draw attention to important information. Here are the five types of callouts:
+
+:::note[Information Note]
+
+This is a note callout. Use this for general information or helpful tips that provide additional context to the content.
+
+:::
+
+
+:::warn[Warning Notice]
+
+This is a warn callout. Use this to alert users about potential issues or things they should be careful about.
+
+:::
+
+:::deter[Critical Alert]
+
+This is a deter callout. Use this for serious warnings about actions that could cause problems or require immediate attention.
+
+:::
+
+:::assert[Important Information]
+
+This is an assert callout. Use this to highlight critical information that users must pay attention to or remember.
+
+:::

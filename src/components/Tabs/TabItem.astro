@@ -6,7 +6,7 @@ export interface Props{
 const { title = 'title' } = Astro.props;
 ---
 
-<button slot="tab"  class="inline-flex whitespace-nowrap border-b-2 border-transparent py-2 px-3 text-sm font-medium text-gray-300 transition-all duration-200 ease-in-out hover:border-b-[#9249ed] hover:text-[#9249ed] aria-selected:border-b-[#9249ed] aria-selected:text-[#9249ed]"> {title} </button>
-<div slot="panel" class="border-t-2 border-gray-700 pt-6 -mt-[2px]">
+<button slot="tab"  class="inline-flex whitespace-nowrap border-b-[4px]   border-transparent py-[6px] px-[12px] text-14 font-normal text-[rgba(0,0,0,0.4)] transition-all duration-200 ease-in-out hover:border-b-[rgba(0,0,0,0.9)] hover:text-[rgba(0,0,0,0.9)] aria-selected:border-b-[rgba(0,0,0,0.90)] aria-selected:text-[rgba(0,0,0,0.9)]"> {title} </button>
+<div slot="panel" class="border-t-1  border-[rgba(0,0,0,0.1)] pt-6 -mt-[2px]">
     <slot />
 </div>
