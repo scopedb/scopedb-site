@@ -13,20 +13,7 @@ import scopeql from "./shiki-scopeql-grammar.json";
 export default defineConfig({
   site: "https://www.scopedb.io",
   integrations: [mdx({
-    remarkPlugins: [remarkDirective, [remarkCalloutDirectives, {
-      aliases: {
-        info: "assert",
-        commend: "tip"
-      },
-      callouts: {
-        commend: {
-          title: "Tip"
-        },
-        assert: {
-          title: "Info"
-        }
-      }
-    }]],
+    remarkPlugins: [remarkDirective, remarkCalloutDirectives],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, {
@@ -52,20 +39,7 @@ export default defineConfig({
     },
   },
   markdown: {
-    remarkPlugins: [remarkDirective, [remarkCalloutDirectives, {
-      aliases: {
-        info: "assert",
-        commend: "tip"
-      },
-      callouts: {
-        commend: {
-          title: "Tip"
-        },
-        assert: {
-          title: "Info"
-        }
-      }
-    }]],
+    remarkPlugins: [remarkDirective, remarkCalloutDirectives],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, {

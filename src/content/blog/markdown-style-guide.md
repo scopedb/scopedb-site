@@ -241,3 +241,9 @@ This is a deter callout. Use this for serious warnings about actions that could 
 This is an assert callout. Use this to highlight critical information that users must pay attention to or remember.
 
 :::
+
+:::commend[Recommendation]{title="Tip"}
+
+This is an assert callout. Use this to highlight critical information that users must pay attention to or remember.
+
+:::

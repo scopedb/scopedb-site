@@ -15,7 +15,7 @@
     background-color: var(--callout-bg-color, var(--callout-bg-info));
     border-radius: 12px;
     padding: 16px;
-    margin: 12px 0px;
+    margin: 12px 0;
     border: 1px solid var(--callout-border-color, var(--callout-border-color-info));
 }
 
@@ -65,10 +65,6 @@
 }
 
 .callout-assert {
-    --callout-bg-color: var(--callout-bg-important);
-    --callout-border-color: var(--callout-border-color-important);
-}
-.callout-commend {
     --callout-bg-color: var(--callout-bg-important);
     --callout-border-color: var(--callout-border-color-important);
 }
