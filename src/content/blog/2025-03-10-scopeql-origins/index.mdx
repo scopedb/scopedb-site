@@ -102,7 +102,7 @@ WHERE sum > 3
 
 When subqueries are used, the mismatch between the syntactic order and the semantic order becomes even more apparent. SQL evaluates the subquery first, then evaluates the outer query on that result. Typical analytical queries can have multiple levels of subqueries, which makes the query even harder to read and understand.
 
-What's worse, **SQL relies on subqueries heavily**, even for many common query patterns. A subquery is necessary if you want to:
+Even worse, **SQL relies on subqueries heavily**, even for many common query patterns. A subquery is necessary if you want to:
 
 * Projecting computed expressions for reuse.
 * Aggregating more than one time.

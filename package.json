@@ -9,30 +9,33 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.2.6",
+    "@astrojs/mdx": "^4.3.0",
     "@astrojs/react": "^4.3.0",
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.4.0",
+    "@astrojs/rss": "^4.0.12",
+    "@astrojs/sitemap": "^3.4.1",
     "@calcom/embed-react": "^1.5.3",
     "@lion/ui": "^0.11.5",
     "@lucide/astro": "^0.511.0",
     "@tailwindcss/vite": "^4.1.7",
-    "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.5",
-    "astro": "^5.7.13",
+    "astro": "^5.9.2",
+    "astro-expressive-code": "^0.41.2",
     "lucide-react": "^0.513.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-shiki": "^0.7.1",
-    "reading-time": "^1.5.0",
-    "rehype-autolink-headings": "^7.1.0",
-    "rehype-slug": "^6.0.0",
-    "tailwindcss": "^4.1.7"
+    "reading-time": "^1.5.0"
   },
   "devDependencies": {
     "@microflash/remark-callout-directives": "^4.4.0",
     "@shikijs/types": "^3.6.0",
     "@tailwindcss/typography": "^0.5.16",
-    "remark-directive": "^4.0.0"
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-directive": "^4.0.0",
+    "sharp": "^0.34.2",
+    "tailwindcss": "^4.1.7",
+    "vite-plugin-devtools-json": "^0.1.1"
   }
 }

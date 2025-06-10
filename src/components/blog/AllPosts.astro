@@ -39,7 +39,7 @@ const latestPosts = getPostsByCategory(category);
         return (
           <li class="post-item">
             <div class="bg-[#ffffff] border border-[#f1f1f1] rounded-[12px] p-[12px] w-full h-full">
-              <a href={`/blog/${post.id}/`}>
+              <a href={`/blog/${post.slug}/`}>
                 <img
                   class="rounded-[12px] mb-[20px]"
                   src={post.data.heroImage}

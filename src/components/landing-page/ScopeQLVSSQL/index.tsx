@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import ShikiHighlighter from "react-shiki";
-import scopeql from "../../../../shiki-scopeql-grammar.json";
+import scopeql from "@/shiki-scopeql-grammar.json";
 import type {LanguageRegistration} from "@shikijs/types";
 
 const categories = [{
