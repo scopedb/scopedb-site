@@ -21,12 +21,12 @@ import {Rss} from '@lucide/astro';
 <Header/>
 <main class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]">
     <div class="flex items-center justify-between py-[64px]">
-        <div class="text-[32px] md:text-[40px] font-medium">ScopeDB Blog</div>
+        <div class="text-[32px] md:text-[40px] font-medium text-[var(--text-primary)]">ScopeDB Blog</div>
         <div class="flex items-center gap-[12px]">
-            <span class="text-[14px] text-[var(--color-secondary)]">Subscribe via</span>
+            <span class="text-[14px] text-[var(--text-secondary)]">Subscribe via</span>
             <a
                     href="/rss.xml"
-                    class="w-[36px] h-[36px] bg-[#fff] border text-[var(--color-secondary)] border-[#f1f1f1] rounded-full flex items-center justify-center hover:bg-[#f1f1f1] transition-colors"
+                    class="w-[36px] h-[36px] bg-[#fff] border text-[var(--text-secondary)] border-[#f1f1f1] rounded-full flex items-center justify-center hover:bg-[#f1f1f1] transition-colors"
                     title="Subscribe to RSS feed"
             >
                 <Rss width={16} height={16}/>

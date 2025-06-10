@@ -47,7 +47,7 @@ export default function ScopeQLVSSQL() {
         <div className="bg-[#F9F9F9] rounded-[16px] p-[16px] flex flex-col w-full max-w-[720px] xl:max-w-[720px]">
             {/* Tab Navigation */}
             <div
-                className="flex text-[14px] flex-nowrap gap-[16px] md:gap-[24px] overflow-x-auto text-[var(--color-secondary)]">
+                className="flex text-[var(--text-primary)] text-[14px] flex-nowrap gap-[16px] md:gap-[24px] overflow-x-auto text-[var(--color-secondary)]">
                 {categories.map((category, index) => (
                     <button
                         key={category.title}
@@ -66,7 +66,7 @@ export default function ScopeQLVSSQL() {
                          boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02);"
                      }}>
                     <div className="pb-[14px]">
-                        <h3 className="text-[rgba(0,0,0,0.40)] text-[13px]">SQL</h3>
+                        <h3 className="text-[var(--text-tertiary)] text-[13px]">SQL</h3>
                     </div>
                     <div className="font-[14px] overflow-x-auto w-full">
                         <ShikiHighlighter
@@ -87,7 +87,7 @@ export default function ScopeQLVSSQL() {
                          boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02);"
                      }}>
                     <div className="pb-[14px]">
-                        <h3 className="text-[rgba(0,0,0,0.40)] text-[13px]">ScopeQL</h3>
+                        <h3 className="text-[var(--text-tertiary)] text-[13px]">ScopeQL</h3>
                     </div>
                     <div className="font-[14px] overflow-x-auto w-full">
                         <ShikiHighlighter

@@ -19,7 +19,7 @@ const FAQItem: React.FC<Props> = ({ question, answer }) => {
         className="flex items-center justify-between cursor-pointer faq-header"
         onClick={toggleFAQ}
       >
-        <p className="text-[16px] font-semibold flex-1">
+        <p className="text-[16px] font-semibold flex-1 text-[var(--text-primary)]">
           {question}
         </p>
         <ChevronDown 
@@ -29,7 +29,7 @@ const FAQItem: React.FC<Props> = ({ question, answer }) => {
         />
       </div>
       <div className={`faq-content overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[200px]' : 'max-h-0'}`}>
-        <p className="text-[16px] text-[var(--color-secondary)] mt-[8px]">
+        <p className="text-[16px] text-[var(--text-secondary)] mt-[8px]">
           {answer}
         </p>
       </div>

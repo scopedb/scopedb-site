@@ -37,18 +37,18 @@ const featuredPosts = titleOfFeaturedPosts
                   alt=""
                 />
                 <div class="flex flex-col gap-[8px] my-[12px]">
-                  <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--color-secondary)] ">
+                  <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--text-secondary)] ">
                     <FormattedDate date={post.data.pubDate} />
                     <span class="ml-2 text-[12px]">•</span>
                     <span class="ml-2"> {readingTime}</span>
                   </p>
                   <div class="flex-1">
-                    <h4 class="text-[24px] font-semibold px-[12px]">
+                    <h4 class="text-[24px] font-semibold px-[12px] text-[var(--text-primary)]">
                       {post.data.title}
                     </h4>
                   </div>
                   <div class="relative px-[12px] pb-[20px]">
-                    <p class="text-[14px] text-[var(--color-secondary)] line-clamp-6">
+                    <p class="text-[14px] text-[var(--text-secondary)] line-clamp-6">
                       {digest(post.data.description || post.body || "")}
                     </p>
                     <div class="absolute bottom-0 left-[12px] right-[12px] h-[60px] bg-gradient-to-t from-[#fff] to-[#ffffff00] pointer-events-none"></div>

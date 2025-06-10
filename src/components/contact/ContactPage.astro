@@ -12,7 +12,7 @@ import ContactForm from "./ContactForm";
 <div class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]">
   <h1
     class:list={[
-      "text-[32px] md:text-[40px] font-medium text-center",
+      "text-[32px] md:text-[40px] font-medium text-[var(--text-primary)] text-center",
       "mx-auto",
       "mt-[60px]",
     ]}
@@ -21,7 +21,7 @@ import ContactForm from "./ContactForm";
   </h1>
   <p
     class:list={[
-      "text-[16px] md:text-[20px] font-normal text-[var(--color-secondary)] text-center",
+      "text-[16px] md:text-[20px] font-normal text-[var(--text-secondary)] text-center",
       "max-w-[1024px] mx-auto leading-tight",
       "mt-[24px]",
     ]}
@@ -38,14 +38,14 @@ import ContactForm from "./ContactForm";
     ]}
   >
     <div>
-      <h2 class="text-[24px] font-semibold">Get In Touch</h2>
+      <h2 class="text-[24px] font-semibold text-[var(--text-primary)]">Get In Touch</h2>
       <p
-        class="mt-[20px] text-[16px] leading-tight text-[var(--color-secondary)] max-w-[420px]"
+        class="mt-[20px] text-[16px] leading-tight text-[var(--text-secondary)] max-w-[420px]"
       >
         Speak to the founders about plans, pricing, enterprise contracts, or request a demo.
       </p>
       <ul
-        class="mt-[32px] flex flex-col gap-[12px] text-[14px] text-[var(--color-secondary)]"
+        class="mt-[32px] flex flex-col gap-[12px] text-[14px] text-[var(--text-secondary)]"
       >
         <li>
           <span class="flex items-center gap-[12px]">
@@ -80,7 +80,7 @@ import ContactForm from "./ContactForm";
       </ul>
 
       <button
-        class="mt-[32px] bg-[var(--color-brand)] py-[10px] px-[16px] rounded-[10px] cursor-pointer"
+        class="mt-[32px] bg-[var(--button-primary-bg)]  border-[var(--button-primary-border)] hover:bg-[var(--button-primary-bg-hover)] text-[var(--button-primary-text)] px-[16px] py-[8px] rounded-[10px] border transition-colors duration-300 ease-in-out"
         data-cal-link={CalLink}
       >
         <span class="flex items-center gap-[10px] text-[14px] text-[white]">

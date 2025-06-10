@@ -83,7 +83,7 @@ const ContactForm: React.FC = () => {
             />
           </svg>
         </div>
-        <h3 className="text-[24px] font-semibold text-[var(--color-primary)] mb-[16px]">
+        <h3 className="text-[24px] font-semibold text-[var(--text-primary)] mb-[16px]">
           Thanks for contacting us!
         </h3>
         <p className="text-[16px] text-[var(--color-secondary)]">
@@ -96,11 +96,11 @@ const ContactForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-[24px]">
       <div className="flex flex-col gap-[12px]">
-        <label htmlFor="name" className="text-[14px] text-[var(--color-primary)]">
+        <label htmlFor="name" className="text-[14px] text-[var(--text-primary)]">
           Full Name
         </label>
         <input
-          className="rounded-[10px] border border-[#ECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+          className="rounded-[10px] border border-[#ECECEC] p-[12px] text-[14px] text-[var(--text-secondary)] bg-white"
           type="text"
           id="name"
           name="name"
@@ -112,11 +112,11 @@ const ContactForm: React.FC = () => {
       </div>
 
       <div className="flex flex-col gap-[12px]">
-        <label htmlFor="email" className="text-[14px] text-[var(--color-primary)]">
+        <label htmlFor="email" className="text-[14px] text-[var(--text-primary)]">
           Email
         </label>
         <input
-          className="rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+          className="rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--text-secondary)] bg-white"
           type="email"
           id="email"
           name="email"
@@ -128,12 +128,12 @@ const ContactForm: React.FC = () => {
       </div>
 
       <div className="flex flex-col gap-[12px]">
-        <label htmlFor="company-size" className="text-[14px] text-[var(--color-primary)]">
+        <label htmlFor="company-size" className="text-[14px] text-[var(--text-primary)]">
           Company Size
         </label>
         <div className="relative">
           <select
-            className="w-full rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+            className="w-full rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--text-secondary)] bg-white"
             id="company-size"
             name="company-size"
             style={{ appearance: 'none' }}
@@ -152,11 +152,11 @@ const ContactForm: React.FC = () => {
       </div>
 
       <div className="flex flex-col gap-[12px]">
-        <label htmlFor="message" className="text-[14px] text-[var(--color-primary)]">
+        <label htmlFor="message" className="text-[14px] text-[var(--text-primary)]">
           How can we help you?
         </label>
         <textarea
-          className="rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
+          className="rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--text-primary)] bg-white"
           id="message"
           name="message"
           placeholder=""
@@ -170,7 +170,7 @@ const ContactForm: React.FC = () => {
       <button
         type="submit"
         disabled={isLoading}
-        className="bg-[#FFFFFF] border border-[#ECECEC] py-[10px] px-[16px] rounded-[10px] cursor-pointer w-full disabled:opacity-50"
+        className="px-[16px] py-[8px] bg-[#fff] rounded-[10px] border border-[#ECECECEC] hover:bg-[var(--button-secondary-bg-hover)] text-[var(--button-secondary-text)] transition-colors duration-300 ease-in-out cursor-pointer w-full disabled:opacity-50"
       >
         <span className="gap-[10px] text-[14px] text-[var(--color-primary)] text-center">
           {isLoading ? 'Sending...' : 'Send Message'}
