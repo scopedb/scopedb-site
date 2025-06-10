@@ -104,7 +104,7 @@ const ContactForm: React.FC = () => {
           type="text"
           id="name"
           name="name"
-          placeholder="Kevin"
+          placeholder="John Smith"
           value={formData.name}
           onChange={handleInputChange}
           required
@@ -120,7 +120,7 @@ const ContactForm: React.FC = () => {
           type="email"
           id="email"
           name="email"
-          placeholder="kevin@gmail.com"
+          placeholder="john@company.com"
           value={formData.email}
           onChange={handleInputChange}
           required
@@ -159,7 +159,7 @@ const ContactForm: React.FC = () => {
           className="rounded-[10px] border border-[#ECECECEC] p-[12px] text-[14px] text-[var(--color-primary)] bg-white"
           id="message"
           name="message"
-          placeholder="I'm interested in ScopeDB..."
+          placeholder=""
           rows={4}
           value={formData.message}
           onChange={handleInputChange}

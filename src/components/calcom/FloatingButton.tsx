@@ -10,8 +10,8 @@ export default function FloatingButton() {
                 calLink: CalLink,
                 buttonText: "Book a demo",
                 config: {
-                    name: "John",
-                    email: "john@example.com",
+                    name: "John Smith",
+                    email: "john@company.com",
                     theme: "light",
                 },
             });

@@ -19,7 +19,7 @@ import FloatingButton from "./calcom/FloatingButton";
         <!-- Desktop Navigation -->
         <div class="hidden md:flex gap-8 text-[14px]">
             <!-- <HeaderLink href="/products">Products</HeaderLink> -->
-            <HeaderLink href="https://docs.scopedb.io/">Reference</HeaderLink>
+            <HeaderLink href="https://docs.scopedb.io/reference/">Reference</HeaderLink>
             <HeaderLink href="/blog">Blog</HeaderLink>
             <HeaderLink href="/contact">Contact</HeaderLink>
             <!-- <HeaderLink href="/changelog">Changelog</HeaderLink> -->
@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 节流滚动事件
     let ticking = false;
     function requestTick() {
         if (!ticking) {
@@ -87,27 +86,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', requestTick);
 
-    // 打开移动菜单
     function openMobileMenu() {
         if (mobileMenuOpen) return;
 
         mobileMenuOpen = true;
 
-        // 显示菜单 - 使用 Tailwind 类
         if (mobileMenuOverlay && mobileMenuContainer) {
-            // 显示遮罩层
+            // Show menu overlay
             mobileMenuOverlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
             mobileMenuOverlay.classList.add('opacity-100', 'visible');
 
-            // 显示菜单容器
+            // Show menu container
             mobileMenuContainer.classList.remove('translate-x-full');
             mobileMenuContainer.classList.add('translate-x-0');
         }
 
-        // 禁用页面滚动
+        // Forbid page scrolling when menu is open
         document.body.style.overflow = 'hidden';
 
-        // 汉堡包动画
+        // Animation
         if (line1 && line2 && line3) {
             line1.style.transform = 'rotate(45deg) translate(6px, 6px)';
             line2.style.opacity = '0';
@@ -115,27 +112,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 关闭移动菜单
     function closeMobileMenu() {
         if (!mobileMenuOpen) return;
 
         mobileMenuOpen = false;
 
-        // 隐藏菜单 - 使用 Tailwind 类
         if (mobileMenuOverlay && mobileMenuContainer) {
-            // 隐藏遮罩层
+            // Hide menu overlay
             mobileMenuOverlay.classList.remove('opacity-100', 'visible');
             mobileMenuOverlay.classList.add('opacity-0', 'invisible', 'pointer-events-none');
 
-            // 隐藏菜单容器
+            // Hide menu container
             mobileMenuContainer.classList.remove('translate-x-0');
             mobileMenuContainer.classList.add('translate-x-full');
         }
 
-        // 恢复页面滚动
+        // Reset page scrolling
         document.body.style.overflow = '';
 
-        // 汉堡包动画还原
+        // Reset animation
         if (line1 && line2 && line3) {
             line1.style.transform = '';
             line2.style.opacity = '';
@@ -143,12 +138,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 绑定菜单按钮事件
     if (mobileMenuButton) {
         mobileMenuButton.addEventListener('click', openMobileMenu);
     }
-
-    // 监听移动菜单组件的关闭事件
     window.addEventListener('closeMobileMenu', closeMobileMenu);
 });
 </script>

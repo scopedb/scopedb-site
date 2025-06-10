@@ -40,18 +40,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuClose = document.getElementById('mobile-menu-close');
     const mobileMenuLinks = document.querySelectorAll('nav a');
     
-    // 关闭菜单函数
     function closeMobileMenu() {
-        // 派发自定义事件通知父组件
         window.dispatchEvent(new CustomEvent('closeMobileMenu'));
     }
     
-    // 关闭按钮点击事件
     if (mobileMenuClose) {
         mobileMenuClose.addEventListener('click', closeMobileMenu);
     }
     
-    // 遮罩层点击事件
     if (mobileMenuOverlay) {
         mobileMenuOverlay.addEventListener('click', function(e) {
             if (e.target === mobileMenuOverlay) {
@@ -60,12 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 菜单链接点击事件
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
     });
     
-    // ESC键关闭菜单
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeMobileMenu();

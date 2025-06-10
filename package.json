@@ -1,7 +1,8 @@
 {
-  "name": "",
+  "name": "scopedb-site",
   "type": "module",
-  "version": "0.0.1",
+  "private": true,
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -18,7 +19,6 @@
     "@lucide/astro": "^0.511.0",
     "@tailwindcss/vite": "^4.1.7",
     "astro": "^5.9.2",
-    "astro-expressive-code": "^0.41.2",
     "lucide-react": "^0.513.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

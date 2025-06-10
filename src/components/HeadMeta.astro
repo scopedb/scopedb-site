@@ -1,18 +1,10 @@
 ---
 import '@/src/styles/global.css';
 import '@/src/styles/callout.css';
-
 import { SiteName } from '@/src/consts';
 
-interface Props {
-	title: string;
-	description: string;
-	image?: string;
-}
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = '/blog-covers/cover-1.png' } = Astro.props;
+const { title, description, image = '/banner.png' } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -27,13 +19,6 @@ const { title, description, image = '/blog-covers/cover-1.png' } = Astro.props;
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
-
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

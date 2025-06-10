@@ -6,7 +6,6 @@ import remarkDirective from "remark-directive";
 import remarkCalloutDirectives from '@microflash/remark-callout-directives';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import expressiveCode from "astro-expressive-code";
 import devtoolsJson from "vite-plugin-devtools-json";
 import {defineConfig} from "astro/config";
 import scopeql from "./shiki-scopeql-grammar.json";
@@ -14,15 +13,7 @@ import scopeql from "./shiki-scopeql-grammar.json";
 // https://astro.build/config
 export default defineConfig({
     site: "https://www.scopedb.io",
-    integrations: [
-        react(),
-        sitemap(),
-        expressiveCode({
-            themes: ['github-light'],
-            shiki: {
-                langs: [scopeql],
-            },
-        }), mdx()],
+    integrations: [react(), sitemap(), mdx()],
     vite: {
         plugins: [tailwindcss(), devtoolsJson()],
     },
@@ -38,5 +29,9 @@ export default defineConfig({
                 }
             }]
         ],
+        shikiConfig: {
+            theme: 'github-light',
+            langs: [scopeql],
+        }
     },
 });
