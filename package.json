@@ -13,6 +13,7 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
+    "@calcom/embed-react": "^1.5.3",
     "@lion/ui": "^0.11.5",
     "@lucide/astro": "^0.511.0",
     "@tailwindcss/vite": "^4.1.7",
