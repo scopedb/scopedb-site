@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
-import { CalendarBookingUrl } from "@/src/consts";
+import { CalLink } from "@/src/consts";
 
 export default function FloatingButton() {
     useEffect(() => {
         (async function () {
             const cal = await getCalApi();
             cal("floatingButton", {
-                calLink: CalendarBookingUrl,
+                calLink: CalLink,
                 buttonText: "Book a demo",
                 config: {
                     name: "John",

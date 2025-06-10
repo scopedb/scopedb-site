@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { SubmitContactUrl } from '../../consts';
+import { ContactUrl } from '@/src/consts';
 
 interface FormData {
   name: string;
@@ -42,7 +42,7 @@ const ContactForm: React.FC = () => {
         message: formData.message
       };
 
-      const response = await fetch(SubmitContactUrl, {
+      const response = await fetch(ContactUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
