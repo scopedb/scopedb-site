@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import {
+  calculateReadingTime,
+  digest,
+} from "../../libs/reading-time";
+
+interface Props {
+  category?: string;
+}
+
+const { category = "all" } = Astro.props;
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+function getPostsByCategory(categoryFilter: string) {
+  if (categoryFilter === "all") {
+    return posts.slice(0, 9);
+  }
+
+  const filteredPosts = posts.filter(
+    (post) => post.data.category === categoryFilter
+  );
+
+  return filteredPosts.slice(0, 9);
+}
+
+const latestPosts = getPostsByCategory(category);
+---
+
+<section class="pb-[200px]">
+  <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16px]">
+    {
+      latestPosts.map((post) => {
+        const readingTime = calculateReadingTime(post.body || "");
+        return (
+          <li class="post-item">
+            <div class="bg-[#ffffff] border border-[#f1f1f1] rounded-[12px] p-[12px] w-full h-full">
+              <a href={`/blog/${post.slug}/`}>
+                <img
+                  class="rounded-[12px] mb-[20px]"
+                  src={post.data.heroImage}
+                  alt=""
+                />
+                <div class="flex flex-col gap-[8px] my-[12px]">
+                  <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--text-secondary)]">
+                    <FormattedDate date={post.data.pubDate} />
+                    <span class="ml-[4px] text-[12px]">•</span>
+                    <span class="ml-[4px]">{readingTime}</span>
+                  </p>
+                  <div class="flex-1">
+                    <h4 class="text-[20px] font-medium px-[12px] leading-1.1 text-[var(--text-primary)]">
+                      {post.data.title}
+                    </h4>
+                  </div>
+                  <p class="text-[14px] text-[var(--text-secondary)] px-[12px] line-clamp-2">
+                    {digest(post.data.description || post.body || "")}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  {
+    latestPosts.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-gray-500 text-[14px]">No posts found for this category</p>
+      </div>
+    )
+  }
+</section>
