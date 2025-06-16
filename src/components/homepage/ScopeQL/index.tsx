@@ -77,7 +77,7 @@ const categories = [{
         FROM orders
         GROUP BY category
           WITHIN GROUP ORDER BY unit_sales
-          WINDOW ROW_NUMBER() AS rk
+          WINDOW ROW_NUMBER() AS rn
     `,
     sql: dedent`
         SELECT
@@ -85,7 +85,7 @@ const categories = [{
             ROW_NUMBER() OVER (
                 PARTITION BY category
                 ORDER BY unit_sales DESC
-            ) AS rk
+            ) AS rn
         FROM orders
     `
 }, {
@@ -94,8 +94,8 @@ const categories = [{
         FROM orders
         GROUP BY category
           WITHIN GROUP ORDER BY unit_sales
-          WINDOW ROW_NUMBER() AS rk
-        GROUP BY category AGGREGATE MAX(rk)
+          WINDOW ROW_NUMBER() AS rn
+        GROUP BY category AGGREGATE MAX(rn)
     `,
     sql: dedent`
         SELECT category, max(rn)
