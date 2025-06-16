@@ -86,7 +86,7 @@ const ContactForm: React.FC = () => {
         <h3 className="text-[24px] font-semibold text-[var(--text-primary)] mb-[16px]">
           Thanks for contacting us!
         </h3>
-        <p className="text-[16px] text-[var(--color-secondary)]">
+        <p className="text-[16px] text-[var(--text-primary)]">
           We will get in touch with you shortly.
         </p>
       </div>
