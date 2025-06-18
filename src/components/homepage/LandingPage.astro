@@ -51,19 +51,17 @@ import { CalLink } from "@/src/consts";
     </p>
 
     <div class="mt-[68px] flex gap-[9px]">
-      <a href="">
-        <button
+      <button
           data-cal-link={CalLink}
           class="bg-[var(--button-primary-bg)]  border-[var(--button-primary-border)] hover:bg-[var(--button-primary-bg-hover)] text-[var(--button-primary-text)] px-[16px] py-[8px] rounded-[10px] border transition-colors duration-300 ease-in-out"
-        >
-          Book a demo
-        </button>
-      </a>
-      <a href="https://docs.scopedb.io">
+      >
+        Book a Demo
+      </button>
+      <a href="/blog/manage-observability-data-in-petabytes/">
         <button
           class="px-[16px] py-[8px] bg-[var(--button-secondary-bg)] rounded-[10px] border border-[var(--button-secondary-border)] hover:bg-[var(--button-secondary-bg-hover)] text-[var(--button-secondary-text)] transition-colors duration-300 ease-in-out"
         >
-          Document
+          Read More
         </button>
       </a>
     </div>
@@ -80,7 +78,7 @@ import { CalLink } from "@/src/consts";
     <div
       class="flex items-center justify-center absolute top-[-78px] left-0 w-full"
     >
-      <Image class="" src={bg1} alt="" width={456} height={76} />
+      <Image src={bg1} alt="" width={456} height={76} />
     </div>
     <div
       class="max-w-[1200px] p-[12px] mx-auto flex flex-col items-center pt-[80px] pb-[40px] md:pb-[160px] bg-[#F7F7F7] rounded-[16px]"
@@ -160,9 +158,9 @@ import { CalLink } from "@/src/consts";
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
-              ScopeDB ingestion nodes handle massive requests independently
-              without sharding or partition leaders. They dynamically scale to
-              manage peak traffic efficiently.
+              ScopeDB handles massive ingestion requests with arbitrary nodes independently,
+              without sharding or partition leaders. The cluster of nodes can dynamically scale
+              to manage peak traffic efficiently.
             </p>
           </div>
           <div
@@ -182,7 +180,7 @@ import { CalLink } from "@/src/consts";
           <div
             class="p-[24px] md:p-[50px]  lg:w-1/2 min-h-[280px] flex flex-col justify-center"
           >
-            <h3 class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium">Any-scale Analysis</h3>
+            <h3 class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium">Any-scale Analysis & Exploration</h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
@@ -214,8 +212,7 @@ import { CalLink } from "@/src/consts";
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
-              Unleash the benefits of the compact columnar data format with a
-              vectorized query engine. Implement dedicated compression
+              Unleash the benefits of the compact columnar data format, and dedicated compression
               algorithms depending on data types.
             </p>
             <div class="mt-[-100px] ">
@@ -233,7 +230,7 @@ import { CalLink } from "@/src/consts";
           <div
             class="flex-1 lg:border-l border-[#f0f0f0] p-[24px] md:p-[50px] lg:w-1/2  min-h-[300px] md:min-h-[580px] "
           >
-            <h3 class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal">Multiple Analysis Scenarios</h3>
+            <h3 class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal">Various Exploration Methods</h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)]  mt-[12px]"
             >
@@ -259,8 +256,8 @@ import { CalLink } from "@/src/consts";
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px] "
             >
-              Accelerate queries with smart indexes, search indexes, variant
-              indexes, and more.
+              Accelerate queries with equality indexes, range indexes, search indexes,
+              object indexes, materialized indexes, and more.
             </p>
             <div class="flex-1 flex items-center justify-center ">
               <Image
@@ -275,13 +272,12 @@ import { CalLink } from "@/src/consts";
             class="flex-1 lg:border-l border-[#f0f0f0] p-[24px] md:p-[50px] lg:w-1/2 min-h-[300px] md:min-h-[580px]"
           >
             <h3 class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal">
-              Dedicated Query Group Resources
+              On-Demand Resource Groups
             </h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
-              You can have multiple query groups, either long-running or
-              ephemeral. Each group has its dedicated compute resources. All
+              Each group has its dedicated compute resources. All
               groups share the same object storage as the primary data backend.
             </p>
             <div class="py-[20px] flex items-center justify-center">
@@ -302,10 +298,9 @@ import { CalLink } from "@/src/consts";
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] max-w-[504px] mt-[12px]"
             >
-              ScopeDB's flexible data schema enables users to partially define
-              schemas while storing additional data in a variant column,
-              allowing for efficient handling and analysis of semi-structured
-              data.
+              ScopeDB supports flexible data schema, enabling users to partially qualify
+              schemas while storing additional data in an ANY column,
+              allowing for efficient handling and analysis of semi-structured data.
             </p>
           </div>
           <div
@@ -401,16 +396,18 @@ import { CalLink } from "@/src/consts";
 
     <section class="mt-[108px] wx-[10px] md:wx-[45px]">
       <h2 class="text-[32px] md:text-[40px] font-medium text-[var(--text-primary)]  mx-auto text-center">
-        ScopeQL vs SQL
+        ScopeQL vs. SQL
       </h2>
       <div class="flex flex-col md:flex-row mt-[114px] justify-between items-start md:gap-[40px]">
         <div class="w-full md:w-1/2 p-8 ">
           <p
             class="text-[20px] max-w-[500px] md:text-[24px] font-medium text-[var(--text-primary)] leading-[1.4] pb-[24px]"
-          >
-            ScopeQL isn't SQL 2.0.<br /> We rebuilt from relational algebra foundations
+          > ScopeQL != SQL 2.0 </p>
+          <p>
+            We reinvent the query language from relational algebra foundations
             with three radical simplifications:
           </p>
+          <br/>
           <ul>
             <li>
               <div class="flex items-center gap-[8px] pb-[8px] ">
@@ -426,7 +423,7 @@ import { CalLink } from "@/src/consts";
                 class="text-[16px] text-[var(--text-secondary)] pb-[28px] "
               >
                 SQL's inside-out execution becomes ScopeQL's linear top-down
-                pipeline
+                pipeline.
               </p>
             </li>
             <li>
@@ -443,7 +440,7 @@ import { CalLink } from "@/src/consts";
                 class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[500px]"
               >
                 SQL's fragmented keywords become ScopeQL's orthogonal
-                composability
+                composability.
               </p>
             </li>
             <li>
@@ -462,7 +459,7 @@ import { CalLink } from "@/src/consts";
                 class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[500px]"
               >
                 SQL's subquery labyrinths become ScopeQL's native expressions
-                reuse
+                reuse.
               </p>
             </li>
           </ul>

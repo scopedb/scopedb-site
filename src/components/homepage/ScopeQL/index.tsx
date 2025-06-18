@@ -148,7 +148,8 @@ function ScopeQLSection({activeTab}: { activeTab: number }) {
                 theme="min-light"
                 language={scopeql as LanguageRegistration}
                 showLanguage={false}
-                className='p-0 text-[14px] whitespace-pre-wrap'
+                addDefaultStyles={false}
+                className='p-0 text-[14px]'
             >
                 {categories[activeTab].scopeql.trim()}
             </ShikiHighlighter>
@@ -169,8 +170,8 @@ function SQLSection({activeTab}: { activeTab: number }) {
                 theme="min-light"
                 language="sql"
                 showLanguage={false}
-                className='text-[14px] whitespace-pre-wrap p-0'
-
+                addDefaultStyles={false}
+                className='p-0 text-[14px]'
             >
                 {categories[activeTab].sql.trim()}
             </ShikiHighlighter>
