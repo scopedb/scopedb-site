@@ -20,6 +20,8 @@ import FAQItem from "./FAQItem.tsx";
 import FeaturesRow from "./FeaturesRow.astro";
 import FeaturedScopeQL from "./ScopeQL";
 import { CalLink } from "@/src/consts";
+
+const introductoryLink = "/blog/manage-observability-data-in-petabytes";
 ---
 
 <div
@@ -87,36 +89,30 @@ import { CalLink } from "@/src/consts";
       <blockquote
         class="text-[var(--text-primary)] max-w-[580px] mt-[40px] text-[32px] md:text-[40px] font-medium leading-[normal] text-center"
       >
-        "Unleash the Full Power of Cloud Elasticity and Workload Isolation"
+        "Cloud Data Stack Made Simple and Efficient"
       </blockquote>
       <div class="max-w-[600px] mt-[70px] px-[6px] md:px-0">
-        <p
-          class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)]"
-        >
-          The stateless node design fully leverages cloud elasticity. It enables
-          effortless scaling without data reconciliation or replication.
-          Dynamically scale out the cluster for peak workload in no time, and
-          scale in when the peak has gone, delivering up to 100x elasticity
-          tailored to your needs.
+        <p class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)]">
+            Compared with the existing cloud data stack, which has a complex pipeline consisting of
+            data movement, stream processing, and a data warehouse, ScopeDB supports real-time
+            ingestion directly from user applications, eliminating any intermediate steps.
+            Users can query the data immediately after ingestion, without the need for hours
+            or even T+1 latency.
         </p>
 
-        <p
-          class="text-[16px] md:text-[18px]  font-normal leading-[1.4] text-[var(--text-secondary)] mt-[50px]"
-        >
-          Workload isolation is built on top of shared storage. Both read and
-          write groups access object storage directly without coordinating with
-          a leader server. This absolute isolation ensures that ingestion
-          jitters won't affect read performance. Users can further isolate read
-          workloads by creating separate read groups for different businesses so
-          that they can have their own dedicated resources.
+        <p class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)] mt-[50px]">
+            ScopeDB employs a stateless design. It enables effortless scaling without manual data
+            reconciliation or replication, fully leverages cloud elasticity.
+            For example, a cluster can dynamically scale out for peak workload in no time,
+            where performance gets unlimitedly improved as you add more resources,
+            and scale in when the peak has passed, delivering thoroughly elasticity
+            tailored to your needs.
         </p>
 
         <p class="text-[16px] md:text-[18px]  text-[var(--text-tertiary)] mt-[80px]">
-          Read <a
-            class="underline text-[var(--text-primary)]"
-            href="https://www.scopedb.io/blog/manage-observability-data-in-petabytes"
-            >our introductory blog</a
-          > for more details.
+            Read
+            <a class="underline text-[var(--text-primary)]" href={introductoryLink}>our introductory blog</a>
+            for more details.
         </p>
       </div>
     </div>
