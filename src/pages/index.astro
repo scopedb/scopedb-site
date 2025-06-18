@@ -1,0 +1,22 @@
+---
+import HeadMeta from "@/src/components/HeadMeta.astro";
+import Header from "@/src/components/Header.astro";
+import Footer from "@/src/components/Footer.astro";
+import LandingPage from "@/src/components/homepage/LandingPage.astro";
+import {SideDesc, SiteName} from "@/src/consts";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{SiteName}</title>
+    <HeadMeta title={SiteName} description={SideDesc}/>
+</head>
+<body>
+<Header/>
+<main class="overflow-x-hidden">
+    <LandingPage/>
+</main>
+<Footer/>
+</body>
+</html>

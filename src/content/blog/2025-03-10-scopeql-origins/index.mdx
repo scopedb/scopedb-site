@@ -1,0 +1,453 @@
+---
+slug: scopeql-origins
+title: "Why Not SQL: The Origin of ScopeQL"
+description: ""
+pubDate: 2025-03-10
+category: engineering
+heroImage: '/blog-covers/cover-3.png'
+---
+
+import Tabs from '@/src/components/Tabs/Tabs.astro';
+import TabItem from '@/src/components/Tabs/TabItem.astro';
+
+SQL has dominated structured data processing for 50 years. However, its age reveals significant design flaws, notably non-composable and inconsistent syntax.
+
+When developing the query language for ScopeDB, we decided to go against SQL and design a new language, ScopeQL, from scratch to fix SQL's problems. In this post, we will discuss where SQL falls short and the design principles behind ScopeQL.
+
+## TL;DR
+
+* Both SQL and ScopeQL are based on relational algebra, a powerful, elegant, proven theory.
+* SQL query is out of its semantic order; ScopeQL fixes it with a linear pipelined syntax.
+* SQL has a rigid and arbitrary syntax; ScopeQL's syntax is consistent, composable, and reduced.
+* SQL relies on subqueries heavily, while ScopeQL eliminates most of them.
+
+Here is a showcase:
+
+<Tabs>
+    <TabItem title="SQL">
+        ```sql
+        SELECT
+        country,
+        MAX(salary) AS max_salary
+        FROM
+        employees
+        WHERE
+        start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
+        GROUP BY
+        country
+        HAVING
+        MAX(salary) > 100000
+        ```
+    </TabItem>
+    <TabItem title="ScopeQL">
+        ```scopeql
+        FROM employees
+        WHERE start_date > '2021-01-01 00:00:00+00:00'::timestamp
+        GROUP BY country AGGREGATE max(salary) AS max_salary
+        WHERE max_salary > 100000
+        ```
+    </TabItem>
+</Tabs>
+
+{/* truncate */}
+
+## A Critique of SQL
+
+Let's begin with a [quote](http://www.redbook.io/ch2-importantdbms.html) from Michael Stonebraker, a Turing Award winner for contributions to the refinement and spread of database management technology:
+
+> My biggest complaint about System R is that the team never stopped to clean up SQL... All the annoying features of the language have endured to this day. SQL will be the COBOL of 2020, a language we are stuck with that everybody will complain about.
+
+How can it be so? Here is a sample SQL query that denotes several significant problems with SQL:
+
+```sql
+SELECT
+    r.d,
+    SUM(r.e) AS sum,
+    RANK() OVER (ORDER BY r.d) as rank
+FROM r, s
+WHERE r.a = s.b
+  AND r.c < 15
+GROUP BY r.d
+HAVING SUM(r.e) > 3
+ORDER BY r.d
+```
+
+The biggest problem? **The order you write SQL doesn't match the order it executes**. The query above would be actually interpreted in the following order:
+
+1. Join `r` and `s` on `r.a = s.b`. It produces the source relation for all the following operations.
+2. Filter the source relation by `r.c < 15`.
+3. Group the source relation by `r.d`, and calculate aggregations `SUM(r.e)`.
+4. Filter the grouped relation by `SUM(r.e) > 3`.
+5. Calculate `RANK()` for each row over the grouped relation.
+6. Project the columns `r.d`, `SUM(r.e)`, and `RANK()`.
+7. Sort the result by `r.d`.
+
+You may also notice that `SUM(r.e)` is repeated in both `SELECT` and `HAVING` clauses. This is a living example of **incompressible expression**: the `HAVING` clause cannot simply use the alias `sum` in the `SELECT` clause. To do so, you need to use a subquery:
+
+```sql
+SELECT d, sum, rank
+FROM (
+    SELECT
+    r.d,
+    SUM(r.e) AS sum,
+    RANK() OVER (ORDER BY r.d) as rank
+    FROM r, s
+    WHERE r.a = s.b
+      AND r.c < 15
+    GROUP BY r.d
+    ORDER BY r.d
+) as t
+WHERE sum > 3
+```
+
+When subqueries are used, the mismatch between the syntactic order and the semantic order becomes even more apparent. SQL evaluates the subquery first, then evaluates the outer query on that result. Typical analytical queries can have multiple levels of subqueries, which makes the query even harder to read and understand.
+
+Even worse, **SQL relies on subqueries heavily**, even for many common query patterns. A subquery is necessary if you want to:
+
+* Projecting computed expressions for reuse.
+* Aggregating more than one time.
+* Filtering anywhere other than the `WHERE` or `HAVING` clause.
+
+Here is an example of multi-level aggregation (query 13 from the TPC-H benchmark):
+
+```sql
+SELECT c_count, COUNT(*) AS custdist
+FROM (
+    SELECT c_custkey, COUNT(o_orderkey) c_count
+    FROM customer
+    LEFT OUTER JOIN orders ON c_custkey = o_custkey
+        AND o_comment NOT LIKE '%unusual%packages%'
+    GROUP BY c_custkey
+) AS c_orders
+GROUP BY c_count
+ORDER BY custdist DESC, c_count DESC
+```
+
+As a preview, in ScopeQL, you can express the equivalent logic sequentially:
+
+```scopeql
+FROM customer
+LEFT JOIN orders ON c_custkey = o_custkey
+    AND o_comment NOT LIKE '%unusual%packages%'
+GROUP BY c_custkey AGGREGATE COUNT(o_orderkey) AS c_count
+GROUP BY c_count AGGREGATE COUNT(*) AS custdist
+ORDER BY custdist DESC, c_count DESC
+```
+
+SQL has an original goal to have a ["walk up and read"](https://dl.acm.org/doi/10.1145/3555041.3589336) property. Thus, SQL chooses a pseudo-English syntax. Unfortunately, this decision creates **a lot of rigid and arbitrary syntax, as well as too many keywords**.
+
+This means that, for new functionalities, SQL often has to introduce new structures and new keywords. For example, SQL uses `WHERE` and `HAVING` for different filtering: before and after aggregation. They both express the same filtering operation, in different places, with different syntaxes, and with subtly different rules and behaviors.
+
+Even identical operations can have different syntaxes. For example, ordered-set aggregate functions, which require specifying a sort order, use the following syntax:
+
+```sql
+SELECT
+    city,
+    percentile_cont(0.5) WITHIN GROUP (ORDER BY temperature),
+	mode() WITHIN GROUP (ORDER BY temperature)
+FROM city_data
+GROUP BY city
+```
+
+However, whether a specific aggregate function requires sorting or not is an implementation detail. There is no clear reason why the `WITHIN GROUP (ORDER BY expr)` syntax is required for ordered-set aggregations, rather than simply `percentile_cont(0.5, temperature)` and `mode(temperature)`. The only explanation is historical contingency and the need to avoid parsing issues caused by pseudo-English syntax.
+
+When all the shortcomings described above are combined, you meet **window functions**. A window function computes a new attribute based on other tuples of the input relation. It's similar to an aggregate function, but it doesn't reduce the number of tuples. Instead, it adds a new attribute to each tuple. Here is a sample query with window functions:
+
+```sql
+SELECT category, unit_sales, rk
+FROM (
+    SELECT
+        category,
+        unit_sales,
+        rank() OVER (PARTITION BY category ORDER BY unit_sales DESC) rk
+    FROM orders
+    ORDER BY category, rk
+) as t
+WHERE rk < 4
+```
+
+Firstly, window functions introduce two new keywords, `OVER` and `PARTITION BY`, where `PARTITION BY` is similar to `GROUP BY` but only for window functions. Secondly, to filter the result of window functions, you need to use a subquery, while aggregations can be filtered directly in the `HAVING` clause. Finally, few people can remember the semantic order of window functions.
+
+Window functions are computed after `HAVING` (and thus all the aggregations) but before `ORDER BY`. This is why you need a subquery for filtering: the `WHERE` clause is evaluated before the window functions. Another consequence of the fact is that, if you want to apply an aggregate function over the result of a window function, you need to use a subquery:
+
+```sql
+SELECT category, max(rk)
+FROM (
+    SELECT
+        category,
+        rank() OVER (PARTITION BY category ORDER BY unit_sales DESC) rk
+    FROM orders
+) as t
+GROUP BY category
+```
+
+In summary, the cumulative impact of syntax issues makes SQL difficult to learn, and excessively difficult to work with, even for SQL experts.
+
+## ScopeQL To The Rescue
+
+### Relational Algebra
+
+In database theory, relational algebra is a theory that uses algebraic structures for modeling data and defining queries on it with well-founded semantics. The theory was introduced by E. F. Codd in 1970. SQL is based on relational algebra, or SQL is a practical implementation of relational algebra.
+
+Although this post critiques SQL, relational algebra is a powerful, elegant, proven theory. The relational data model itself is perfectly composable, where everything is a table, and relational operations consume and produce tables. Besides, declarative semantics decouple semantic operator order from physical execution strategies and optimizations like indexing, allowing the query planner to choose the best execution plan.
+
+ScopeQL is based on relational algebra, too. Below is the definition of query plans in ScopeQL, which presents the duality to relational algebra:
+
+```rust
+enum QueryPlan {
+    TableScan(TableScanPlan),
+    Values(ValuesPlan),
+    SampleFilter(SampleFilterPlan),
+    UnionAll(UnionAllPlan),
+    Join(JoinPlan),
+    Project(ProjectPlan),
+    Filter(FilterPlan),
+    Limit(LimitPlan),
+    Sort(SortPlan),
+    Distinct(DistinctPlan),
+    Aggregate(AggregatePlan),
+    Window(WindowPlan),
+}
+```
+
+Correspondingly, ScopeQL supports the following query clauses that can be composed in a pipeline:
+
+```rust
+enum QueryClause {
+    From(FromClause),
+    Values(ValuesClause),
+    Sample(SampleClause),
+    Union(UnionClause),
+    Join(JoinClause),
+    Select(SelectClause),
+    Where(WhereClause),
+    Limit(LimitClause),
+    Order(OrderClause),
+    Distinct(DistinctClause),
+    Aggregate(AggregateClause),
+    Window(WindowClause),
+    Subquery(SubqueryClause),
+}
+```
+
+Internally, the query planner may rewrite the query plan for optimization. Some internal execution plans could be introduced, such as "sort merge join", "hash join", or "top n".
+
+### Query Syntax
+
+Corresponding to the query clauses listed above, ScopeQL supports querying using a pipelined relational query language in the following basic syntax:
+
+```
+[ FROM ... [ SAMPLE ... ] | VALUES ... ]
+[ SELECT ... ]
+[ WHERE ... ]
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] WINDOW ... ]
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] AGGREGATE ... ]
+[ ORDER BY ... ]
+[ LIMIT ... ]
+```
+
+Except that the data source clauses (`FROM` and `VALUES`) should be at the beginning of a query/subquery, any other clauses can be in any order: each consumes the result table produced by the previous clause, and produces a new table.
+
+For example, the "HelloWorld" query in SQL (`SELECT n FROM helloworld WHERE phrase = "Hello, World!"`) can be written in ScopeQL as:
+
+```scopeql
+FROM helloworld
+WHERE phrase = "Hello, World!"
+SELECT n
+```
+
+The syntactic order of the query above is perfectly aligned with its semantic order:
+
+1. Scan the `helloworld` table.
+2. Filter the table by `phrase = "Hello, World!"`.
+3. Project the column `n`.
+
+Then, let's review how the first criticized SQL query can be written in ScopeQL.
+
+```sql
+SELECT
+    r.d,
+    SUM(r.e) AS sum,
+    RANK() OVER (ORDER BY r.d) as rank
+FROM r, s
+WHERE r.a = s.b
+  AND r.c < 15
+GROUP BY r.d
+HAVING SUM(r.e) > 3
+ORDER BY r.d
+```
+
+will be:
+
+```scopeql
+FROM r JOIN s ON r.a = s.b
+WHERE r.c < 15
+GROUP BY r.d
+AGGREGATE SUM(r.e) AS sum
+WHERE sum > 3
+WITHIN GROUP ORDER BY r.d WINDOW RANK() AS rank
+SELECT r.d AS d, sum, rank
+ORDER BY d
+```
+
+**Perfectly match the semantic order.**
+
+ScopeQL's pipelined syntax also improves the consistency of the language. For example, to filer the result of any sort of previous operation, you always use the `WHERE` clause. Every clause consumes the result of the previous clause, so each `WHERE` clause knows what it is filtering.
+
+Compared to SQL, due to the arbitrary operator order and pseudo-English syntax, you need to use `HAVING` for aggregations, `WHERE` for filtering before aggregations, and subqueries for filtering elsewhere. A few SQL databases have introduced a `QUALIFY` clause to filter the result of window functions, which adds even more inconsistency and a new keyword.
+
+Furthermore, the pipelined syntax has an intuitively top-down. For instance, a nested SQL query like this:
+
+```sql
+SELECT category, max(rk)
+FROM (
+    SELECT
+        category,
+        rank() OVER (PARTITION BY category ORDER BY unit_sales DESC) rk
+    FROM orders
+) as t
+GROUP BY category
+```
+
+can be written in ScopeQL as:
+
+```scopeql
+FROM orders
+GROUP BY category WITHIN GROUP ORDER BY unit_sales WINDOW RANK() AS rk
+GROUP BY category AGGREGATE MAX(rk)
+```
+
+As you can see, the ScopeQL query perfectly matches the semantic order. The data flows from the top down, and the query is read from top to bottom. In addition, you don't need subqueries for multi-level aggregation, window, or their mix.
+
+If you write aggregations frequently, you'll notice that ScopeQL does not require you to repeat the group by expressions in a `SELECT` clause. Actually, the `SELECT` clause is totally optional. By default, ScopeQL will return all the columns in the result table. The `GROUP BY` modifier would retain the group by expressions in the result table.
+
+This feature improves query compression. For example, if the group by expressions are non-trivial, to include them in the final result, you need to repeat them in the `SELECT` clause in SQL:
+
+```sql
+SELECT (x + 1) AS x2, MAX(y) AS y_max FROM foo GROUP BY x + 1
+```
+
+In ScopeQL, you can simply write:
+
+```scopeql
+FROM foo GROUP BY x + 1 AS x2 AGGREGATE MAX(y) AS y_max
+```
+
+If you want to reuse computed expressions, SQL requires subqueries:
+
+```sql
+SELECT x2, y_max FROM (SELECT x + 1 AS x2, MAX(y) AS y_max FROM foo) GROUP BY x2
+```
+
+Even for a very simple query:
+
+```sql
+SELECT a+((z*2)-1), b+((z*2)-1) FROM foo;
+SELECT a + tmp, b + tmp FROM (SELECT a, b, (z*2)-1 AS tmp FROM foo) AS tmp_table;
+```
+
+In ScopeQL, you can reuse expressions in a more straightforward way:
+
+```scopeql
+FROM foo
+SELECT *, (z*2)-1 AS tmp
+SELECT a + tmp, b + tmp
+```
+
+:::note[Select Targets Manipulation]
+
+ScopeQL can flexibly adjust select targets:
+
+* `SELECT *, exprs` to extend additional expressions.
+* `SELECT ... EXCLUDE (colmuns)` to exclude columns.
+* `SELECT ... RENAME (old_names TO new_names)` to rename columns.
+* `SELECT ... REPLACE (exprs AS old_names)` to replace the value of columns with new expressions.
+
+The first one is commonly used to reuse computed expressions. The rest are useful for data cleaning and transformation.
+
+:::
+
+Now, return to grouping and aggregation. You may notice that the `GROUP BY` is referred to as a modifier, not as a clause. This is because it's only a modifier of an `AGGREGATE` clause or a `WINDOW` clause. You always need to specify an aggregate function or window function after `GROUP BY`:
+
+```
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] WINDOW ... ]
+[ [ GOURP BY ... ] [ WITHIN GROUP ORDER BY ... ] AGGREGATE ... ]
+```
+
+No more `OVER` and `PARTITION BY` keywords specifically for window functions. ScopeQL respects the similarity between aggregations and window functions, and thus, they share a similar syntax. Both of them compute a value based on other tuples of the input relation. But aggregations reduce the number of tuples, while window functions add a new attribute to each tuple.
+
+How to write a query the same as SQL's `GROUP BY` without any aggregation? You can use the `DISTINCT ON` clause:
+
+```scopeql
+FROM foo
+SELECT x + 1 AS x2
+DISTINCT ON x2
+```
+
+Finally, **as a "killer" syntax feature**, ScopeQL accepts optional trailing commas in many places:
+
+```scopeql
+FROM foo
+SELECT
+    a_complex_expression AS a,
+    many_other_complex_expressions, -- no longer have to manage the trailing comma
+WHERE
+    filter_conditions,
+```
+
+### Data Types
+
+Except for the syntax, ScopeQL also introduces a data type system based on algebraic data types. Notably, ScopeQL defines a **variant data type** that can represent sum types in the database.
+
+In comparison, SQL hasn't had a built-in sum type for a long time. To represent a real-world sum type, the usual solution is using an ID column that joins against multiple tables, one for each possible type:
+
+```sql
+create table json_value(id int);
+create table json_bool(id int, value bool)
+create table json_number(id int, value double);
+create table json_string(id int, value text);
+create table json_array(id int);
+create table json_array_elements(id int, position int, value int);
+create table json_object(id int);
+create table json_object_properties(id int, key text, value int);
+```
+
+In ScopeQL, you can reduce all the complexity to a single variant column:
+
+```scopeql
+CREATE TABLE vartab(var VARIANT);
+```
+
+You can read our previous blog post ["Algebraic Data Types in Database: Where Variant Data Can Help"](/blog/2025-02-24-algebraic-data-type-variant-data/index.mdx) for more details about the variant data type.
+
+## FAQ
+
+**What about the interoperability with SQL?**
+
+Some libraries and tools enable developers to write queries in a new syntax and translate them to SQL (e.g., [PRQL](https://prql-lang.org/), [SaneQL](https://www.cidrdb.org/cidr2024/papers/p48-neumann.pdf), etc.). The existing SQL ecosystem provides solid database implementations and a rich set of data tools. People always tend to think you must speak SQL; otherwise, you lose the whole ecosystem.
+
+But wait a minute, those libraries translate their new language to SQL because they don't implement the query engine (i.e., the database) themselves, so they have to talk to SQL databases in SQL. However, ScopeQL is the query language of ScopeDB, and ScopeDB is already a database built directly on top of S3.
+
+Thus, what we can leverage from the SQL ecosystem are data tools, such as BI tools, that generate SQL queries to implement business logic. For this purpose, one should write a translator that converts SQL queries to ScopeQL queries. Since both ScopeQL and SQL are based on relational algebra, the translation must be doable.
+
+**Project Foo has already implemented similar features. Why not follow them?**
+
+ScopeQL was developed from scratch but was not invented in isolation. We learn a lot from existing solutions, research, and discussions with their adopters. It includes the syntax of PRQL, SaneQL, and SQL extensions provided by other analytical databases. We also deeply empathize with the challenges outlined in the [GoogleSQL](https://research.google/pubs/sql-has-problems-we-can-fix-them-pipe-syntax-in-sql/) paper.
+
+However, as answered in the previous question, we first developed ScopeDB as a relational database. Then, we learned users' scenarios where an enhanced syntax helps maintain their business logic and increases their productivity. So, directly implementing the enhanced syntax is the most efficient way.
+
+**What about DDL and DML?**
+
+The most significant part of a query language is the query part. ScopeQL's innovation is mainly on the query syntax, as introduced in this post.
+
+Data Manipulation Language (DML) commands are mostly trivial. ScopeQL's `DELETE` and `UPDATE` commands are very similar to SQL, while `INSERT INTO` is implemented as a final clause in a query. You prepare the dataset to be inserted in a query, and then you insert it into a table:
+
+```scopeql
+VALUES (...), (...), ... INSERT INTO table
+```
+
+Data Definition Language (DDL) commands are mainly about maintenance. DDL commands are typically used to create, manipulate, and modify objects in ScopeDB, such as databases, schemas, tables, views, columns, etc. Most DDL commands are similar to SQL, while ScopeDB can introduce new commands for our specific operations.
+
+**Where can I get a full reference of ScopeQL?**
+
+It is available at https://docs.scopedb.io/reference/.

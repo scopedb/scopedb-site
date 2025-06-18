@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+:root {
+    --text-primary: rgb(0, 0, 0);
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --text-tertiary: rgba(0, 0, 0, 0.3);
+    --text-brand: rgb(8, 118, 221);
+    --button-primary-bg: rgb(24, 24, 24);
+    --button-primary-bg-hover: rgb(40, 40, 40);
+    --button-primary-border-hover: rgb(20, 20, 20);
+    --button-primary-border: rgb(20, 20, 20);
+    --button-primary-text: rgb(255, 255, 255);
+    --button-secondary-bg: rgba(255, 255, 255, 0.1);
+    --button-secondary-bg-hover: rgba(0, 0, 0, 0.04);
+    --button-secondary-border-hover: rgba(0, 0, 0, 0.15);
+    --button-secondary-border: rgba(0, 0, 0, 0.15);
+    --button-secondary-text: rgba(0, 0, 0, 0.8);
+    
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+img {
+    @apply select-none;
+    pointer-events: none;
+}
+
+.astro-code pre {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 0;
+}
+
+.tablist-wrapper {
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    width: fit-content;
+    padding: 0 4px 0 0;
+}
+
+.tablist-wrapper ul[role="tablist"] {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    list-style: none;
+    gap: 0;
+    background: transparent;
+}
+
+.tablist-wrapper .tab {
+    margin: 4px 0 4px 0;
+    border: none;
+    background: none;
+}
+
+.tablist-wrapper .tab a[role="tab"] {
+    display: block;
+    padding: 6px 14px;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+.tablist-wrapper .tab li[role="presentation"] {
+    padding: 0 !important;
+}
+
+.tablist-wrapper .tab a[role="tab"]:focus {
+    outline: none;
+}
+
+.tablist-wrapper .tab a[role="tab"]:hover {
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.tablist-wrapper .tab a[role="tab"][aria-selected="true"] {
+    background-color: rgb(255, 255, 255);
+    font-weight: 600;
+    padding: 6px 14px;
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.defaultStyles pre {
+    overflow: auto;
+    border-radius: 0.5rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 1.25rem;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: calc(var(--spacing) * 4);
+    margin-inline: auto
+}
+
+@media (min-width: 375px) {
+    .container {
+        padding-inline: calc(var(--spacing) * 6);
+        max-width: 448px
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 624px
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 1440px
+    }
+}
+

@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import {
+  calculateReadingTime,
+  digest,
+} from "../../libs/reading-time";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const titleOfFeaturedPosts = [
+  "Self-observability of ScopeDB",
+  "Why Not SQL: The Origin of ScopeQL",
+  "Algebraic Data Types in Database: Where Variant Data Can Help",
+];
+
+const featuredPosts = titleOfFeaturedPosts
+  .map((title) => posts.find((post) => post.data.title === title))
+  .filter((post): post is NonNullable<typeof post> => Boolean(post))
+  .slice(0, 3);
+---
+
+<section>
+  <ul class="grid grid-cols-1 lg:grid-cols-5 gap-[20px] auto-rows-fr">
+    {
+      featuredPosts.map((post) => {
+        const readingTime = calculateReadingTime(post.body || "");
+        return (
+          <li class="">
+            <div class="bg-[#ffffff] border border-[#f1f1f1] rounded-[12px] p-[12px] w-full h-full">
+              <a href={`/blog/${post.slug}/`}>
+                <img
+                  class="rounded-[10px] w-full md:h-[420px] object-cover mb-[12px]"
+                  src={post.data.heroImage}
+                  alt=""
+                />
+                <div class="flex flex-col gap-[8px] my-[12px]">
+                  <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--text-secondary)] ">
+                    <FormattedDate date={post.data.pubDate} />
+                    <span class="ml-2 text-[12px]">•</span>
+                    <span class="ml-2"> {readingTime}</span>
+                  </p>
+                  <div class="flex-1">
+                    <h4 class="text-[24px] font-semibold px-[12px] text-[var(--text-primary)]">
+                      {post.data.title}
+                    </h4>
+                  </div>
+                  <div class="relative px-[12px] pb-[20px]">
+                    <p class="text-[14px] text-[var(--text-secondary)] line-clamp-6">
+                      {digest(post.data.description || post.body || "")}
+                    </p>
+                    <div class="absolute bottom-0 left-[12px] right-[12px] h-[60px] bg-gradient-to-t from-[#fff] to-[#ffffff00] pointer-events-none"></div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    li:first-child {
+      @apply col-span-3 row-span-2;
+    }
+    li:first-child h4 {
+      font-size: 28px;
+    }
+
+    li:not(:first-child) {
+      @apply col-span-2;
+    }
+
+    li:not(:first-child) img {
+      @apply hidden;
+    }
+  }
+</style>

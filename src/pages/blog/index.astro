@@ -1,0 +1,44 @@
+---
+import {ClientRouter} from "astro:transitions";
+import HeadMeta from "@/src/components/HeadMeta.astro";
+import AllPosts from "@/src/components/blog/AllPosts.astro";
+import BlogTabs from "@/src/components/blog/BlogTabs.astro";
+import FeaturedPosts from "@/src/components/blog/FeaturedPosts.astro";
+import Footer from "@/src/components/Footer.astro";
+import Header from "@/src/components/Header.astro";
+import {SideDesc, SiteName} from "@/src/consts";
+import {Rss} from '@lucide/astro';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{SiteName}</title>
+    <HeadMeta title={SiteName} description={SideDesc}/>
+    <ClientRouter/>
+</head>
+<body>
+<Header/>
+<main class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]">
+    <div class="flex items-center justify-between py-[64px]">
+        <div class="text-[32px] md:text-[40px] font-medium text-[var(--text-primary)]">ScopeDB Blog</div>
+        <div class="flex items-center gap-[12px]">
+            <span class="text-[14px] text-[var(--text-secondary)]">Subscribe via</span>
+            <a
+                    href="/rss.xml"
+                    class="w-[36px] h-[36px] bg-[#fff] border text-[var(--text-secondary)] border-[#f1f1f1] rounded-full flex items-center justify-center hover:bg-[#f1f1f1] transition-colors"
+                    title="Subscribe to RSS feed"
+            >
+                <Rss width={16} height={16}/>
+            </a>
+        </div>
+    </div>
+    <FeaturedPosts/>
+    <div class="mt-[74px]">
+        <BlogTabs activeTab="all"/>
+        <AllPosts category="all"/>
+    </div>
+</main>
+<Footer/>
+</body>
+</html>

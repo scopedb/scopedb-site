@@ -1,0 +1,126 @@
+---
+import { getCollection } from "astro:content";
+import { ArrowUpRight,Mail,ChevronRight } from '@lucide/astro';
+import FormattedDate from "./FormattedDate.astro";
+import {
+  calculateReadingTime,
+  digest,
+} from "../libs/reading-time";
+
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const titleOfFeaturedPosts = [
+  "Introducing ScopeDB: Manage Data in Petabytes for An Observability Platform",
+  "Why Not SQL: The Origin of ScopeQL",
+  "Algebraic Data Types in Database: Where Variant Data Can Help",
+];
+
+const featuredPosts = titleOfFeaturedPosts
+  .map((title) => posts.find((post) => post.data.title === title))
+  .filter((post): post is NonNullable<typeof post> => Boolean(post))
+  .slice(0, 3);
+
+interface Props {
+  showXlCols?: boolean;
+  showBlog?: boolean;
+}
+
+const { showXlCols = false, showBlog = true } = Astro.props;
+---
+
+<section class="mt-[80px]">
+  {showBlog && (
+    <div>
+      <section class="mt-[60px]">
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px]">
+          {
+            featuredPosts.map((post) => {
+              const readingTime = calculateReadingTime(post.body || "");
+              return (
+                <li class="post-item">
+                  <div class="bg-[#ffffff] border border-[#f1f1f1] rounded-[12px] p-[12px] w-full h-full">
+                    <a href={`/blog/${post.slug}/`}>
+                      <img
+                        class="rounded-[12px] mb-[20px]"
+                        src={post.data.heroImage}
+                        alt=""
+                      />
+                      <div class="flex flex-col gap-[8px] my-[12px]">
+                        <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--text-secondary)]">
+                          <FormattedDate date={post.data.pubDate} />
+                          <span class="ml-[4px] text-[12px]">•</span>
+                          <span class="ml-[4px]">{readingTime}</span>
+                        </p>
+                        <div class="flex-1">
+                          <h4 class="text-[20px] font-medium px-[12px] leading-1.1 text-[var(--text-primary)]">
+                            {post.data.title}
+                          </h4>
+                        </div>
+                        <p class="text-[14px] px-[12px] line-clamp-2 text-[var(--text-secondary)]">
+                          {digest(post.data.description || post.body || "")}
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              );
+            })
+          }
+        </ul>
+
+        {
+          featuredPosts.length === 0 && (
+            <div class="text-center py-12">
+              <p class="text-gray-500 text-[14px]">No posts found for this category</p>
+            </div>
+          )
+        }
+      </section>
+    </div>
+  )}
+
+  <div class={`flex flex-col md:flex-row gap-[32px] md:gap-[16px] mt-[80px] ${showXlCols ? 'xl:max-w-none' : 'max-w-[1200px]'}`}>
+    <!-- Join the community -->
+    <div class="flex-1">
+      <h3 class="text-[16px] md:text-[18px] font-semibold mb-[12px]  text-[var(--text-primary)]">Join the community</h3>
+      <p class="text-[14px] text-[var(--text-secondary)] mb-[16px] max-w-[300px]">
+        ScopeDB users share questions and best practices in our Discord community.
+      </p>
+      <a class="text-[14px] text-[var(--text-primary)] flex gap-[4px] items-center"
+         href="https://discord.gg/AynEZfqFvM">
+        Join Discord <ArrowUpRight width={18} height={18} />
+      </a>
+    </div>
+
+    <!-- General communicate -->
+    <div class="flex-1">
+      <h3 class="text-[16px] md:text-[18px] font-semibold mb-[12px]  text-[var(--text-primary)]">General communicate</h3>
+      <p class="text-[14px] text-[var(--text-secondary)] mb-[16px] max-w-[300px]">
+        For other queries, please get in touch with us via email.
+      </p>
+      <a
+          class="text-[14px] text-[var(--text-primary)] flex gap-[4px] items-center"
+          href="mailto:contact@scopedb.io"
+      >
+        <Mail width={18} height={18} /> contact@scopedb.io
+      </a>
+    </div>
+
+    <!-- Documentation -->
+    <div class="flex-1">
+      <h3 class="text-[16px] md:text-[18px] font-semibold mb-[12px]  text-[var(--text-primary)]">Documentation</h3>
+      <p class="text-[14px] text-[var(--text-secondary)] mb-[16px] max-w-[300px]">
+        Get an overview of ScopeDB's features, integrations, and how to use
+        them.
+      </p>
+      <a
+          class="text-[14px] flex gap-[4px] items-center  text-[var(--text-primary)]"
+          href="https://docs.scopedb.io/">
+        ScopeDB Docs <ChevronRight width={18} height={18} />
+      </a>
+    </div>
+  </div>
+</section> 
