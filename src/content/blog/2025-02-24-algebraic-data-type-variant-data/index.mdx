@@ -105,7 +105,7 @@ A variant value can contain a value of any other data type, a list of variant va
 Reuse the JSON example above, you can define a variant column to represent JSON values:
 
 ```scopeql
-CREATE TABLE vartab (n int, v variant);
+CREATE TABLE vartab (n int, v any);
 VALUES
     (1, PARSE_JSON('null')),
     (2, null),
@@ -116,8 +116,8 @@ VALUES
     (7, PARSE_JSON('"Om ara pa ca na dhih"')),
     (8, PARSE_JSON('[-1, 12, 289, 2188, false]')),
     (9, PARSE_JSON('{ "x" : "abc", "y" : false, "z": 10}')),
-    (10, "PT42h"::interval::variant),
-    (11, "2025-01-16T14:56:00Z"::timestamp::variant),
+    (10, "PT42h"::interval::any),
+    (11, "2025-01-16T14:56:00Z"::timestamp::any),
 INSERT INTO vartab;
 ```
 
@@ -223,7 +223,7 @@ CREATE TABLE scopedb.tenant.logs (
   name string,
   source string,
   status string,
-  var variant,
+  var any,
 );
 ```
 
@@ -291,15 +291,17 @@ First of all, we have a free lunch by leveraging Rust's compacted enum represent
 
 ```rust
 enum VariantRef<'a> {
-    Null,
+    Int(i64),
+    UInt(u64),
+    Float(F64),
+    Binary(&'a [u8]),
     String(&'a str),
-    Number(VariantNumber),
     Boolean(bool),
     Timestamp(Timestamp),
     Interval(Interval),
-    Binary(&'a [u8]),
     Array(ArrayRef<'a>),
     Object(ObjectRef<'a>),
+    Null,
 }
 ```
 
