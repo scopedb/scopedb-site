@@ -7,7 +7,7 @@ import remarkCalloutDirectives from '@microflash/remark-callout-directives';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import devtoolsJson from "vite-plugin-devtools-json";
-import {defineConfig} from "astro/config";
+import {defineConfig, passthroughImageService} from "astro/config";
 import scopeql from "./shiki-scopeql-grammar.json";
 
 // https://astro.build/config
@@ -16,6 +16,9 @@ export default defineConfig({
     integrations: [react(), sitemap(), mdx()],
     vite: {
         plugins: [tailwindcss(), devtoolsJson()],
+    },
+    image: {
+        service: passthroughImageService(),
     },
     markdown: {
         remarkPlugins: [remarkDirective, remarkCalloutDirectives],
