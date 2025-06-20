@@ -18,7 +18,7 @@ const ContactForm: React.FC = () => {
     'company-size': '1-10',
     message: ''
   });
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -180,4 +180,4 @@ const ContactForm: React.FC = () => {
   );
 };
 
-export default ContactForm; 
+export default ContactForm;

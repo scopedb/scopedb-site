@@ -1,10 +1,10 @@
 ---
-import '@/src/styles/global.css';
-import '@/src/styles/callout.css';
-import { SiteName } from '@/src/consts';
+import "@/src/styles/global.css";
+import "@/src/styles/callout.css";
+import { SiteName } from "@/src/consts";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = '/banner.png' } = Astro.props;
+const { title, description, image = "/banner.png" } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -13,17 +13,19 @@ const { title, description, image = '/banner.png' } = Astro.props;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SiteName}
-	href={new URL('rss.xml', Astro.site)}
+  rel="alternate"
+  type="application/rss+xml"
+  title={SiteName}
+  href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+  rel="stylesheet"
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

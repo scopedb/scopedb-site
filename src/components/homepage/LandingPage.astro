@@ -41,7 +41,9 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
     >
       Insight In No Time
     </h2>
-    <blockquote class="text-[40px] text-[var(--text-primary)] md:text-[50px] leading-[1.2] font-medium">
+    <blockquote
+      class="text-[40px] text-[var(--text-primary)] md:text-[50px] leading-[1.2] font-medium"
+    >
       Schema On The Fly
     </blockquote>
     <p
@@ -54,8 +56,8 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
 
     <div class="mt-[68px] flex gap-[9px]">
       <button
-          data-cal-link={CalLink}
-          class="bg-[var(--button-primary-bg)]  border-[var(--button-primary-border)] hover:bg-[var(--button-primary-bg-hover)] text-[var(--button-primary-text)] px-[16px] py-[8px] rounded-[10px] border transition-colors duration-300 ease-in-out"
+        data-cal-link={CalLink}
+        class="bg-[var(--button-primary-bg)] border-[var(--button-primary-border)] hover:bg-[var(--button-primary-bg-hover)] text-[var(--button-primary-text)] px-[16px] py-[8px] rounded-[10px] border transition-colors duration-300 ease-in-out"
       >
         Book a Demo
       </button>
@@ -85,34 +87,48 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
     <div
       class="max-w-[1200px] p-[12px] mx-auto flex flex-col items-center pt-[80px] pb-[40px] md:pb-[160px] bg-[#F7F7F7] rounded-[16px]"
     >
-      <h2 class="text-[18px] font-normal text-[var(--text-primary)] text-center] ">WHY SCOPEDB?</h2>
+      <h2
+        class="text-[18px] font-normal text-[var(--text-primary)] text-center]"
+      >
+        WHY SCOPEDB?
+      </h2>
       <blockquote
         class="text-[var(--text-primary)] max-w-[580px] mt-[40px] text-[32px] md:text-[40px] font-medium leading-[normal] text-center"
       >
         "Cloud Data Stack Made Simple and Efficient"
       </blockquote>
       <div class="max-w-[600px] mt-[70px] px-[6px] md:px-0">
-        <p class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)]">
-            Compared with the existing cloud data stack, which has a complex pipeline consisting of
-            data movement, stream processing, and a data warehouse, ScopeDB supports real-time
-            ingestion directly from user applications, eliminating any intermediate steps.
-            Users can query the data immediately after ingestion, without the need for hours
-            or even T+1 latency.
+        <p
+          class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)]"
+        >
+          Compared with the existing cloud data stack, which has a complex
+          pipeline consisting of data movement, stream processing, and a data
+          warehouse, ScopeDB supports real-time ingestion directly from user
+          applications, eliminating any intermediate steps. Users can query the
+          data immediately after ingestion, without the need for hours or even
+          T+1 latency.
         </p>
 
-        <p class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)] mt-[50px]">
-            ScopeDB employs a stateless design. It enables effortless scaling without manual data
-            reconciliation or replication, fully leverages cloud elasticity.
-            For example, a cluster can dynamically scale out for peak workload in no time,
-            where performance gets unlimitedly improved as you add more resources,
-            and scale in when the peak has passed, delivering thoroughly elasticity
-            tailored to your needs.
+        <p
+          class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)] mt-[50px]"
+        >
+          ScopeDB employs a stateless design. It enables effortless scaling
+          without manual data reconciliation or replication, fully leverages
+          cloud elasticity. For example, a cluster can dynamically scale out for
+          peak workload in no time, where performance gets unlimitedly improved
+          as you add more resources, and scale in when the peak has passed,
+          delivering thoroughly elasticity tailored to your needs.
         </p>
 
-        <p class="text-[16px] md:text-[18px]  text-[var(--text-tertiary)] mt-[80px]">
-            Read
-            <a class="underline text-[var(--text-primary)]" href={introductoryLink}>our introductory blog</a>
-            for more details.
+        <p
+          class="text-[16px] md:text-[18px] text-[var(--text-tertiary)] mt-[80px]"
+        >
+          Read
+          <a
+            class="underline text-[var(--text-primary)]"
+            href={introductoryLink}>our introductory blog</a
+          >
+          for more details.
         </p>
       </div>
     </div>
@@ -127,7 +143,11 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
 
   <section class="mt-[210px]">
     <div class="flex items-end gap-[16px] pl-[16px] md:pl-[55px] mb-[40px]">
-      <h2 class="text-[32px] md:text-[40px] font-medium text-[var(--text-primary)]">Key Features</h2>
+      <h2
+        class="text-[32px] md:text-[40px] font-medium text-[var(--text-primary)]"
+      >
+        Key Features
+      </h2>
       <div class="flex gap-[2px] items-end mb-[14px]">
         <div class="w-[16px] h-[6px] bg-[#4D4A4A] rounded-[2px] animate-pulse">
         </div>
@@ -150,13 +170,17 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
           <div
             class="px-[24px] md:p-[50px] lg:w-1/2 flex flex-col justify-center min-h-[300px] md:min-h-[500px]"
           >
-            <h3 class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium">Real-time Ingestion</h3>
+            <h3
+              class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium"
+            >
+              Real-time Ingestion
+            </h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
-              ScopeDB handles massive ingestion requests with arbitrary nodes independently,
-              without sharding or partition leaders. The cluster of nodes can dynamically scale
-              to manage peak traffic efficiently.
+              ScopeDB handles massive ingestion requests with arbitrary nodes
+              independently, without sharding or partition leaders. The cluster
+              of nodes can dynamically scale to manage peak traffic efficiently.
             </p>
           </div>
           <div
@@ -174,9 +198,13 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
           <div
-            class="p-[24px] md:p-[50px]  lg:w-1/2 min-h-[280px] flex flex-col justify-center"
+            class="p-[24px] md:p-[50px] lg:w-1/2 min-h-[280px] flex flex-col justify-center"
           >
-            <h3 class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium">Any-scale Analysis & Exploration</h3>
+            <h3
+              class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium"
+            >
+              Any-scale Analysis & Exploration
+            </h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
@@ -196,22 +224,28 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
               height={200}
               format="png"
               quality="100"
-              class="mb-[2px] md:mb-[62px] absolute right-[100px] "
+              class="mb-[2px] md:mb-[62px] absolute right-[100px]"
             />
           </div>
         </div>
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="p-[24px] md:p-[50px] pb-[50px] lg:w-1/2 min-h-[300px] md:min-h-[580px] relative">
-            <h3 class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal">Optimal Storage Format</h3>
+          <div
+            class="p-[24px] md:p-[50px] pb-[50px] lg:w-1/2 min-h-[300px] md:min-h-[580px] relative"
+          >
+            <h3
+              class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal"
+            >
+              Optimal Storage Format
+            </h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
-              Unleash the benefits of the compact columnar data format, and dedicated compression
-              algorithms depending on data types.
+              Unleash the benefits of the compact columnar data format, and
+              dedicated compression algorithms depending on data types.
             </p>
-            <div class="mt-[-100px] ">
+            <div class="mt-[-100px]">
               <Image
                 class="mx-auto"
                 src={imageOptimalStorageFormat}
@@ -224,16 +258,20 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
             </div>
           </div>
           <div
-            class="flex-1 lg:border-l border-[#f0f0f0] p-[24px] md:p-[50px] lg:w-1/2  min-h-[300px] md:min-h-[580px] "
+            class="flex-1 lg:border-l border-[#f0f0f0] p-[24px] md:p-[50px] lg:w-1/2 min-h-[300px] md:min-h-[580px]"
           >
-            <h3 class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal">Various Exploration Methods</h3>
+            <h3
+              class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal"
+            >
+              Various Exploration Methods
+            </h3>
             <p
-              class="text-[16px] font-normal text-[var(--text-secondary)]  mt-[12px]"
+              class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
               Get insights from the data via searching, aggregations,
               time-series analytics, etc.
             </p>
-            <div class="pt-[100px] ">
+            <div class="pt-[100px]">
               <Image
                 class="mx-auto"
                 src={imageMultipleAnalysisScenarios}
@@ -247,15 +285,21 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="p-[24px] md:p-[50px] lg:w-1/2 flex flex-col min-h-[300px] md:min-h-[580px]">
-            <h3 class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal">Adaptive Indexes</h3>
-            <p
-              class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px] "
+          <div
+            class="p-[24px] md:p-[50px] lg:w-1/2 flex flex-col min-h-[300px] md:min-h-[580px]"
+          >
+            <h3
+              class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal"
             >
-              Accelerate queries with equality indexes, range indexes, search indexes,
-              object indexes, materialized indexes, and more.
+              Adaptive Indexes
+            </h3>
+            <p
+              class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
+            >
+              Accelerate queries with equality indexes, range indexes, search
+              indexes, object indexes, materialized indexes, and more.
             </p>
-            <div class="flex-1 flex items-center justify-center ">
+            <div class="flex-1 flex items-center justify-center">
               <Image
                 src={imageAdaptiveIndexes}
                 alt=""
@@ -267,14 +311,16 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
           <div
             class="flex-1 lg:border-l border-[#f0f0f0] p-[24px] md:p-[50px] lg:w-1/2 min-h-[300px] md:min-h-[580px]"
           >
-            <h3 class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal">
+            <h3
+              class="text-[20px] md:text-[24px] text-[var(--text-primary)] font-normal"
+            >
               On-Demand Resource Groups
             </h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] mt-[12px]"
             >
-              Each group has its dedicated compute resources. All
-              groups share the same object storage as the primary data backend.
+              Each group has its dedicated compute resources. All groups share
+              the same object storage as the primary data backend.
             </p>
             <div class="py-[20px] flex items-center justify-center">
               <Image
@@ -289,14 +335,21 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       </FeaturesRow>
       <FeaturesRow>
         <div class="flex flex-col lg:flex-row">
-          <div class="pl-[24px] md:pl-[50px] pr-[30px] lg:w-1/2 flex flex-col justify-center min-h-[300px] md:min-h-[580px]">
-            <h3 class="text-[24px] md:text-[32px] font-medium text-[var(--text-primary)]">Flexible Data Schema</h3>
+          <div
+            class="pl-[24px] md:pl-[50px] pr-[30px] lg:w-1/2 flex flex-col justify-center min-h-[300px] md:min-h-[580px]"
+          >
+            <h3
+              class="text-[24px] md:text-[32px] font-medium text-[var(--text-primary)]"
+            >
+              Flexible Data Schema
+            </h3>
             <p
               class="text-[16px] font-normal text-[var(--text-secondary)] max-w-[504px] mt-[12px]"
             >
-              ScopeDB supports flexible data schema, enabling users to partially qualify
-              schemas while storing additional data in an ANY column,
-              allowing for efficient handling and analysis of semi-structured data.
+              ScopeDB supports flexible data schema, enabling users to partially
+              qualify schemas while storing additional data in an ANY column,
+              allowing for efficient handling and analysis of semi-structured
+              data.
             </p>
           </div>
           <div
@@ -336,7 +389,9 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       </div>
       <FeaturesRow>
         <div class="p-[24px] md:p-[36px]">
-          <h3 class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium">
+          <h3
+            class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium"
+          >
             Cloud Application Observability
           </h3>
           <p
@@ -353,7 +408,11 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       </FeaturesRow>
       <FeaturesRow>
         <div class="p-[24px] md:p-[36px]">
-          <h3 class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium">Real-time Behavior Analysis</h3>
+          <h3
+            class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium"
+          >
+            Real-time Behavior Analysis
+          </h3>
           <p
             class="text-[16px] font-normal text-[var(--text-secondary)] xl:max-w-[700px] mt-[12px]"
           >
@@ -391,33 +450,39 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
     </div>
 
     <section class="mt-[108px] wx-[10px] md:wx-[45px]">
-      <h2 class="text-[32px] md:text-[40px] font-medium text-[var(--text-primary)]  mx-auto text-center">
+      <h2
+        class="text-[32px] md:text-[40px] font-medium text-[var(--text-primary)] mx-auto text-center"
+      >
         ScopeQL vs. SQL
       </h2>
-      <div class="flex flex-col md:flex-row mt-[114px] justify-between items-start md:gap-[40px]">
-        <div class="w-full md:w-1/2 p-8 ">
+      <div
+        class="flex flex-col md:flex-row mt-[114px] justify-between items-start md:gap-[40px]"
+      >
+        <div class="w-full md:w-1/2 p-8">
           <p
             class="text-[20px] max-w-[500px] md:text-[24px] font-medium text-[var(--text-primary)] leading-[1.4] pb-[24px]"
-          > ScopeQL != SQL 2.0 </p>
+          >
+            ScopeQL != SQL 2.0
+          </p>
           <p>
             We reinvent the query language from relational algebra foundations
             with three radical simplifications:
           </p>
-          <br/>
+          <br />
           <ul>
             <li>
-              <div class="flex items-center gap-[8px] pb-[8px] ">
+              <div class="flex items-center gap-[8px] pb-[8px]">
                 <Image
                   src={imageScopeQLCheckBox}
                   alt=""
                   width={20}
                   height={20}
                 />
-                <h4 class="text-[16px] text-[var(--text-primary)] font-medium">Execution Flow</h4>
+                <h4 class="text-[16px] text-[var(--text-primary)] font-medium">
+                  Execution Flow
+                </h4>
               </div>
-              <p
-                class="text-[16px] text-[var(--text-secondary)] pb-[28px] "
-              >
+              <p class="text-[16px] text-[var(--text-secondary)] pb-[28px]">
                 SQL's inside-out execution becomes ScopeQL's linear top-down
                 pipeline.
               </p>
@@ -430,7 +495,9 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
                   width={20}
                   height={20}
                 />
-                <h4 class="text-[16px] text-[var(--text-primary)] font-medium">Syntax Integrity</h4>
+                <h4 class="text-[16px] text-[var(--text-primary)] font-medium">
+                  Syntax Integrity
+                </h4>
               </div>
               <p
                 class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[500px]"
@@ -467,7 +534,9 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
     </section>
 
     <section class="mt-[124px]">
-      <h2 class="text-[32px] md:text-[40px] text-[var(--text-primary)] font-medium mx-auto text-center">
+      <h2
+        class="text-[32px] md:text-[40px] text-[var(--text-primary)] font-medium mx-auto text-center"
+      >
         Frequently asked questions
       </h2>
 
@@ -485,8 +554,12 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       </ul>
     </section>
 
-    <h2 class="mt-[360px] text-[24px] md:text-[32px] font-medium text-[var(--text-primary)]">
-      Explore More About <br /><span class="text-[32px] md:text-[40px]">ScopeDB</span>
+    <h2
+      class="mt-[360px] text-[24px] md:text-[32px] font-medium text-[var(--text-primary)]"
+    >
+      Explore More About <br /><span class="text-[32px] md:text-[40px]"
+        >ScopeDB</span
+      >
     </h2>
 
     <ExploreMore showXlCols={true} />

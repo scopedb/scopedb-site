@@ -1,61 +1,76 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import MobileMenu from "./MobileMenu.astro";
-import {CalLink, SiteName} from "@/src/consts";
+import { CalLink, SiteName } from "@/src/consts";
 import FloatingButton from "./calcom/FloatingButton";
 ---
 
 <header id="header" class="transition-all duration-300 ease-in-out">
-    <nav class="
-         max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]  py-[16px]
-	    flex justify-between items-center relative
-	 ">
-        <div>
-            <a href="/">
-                <img src="/scopedb-logo.png" alt={SiteName} width={120} height={35}/>
-            </a>
-        </div>
+  <nav
+    class="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] py-[16px]
+	    flex justify-between items-center relative"
+  >
+    <div>
+      <a href="/">
+        <img src="/scopedb-logo.png" alt={SiteName} width={120} height={35} />
+      </a>
+    </div>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex gap-8 text-[14px]">
-            <!-- <HeaderLink href="/products">Products</HeaderLink> -->
-            <HeaderLink href="https://docs.scopedb.io/reference/">Reference</HeaderLink>
-            <HeaderLink href="/blog">Blog</HeaderLink>
-            <HeaderLink href="/contact">Contact</HeaderLink>
-            <!-- <HeaderLink href="/changelog">Changelog</HeaderLink> -->
-        </div>
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex gap-8 text-[14px]">
+      <!-- <HeaderLink href="/products">Products</HeaderLink> -->
+      <HeaderLink href="https://docs.scopedb.io/reference/"
+        >Reference</HeaderLink
+      >
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/contact">Contact</HeaderLink>
+      <!-- <HeaderLink href="/changelog">Changelog</HeaderLink> -->
+    </div>
 
-        <!-- Mobile Menu Button -->
-        <button class="md:hidden flex flex-col gap-1 w-6 h-6 justify-center items-end" id="mobile-menu-button">
-            <span class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out" id="line1"></span>
-            <span class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out" id="line2"></span>
-            <span class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out" id="line3"></span>
-        </button>
+    <!-- Mobile Menu Button -->
+    <button
+      class="md:hidden flex flex-col gap-1 w-6 h-6 justify-center items-end"
+      id="mobile-menu-button"
+    >
+      <span
+        class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out"
+        id="line1"></span>
+      <span
+        class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out"
+        id="line2"></span>
+      <span
+        class="w-[18px] h-[2px] bg-[#000]/80 transition-all rounded-[4px] duration-300 ease-in-out"
+        id="line3"></span>
+    </button>
 
-        <!-- Desktop Book Demo Button -->
-        <div class="hidden md:block rounded-[10px]">
-            <button class="text-[14px] px-[16px] py-[8px] bg-[var(--button-secondary-bg)] rounded-[10px] border border-[var(--button-secondary-border)] hover:bg-[var(--button-secondary-bg-hover)] text-[var(--button-secondary-text)] transition-colors duration-300 ease-in-out"
-                    data-cal-link={CalLink}>
-                Book a demo
-            </button>
-        </div>
-    </nav>
+    <!-- Desktop Book Demo Button -->
+    <div class="hidden md:block rounded-[10px]">
+      <button
+        class="text-[14px] px-[16px] py-[8px] bg-[var(--button-secondary-bg)] rounded-[10px] border border-[var(--button-secondary-border)] hover:bg-[var(--button-secondary-bg-hover)] text-[var(--button-secondary-text)] transition-colors duration-300 ease-in-out"
+        data-cal-link={CalLink}
+      >
+        Book a demo
+      </button>
+    </div>
+  </nav>
 
-    <FloatingButton client:only="react"/>
+  <FloatingButton client:only="react" />
 </header>
 
 <!-- Mobile Menu Component -->
 <MobileMenu />
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const header = document.getElementById('header');
-    const line1 = document.getElementById('line1');
-    const line2 = document.getElementById('line2');
-    const line3 = document.getElementById('line3');
-    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-    const mobileMenuContainer = document.getElementById('mobile-menu-container');
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const header = document.getElementById("header");
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
+    const line3 = document.getElementById("line3");
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMenuContainer = document.getElementById(
+      "mobile-menu-container",
+    );
 
     let mobileMenuOpen = false;
 
@@ -63,83 +78,109 @@ document.addEventListener('DOMContentLoaded', function() {
     let scrollThreshold = 100;
 
     function handleScroll() {
-        const currentScrollY = window.scrollY;
+      const currentScrollY = window.scrollY;
 
-        if (header) {
-            if (currentScrollY > scrollThreshold) {
-                header.classList.add('fixed', 'top-0', 'left-0', 'right-0', 'z-[100]', 'bg-white/95', 'backdrop-blur-sm',);
-            } else {
-                header.classList.remove('fixed', 'top-0', 'left-0', 'right-0', 'z-[100]', 'bg-white/95', 'backdrop-blur-sm',);
-            }
+      if (header) {
+        if (currentScrollY > scrollThreshold) {
+          header.classList.add(
+            "fixed",
+            "top-0",
+            "left-0",
+            "right-0",
+            "z-[100]",
+            "bg-white/95",
+            "backdrop-blur-sm",
+          );
+        } else {
+          header.classList.remove(
+            "fixed",
+            "top-0",
+            "left-0",
+            "right-0",
+            "z-[100]",
+            "bg-white/95",
+            "backdrop-blur-sm",
+          );
         }
+      }
     }
 
     let ticking = false;
     function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(handleScroll);
-            ticking = true;
-            setTimeout(() => { ticking = false; }, 16);
-        }
+      if (!ticking) {
+        requestAnimationFrame(handleScroll);
+        ticking = true;
+        setTimeout(() => {
+          ticking = false;
+        }, 16);
+      }
     }
 
-    window.addEventListener('scroll', requestTick);
+    window.addEventListener("scroll", requestTick);
 
     function openMobileMenu() {
-        if (mobileMenuOpen) return;
+      if (mobileMenuOpen) return;
 
-        mobileMenuOpen = true;
+      mobileMenuOpen = true;
 
-        if (mobileMenuOverlay && mobileMenuContainer) {
-            // Show menu overlay
-            mobileMenuOverlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
-            mobileMenuOverlay.classList.add('opacity-100', 'visible');
+      if (mobileMenuOverlay && mobileMenuContainer) {
+        // Show menu overlay
+        mobileMenuOverlay.classList.remove(
+          "opacity-0",
+          "invisible",
+          "pointer-events-none",
+        );
+        mobileMenuOverlay.classList.add("opacity-100", "visible");
 
-            // Show menu container
-            mobileMenuContainer.classList.remove('translate-x-full');
-            mobileMenuContainer.classList.add('translate-x-0');
-        }
+        // Show menu container
+        mobileMenuContainer.classList.remove("translate-x-full");
+        mobileMenuContainer.classList.add("translate-x-0");
+      }
 
-        // Forbid page scrolling when menu is open
-        document.body.style.overflow = 'hidden';
+      // Forbid page scrolling when menu is open
+      document.body.style.overflow = "hidden";
 
-        // Animation
-        if (line1 && line2 && line3) {
-            line1.style.transform = 'rotate(45deg) translate(6px, 6px)';
-            line2.style.opacity = '0';
-            line3.style.transform = 'rotate(-45deg) translate(6px, -6px)';
-        }
+      // Animation
+      if (line1 && line2 && line3) {
+        line1.style.transform = "rotate(45deg) translate(6px, 6px)";
+        line2.style.opacity = "0";
+        line3.style.transform = "rotate(-45deg) translate(6px, -6px)";
+      }
     }
 
     function closeMobileMenu() {
-        if (!mobileMenuOpen) return;
+      if (!mobileMenuOpen) return;
 
-        mobileMenuOpen = false;
+      mobileMenuOpen = false;
 
-        if (mobileMenuOverlay && mobileMenuContainer) {
-            // Hide menu overlay
-            mobileMenuOverlay.classList.remove('opacity-100', 'visible');
-            mobileMenuOverlay.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+      if (mobileMenuOverlay && mobileMenuContainer) {
+        // Hide menu overlay
+        mobileMenuOverlay.classList.remove("opacity-100", "visible");
+        mobileMenuOverlay.classList.add(
+          "opacity-0",
+          "invisible",
+          "pointer-events-none",
+        );
 
-            // Hide menu container
-            mobileMenuContainer.classList.remove('translate-x-0');
-            mobileMenuContainer.classList.add('translate-x-full');
-        }
+        // Hide menu container
+        mobileMenuContainer.classList.remove("translate-x-0");
+        mobileMenuContainer.classList.add("translate-x-full");
+      }
 
-        // Reset page scrolling
-        document.body.style.overflow = '';
+      // Reset page scrolling
+      document.body.style.overflow = "";
 
-        // Reset animation
-        if (line1 && line2 && line3) {
-            line1.style.transform = '';
-            line2.style.opacity = '';
-            line3.style.transform = '';
-        }
+      // Reset animation
+      if (line1 && line2 && line3) {
+        line1.style.transform = "";
+        line2.style.opacity = "";
+        line3.style.transform = "";
+      }
     }
 
     if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', openMobileMenu);
+      mobileMenuButton.addEventListener("click", openMobileMenu);
     }
-    window.addEventListener('closeMobileMenu', closeMobileMenu);
-});
+    window.addEventListener("closeMobileMenu", closeMobileMenu);
+  });
 </script>

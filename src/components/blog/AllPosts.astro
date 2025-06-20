@@ -1,10 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
-import {
-  calculateReadingTime,
-  digest,
-} from "../../libs/reading-time";
+import FormattedDate from "@/src/components/FormattedDate.astro";
+import { calculateReadingTime, digest } from "@/src/libs/reading-time";
 
 interface Props {
   category?: string;
@@ -13,7 +10,7 @@ interface Props {
 const { category = "all" } = Astro.props;
 
 const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 function getPostsByCategory(categoryFilter: string) {
@@ -22,7 +19,7 @@ function getPostsByCategory(categoryFilter: string) {
   }
 
   const filteredPosts = posts.filter(
-    (post) => post.data.category === categoryFilter
+    (post) => post.data.category === categoryFilter,
   );
 
   return filteredPosts.slice(0, 9);
@@ -71,7 +68,9 @@ const latestPosts = getPostsByCategory(category);
   {
     latestPosts.length === 0 && (
       <div class="text-center py-12">
-        <p class="text-gray-500 text-[14px]">No posts found for this category</p>
+        <p class="text-gray-500 text-[14px]">
+          No posts found for this category
+        </p>
       </div>
     )
   }

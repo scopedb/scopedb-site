@@ -1,14 +1,14 @@
 ---
 export interface Props {
-    title: string
+  title: string;
 }
 
-const {title = 'title'} = Astro.props;
+const { title = "title" } = Astro.props;
 ---
 
-<button slot="tab"
-        class="
-            inline-flex
+<button
+  slot="tab"
+  class="inline-flex
             whitespace-nowrap
             border-b-[4px] border-transparent
             py-[6px] px-[12px]
@@ -19,8 +19,8 @@ const {title = 'title'} = Astro.props;
             aria-selected:border-b-[rgba(0,0,0,0.90)]
             aria-selected:text-[rgba(0,0,0,0.9)]"
 >
-    {title}
+  {title}
 </button>
 <div slot="panel" class="pt-4">
-    <slot/>
+  <slot />
 </div>

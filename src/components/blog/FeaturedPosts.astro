@@ -1,13 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
-import {
-  calculateReadingTime,
-  digest,
-} from "../../libs/reading-time";
+import FormattedDate from "@/src/components/FormattedDate.astro";
+import { calculateReadingTime, digest } from "@/src/libs/reading-time";
 
 const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const titleOfFeaturedPosts = [
@@ -51,7 +48,7 @@ const featuredPosts = titleOfFeaturedPosts
                     <p class="text-[14px] text-[var(--text-secondary)] line-clamp-6">
                       {digest(post.data.description || post.body || "")}
                     </p>
-                    <div class="absolute bottom-0 left-[12px] right-[12px] h-[60px] bg-gradient-to-t from-[#fff] to-[#ffffff00] pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-[12px] right-[12px] h-[60px] bg-gradient-to-t from-[#fff] to-[#ffffff00] pointer-events-none" />
                   </div>
                 </div>
               </a>

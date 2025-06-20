@@ -6,29 +6,31 @@ interface Props {
 const { activeTab } = Astro.props;
 
 const tabs = [
-  { id: 'all', label: 'All Posts', href: '/blog' },
-  { id: 'engineering', label: 'Engineering', href: '/blog/engineering' },
-  { id: 'product', label: 'Product', href: '/blog/product' },
-  { id: 'company', label: 'Company', href: '/blog/company' },
+  { id: "all", label: "All Posts", href: "/blog" },
+  { id: "engineering", label: "Engineering", href: "/blog/engineering" },
+  { id: "product", label: "Product", href: "/blog/product" },
+  { id: "company", label: "Company", href: "/blog/company" },
 ];
 ---
 
 <div class="mb-8">
   <nav class="flex space-x-8">
-    {tabs.map((tab) => (
-      <a 
-        href={tab.href}
-        class={`tab-link py-4 px-1 text-sm ${
-          activeTab === tab.id 
-            ? 'text-black font-bold' 
-            : 'text-gray-600 hover:text-black'
-        }`}
-        data-blog-tab-link
-        data-text={tab.label}
-      >
-        {tab.label}
-      </a>
-    ))}
+    {
+      tabs.map((tab) => (
+        <a
+          href={tab.href}
+          class={`tab-link py-4 px-1 text-sm ${
+            activeTab === tab.id
+              ? "text-black font-bold"
+              : "text-gray-600 hover:text-black"
+          }`}
+          data-blog-tab-link
+          data-text={tab.label}
+        >
+          {tab.label}
+        </a>
+      ))
+    }
   </nav>
 </div>
 
@@ -37,7 +39,7 @@ const tabs = [
     position: relative;
     display: inline-block;
   }
-  
+
   .tab-link::after {
     content: attr(data-text);
     font-weight: bold;
@@ -51,41 +53,41 @@ const tabs = [
 
 <script>
   // Save scroll position before navigation
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabLinks = document.querySelectorAll('[data-blog-tab-link]');
-    
-    tabLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabLinks = document.querySelectorAll("[data-blog-tab-link]");
+
+    tabLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
         // Save current scroll position
-        sessionStorage.setItem('blogScrollPosition', window.scrollY.toString());
+        sessionStorage.setItem("blogScrollPosition", window.scrollY.toString());
       });
     });
 
     // Restore scroll position after page load
-    const savedScrollPosition = sessionStorage.getItem('blogScrollPosition');
+    const savedScrollPosition = sessionStorage.getItem("blogScrollPosition");
     if (savedScrollPosition) {
       // Use setTimeout to ensure page is fully rendered
       setTimeout(() => {
         window.scrollTo(0, parseInt(savedScrollPosition));
-        sessionStorage.removeItem('blogScrollPosition');
+        sessionStorage.removeItem("blogScrollPosition");
       }, 100);
     }
   });
 
   // Handle view transitions if supported
-  if ('startViewTransition' in document) {
-    document.addEventListener('astro:before-preparation', () => {
+  if ("startViewTransition" in document) {
+    document.addEventListener("astro:before-preparation", () => {
       // Save scroll position before view transition
-      sessionStorage.setItem('blogScrollPosition', window.scrollY.toString());
+      sessionStorage.setItem("blogScrollPosition", window.scrollY.toString());
     });
 
-    document.addEventListener('astro:after-swap', () => {
+    document.addEventListener("astro:after-swap", () => {
       // Restore scroll position after view transition
-      const savedScrollPosition = sessionStorage.getItem('blogScrollPosition');
+      const savedScrollPosition = sessionStorage.getItem("blogScrollPosition");
       if (savedScrollPosition) {
         window.scrollTo(0, parseInt(savedScrollPosition));
-        sessionStorage.removeItem('blogScrollPosition');
+        sessionStorage.removeItem("blogScrollPosition");
       }
     });
   }
-</script> 
+</script>

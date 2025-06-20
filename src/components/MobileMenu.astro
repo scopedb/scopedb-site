@@ -1,69 +1,99 @@
 ---
-import {CalLink, SiteName} from "@/src/consts";
+import { CalLink, SiteName } from "@/src/consts";
 ---
 
 <!-- Mobile Menu Overlay -->
-<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[9998] transition-all duration-300 ease-in-out opacity-0 invisible pointer-events-none">
-    <!-- Mobile Menu Container -->
-    <div id="mobile-menu-container" class="fixed top-0 right-0 w-full h-full bg-white transition-transform duration-300 ease-in-out overflow-y-auto p-[16px] flex flex-col translate-x-full">
-        <!-- Menu Header -->
-        <div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
-            <a href="/">
-                <img src="/scopedb-logo.png" alt={SiteName} width={120} height={35}/>
-            </a>
-            <button id="mobile-menu-close" class="flex flex-col gap-1 w-6 h-6 justify-center items-center">
-                <span class="w-[18px] h-[2px] bg-black/80 rounded transform rotate-45 translate-x-[6px] translate-y-[6px]"></span>
-                <span class="w-[18px] h-[2px] bg-black/80 rounded opacity-0"></span>
-                <span class="w-[18px] h-[2px] bg-black/80 rounded transform -rotate-45 translate-x-[6px] -translate-y-[6px]"></span>
-            </button>
-        </div>
-        
-        <!-- Menu Navigation -->
-        <nav class="flex flex-col gap-[8px] flex-1">
-            <a href="https://docs.scopedb.io/" class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60  ">Reference</a>
-            <a href="/blog" class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60  ">Blog</a>
-            <a href="/contact" class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60  ">Contact</a>
-            
-            <!-- Demo Button -->
-            <div class="mt-8">
-                <button class="w-full py-[10px] px-5 bg-gray-50 border border-gray-300 rounded-[10px] text-base font-medium text-black/80 transition-colors hover:bg-gray-200" data-cal-link={CalLink}>
-                    Book a demo
-                </button>
-            </div>
-        </nav>
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 bg-black/50 z-[9998] transition-all duration-300 ease-in-out opacity-0 invisible pointer-events-none"
+>
+  <!-- Mobile Menu Container -->
+  <div
+    id="mobile-menu-container"
+    class="fixed top-0 right-0 w-full h-full bg-white transition-transform duration-300 ease-in-out overflow-y-auto p-[16px] flex flex-col translate-x-full"
+  >
+    <!-- Menu Header -->
+    <div
+      class="flex justify-between items-center mb-4 pb-4 border-b border-gray-200"
+    >
+      <a href="/">
+        <img src="/scopedb-logo.png" alt={SiteName} width={120} height={35} />
+      </a>
+      <button
+        id="mobile-menu-close"
+        class="flex flex-col gap-1 w-6 h-6 justify-center items-center"
+      >
+        <span
+          class="w-[18px] h-[2px] bg-black/80 rounded transform rotate-45 translate-x-[6px] translate-y-[6px]"
+        ></span>
+        <span class="w-[18px] h-[2px] bg-black/80 rounded opacity-0"></span>
+        <span
+          class="w-[18px] h-[2px] bg-black/80 rounded transform -rotate-45 translate-x-[6px] -translate-y-[6px]"
+        ></span>
+      </button>
     </div>
+
+    <!-- Menu Navigation -->
+    <nav class="flex flex-col gap-[8px] flex-1">
+      <a
+        href="https://docs.scopedb.io/"
+        class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60"
+        >Reference</a
+      >
+      <a
+        href="/blog"
+        class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60"
+        >Blog</a
+      >
+      <a
+        href="/contact"
+        class="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60"
+        >Contact</a
+      >
+
+      <!-- Demo Button -->
+      <div class="mt-8">
+        <button
+          class="w-full py-[10px] px-5 bg-gray-50 border border-gray-300 rounded-[10px] text-base font-medium text-black/80 transition-colors hover:bg-gray-200"
+          data-cal-link={CalLink}
+        >
+          Book a demo
+        </button>
+      </div>
+    </nav>
+  </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-    const mobileMenuClose = document.getElementById('mobile-menu-close');
-    const mobileMenuLinks = document.querySelectorAll('nav a');
-    
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMenuClose = document.getElementById("mobile-menu-close");
+    const mobileMenuLinks = document.querySelectorAll("nav a");
+
     function closeMobileMenu() {
-        window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+      window.dispatchEvent(new CustomEvent("closeMobileMenu"));
     }
-    
+
     if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
+      mobileMenuClose.addEventListener("click", closeMobileMenu);
     }
-    
+
     if (mobileMenuOverlay) {
-        mobileMenuOverlay.addEventListener('click', function(e) {
-            if (e.target === mobileMenuOverlay) {
-                closeMobileMenu();
-            }
-        });
-    }
-    
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeMobileMenu();
+      mobileMenuOverlay.addEventListener("click", function (e) {
+        if (e.target === mobileMenuOverlay) {
+          closeMobileMenu();
         }
+      });
+    }
+
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", closeMobileMenu);
     });
-});
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeMobileMenu();
+      }
+    });
+  });
 </script>
