@@ -17,11 +17,11 @@
     "@astrojs/sitemap": "^3.4.1",
     "@calcom/embed-react": "^1.5.3",
     "@lion/ui": "^0.11.5",
-    "@lucide/astro": "^0.518.0",
+    "@lucide/astro": "^0.522.0",
     "@tailwindcss/vite": "^4.1.10",
-    "astro": "^5.10.0",
+    "astro": "^5.9.4",
     "dedent": "^1.6.0",
-    "lucide-react": "^0.518.0",
+    "lucide-react": "^0.522.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-shiki": "^0.7.1",
@@ -40,7 +40,7 @@
     "sharp": "^0.34.2",
     "tailwindcss": "^4.1.10",
     "vite-plugin-devtools-json": "^0.2.0",
-    "wrangler": "^4.20.3"
+    "wrangler": "^4.20.5"
   },
   "packageManager": "pnpm@10.12.1"
 }
