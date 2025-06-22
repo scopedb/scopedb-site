@@ -138,7 +138,7 @@ const categories = [{
 function ScopeQLSection({ activeTab }: { activeTab: number }) {
   return <div className="flex-1 bg-[#FFFFFF]  rounded-[12px] p-[16px] mb-[12px]"
     style={{
-      boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02);"
+      boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02)"
     }}>
     <div className="pb-[14px]">
       <h3 className="text-[var(--text-tertiary)] text-[13px]">ScopeQL</h3>
@@ -160,7 +160,7 @@ function ScopeQLSection({ activeTab }: { activeTab: number }) {
 function SQLSection({ activeTab }: { activeTab: number }) {
   return <div className="flex-1 bg-[#FFFFFF] rounded-[16px] p-[20px]"
     style={{
-      boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02);"
+      boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02)"
     }}>
     <div className="pb-[14px]">
       <h3 className="text-[var(--text-tertiary)] text-[13px]">SQL</h3>

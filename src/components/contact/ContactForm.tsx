@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Icon } from "@iconify/react";
 import { ContactUrl } from '@/src/consts';
+import IconChevronDown from 'icons:react/mdi/chevron-down';
 
 interface FormData {
   name: string;
@@ -147,8 +147,7 @@ const ContactForm: React.FC = () => {
             <option value="201-1000">201-1000</option>
             <option value="1000+">1000+</option>
           </select>
-          <Icon
-            icon="mdi:chevron-down"
+          <IconChevronDown
             className="absolute right-[12px] top-[50%] translate-y-[-50%] w-[20px] h-[20px] text-[var(--color-primary)] pointer-events-none"
           />
         </div>

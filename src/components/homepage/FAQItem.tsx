@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon } from "@iconify/react";
+import IconChevronDown from 'icons:react/mdi/chevron-down';
 
 interface Props {
   question: string;
@@ -22,8 +22,7 @@ const FAQItem: React.FC<Props> = ({ question, answer }) => {
         <p className="text-[16px] font-semibold flex-1 text-[var(--text-primary)]">
           {question}
         </p>
-        <Icon
-          icon="mdi:chevron-down"
+        <IconChevronDown
           height={20}
           width={20}
           className={`chevron-icon transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}

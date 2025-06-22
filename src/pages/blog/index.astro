@@ -7,7 +7,8 @@ import FeaturedPosts from "@/src/components/blog/FeaturedPosts.astro";
 import Footer from "@/src/components/Footer.astro";
 import Header from "@/src/components/Header.astro";
 import { SideDesc, SiteName } from "@/src/consts";
-import { Icon } from "astro-icon/components";
+
+import IconRss from "icons:astro/mdi/rss";
 ---
 
 <!doctype html>
@@ -35,7 +36,7 @@ import { Icon } from "astro-icon/components";
             class="w-[36px] h-[36px] bg-[#fff] border text-[var(--text-secondary)] border-[#f1f1f1] rounded-full flex items-center justify-center hover:bg-[#f1f1f1] transition-colors"
             title="Subscribe to RSS feed"
           >
-            <Icon name={"mdi:rss"} width={16} height={16} />
+            <IconRss width={16} height={16} />
           </a>
         </div>
       </div>

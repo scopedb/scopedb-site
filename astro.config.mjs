@@ -9,20 +9,32 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig, passthroughImageService } from "astro/config";
 import scopeql from "./shiki-scopeql-grammar.json";
-
-import icon from "astro-icon";
+import Icons from 'unplugin-icons/vite';
 
 // https://astro.build/config
 export default defineConfig({
     site: "https://www.scopedb.io",
-    integrations: [react(), sitemap(), mdx(), icon()],
+    integrations: [react(), sitemap(), mdx()],
     vite: {
-        plugins: [tailwindcss(), devtoolsJson()],
-        server: {
-            watch: {
-                usePolling: true,
-            },
+        resolve: {
+            alias: [
+                {find: 'icons:react', replacement: '~icons'},
+                {find: 'icons:astro', replacement: '~icons'},
+            ],
         },
+        plugins: [
+            tailwindcss(),
+            devtoolsJson(),
+            Icons({
+                compiler: 'jsx',
+                jsx: 'react',
+                autoInstall: true,
+            }),
+            Icons({
+                compiler: 'astro',
+                autoInstall: true,
+            })
+        ],
     },
     image: {
         service: passthroughImageService(),

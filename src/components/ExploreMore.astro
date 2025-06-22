@@ -1,8 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon/components";
 import FormattedDate from "./FormattedDate.astro";
 import { calculateReadingTime, digest } from "@/src/libs/reading-time";
+
+import IconArrowUpRight from "icons:astro/lucide/arrow-up-right";
+import IconEmail from "icons:astro/mdi/email-outline";
+import IconChevronRight from "icons:astro/mdi/chevron-right";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -98,11 +101,7 @@ const { showXlCols = false, showBlog = true } = Astro.props;
         class="text-[14px] text-[var(--text-primary)] flex gap-[4px] items-center"
         href="https://discord.gg/AynEZfqFvM"
       >
-        Join Discord <Icon
-          name={"lucide:arrow-up-right"}
-          width={18}
-          height={18}
-        />
+        Join Discord <IconArrowUpRight width={18} height={18} />
       </a>
     </div>
 
@@ -122,7 +121,7 @@ const { showXlCols = false, showBlog = true } = Astro.props;
         class="text-[14px] text-[var(--text-primary)] flex gap-[4px] items-center"
         href="mailto:contact@scopedb.io"
       >
-        <Icon name={"mdi:email-outline"} width={18} height={18} /> contact@scopedb.io
+        <IconEmail width={18} height={18} /> contact@scopedb.io
       </a>
     </div>
 
@@ -143,7 +142,7 @@ const { showXlCols = false, showBlog = true } = Astro.props;
         class="text-[14px] flex gap-[4px] items-center text-[var(--text-primary)]"
         href="https://docs.scopedb.io/"
       >
-        ScopeDB Docs <Icon name={"mdi:chevron-right"} width={18} height={18} />
+        ScopeDB Docs <IconChevronRight width={18} height={18} />
       </a>
     </div>
   </div>
