@@ -10,10 +10,12 @@ import devtoolsJson from "vite-plugin-devtools-json";
 import { defineConfig, passthroughImageService } from "astro/config";
 import scopeql from "./shiki-scopeql-grammar.json";
 
+import icon from "astro-icon";
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://www.scopedb.io",
-    integrations: [react(), sitemap(), mdx()],
+    integrations: [react(), sitemap(), mdx(), icon()],
     vite: {
         plugins: [tailwindcss(), devtoolsJson()],
         server: {

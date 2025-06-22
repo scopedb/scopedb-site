@@ -1,5 +1,5 @@
 ---
-import { CalendarDays } from "@lucide/astro";
+import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import ExploreMore from "@/src/components/ExploreMore.astro";
 import CircleCheck from "./assets/circlecheck.png";
@@ -86,7 +86,7 @@ import ContactForm from "./ContactForm";
         data-cal-link={CalLink}
       >
         <span class="flex items-center gap-[10px] text-[14px] text-[white]">
-          <CalendarDays width={16} height={16} />
+          <Icon name="lucide:calendar-days" width={16} height={16} />
           Book A Demo
         </span>
       </button>
