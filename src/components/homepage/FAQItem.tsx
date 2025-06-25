@@ -19,7 +19,7 @@ const FAQItem: React.FC<Props> = ({ question, answer }) => {
         className="flex items-center justify-between cursor-pointer faq-header"
         onClick={toggleFAQ}
       >
-        <p className="text-[16px] font-semibold flex-1 text-[var(--text-primary)]">
+        <p className="text-[16px]  flex-1 text-[var(--text-primary)]">
           {question}
         </p>
         <IconChevronDown

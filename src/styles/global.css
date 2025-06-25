@@ -22,6 +22,18 @@
     font-style: normal;
 }
 
+/* 自定义文本选中样式 */
+::selection {
+    background-color: rgba(0, 0, 0, 0.04);
+
+}
+
+/* Firefox 兼容性 */
+::-moz-selection {
+    background-color: rgba(0, 0, 0, 0.04);
+  
+}
+
 img {
     @apply select-none;
     pointer-events: none;
