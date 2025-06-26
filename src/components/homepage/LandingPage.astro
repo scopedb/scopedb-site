@@ -37,12 +37,12 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
     />
 
     <h2
-      class="text-[40px] md:text-[50px] text-[var(--text-brand)] leading-[1.2] font-medium z-10 relative"
+      class="text-[40px] md:text-[56px] text-[var(--text-brand)] leading-[1.2] font-semibold z-10 relative"
     >
       Insight In No Time
     </h2>
     <blockquote
-      class="text-[40px] text-[var(--text-primary)] md:text-[50px] leading-[1.2] font-medium"
+      class="text-[40px] text-[var(--text-primary)] md:text-[56px] leading-[1.2] font-semibold"
     >
       Schema On The Fly
     </blockquote>
@@ -54,16 +54,16 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       any-scale analysis, and flexible schema.
     </p>
 
-    <div class="mt-[68px] flex gap-[9px]">
+    <div class="mt-[40px] flex gap-[9px]">
       <button
         data-cal-link={CalLink}
-        class="bg-[var(--button-primary-bg)] border-[var(--button-primary-border)] hover:bg-[var(--button-primary-bg-hover)] text-[var(--button-primary-text)] px-[16px] py-[8px] rounded-[10px] border transition-colors duration-300 ease-in-out"
+        class="text-[14px] bg-[var(--button-primary-bg)] border-[var(--button-primary-border)] hover:bg-[var(--button-primary-bg-hover)] text-[var(--button-primary-text)] px-[14px] py-[8px] rounded-[12px] border transition-colors duration-300 ease-in-out"
       >
         Book a Demo
       </button>
       <a href="/blog/manage-observability-data-in-petabytes/">
         <button
-          class="px-[16px] py-[8px] bg-[var(--button-secondary-bg)] rounded-[10px] border border-[var(--button-secondary-border)] hover:bg-[var(--button-secondary-bg-hover)] text-[var(--button-secondary-text)] transition-colors duration-300 ease-in-out"
+          class="text-[14px] px-[14px] py-[8px] bg-[var(--button-secondary-bg)] rounded-[12px] border border-[var(--button-secondary-border)] hover:bg-[var(--button-secondary-bg-hover)] text-[var(--button-secondary-text)] transition-colors duration-300 ease-in-out"
         >
           Read More
         </button>
@@ -99,7 +99,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       </blockquote>
       <div class="max-w-[600px] mt-[70px] px-[6px] md:px-0">
         <p
-          class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)]"
+          class="text-[16px] font-normal leading-[1.6] text-[var(--text-secondary)]"
         >
           Compared with the existing cloud data stack, which has a complex
           pipeline consisting of data movement, stream processing, and a data
@@ -110,7 +110,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
         </p>
 
         <p
-          class="text-[16px] md:text-[18px] font-normal leading-[1.4] text-[var(--text-secondary)] mt-[50px]"
+          class="text-[16px] font-normal leading-[1.6] text-[var(--text-secondary)] mt-[50px]"
         >
           ScopeDB employs a stateless design. It enables effortless scaling
           without manual data reconciliation or replication, fully leverages
@@ -121,7 +121,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
         </p>
 
         <p
-          class="text-[16px] md:text-[18px] text-[var(--text-tertiary)] mt-[80px]"
+          class="text-[16px] leading-[1.6] text-[var(--text-tertiary)] mt-[80px]"
         >
           Read
           <a
@@ -171,7 +171,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
             class="px-[24px] md:p-[50px] lg:w-1/2 flex flex-col justify-center min-h-[300px] md:min-h-[500px]"
           >
             <h3
-              class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium"
+              class="text-[24px] md:text-[28px] text-[var(--text-primary)] font-medium"
             >
               Real-time Ingestion
             </h3>
@@ -224,7 +224,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
               height={200}
               format="png"
               quality="100"
-              class="mb-[2px] md:mb-[62px] absolute right-[100px]"
+              class="mb-[2px] md:mb-[64px] absolute right-[100px]"
             />
           </div>
         </div>
@@ -460,18 +460,18 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
       >
         <div class="w-full md:w-1/2 p-8">
           <p
-            class="text-[20px] max-w-[500px] md:text-[24px] font-medium text-[var(--text-primary)] leading-[1.4] pb-[24px]"
+            class="text-[20px] max-w-[500px] md:text-[24px] font-medium text-[var(--text-primary)] leading-[1.4]"
           >
             ScopeQL != SQL 2.0
           </p>
-          <p>
+          <p class="text-[16px] font-normal text-[var(--text-secondary)] pt-[12px] max-w-[400px]">
             We reinvent the query language from relational algebra foundations
             with three radical simplifications:
           </p>
           <br />
           <ul>
             <li>
-              <div class="flex items-center gap-[8px] pb-[8px]">
+              <div class="flex items-center gap-[8px] pb-[8px pt-[12px]">
                 <Image
                   src={imageScopeQLCheckBox}
                   alt=""
@@ -482,7 +482,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
                   Execution Flow
                 </h4>
               </div>
-              <p class="text-[16px] text-[var(--text-secondary)] pb-[28px]">
+              <p class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[400px] pt-[6px]">
                 SQL's inside-out execution becomes ScopeQL's linear top-down
                 pipeline.
               </p>
@@ -500,7 +500,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
                 </h4>
               </div>
               <p
-                class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[500px]"
+                class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[400px] pt-[6px]"
               >
                 SQL's fragmented keywords become ScopeQL's orthogonal
                 composability.
@@ -519,7 +519,7 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
                 </h4>
               </div>
               <p
-                class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[500px]"
+                class="text-[16px] text-[var(--text-secondary)] pb-[28px] max-w-[400px] pt-[6px]"
               >
                 SQL's subquery labyrinths become ScopeQL's native expressions
                 reuse.

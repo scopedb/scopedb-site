@@ -185,12 +185,12 @@ export default function FeaturedScopeQL() {
   return (
     <div className="bg-[#F9F9F9] rounded-[16px] p-[16px] flex flex-col w-full max-w-[720px] xl:max-w-[720px]">
       <div
-        className="flex text-[var(--text-primary)] text-[14px] flex-nowrap gap-[16px] md:gap-[24px] overflow-x-auto">
+        className="flex text-[var(--text-secondary)] text-[14px] flex-nowrap gap-[16px] md:gap-[24px] overflow-x-auto">
         {categories.map((category, index) => (
           <button
             key={category.title}
             onClick={() => setActiveTab(index)}
-            className={`whitespace-nowrap ${activeTab === index ? 'text-[var(--color-primary)] font-medium' : ''}`}
+            className={`whitespace-nowrap ${activeTab === index ? 'text-[var(--text-primary)] font-medium' : ''}`}
           >
             {category.title}
           </button>
