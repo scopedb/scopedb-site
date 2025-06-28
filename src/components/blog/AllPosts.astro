@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import FormattedDate from "@/src/components/FormattedDate.astro";
 import { calculateReadingTime, digest } from "@/src/libs/reading-time";
+import { Image } from "astro:assets";
 
 interface Props {
   category?: string;
@@ -37,10 +38,12 @@ const latestPosts = getPostsByCategory(category);
           <li class="post-item">
             <div class="bg-[#ffffff] border border-[#f1f1f1] rounded-[12px] p-[12px] w-full h-full">
               <a href={`/blog/${post.slug}/`}>
-                <img
+                <Image
                   class="rounded-[12px] mb-[20px]"
                   src={post.data.heroImage}
                   alt=""
+                  width={600}
+                  height={400}
                 />
                 <div class="flex flex-col gap-[8px] my-[12px]">
                   <p class="text-[14px] font-normal px-[12px] items-center justify-center text-[var(--text-secondary)]">
