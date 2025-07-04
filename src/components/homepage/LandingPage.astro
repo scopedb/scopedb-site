@@ -1,18 +1,18 @@
 ---
 import { Image } from "astro:assets";
 import ExploreMore from "../ExploreMore.astro";
-import imageAdaptiveIndexes from "./assets/adaptive-indexes.png";
+import imageAdaptiveIndexes from "./assets/feature-adaptive-indexes.png";
 import bg1 from "./assets/bg-1.png";
-import imageCloudApplicationObservability from "./assets/cloud-application-observability.png";
-import imageDedicatedQueryGroupResources from "./assets/dedicated-query-group-resources.png";
+import imageCloudApplicationObservability from "./assets/feature-cloud-application-observability.png";
+import imageDedicatedQueryGroupResources from "./assets/feature-dedicated-query-group-resources.png";
 import imageFeatureAnyScaleAnalysis from "./assets/feature-any-scale-analysis.png";
-import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.svg";
+import imageFeatureRealtimeIngestion from "./assets/feature-realtime-ingestion.png";
 import imageFlexibleDataSchema from "./assets/flexible-data-schema.png";
 import imageFlexibleDataSchemaRightBg from "./assets/flexible-data-schema-right-bg.png";
 import imageScopeQLCheckBox from "./assets/scopeql-checkbox.svg";
 import imageHero from "./assets/hero.svg";
 import imageMultipleAnalysisScenarios from "./assets/multiple-analysis-scenarios.png";
-import imageOptimalStorageFormat from "./assets/optimal-storage-format.png";
+import imageOptimalStorageFormat from "./assets/feature-optimal-storage-format.png";
 import imageRealTimeBehaviorAnalysis1 from "./assets/real-time-behavior-analysis-1.png";
 import imageRealTimeBehaviorAnalysis2 from "./assets/real-time-behavior-analysis-2.png";
 import imageWhyScopeDBBg from "./assets/why-scopedb-bg.png";
@@ -20,6 +20,8 @@ import FAQItem from "./FAQItem.tsx";
 import FeaturesRow from "./FeaturesRow.astro";
 import FeaturedScopeQL from "./ScopeQL";
 import { CalLink } from "@/src/consts";
+import imageUnderstandYourAIAgentWorkflow from "./assets/feature-understand-your-AI-agent-workflow.png";
+import imageRealTimeAntiScamStrategy from "./assets/feature-real-time-anti-scam-strategy.png";
 
 const introductoryLink = "/blog/manage-observability-data-in-petabytes";
 ---
@@ -436,6 +438,46 @@ const introductoryLink = "/blog/manage-observability-data-in-petabytes";
                 height={634}
               />
             </div>
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="p-[24px] md:p-[36px]">
+          <h3
+            class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium"
+          >
+            Understand Your AI Agent Workflow
+          </h3>
+          <p
+            class="text-[16px] font-normal text-[var(--text-secondary)] xl:max-w-[700px] mt-[12px]"
+          >
+            Process millions of daily user interactions to power personalized recommendations and dynamic pricing for e-commerce platforms, or detect market manipulation and fraud patterns for social media.
+          </p>
+          <div class="flex items-center justify-center my-[60px]">
+            <Image
+              src={imageUnderstandYourAIAgentWorkflow}
+              alt="Understand Your AI Agent Workflow"
+            />
+          </div>
+        </div>
+      </FeaturesRow>
+      <FeaturesRow>
+        <div class="p-[24px] md:p-[36px]">
+          <h3
+            class="text-[24px] md:text-[32px] text-[var(--text-primary)] font-medium"
+          >
+            Real-time Anti-Scam Strategy
+          </h3>
+          <p
+            class="text-[16px] font-normal text-[var(--text-secondary)] xl:max-w-[700px] mt-[12px]"
+          >
+            Process millions of daily user interactions to power personalized recommendations and dynamic pricing for e-commerce platforms, or detect market manipulation and fraud patterns for social media.
+          </p>
+          <div class="flex items-center justify-center my-[60px]">
+            <Image
+              src={imageRealTimeAntiScamStrategy}
+              alt="Real-time Anti-Scam Strategy"
+            />
           </div>
         </div>
       </FeaturesRow>
