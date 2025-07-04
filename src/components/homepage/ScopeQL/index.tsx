@@ -183,7 +183,7 @@ export default function FeaturedScopeQL() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="bg-[#F9F9F9] rounded-[16px] p-[16px] flex flex-col w-full max-w-[720px] xl:max-w-[720px]">
+    <div className="bg-[#F9F9F9] rounded-[16px] p-[10px] md:p-[16px] flex flex-col w-full max-w-[720px] xl:max-w-[720px]">
       <div
         className="flex text-[var(--text-secondary)] text-[14px] flex-nowrap gap-[16px] md:gap-[24px] overflow-x-auto">
         {categories.map((category, index) => (
