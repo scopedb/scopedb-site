@@ -16,7 +16,7 @@ import imgScenarioCloudApplicationObservability from '@/assets/scenario-cloud-ap
 import imgScenarioRealTimeBehaviorAnalysisLeft from '@/assets/scenario-real-time-behavior-analysis-left.png'
 import imgScenarioRealTimeBehaviorAnalysisRight from '@/assets/scenario-real-time-behavior-analysis-right.png'
 import imgScenarioUnderstandYourAIAgentWorkflow from '@/assets/scenario-understand-your-ai-agent-workflow.png'
-import FeatureScopeQL from "@/components/FeatureScopeQL"
+import FeaturedScopeQL from "@/components/FeaturedScopeQL"
 import FAQItem from "@/components/FAQItem"
 import { MdCheckCircle } from "react-icons/md"
 
@@ -445,7 +445,7 @@ export default function Home() {
           </ul>
         </div>
         <div className="w-full md:w-1/2 md:p-[24px] flex items-start justify-center">
-          <FeatureScopeQL />
+          <FeaturedScopeQL />
         </div>
       </div>
     </section>
