@@ -18,15 +18,26 @@ export async function loadBlogMetadata(slug: string) {
 }
 
 export const loadBlogContent = cache(doLoadBlogContent)
+export const loadBlogContentByCategory = cache(doLoadBlogContentByCategory)
 
-const blogList = [
-    'manage-observability-data-in-petabytes',
-    'scopeql-origins',
-    'algebraic-data-type-variant-data',
-]
+async function doLoadBlogContentByCategory(category: string) {
+    const candidates: string[] = []
+    fs.readdir(path.join(process.cwd(), 'src/content/blog'))
+        .then(dirs => dirs.forEach(dir => candidates.push(dir)))
+        .catch(err => console.error('Failed to read blog directory:', err))
+
+    const posts = []
+    for (const candidate of candidates) {
+        const { Content, body, frontmatter, headings } = await loadBlogContent(candidate)
+        if (category === 'all' || category === frontmatter.category) {
+            posts.push({ slug: candidate, frontmatter, Content, headings, body })
+        }
+    }
+    return posts
+}
 
 async function doLoadBlogContent(slug: string) {
-    const candidates = []
+    const candidates: string[] = []
     candidates.push(`${slug}/index.mdx`)
 
     for (const candidate of candidates) {
