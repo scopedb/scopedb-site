@@ -33,11 +33,7 @@ export default function Header() {
             max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] py-[16px]
             flex justify-between items-center relative
         ">
-            <div>
-                <a href="/">
-                    <img src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} />
-                </a>
-            </div>
+            <a href="/"><img src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} /></a>
 
             <div className="hidden md:flex gap-8 text-[15px]">
                 {navItems.map((item) => (

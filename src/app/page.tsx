@@ -16,22 +16,13 @@ import imgScenarioCloudApplicationObservability from '@/assets/scenario-cloud-ap
 import imgScenarioRealTimeBehaviorAnalysisLeft from '@/assets/scenario-real-time-behavior-analysis-left.png'
 import imgScenarioRealTimeBehaviorAnalysisRight from '@/assets/scenario-real-time-behavior-analysis-right.png'
 import imgScenarioUnderstandYourAIAgentWorkflow from '@/assets/scenario-understand-your-ai-agent-workflow.png'
-import imgScopeQLCheckBox from '@/assets/scopeql-checkbox.svg'
 import FeatureScopeQL from "@/components/FeatureScopeQL"
 import FAQItem from "@/components/FAQItem"
+import { MdCheckCircle } from "react-icons/md"
 
 export const metadata: Metadata = {
   title: "ScopeDB",
   description: "ScopeDB is a database that runs directly on top of any commodity object storage. It is designed explicitly for data workloads with massive writes, any-scale analysis, and flexible schema.",
-}
-
-function ScopeQLCheckBox() {
-  return <Image
-    src={imgScopeQLCheckBox}
-    alt="ScopeQL Check Box"
-    width={20}
-    height={20}
-  />
 }
 
 function FeatureRow({ children }: {
@@ -89,6 +80,7 @@ export default function Home() {
     <section className="relative mt-[140px] px-0 md:px-4">
       <div className="flex items-center justify-center absolute top-[-78px] left-0 w-full">
         <Image
+          priority
           src={imgBgMosaic}
           alt="Background Mosaic"
           width={456}
@@ -126,6 +118,7 @@ export default function Home() {
         </div>
       </div>
       <Image
+        priority
         src={imgBgFollowTagline}
         alt="Background Follows Tagline"
         className="absolute bottom-[-212px] left-[300px] transform -translate-x-1/2 z-0"
@@ -161,6 +154,7 @@ export default function Home() {
             </div>
             <div className="flex-1 flex items-center justify-center py-[24px] lg:w-1/2">
               <Image
+                priority
                 src={imgFeatureRealtimeIngestion}
                 alt="Feature Real-time Ingestion"
                 height={620}
@@ -184,6 +178,7 @@ export default function Home() {
             </div>
             <div className="flex-1 min-h-[230px] flex bg-[#FCFCFC] items-center justify-center lg:border-l border-[#F0F0F0] md:pr-0 pb-[10px] md:pt-[28px] md:pb-[70px] lg:w-1/2">
               <Image
+                priority
                 src={imgFeatureAnyScaleAnalysis}
                 alt="Feature Any-scale Analysis"
                 width={680}
@@ -205,6 +200,7 @@ export default function Home() {
               </p>
               <div className="mt-[-100px]">
                 <Image
+                  priority
                   className="mx-auto"
                   src={imgFeatureOptimalStorageFormat}
                   alt="Feature Optimal Storage Format"
@@ -224,6 +220,7 @@ export default function Home() {
               </p>
               <div className="pt-[100px]">
                 <Image
+                  priority
                   className="mx-auto"
                   src={imgFeatureVariousExplorationMethods}
                   alt="Feature Various Exploration Methods"
@@ -246,6 +243,7 @@ export default function Home() {
               </p>
               <div className="flex-1 flex items-center justify-center">
                 <Image
+                  priority
                   src={imgFeatureAdaptiveIndexes}
                   alt="Feature Adaptive Indexes"
                   width={500}
@@ -263,6 +261,7 @@ export default function Home() {
               </p>
               <div className="py-[20px] flex items-center justify-center">
                 <Image
+                  priority
                   src={imgFeatureOnDemandResourceGroups}
                   alt=""
                   width={388}
@@ -287,12 +286,14 @@ export default function Home() {
             </div>
             <div className="flex-1 flex items-center justify-center pt-[50px] pb-[50px] lg:w-1/2 relative">
               <Image
+                priority
                 src={imgFeatureFlexibleDataSchema}
                 alt="Feature Flexible Data Schema"
                 width={427}
                 height={502}
               />
               <Image
+                priority
                 src={imgBgFlexibleDataSchema}
                 alt="Background Flexible Data Schema"
                 className="absolute bottom-[-162px] right-[200px] z-0"
@@ -324,6 +325,7 @@ export default function Home() {
             </p>
             <div className="flex items-center justify-center my-[60px]">
               <Image
+                priority
                 src={imgScenarioCloudApplicationObservability}
                 alt="Cloud Application Observability"
               />
@@ -343,6 +345,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row my-[60px] gap-[30px] justify-center">
               <div className="flex items-center justify-center my-[60px]">
                 <Image
+                  priority
                   src={imgScenarioRealTimeBehaviorAnalysisLeft}
                   alt="Real-time Behavior Analysis Left"
                   width={628}
@@ -351,6 +354,7 @@ export default function Home() {
               </div>
               <div className="flex items-center justify-center">
                 <Image
+                  priority
                   src={imgScenarioRealTimeBehaviorAnalysisRight}
                   alt="Real-time Behavior Analysis Right"
                   width={593}
@@ -372,6 +376,7 @@ export default function Home() {
             </p>
             <div className="flex items-center justify-center my-[60px]">
               <Image
+                priority
                 src={imgScenarioUnderstandYourAIAgentWorkflow}
                 alt="Understand Your AI Agent Workflow"
               />
@@ -404,7 +409,7 @@ export default function Home() {
           <ul>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px pt-[12px]">
-                <ScopeQLCheckBox />
+                <MdCheckCircle width={20} height={20} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Execution Flow
                 </h4>
@@ -416,7 +421,7 @@ export default function Home() {
             </li>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px] max-w-[500px]">
-                <ScopeQLCheckBox />
+                <MdCheckCircle width={20} height={20} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Syntax Integrity
                 </h4>
@@ -427,7 +432,7 @@ export default function Home() {
             </li>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px]">
-                <ScopeQLCheckBox />
+                <MdCheckCircle width={20} height={20} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Compressible Expressions
                 </h4>

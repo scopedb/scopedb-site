@@ -3,12 +3,10 @@
 import React, { useState } from 'react'
 import { LuChevronDown } from 'react-icons/lu'
 
-interface Props {
+export default function FAQItem({ question, answer }: {
     question: string;
     answer: string;
-}
-
-const FAQItem: React.FC<Props> = ({ question, answer }) => {
+}) {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <li className="w-full md:w-[800px] px-[24px] py-[20px] border border-[#f0f0f0] rounded-[16px] faq-item">
@@ -33,5 +31,3 @@ const FAQItem: React.FC<Props> = ({ question, answer }) => {
         </li>
     )
 }
-
-export default FAQItem;
