@@ -26,6 +26,7 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
         <script async defer data-domain="scopedb.io" src="https://plausible.io/js/script.js" />
       </head>
 

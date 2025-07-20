@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 
 export function makeMetadata(title: string, description: string, image?: string): Metadata {
-    const images = image ? [image] : ["/ogbanner.png"]
+    const images = image ? [image] : ["/opengraph-image.png"]
     return {
         title,
         description,
