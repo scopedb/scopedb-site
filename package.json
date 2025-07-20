@@ -25,7 +25,9 @@
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "react-icons": "^5.5.0",
-        "react-shiki": "^0.7.2"
+        "react-shiki": "^0.7.2",
+        "react-tabs": "^6.1.0",
+        "reading-time": "^1.5.0"
     },
     "devDependencies": {
         "@astrojs/markdown-remark": "^6.3.2",

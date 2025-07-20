@@ -1,7 +1,8 @@
-export default function FormattedDate({ date }: { date: Date }) {
-    return <time dateTime={date.toISOString()}>
+export default function FormattedDate({ date }: { date: number | string | Date }) {
+    const parsedData = new Date(date)
+    return <time dateTime={parsedData.toISOString()}>
         {
-            date.toLocaleDateString("en-us", {
+            parsedData.toLocaleDateString("en-us", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",

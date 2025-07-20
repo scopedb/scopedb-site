@@ -3,7 +3,7 @@ title: "Why Not SQL: The Origin of ScopeQL"
 description: "When developing the query language for ScopeDB, we decided to go against SQL and design a new language, ScopeQL, from scratch to fix SQL's problems. In this post, we will discuss where SQL falls short and the design principles behind ScopeQL."
 pubDate: 2025-03-10
 category: engineering
-heroImage: '/blog-covers/cover-3.png'
+cover: '/blog-covers/cover-3.png'
 ---
 
 SQL has dominated structured data processing for 50 years. However, its age reveals significant design flaws, notably non-composable and inconsistent syntax.
@@ -20,32 +20,30 @@ When developing the query language for ScopeDB, we decided to go against SQL and
 Here is a showcase:
 
 <Tabs>
-    <TabItem title="SQL">
+    <Tab label="SQL">
         ```sql
         SELECT
-        country,
-        MAX(salary) AS max_salary
+            country,
+            MAX(salary) AS max_salary
         FROM
-        employees
+            employees
         WHERE
-        start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
+            start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
         GROUP BY
-        country
+            country
         HAVING
-        MAX(salary) > 100000
+            MAX(salary) > 100000
         ```
-    </TabItem>
-    <TabItem title="ScopeQL">
+    </Tab>
+    <Tab label="ScopeQL">
         ```scopeql
         FROM employees
         WHERE start_date > '2021-01-01 00:00:00+00:00'::timestamp
         GROUP BY country AGGREGATE max(salary) AS max_salary
         WHERE max_salary > 100000
         ```
-    </TabItem>
+    </Tab>
 </Tabs>
-
-{/* truncate */}
 
 ## A Critique of SQL
 
