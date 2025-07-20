@@ -1,6 +1,9 @@
 import RSS from 'rss'
 
-export async function GET(_: Request) {
+export async function GET(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _request: Request
+) {
     const feed = new RSS({
         title: 'ScopeDB Blogs',
         description: 'ScopeDB blogs on engineering, product, and more.',

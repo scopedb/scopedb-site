@@ -1,3 +1,5 @@
+import path from 'path'
+import { promises as fs } from 'fs'
 import FormattedDate from '@/components/FormattedData'
 import { loadBlogContent } from '@/utils/loader'
 import Image from 'next/image'
@@ -10,6 +12,12 @@ export async function generateMetadata({ params }: {
     const { slug } = await params
     const { frontmatter } = await loadBlogContent(slug)
     return makeMetadata(frontmatter.title, frontmatter.description, frontmatter.cover)
+}
+
+export async function generateStaticParams() {
+    const dir = path.join(process.cwd(), 'src/content/blog')
+    const slugs = await fs.readdir(dir)
+    return slugs.map((slug) => ({ slug }))
 }
 
 export default async function BlogPost({ params }: {

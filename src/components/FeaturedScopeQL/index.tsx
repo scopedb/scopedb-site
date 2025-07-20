@@ -9,12 +9,11 @@ import scopeql from "@/shiki-scopeql-grammar.json"
 import type { LanguageRegistration } from "@shikijs/types"
 import dedent from "dedent"
 
-// Create custom highlighter with dynamic imports to optimize client-side bundle size
 const highlighter = await createHighlighterCore({
     themes: [import('@shikijs/themes/min-light')],
     langs: [import('@shikijs/langs/sql'), scopeql as LanguageRegistration],
     engine: createOnigurumaEngine(import('shiki/wasm'))
-});
+})
 
 const categories = [{
     title: "Basic",
