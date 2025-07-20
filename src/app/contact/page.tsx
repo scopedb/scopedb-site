@@ -4,13 +4,16 @@ import { LuCalendarDays } from "react-icons/lu"
 import { getCloudflareContext } from "@opennextjs/cloudflare"
 import ContactForm from "@/components/ContactForm"
 import ExploreMore from "@/components/ExploreMore"
+import { makeMetadata } from "@/utils/metadata"
 
-export const metadata: Metadata = {
-    title: "Contact Us",
+export async function generateMetadata(): Promise<Metadata> {
+    const title = "Contact Us"
+    const description = "ScopeDB is a database that runs directly on top of any commodity object storage. It is designed explicitly for data workloads with massive writes, any-scale analysis, and flexible schema."
+    return makeMetadata(title, description)
 }
 
-export default function ContactPage() {
-    const ctx = getCloudflareContext()
+export default async function ContactPage() {
+    const ctx = await getCloudflareContext({ async: true })
     const calLink = ctx.env.PUBLIC_CALCOM_LINK
     const contactLink = ctx.env.PUBLIC_CONTACT_LINK
 

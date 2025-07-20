@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: "Page Not Found",
 }
 
-export default function Page() {
+export default async function NotFound() {
     return <div className="text-center p-[40px]">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Page Not Found

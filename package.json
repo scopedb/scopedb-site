@@ -27,7 +27,8 @@
         "react-icons": "^5.5.0",
         "react-shiki": "^0.7.2",
         "react-tabs": "^6.1.0",
-        "reading-time": "^1.5.0"
+        "reading-time": "^1.5.0",
+        "rss": "^1.2.2"
     },
     "devDependencies": {
         "@astrojs/markdown-remark": "^6.3.2",
@@ -41,8 +42,10 @@
         "@types/node": "^24.0.13",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
+        "@types/rss": "^0.0.32",
         "eslint": "^9.31.0",
         "eslint-config-next": "15.4.1",
+        "eslint-config-prettier": "^10.1.8",
         "estree-util-value-to-estree": "^3.4.0",
         "remark": "^15.0.1",
         "remark-frontmatter": "^5.0.0",

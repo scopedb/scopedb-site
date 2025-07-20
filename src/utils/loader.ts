@@ -1,6 +1,6 @@
 import path from 'path'
-import { cache } from 'react'
 import { promises as fs } from 'fs'
+import { cache } from 'react'
 import { notFound } from "next/navigation"
 import { MarkdownHeading } from '@astrojs/markdown-remark'
 import readingTime from 'reading-time'
@@ -22,11 +22,6 @@ export interface BlogPost {
     category: string;
     cover: string;
     readingTime: string;
-}
-
-export async function loadBlogMetadata(slug: string) {
-    const { frontmatter } = await loadBlogContent(slug)
-    return { title: frontmatter.title }
 }
 
 export async function loadFeaturedBlogContent() {

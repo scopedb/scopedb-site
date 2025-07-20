@@ -9,7 +9,7 @@ interface NavItem {
     target?: string;
 }
 
-export default function Header() {
+export default async function Header() {
     const navItems: NavItem[] = [
         {
             href: "https://docs.scopedb.io/",
@@ -26,7 +26,7 @@ export default function Header() {
         }
     ]
 
-    const ctx = getCloudflareContext()
+    const ctx = await getCloudflareContext({ async: true })
     const calLink = ctx.env.PUBLIC_CALCOM_LINK
 
     return <>

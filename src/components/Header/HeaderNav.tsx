@@ -1,7 +1,8 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import Image from "next/image"
 
 interface NavItem {
     href: string;
@@ -43,14 +44,13 @@ export default function HeaderNav({ navItems, calLink }: HeaderNavProps) {
     };
 
     return (
-        <header id="header" className={`transition-all duration-300 ease-in-out ${
-            isScrolled ? 'fixed top-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-sm' : ''
-        }`}>
+        <header id="header" className={`transition-all duration-300 ease-in-out ${isScrolled ? 'fixed top-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-sm' : ''
+            }`}>
             <nav className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] py-[16px] flex justify-between items-center relative">
                 <div>
-                    <a href="/">
-                        <img src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} />
-                    </a>
+                    <Link href="/">
+                        <Image src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} />
+                    </Link>
                 </div>
 
                 {/* Desktop Navigation */}

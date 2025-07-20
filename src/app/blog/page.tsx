@@ -3,9 +3,13 @@ import { FaRss } from "react-icons/fa"
 import FeaturedPosts from "@/components/FeaturedPosts"
 import BlogCategories from "@/components/BlogCategories"
 import { loadBlogContentByCategory } from "@/utils/loader"
+import { Suspense } from "react"
+import { makeMetadata } from "@/utils/metadata"
 
-export const metadata: Metadata = {
-  title: "ScopeDB Blog",
+export async function generateMetadata(): Promise<Metadata> {
+  const title = "ScopeDB Blog"
+  const description = "ScopeDB is a database that runs directly on top of any commodity object storage. It is designed explicitly for data workloads with massive writes, any-scale analysis, and flexible schema."
+  return makeMetadata(title, description)
 }
 
 export default async function BlogIndex() {
@@ -35,7 +39,9 @@ export default async function BlogIndex() {
       </div>
 
       <div className="mt-[74px]">
-        <BlogCategories posts={posts} />
+        <Suspense>
+          <BlogCategories posts={posts} />
+        </Suspense>
       </div>
     </main>
   );

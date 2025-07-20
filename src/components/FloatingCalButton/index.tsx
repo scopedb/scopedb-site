@@ -22,7 +22,7 @@ export default function FloatingButton({ calLink }: { calLink: string }) {
                 },
             });
         })();
-    }, []);
+    }, [calLink]);
 
     return <></>;
 }

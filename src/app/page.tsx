@@ -20,10 +20,12 @@ import FeaturedScopeQL from "@/components/FeaturedScopeQL"
 import FAQItem from "@/components/FAQItem"
 import ExploreMore from "@/components/ExploreMore"
 import { MdCheckCircle } from "react-icons/md"
+import { makeMetadata } from "@/utils/metadata"
 
-export const metadata: Metadata = {
-  title: "ScopeDB",
-  description: "ScopeDB is a database that runs directly on top of any commodity object storage. It is designed explicitly for data workloads with massive writes, any-scale analysis, and flexible schema.",
+export async function generateMetadata(): Promise<Metadata> {
+  const title = "ScopeDB"
+  const description = "ScopeDB is a database that runs directly on top of any commodity object storage. It is designed explicitly for data workloads with massive writes, any-scale analysis, and flexible schema."
+  return makeMetadata(title, description)
 }
 
 function FeatureRow({ children }: {
@@ -38,8 +40,8 @@ function FeatureRow({ children }: {
   </div>
 }
 
-export default function Home() {
-  const ctx = getCloudflareContext()
+export default async function Home() {
+  const ctx = await getCloudflareContext({ async: true })
   const calLink = ctx.env.PUBLIC_CALCOM_LINK
   const introductoryLink = "/blog/manage-observability-data-in-petabytes"
 

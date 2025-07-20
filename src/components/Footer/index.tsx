@@ -1,3 +1,6 @@
+import Image from "next/image"
+import Link from "next/link"
+
 export default function Footer() {
     return <div
         className="min-h-[293px]"
@@ -9,12 +12,12 @@ export default function Footer() {
         <div className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] pt-[60px] flex flex-col lg:flex-row">
             <div className="flex-1 pb-[40px]">
                 <div className="pb-[12px]">
-                    <a href="/">
-                        <img src="/scopedb-logo.png" alt="ScopeDB Logo" width={120} height={35} />
-                    </a>
+                    <Link href="/">
+                        <Image src="/scopedb-logo.png" alt="ScopeDB Logo" width={120} height={35} />
+                    </Link>
                 </div>
                 <div className="text-[14px] font-normal text-[var(--text-secondary)]">
-                    © 2025 ScopeDB. All rights reserved.
+                    © 2024-{new Date().getFullYear()} ScopeDB. All rights reserved.
                 </div>
             </div>
 

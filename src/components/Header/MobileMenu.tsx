@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 
 interface NavItem {
@@ -83,9 +85,9 @@ export default function MobileMenu({ navItems, calLink }: MobileMenuProps) {
         >
             {/* Menu Header */}
             <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
-                <a href="/">
-                    <img src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} />
-                </a>
+                <Link href="/">
+                    <Image src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} />
+                </Link>
                 <button
                     id="mobile-menu-close"
                     className="flex flex-col gap-1 w-6 h-6 justify-center items-center"
