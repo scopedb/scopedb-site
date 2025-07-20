@@ -21,8 +21,8 @@ export default async function BlogPost({ params }: {
                 <Image
                     width={1020}
                     height={510}
-                    src={frontmatter.heroImage}
-                    alt="Blog Post Hero Image"
+                    src={frontmatter.cover}
+                    alt="Blog Post Cover"
                     className="w-full max-w-[1020px] h-auto object-cover rounded-[10px]"
                 />
             </div>

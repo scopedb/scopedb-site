@@ -3,6 +3,7 @@ import { MdCheckCircle } from "react-icons/md"
 import { LuCalendarDays } from "react-icons/lu"
 import { getCloudflareContext } from "@opennextjs/cloudflare"
 import ContactForm from "@/components/ContactForm"
+import ExploreMore from "@/components/ExploreMore"
 
 export const metadata: Metadata = {
     title: "Contact Us",
@@ -67,6 +68,9 @@ export default function ContactPage() {
                 <div className="md:w-[420px] md:mt-0 mt-[40px]">
                     <ContactForm contactLink={contactLink} />
                 </div>
+            </div>
+            <div className="mt-[80px] mb-[160px] max-w-[1200px] mx-auto">
+                <ExploreMore showBlog={false} />
             </div>
         </div>
     )

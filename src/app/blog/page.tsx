@@ -1,19 +1,19 @@
 import { Metadata } from "next"
 import { FaRss } from "react-icons/fa"
-import { getAllBlogPosts } from "@/utils/loader";
+import { BlogPost, loadBlogContentByCategory } from "@/utils/loader";
 import FormattedDate from "@/components/FormattedData";
 import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-    title: "ScopeDB Blog",
+  title: "ScopeDB Blog",
 }
 
 // Featured posts configuration
-const FEATURED_POST_TITLES = [
-  "Self-observability of ScopeDB",
-  "Why Not SQL: The Origin of ScopeQL",
-  "Algebraic Data Types in Database: Where Variant Data Can Help",
+const FEATURED_POST_SLUGS = [
+  "manage-observability-data-in-petabytes",
+  "algebraic-data-type-variant-data",
+  "scopeql-origins",
 ];
 
 // Blog categories
@@ -32,11 +32,10 @@ function BlogTabs({ activeCategory = "all" }: { activeCategory?: string }) {
           <Link
             key={tab.id}
             href={tab.href}
-            className={`py-4 px-1 text-sm relative ${
-              activeCategory === tab.id
-                ? "text-black font-bold"
-                : "text-gray-600 hover:text-black"
-            }`}
+            className={`py-4 px-1 text-sm relative ${activeCategory === tab.id
+              ? "text-black font-bold"
+              : "text-gray-600 hover:text-black"
+              }`}
           >
             {tab.label}
           </Link>
@@ -46,20 +45,20 @@ function BlogTabs({ activeCategory = "all" }: { activeCategory?: string }) {
   );
 }
 
-function FeaturedPosts({ posts }: { posts: any[] }) {
-  const featuredPosts = FEATURED_POST_TITLES
-    .map((title) => posts.find((post) => post.title === title))
-    .filter(Boolean)
-    .slice(0, 3);
-
-  if (featuredPosts.length === 0) return null;
+function FeaturedPosts({ posts }: { posts: BlogPost[] }) {
+  const featuredPosts: BlogPost[] = [];
+  for (const post of posts) {
+    if (FEATURED_POST_SLUGS.includes(post.slug)) {
+      featuredPosts.push(post);
+    }
+  }
 
   return (
     <section className="mb-[74px]">
       <ul className="grid grid-cols-1 lg:grid-cols-5 gap-5 auto-rows-fr">
         {featuredPosts.map((post, index) => (
-          <li 
-            key={post.slug} 
+          <li
+            key={post.slug}
             className={index === 0 ? "lg:col-span-3 lg:row-span-2" : "lg:col-span-2"}
           >
             <div className="bg-white border border-[#f1f1f1] rounded-[12px] p-3 w-full h-full">
@@ -70,21 +69,18 @@ function FeaturedPosts({ posts }: { posts: any[] }) {
                     alt={post.title}
                     width={600}
                     height={420}
-                    className={`rounded-[10px] w-full object-cover mb-3 ${
-                      index === 0 ? "md:h-[420px]" : "lg:hidden"
-                    }`}
+                    className={`rounded-[10px] w-full object-cover mb-3 ${index === 0 ? "md:h-[420px]" : "lg:hidden"
+                      }`}
                   />
                 )}
                 <div className="flex flex-col gap-2 my-3">
                   <p className="text-[14px] font-normal px-3 text-[var(--text-secondary)]">
-                    <FormattedDate date={new Date(post.publishedAt)} />
+                    <FormattedDate date={new Date(post.pubDate)} />
                     <span className="ml-2 text-xs">•</span>
                     <span className="ml-2">{post.readingTime || "5 min read"}</span>
                   </p>
                   <div className="flex-1">
-                    <h4 className={`font-semibold px-3 text-[var(--text-primary)] ${
-                      index === 0 ? "text-[28px]" : "text-2xl"
-                    }`}>
+                    <h4 className={`font-semibold px-3 text-[var(--text-primary)] ${index === 0 ? "text-[28px]" : "text-2xl"}`}>
                       {post.title}
                     </h4>
                   </div>
@@ -105,7 +101,7 @@ function FeaturedPosts({ posts }: { posts: any[] }) {
 }
 
 function AllPosts({ posts, category = "all" }: { posts: any[]; category?: string }) {
-  const filteredPosts = category === "all" 
+  const filteredPosts = category === "all"
     ? posts.slice(0, 9)
     : posts.filter(post => post.category === category).slice(0, 9);
 
@@ -127,9 +123,9 @@ function AllPosts({ posts, category = "all" }: { posts: any[]; category?: string
                 )}
                 <div className="flex flex-col gap-2 my-3">
                   <p className="text-[14px] font-normal px-3 text-[var(--text-secondary)]">
-                    <FormattedDate date={new Date(post.publishedAt)} />
+                    <FormattedDate date={new Date(post.pubDate)} />
                     <span className="ml-1 text-xs">•</span>
-                    <span className="ml-1">{post.readingTime || "5 min read"}</span>
+                    <span className="ml-1">{post.readingTime}</span>
                   </p>
                   <div className="flex-1">
                     <h4 className="text-xl font-medium px-3 leading-tight text-[var(--text-primary)]">
@@ -145,7 +141,7 @@ function AllPosts({ posts, category = "all" }: { posts: any[]; category?: string
           </li>
         ))}
       </ul>
-      
+
       {filteredPosts.length === 0 && (
         <div className="text-center py-12">
           <p className="text-gray-500 text-sm">
@@ -158,7 +154,7 @@ function AllPosts({ posts, category = "all" }: { posts: any[]; category?: string
 }
 
 export default async function BlogIndex() {
-  const posts = await getAllBlogPosts();
+  const posts = await loadBlogContentByCategory('all');
 
   return (
     <main className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl:px-[32px]">
@@ -179,9 +175,9 @@ export default async function BlogIndex() {
           </a>
         </div>
       </div>
-      
+
       <FeaturedPosts posts={posts} />
-      
+
       <div className="mt-[74px]">
         <BlogTabs activeCategory="all" />
         <AllPosts posts={posts} category="all" />

@@ -3,13 +3,14 @@ import { cache } from 'react'
 import { promises as fs } from 'fs'
 import { notFound } from "next/navigation";
 import { MarkdownHeading } from '@astrojs/markdown-remark'
+import readingTime from 'reading-time';
 
 export interface FrontmatterProps {
     title: string;
     description: string;
     pubDate: string;
     category: string;
-    heroImage: string;
+    cover: string;
 }
 
 export interface BlogPost {
@@ -17,10 +18,10 @@ export interface BlogPost {
     title: string;
     description: string;
     summary: string;
-    publishedAt: string;
+    pubDate: string;
     category: string;
     cover: string;
-    readingTime?: string;
+    readingTime: string;
 }
 
 export async function loadBlogMetadata(slug: string) {
@@ -30,21 +31,31 @@ export async function loadBlogMetadata(slug: string) {
 
 export const loadBlogContent = cache(doLoadBlogContent)
 export const loadBlogContentByCategory = cache(doLoadBlogContentByCategory)
-export const getAllBlogPosts = cache(doGetAllBlogPosts)
 
 async function doLoadBlogContentByCategory(category: string) {
-    const candidates: string[] = []
-    fs.readdir(path.join(process.cwd(), 'src/content/blog'))
-        .then(dirs => dirs.forEach(dir => candidates.push(dir)))
-        .catch(err => console.error('Failed to read blog directory:', err))
+    const contentDir = path.join(process.cwd(), 'src/content/blog')
+    const candidates = await fs.readdir(contentDir)
 
-    const posts = []
+    const posts: BlogPost[] = []
     for (const candidate of candidates) {
-        const { Content, body, frontmatter, headings } = await loadBlogContent(candidate)
+        const { frontmatter, body } = await loadBlogContent(candidate)
         if (category === 'all' || category === frontmatter.category) {
-            posts.push({ slug: candidate, frontmatter, Content, headings, body })
+            const stats = readingTime(body);
+            posts.push({
+                slug: candidate,
+                title: frontmatter.title,
+                description: frontmatter.description,
+                summary: frontmatter.description,
+                pubDate: frontmatter.pubDate,
+                category: frontmatter.category,
+                cover: frontmatter.cover,
+                readingTime: stats.text,
+            })
         }
     }
+
+    posts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+
     return posts
 }
 
@@ -72,46 +83,4 @@ async function doLoadBlogContent(slug: string) {
     }
 
     notFound()
-}
-
-function calculateReadingTime(text: string): string {
-    const wordsPerMinute = 200;
-    const words = text.trim().split(/\s+/).length;
-    const minutes = Math.ceil(words / wordsPerMinute);
-    return `${minutes} min read`;
-}
-
-async function doGetAllBlogPosts(): Promise<BlogPost[]> {
-    const blogDir = path.join(process.cwd(), 'src/content/blog');
-    const posts: BlogPost[] = [];
-    
-    try {
-        const dirs = await fs.readdir(blogDir);
-        
-        for (const dir of dirs) {
-            try {
-                const { frontmatter, body } = await loadBlogContent(dir);
-                posts.push({
-                    slug: dir,
-                    title: frontmatter.title,
-                    description: frontmatter.description,
-                    summary: frontmatter.description,
-                    publishedAt: frontmatter.pubDate,
-                    category: frontmatter.category || 'all',
-                    cover: frontmatter.heroImage,
-                    readingTime: calculateReadingTime(body)
-                });
-            } catch (error) {
-                console.warn(`Failed to load blog post ${dir}:`, error);
-            }
-        }
-        
-        // Sort by date descending
-        posts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
-        
-    } catch (error) {
-        console.error('Failed to read blog directory:', error);
-    }
-    
-    return posts;
 }

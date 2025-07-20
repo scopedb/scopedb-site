@@ -1,32 +1,23 @@
-"use client";
-
-import Link from "next/link";
-import Image from "next/image";
-import FormattedDate from "@/components/FormattedData";
-import { ArrowUpRight, ChevronRight, Mail } from "lucide-react";
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  summary: string;
-  publishedAt: string;
-  cover: string;
-  readingTime?: string;
-}
+import Link from "next/link"
+import Image from "next/image"
+import FormattedDate from "@/components/FormattedData"
+import { LuArrowUpRight, LuChevronRight, LuMail } from "react-icons/lu"
+import { BlogPost, loadBlogContentByCategory } from "@/utils/loader"
 
 interface ExploreMoreProps {
   showXlCols?: boolean;
   showBlog?: boolean;
-  posts?: BlogPost[];
 }
 
 const FEATURED_POST_TITLES = [
   "Introducing ScopeDB: Manage Data in Petabytes for An Observability Platform",
-  "Why Not SQL: The Origin of ScopeQL", 
+  "Why Not SQL: The Origin of ScopeQL",
   "Algebraic Data Types in Database: Where Variant Data Can Help",
 ];
 
-export function ExploreMore({ showXlCols = false, showBlog = true, posts = [] }: ExploreMoreProps) {
+export default async function ExploreMore({ showXlCols = false, showBlog = true }: ExploreMoreProps) {
+  const posts = await loadBlogContentByCategory('all');
+
   const featuredPosts = FEATURED_POST_TITLES
     .map((title) => posts.find((post) => post.title === title))
     .filter((post): post is BlogPost => Boolean(post))
@@ -53,7 +44,7 @@ export function ExploreMore({ showXlCols = false, showBlog = true, posts = [] }:
                       )}
                       <div className="flex flex-col gap-2 my-3">
                         <p className="text-[14px] font-normal px-3 text-[var(--text-secondary)]">
-                          <FormattedDate date={new Date(post.publishedAt)} />
+                          <FormattedDate date={new Date(post.pubDate)} />
                           <span className="ml-1 text-xs">•</span>
                           <span className="ml-1">{post.readingTime || "5 min read"}</span>
                         </p>
@@ -84,9 +75,7 @@ export function ExploreMore({ showXlCols = false, showBlog = true, posts = [] }:
       )}
 
       <div
-        className={`flex flex-col md:flex-row gap-8 md:gap-4 mt-20 ${
-          showXlCols ? "xl:max-w-none" : "max-w-[1200px]"
-        }`}
+        className={`flex flex-col md:flex-row gap-8 md:gap-4 mt-20 ${showXlCols ? "xl:max-w-none" : "max-w-[1200px]"}`}
       >
         {/* Join the community */}
         <div className="flex-1">
@@ -103,7 +92,7 @@ export function ExploreMore({ showXlCols = false, showBlog = true, posts = [] }:
             target="_blank"
             rel="noopener noreferrer"
           >
-            Join Discord <ArrowUpRight className="w-[14px] h-[14px]" />
+            Join Discord <LuArrowUpRight className="w-[14px] h-[14px]" />
           </a>
         </div>
 
@@ -119,7 +108,7 @@ export function ExploreMore({ showXlCols = false, showBlog = true, posts = [] }:
             className="text-sm text-[var(--text-primary)] flex gap-1 items-center hover:underline"
             href="mailto:contact@scopedb.io"
           >
-            <Mail className="w-[18px] h-[18px]" /> contact@scopedb.io
+            <LuMail className="w-[18px] h-[18px]" /> contact@scopedb.io
           </a>
         </div>
 
@@ -138,7 +127,7 @@ export function ExploreMore({ showXlCols = false, showBlog = true, posts = [] }:
             target="_blank"
             rel="noopener noreferrer"
           >
-            ScopeDB Docs <ChevronRight className="w-[18px] h-[18px]" />
+            ScopeDB Docs <LuChevronRight className="w-[18px] h-[18px]" />
           </a>
         </div>
       </div>
