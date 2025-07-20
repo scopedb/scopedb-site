@@ -9,13 +9,6 @@ export const metadata: Metadata = {
     title: "ScopeDB Blog",
 }
 
-// Featured posts configuration
-const FEATURED_POST_TITLES = [
-  "Self-observability of ScopeDB",
-  "Why Not SQL: The Origin of ScopeQL",
-  "Algebraic Data Types in Database: Where Variant Data Can Help",
-];
-
 // Blog categories
 const BLOG_CATEGORIES = [
   { id: "all", label: "All Posts", href: "/blog" },
@@ -45,6 +38,66 @@ function BlogTabs({ activeCategory = "all" }: { activeCategory?: string }) {
     </div>
   );
 }
+
+function AllPosts({ posts, category = "all" }: { posts: any[]; category?: string }) {
+  const filteredPosts = category === "all" 
+    ? posts.slice(0, 9)
+    : posts.filter(post => post.category === category).slice(0, 9);
+
+  return (
+    <section className="pb-[200px]">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredPosts.map((post) => (
+          <li key={post.slug}>
+            <div className="bg-white border border-[#f1f1f1] rounded-[12px] p-3 w-full h-full">
+              <Link href={`/blog/${post.slug}`}>
+                {post.cover && (
+                  <Image
+                    src={post.cover}
+                    alt={post.title}
+                    width={600}
+                    height={400}
+                    className="rounded-[12px] mb-5"
+                  />
+                )}
+                <div className="flex flex-col gap-2 my-3">
+                  <p className="text-[14px] font-normal px-3 text-[var(--text-secondary)]">
+                    <FormattedDate date={new Date(post.publishedAt)} />
+                    <span className="ml-1 text-xs">•</span>
+                    <span className="ml-1">{post.readingTime || "5 min read"}</span>
+                  </p>
+                  <div className="flex-1">
+                    <h4 className="text-xl font-medium px-3 leading-tight text-[var(--text-primary)]">
+                      {post.title}
+                    </h4>
+                  </div>
+                  <p className="text-[14px] text-[var(--text-secondary)] px-3 line-clamp-2">
+                    {post.summary}
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </li>
+        ))}
+      </ul>
+      
+      {filteredPosts.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-gray-500 text-sm">
+            No posts found for this category
+          </p>
+        </div>
+      )}
+    </section>
+  );
+}
+
+// Featured posts configuration
+const FEATURED_POST_TITLES = [
+  "Self-observability of ScopeDB",
+  "Why Not SQL: The Origin of ScopeQL",
+  "Algebraic Data Types in Database: Where Variant Data Can Help",
+];
 
 function FeaturedPosts({ posts }: { posts: any[] }) {
   const featuredPosts = FEATURED_POST_TITLES
@@ -104,61 +157,9 @@ function FeaturedPosts({ posts }: { posts: any[] }) {
   );
 }
 
-function AllPosts({ posts, category = "all" }: { posts: any[]; category?: string }) {
-  const filteredPosts = category === "all" 
-    ? posts.slice(0, 9)
-    : posts.filter(post => post.category === category).slice(0, 9);
-
-  return (
-    <section className="pb-[200px]">
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredPosts.map((post) => (
-          <li key={post.slug}>
-            <div className="bg-white border border-[#f1f1f1] rounded-[12px] p-3 w-full h-full">
-              <Link href={`/blog/${post.slug}`}>
-                {post.cover && (
-                  <Image
-                    src={post.cover}
-                    alt={post.title}
-                    width={600}
-                    height={400}
-                    className="rounded-[12px] mb-5"
-                  />
-                )}
-                <div className="flex flex-col gap-2 my-3">
-                  <p className="text-[14px] font-normal px-3 text-[var(--text-secondary)]">
-                    <FormattedDate date={new Date(post.publishedAt)} />
-                    <span className="ml-1 text-xs">•</span>
-                    <span className="ml-1">{post.readingTime || "5 min read"}</span>
-                  </p>
-                  <div className="flex-1">
-                    <h4 className="text-xl font-medium px-3 leading-tight text-[var(--text-primary)]">
-                      {post.title}
-                    </h4>
-                  </div>
-                  <p className="text-[14px] text-[var(--text-secondary)] px-3 line-clamp-2">
-                    {post.summary}
-                  </p>
-                </div>
-              </Link>
-            </div>
-          </li>
-        ))}
-      </ul>
-      
-      {filteredPosts.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-gray-500 text-sm">
-            No posts found for this category
-          </p>
-        </div>
-      )}
-    </section>
-  );
-}
-
-export default async function BlogIndex() {
+export default async function BlogCategoryPage({ params }: { params: { category: string } }) {
   const posts = await getAllBlogPosts();
+  const category = params.category;
 
   return (
     <main className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl:px-[32px]">
@@ -183,8 +184,8 @@ export default async function BlogIndex() {
       <FeaturedPosts posts={posts} />
       
       <div className="mt-[74px]">
-        <BlogTabs activeCategory="all" />
-        <AllPosts posts={posts} category="all" />
+        <BlogTabs activeCategory={category} />
+        <AllPosts posts={posts} category={category} />
       </div>
     </main>
   );

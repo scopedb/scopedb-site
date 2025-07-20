@@ -12,6 +12,17 @@ export interface FrontmatterProps {
     heroImage: string;
 }
 
+export interface BlogPost {
+    slug: string;
+    title: string;
+    description: string;
+    summary: string;
+    publishedAt: string;
+    category: string;
+    cover: string;
+    readingTime?: string;
+}
+
 export async function loadBlogMetadata(slug: string) {
     const { frontmatter } = await loadBlogContent(slug)
     return { title: frontmatter.title }
@@ -19,6 +30,7 @@ export async function loadBlogMetadata(slug: string) {
 
 export const loadBlogContent = cache(doLoadBlogContent)
 export const loadBlogContentByCategory = cache(doLoadBlogContentByCategory)
+export const getAllBlogPosts = cache(doGetAllBlogPosts)
 
 async function doLoadBlogContentByCategory(category: string) {
     const candidates: string[] = []
@@ -60,4 +72,46 @@ async function doLoadBlogContent(slug: string) {
     }
 
     notFound()
+}
+
+function calculateReadingTime(text: string): string {
+    const wordsPerMinute = 200;
+    const words = text.trim().split(/\s+/).length;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return `${minutes} min read`;
+}
+
+async function doGetAllBlogPosts(): Promise<BlogPost[]> {
+    const blogDir = path.join(process.cwd(), 'src/content/blog');
+    const posts: BlogPost[] = [];
+    
+    try {
+        const dirs = await fs.readdir(blogDir);
+        
+        for (const dir of dirs) {
+            try {
+                const { frontmatter, body } = await loadBlogContent(dir);
+                posts.push({
+                    slug: dir,
+                    title: frontmatter.title,
+                    description: frontmatter.description,
+                    summary: frontmatter.description,
+                    publishedAt: frontmatter.pubDate,
+                    category: frontmatter.category || 'all',
+                    cover: frontmatter.heroImage,
+                    readingTime: calculateReadingTime(body)
+                });
+            } catch (error) {
+                console.warn(`Failed to load blog post ${dir}:`, error);
+            }
+        }
+        
+        // Sort by date descending
+        posts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+        
+    } catch (error) {
+        console.error('Failed to read blog directory:', error);
+    }
+    
+    return posts;
 }

@@ -18,7 +18,9 @@ import imgScenarioRealTimeBehaviorAnalysisRight from '@/assets/scenario-real-tim
 import imgScenarioUnderstandYourAIAgentWorkflow from '@/assets/scenario-understand-your-ai-agent-workflow.png'
 import FeaturedScopeQL from "@/components/FeaturedScopeQL"
 import FAQItem from "@/components/FAQItem"
+import { ExploreMore } from "@/components/ExploreMore"
 import { MdCheckCircle } from "react-icons/md"
+import { getAllBlogPosts } from "@/utils/loader"
 
 export const metadata: Metadata = {
   title: "ScopeDB",
@@ -37,10 +39,11 @@ function FeatureRow({ children }: {
   </div>
 }
 
-export default function Home() {
+export default async function Home() {
   const ctx = getCloudflareContext()
   const calLink = ctx.env.PUBLIC_CALCOM_LINK
   const introductoryLink = "/blog/manage-observability-data-in-petabytes"
+  const posts = await getAllBlogPosts()
 
   return <div className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] pb-[100px] relative">
     <section className="max-w-[536px] xl:max-w-[620px] 2xl:max-w-[736px] pt-[100px] pb-[16px] md:pt-[260px] md:pb-[520px] xl:pr-0">
@@ -461,6 +464,13 @@ export default function Home() {
           answer="ScopeDB works on all major cloud platforms, including AWS, Azure, GCP, and more."
         />
       </ul>
+    </section>
+
+    <section className="mt-[80px] md:mt-[140px]">
+      <h2 className="mt-[100px] md:mt-[200px] text-[24px] md:text-[32px] font-medium text-[var(--text-primary)]">
+        Explore More About <br /><span className="text-[32px] md:text-[40px]">ScopeDB</span>
+      </h2>
+      <ExploreMore showBlog={true} posts={posts} />
     </section>
   </div >
 }
