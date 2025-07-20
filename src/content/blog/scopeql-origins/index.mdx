@@ -20,32 +20,30 @@ When developing the query language for ScopeDB, we decided to go against SQL and
 Here is a showcase:
 
 <Tabs>
-    <TabItem title="SQL">
+    <Tab label="SQL">
         ```sql
         SELECT
-        country,
-        MAX(salary) AS max_salary
+            country,
+            MAX(salary) AS max_salary
         FROM
-        employees
+            employees
         WHERE
-        start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
+            start_date > '2025-01-01 00:00:00+00:00'::TIMESTAMPTZ
         GROUP BY
-        country
+            country
         HAVING
-        MAX(salary) > 100000
+            MAX(salary) > 100000
         ```
-    </TabItem>
-    <TabItem title="ScopeQL">
+    </Tab>
+    <Tab label="ScopeQL">
         ```scopeql
         FROM employees
         WHERE start_date > '2021-01-01 00:00:00+00:00'::timestamp
         GROUP BY country AGGREGATE max(salary) AS max_salary
         WHERE max_salary > 100000
         ```
-    </TabItem>
+    </Tab>
 </Tabs>
-
-{/* truncate */}
 
 ## A Critique of SQL
 

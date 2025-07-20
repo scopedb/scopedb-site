@@ -28,7 +28,7 @@ export default async function BlogPost({ params }: {
             </div>
             <div className="items-start max-w-[800px] mx-auto">
                 <div className="font-normal text-[14px] text-[var(--color-tertiary)] pb-[12px]">
-                    <FormattedDate date={new Date(frontmatter.pubDate)} />
+                    <FormattedDate date={frontmatter.pubDate} />
                 </div>
                 <h1 className="text-[40px] font-medium">{frontmatter.title}</h1>
             </div>

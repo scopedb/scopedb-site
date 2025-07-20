@@ -1,9 +1,9 @@
-import path from 'path';
+import path from 'path'
 import { cache } from 'react'
 import { promises as fs } from 'fs'
-import { notFound } from "next/navigation";
+import { notFound } from "next/navigation"
 import { MarkdownHeading } from '@astrojs/markdown-remark'
-import readingTime from 'reading-time';
+import readingTime from 'reading-time'
 
 export interface FrontmatterProps {
     title: string;
@@ -29,17 +29,29 @@ export async function loadBlogMetadata(slug: string) {
     return { title: frontmatter.title }
 }
 
+export async function loadFeaturedBlogContent() {
+    const featuredBlogSlugs = [
+        "manage-observability-data-in-petabytes",
+        "algebraic-data-type-variant-data",
+        "scopeql-origins",
+    ]
+
+    const posts = await loadBlogContentByCategory('all')
+    const featuredPosts = featuredBlogSlugs.map((slug) => posts.find((post) => post.slug === slug))
+        .filter((post): post is BlogPost => Boolean(post))
+    return featuredPosts
+}
+
 export const loadBlogContent = cache(doLoadBlogContent)
 export const loadBlogContentByCategory = cache(doLoadBlogContentByCategory)
 
 async function doLoadBlogContentByCategory(category: string) {
     const contentDir = path.join(process.cwd(), 'src/content/blog')
     const candidates = await fs.readdir(contentDir)
-
     const posts: BlogPost[] = []
     for (const candidate of candidates) {
         const { frontmatter, body } = await loadBlogContent(candidate)
-        if (category === 'all' || category === frontmatter.category) {
+        if (frontmatter.category === category || category === 'all') {
             const stats = readingTime(body);
             posts.push({
                 slug: candidate,
@@ -53,9 +65,7 @@ async function doLoadBlogContentByCategory(category: string) {
             })
         }
     }
-
-    posts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
-
+    posts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime())
     return posts
 }
 

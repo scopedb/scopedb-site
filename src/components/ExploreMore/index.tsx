@@ -2,27 +2,15 @@ import Link from "next/link"
 import Image from "next/image"
 import FormattedDate from "@/components/FormattedData"
 import { LuArrowUpRight, LuChevronRight, LuMail } from "react-icons/lu"
-import { BlogPost, loadBlogContentByCategory } from "@/utils/loader"
+import { BlogPost, loadFeaturedBlogContent } from "@/utils/loader"
 
 interface ExploreMoreProps {
   showXlCols?: boolean;
   showBlog?: boolean;
 }
 
-const FEATURED_POST_TITLES = [
-  "Introducing ScopeDB: Manage Data in Petabytes for An Observability Platform",
-  "Why Not SQL: The Origin of ScopeQL",
-  "Algebraic Data Types in Database: Where Variant Data Can Help",
-];
-
 export default async function ExploreMore({ showXlCols = false, showBlog = true }: ExploreMoreProps) {
-  const posts = await loadBlogContentByCategory('all');
-
-  const featuredPosts = FEATURED_POST_TITLES
-    .map((title) => posts.find((post) => post.title === title))
-    .filter((post): post is BlogPost => Boolean(post))
-    .slice(0, 3);
-
+  const featuredPosts: BlogPost[] = await loadFeaturedBlogContent()
   return (
     <section className="mt-20">
       {showBlog && (
@@ -44,7 +32,7 @@ export default async function ExploreMore({ showXlCols = false, showBlog = true 
                       )}
                       <div className="flex flex-col gap-2 my-3">
                         <p className="text-[14px] font-normal px-3 text-[var(--text-secondary)]">
-                          <FormattedDate date={new Date(post.pubDate)} />
+                          <FormattedDate date={post.pubDate} />
                           <span className="ml-1 text-xs">•</span>
                           <span className="ml-1">{post.readingTime || "5 min read"}</span>
                         </p>

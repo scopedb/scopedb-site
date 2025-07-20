@@ -66,7 +66,7 @@ export default function Footer() {
                         Connect
                     </div>
                     <div className="pb-[16px] text-[14px] text-[var(--text-secondary)]">
-                        <a href="https://www.scopedb.io/contact/">Contact us</a>
+                        <a href="https://www.scopedb.io/contact/">Contact</a>
                     </div>
                     <div className="pb-[16px] text-[14px] text-[var(--text-secondary)]">
                         <a href="https://github.com/scopedb/">GitHub</a>

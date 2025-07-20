@@ -89,9 +89,16 @@ export default function Home() {
         />
       </div>
       <div className="max-w-[1200px] p-[12px] mx-auto flex flex-col items-center pt-[80px] pb-[40px] md:pb-[160px] bg-[#F7F7F7] rounded-[16px]">
-        <h2 className="text-[var(--text-primary)] max-w-[640px] mt-[40px] text-[32px] md:text-[40px] font-medium leading-[normal] text-center">
-          The data flow of insights should be equal to transactions
+        <h2
+          className="text-[18px] font-normal text-[var(--text-primary)] text-center]"
+        >
+          WHY SCOPEDB
         </h2>
+        <blockquote
+          className="text-[var(--text-primary)] max-w-[640px] mt-[40px] text-[32px] md:text-[40px] font-medium leading-[normal] text-center"
+        >
+          "The data flow of insights should be equal to transactions."
+        </blockquote>
         <div className="max-w-[600px] mt-[70px] px-[6px] md:px-0">
           <p className="text-[16px] font-normal leading-[1.6] text-[var(--text-secondary)]">
             Compared with the existing cloud data stack, which has a complex
