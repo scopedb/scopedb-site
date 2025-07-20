@@ -25,4 +25,6 @@
 
 html, body {
   @apply bg-white;
+  overflow-x: hidden;
+  max-width: 100vw;
 }

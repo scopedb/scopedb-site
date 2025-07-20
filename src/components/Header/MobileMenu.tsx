@@ -21,12 +21,12 @@ export default function MobileMenu({ navItems, calLink }: MobileMenuProps) {
             if (isMobileMenuOpen) return;
             setIsMobileMenuOpen(true);
             document.body.style.overflow = "hidden";
-            
+
             // Animate hamburger lines
             const line1 = document.getElementById("line1");
             const line2 = document.getElementById("line2");
             const line3 = document.getElementById("line3");
-            
+
             if (line1 && line2 && line3) {
                 line1.style.transform = "rotate(45deg) translate(6px, 6px)";
                 line2.style.opacity = "0";
@@ -38,12 +38,12 @@ export default function MobileMenu({ navItems, calLink }: MobileMenuProps) {
             if (!isMobileMenuOpen) return;
             setIsMobileMenuOpen(false);
             document.body.style.overflow = "";
-            
+
             // Reset hamburger lines
             const line1 = document.getElementById("line1");
             const line2 = document.getElementById("line2");
             const line3 = document.getElementById("line3");
-            
+
             if (line1 && line2 && line3) {
                 line1.style.transform = "";
                 line2.style.opacity = "";
@@ -82,7 +82,7 @@ export default function MobileMenu({ navItems, calLink }: MobileMenuProps) {
                 {/* Mobile Menu Container */}
                 <div
                     id="mobile-menu-container"
-                    className={`fixed top-0 right-0 w-screen h-screen bg-white transition-transform duration-300 ease-in-out overflow-y-auto p-[16px] flex flex-col ${
+                    className={`fixed top-0 right-0 w-full h-screen bg-white transition-transform duration-300 ease-in-out overflow-y-auto p-[16px] flex flex-col ${
                         isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
                     }`}
                     onClick={(e) => e.stopPropagation()}
