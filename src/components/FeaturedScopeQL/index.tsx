@@ -1,10 +1,20 @@
 "use client"
 
 import { useState } from 'react'
-import ShikiHighlighter from "react-shiki"
+import ShikiHighlighter, {
+    createHighlighterCore,
+    createOnigurumaEngine,
+} from 'react-shiki/core';
 import scopeql from "@/shiki-scopeql-grammar.json"
 import type { LanguageRegistration } from "@shikijs/types"
 import dedent from "dedent"
+
+// Create custom highlighter with dynamic imports to optimize client-side bundle size
+const highlighter = await createHighlighterCore({
+    themes: [import('@shikijs/themes/min-light')],
+    langs: [import('@shikijs/langs/sql'), scopeql as LanguageRegistration],
+    engine: createOnigurumaEngine(import('shiki/wasm'))
+});
 
 const categories = [{
     title: "Basic",
@@ -147,8 +157,9 @@ function ScopeQLSection({ activeTab }: { activeTab: number }) {
         </div>
         <div className="font-[14px] overflow-x-auto w-full">
             <ShikiHighlighter
+                highlighter={highlighter}
                 theme="min-light"
-                language={scopeql as LanguageRegistration}
+                language={"scopeql"}
                 showLanguage={false}
                 addDefaultStyles={false}
                 className='p-0 text-[14px]'
@@ -169,6 +180,7 @@ function SQLSection({ activeTab }: { activeTab: number }) {
         </div>
         <div className="font-[14px] overflow-x-auto w-full">
             <ShikiHighlighter
+                highlighter={highlighter}
                 theme="min-light"
                 language="sql"
                 showLanguage={false}

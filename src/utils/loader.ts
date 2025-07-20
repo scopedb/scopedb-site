@@ -45,8 +45,9 @@ async function doLoadBlogContentByCategory(category: string) {
     const candidates = await fs.readdir(contentDir)
     const posts: BlogPost[] = []
     for (const candidate of candidates) {
-        const { frontmatter, body } = await loadBlogContent(candidate)
+        const { frontmatter } = await loadBlogContent(candidate)
         if (frontmatter.category === category || category === 'all') {
+            const body = await fs.readFile(path.join(contentDir, candidate, 'index.mdx'), 'utf-8')
             const stats = readingTime(body);
             posts.push({
                 slug: candidate,
@@ -71,10 +72,8 @@ async function doLoadBlogContent(slug: string) {
     for (const candidate of candidates) {
         try {
             const { default: Content, frontmatter, headings } = await import(`@/content/blog/${candidate}`)
-            const body = await fs.readFile(path.join(process.cwd(), `src/content/blog/${candidate}`), 'utf-8')
             return {
                 Content,
-                body,
                 frontmatter: frontmatter as FrontmatterProps,
                 headings: headings as MarkdownHeading[],
             }

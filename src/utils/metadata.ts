@@ -5,6 +5,7 @@ export function makeMetadata(title: string, description: string, image?: string)
     return {
         title,
         description,
+        metadataBase: new URL("https://www.scopedb.io"),
         openGraph: {
             title,
             description,
