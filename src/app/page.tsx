@@ -1,4 +1,3 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare"
 import { Metadata } from "next"
 import Image from 'next/image'
 import imgHeroBanner from '@/assets/hero-banner.svg'
@@ -21,6 +20,7 @@ import FAQItem from "@/components/FAQItem"
 import ExploreMore from "@/components/ExploreMore"
 import { MdCheckCircle } from "react-icons/md"
 import { makeMetadata } from "@/utils/metadata"
+import { calLink } from "@/constant"
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "ScopeDB"
@@ -41,8 +41,6 @@ function FeatureRow({ children }: {
 }
 
 export default async function Home() {
-  const ctx = await getCloudflareContext({ async: true })
-  const calLink = ctx.env.PUBLIC_CALCOM_LINK
   const introductoryLink = "/blog/manage-observability-data-in-petabytes"
 
   return <div className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] pb-[100px] relative">

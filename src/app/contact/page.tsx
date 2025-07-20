@@ -1,10 +1,10 @@
 import { Metadata } from "next"
 import { MdCheckCircle } from "react-icons/md"
 import { LuCalendarDays } from "react-icons/lu"
-import { getCloudflareContext } from "@opennextjs/cloudflare"
 import ContactForm from "@/components/ContactForm"
 import ExploreMore from "@/components/ExploreMore"
 import { makeMetadata } from "@/utils/metadata"
+import { calLink, contactLink } from "@/constant"
 
 export async function generateMetadata(): Promise<Metadata> {
     const title = "Contact Us"
@@ -13,9 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactPage() {
-    const ctx = await getCloudflareContext({ async: true })
-    const calLink = ctx.env.PUBLIC_CALCOM_LINK
-    const contactLink = ctx.env.PUBLIC_CONTACT_LINK
 
     return (
         <div className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]">

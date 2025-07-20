@@ -1,7 +1,7 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
-import FloatingCalButton from "../FloatingCalButton";
-import HeaderNav from "./HeaderNav";
-import MobileMenu from "./MobileMenu";
+import FloatingCalButton from "@/components/FloatingCalButton"
+import HeaderNav from "./HeaderNav"
+import MobileMenu from "./MobileMenu"
+import { calLink } from "@/constant"
 
 interface NavItem {
     href: string;
@@ -25,9 +25,6 @@ export default async function Header() {
             label: "Contact"
         }
     ]
-
-    const ctx = await getCloudflareContext({ async: true })
-    const calLink = ctx.env.PUBLIC_CALCOM_LINK
 
     return <>
         <HeaderNav navItems={navItems} calLink={calLink} />
