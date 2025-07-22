@@ -1,7 +1,7 @@
 import RSS from 'rss'
-import { loadBlogContentByCategory } from '@/utils/loader'
 
 export async function GET(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _request: Request
 ) {
     const feed = new RSS({
@@ -14,8 +14,9 @@ export async function GET(
         pubDate: new Date(),
     })
 
+    /*
     const posts = await loadBlogContentByCategory('all')
-    posts.forEach(post => {
+     posts.forEach(post => {
         feed.item({
             title: post.title,
             description: post.description,
@@ -24,6 +25,7 @@ export async function GET(
             categories: [post.category],
         })
     })
+    */
 
     return new Response(feed.xml({ indent: true }), {
         headers: {
