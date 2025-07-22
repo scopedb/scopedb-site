@@ -66,7 +66,7 @@ export default function ContactForm({ contactLink }: { contactLink: string }) {
             <div className="text-center">
                 <div className="w-[80px] h-[80px] bg-[var(--color-brand)] rounded-full flex items-center justify-center mx-auto mb-[24px]">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 6L9 17l-5-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M20 6L9 17l-5-5" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </div>
                 <h3 className="text-[24px] font-semibold text-[var(--text-primary)] mb-[16px]">
