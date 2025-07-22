@@ -1,35 +1,36 @@
 import RSS from 'rss'
+import { loadBlogContentByCategory } from '@/utils/loader'
 
-export async function GET(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _request: Request
-) {
+export const dynamic = 'force-static'
+export const revalidate = false
+
+export async function GET() {
     const feed = new RSS({
-        title: 'ScopeDB Blogs',
-        description: 'ScopeDB blogs on engineering, product, and more.',
-        site_url: 'https://scopedb.io',
-        feed_url: `https://scopedb.io/rss.xml`,
-        copyright: `© 2024-${new Date().getFullYear()} ScopeDB`,
+        title: 'ScopeDB Blog',
+        description: 'ScopeDB is a database that runs directly on top of any commodity object storage. It is designed explicitly for data workloads with massive writes, any-scale analysis, and flexible schema.',
+        feed_url: 'https://www.scopedb.io/rss.xml',
+        site_url: 'https://www.scopedb.io/blog',
         language: 'en',
         pubDate: new Date(),
+        copyright: `© 2024-${new Date().getFullYear()} ScopeDB`,
     })
 
-    /*
     const posts = await loadBlogContentByCategory('all')
-     posts.forEach(post => {
+    
+    posts.forEach(post => {
         feed.item({
             title: post.title,
             description: post.description,
-            url: `https://scopedb.io/blog/${post.slug}`,
-            date: post.pubDate,
+            url: `https://www.scopedb.io/blog/${post.slug}`,
+            date: new Date(post.pubDate),
             categories: [post.category],
         })
     })
-    */
 
     return new Response(feed.xml({ indent: true }), {
         headers: {
-            'Content-Type': 'application/atom+xml; charset=utf-8',
+            'Content-Type': 'application/xml',
+            'Cache-Control': 'public, max-age=3600',
         },
     })
 }
