@@ -348,7 +348,7 @@ SELECT *, (z*2)-1 AS tmp
 SELECT a + tmp, b + tmp
 ```
 
-:::note[Select Targets Manipulation]
+<Callout type="note" title="Select Targets Manipulation">
 
 ScopeQL can flexibly adjust select targets:
 
@@ -359,7 +359,7 @@ ScopeQL can flexibly adjust select targets:
 
 The first one is commonly used to reuse computed expressions. The rest are useful for data cleaning and transformation.
 
-:::
+</Callout>
 
 Now, return to grouping and aggregation. You may notice that the `GROUP BY` is referred to as a modifier, not as a clause. This is because it's only a modifier of an `AGGREGATE` clause or a `WINDOW` clause. You always need to specify an aggregate function or window function after `GROUP BY`:
 
