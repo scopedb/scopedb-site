@@ -29,7 +29,7 @@ export default async function BlogIndex() {
             className="w-[36px] h-[36px] bg-[#fff] border text-[var(--text-secondary)] border-[#F1F1F1] rounded-full flex items-center justify-center hover:bg-[#F1F1F1] transition-colors"
             title="Subscribe to RSS feed"
           >
-            <FaRss size={16} />
+            <FaRss size={12} />
           </a>
         </div>
       </div>

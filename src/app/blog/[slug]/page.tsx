@@ -2,7 +2,6 @@ import path from 'path'
 import { promises as fs } from 'fs'
 import FormattedDate from '@/components/FormattedData'
 import { loadBlogContent } from '@/utils/loader'
-import Image from 'next/image'
 import { Metadata } from 'next'
 import { makeMetadata } from '@/utils/metadata'
 
@@ -28,16 +27,7 @@ export default async function BlogPost({ params }: {
 
     return <div className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px]">
         <article className="max-w-[1020px] mx-auto">
-            <div className="pt-[100px] pb-[40px] rounded-none flex justify-center">
-                <Image
-                    width={1020}
-                    height={510}
-                    src={frontmatter.cover}
-                    alt="Blog Post Cover"
-                    className="w-full max-w-[1020px] h-auto object-cover rounded-[10px]"
-                />
-            </div>
-            <div className="items-start max-w-[800px] mx-auto">
+            <div className="items-start max-w-[800px] mx-auto pt-[100px]">
                 <div className="font-normal text-[14px] text-[var(--color-tertiary)] pb-[12px]">
                     <FormattedDate date={frontmatter.pubDate} />
                 </div>
@@ -46,7 +36,7 @@ export default async function BlogPost({ params }: {
             <div className="
                     prose prose-zinc
                     max-w-[800px] mx-auto mt-[24px] mb-[100px]
-                    text-[16px] text-[rgba(0,0,0,0.8)] leading-[1.4]
+                    text-[16px] text-[rgba(0,0,0,0.8)] leading-[1.6]
                     prose-headings:font-medium
                     prose-headings:leading-tight
                     prose-headings:relative
@@ -63,7 +53,7 @@ export default async function BlogPost({ params }: {
                     prose-h4:text-black
                     prose-h5:text-black
                     prose-h6:text-black
-                    prose-p:my-[20px] prose-p:leading-[1.6]
+                    prose-p:my-[20px] prose-p:leading-[1.8]
                     prose-a:text-[#0879E0] prose-a:no-underline hover:prose-a:underline
                     prose-a:font-medium prose-a:transition-all
                     prose-strong:text-black
@@ -77,7 +67,7 @@ export default async function BlogPost({ params }: {
                     prose-blockquote:font-normal
                     prose-ul:my-[16px] prose-ul:pl-[24px]
                     prose-ol:my-[16px] prose-ol:pl-[24px]
-                    prose-li:my-[8px] prose-li:leading-[1.4]
+                    prose-li:my-[8px] prose-li:leading-[1.6]
                     prose-code:py-[2px] prose-code:rounded-[4px]
                     prose-code:font-mono prose-code:text-[rgb(47,41,46)]
                     prose-code:text-[13px] prose-code:font-normal

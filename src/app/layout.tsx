@@ -30,15 +30,15 @@ export default function RootLayout({
         <script async defer data-domain="scopedb.io" src="https://plausible.io/js/script.js" />
       </head>
 
-      <body>
+      <body className="flex flex-col min-h-screen">
         <AntdRegistry>
           <header className="sticky top-0 z-50 bg-white/75 backdrop-blur-sm">
             <Header />
           </header>
-          <main className="overflow-x-hidden">
+          <main className="flex-1 overflow-x-hidden">
             {children}
           </main>
-          <footer>
+          <footer className="mt-auto">
             <Footer />
           </footer>
         </AntdRegistry>
