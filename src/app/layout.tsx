@@ -32,10 +32,8 @@ export default function RootLayout({
 
       <body className="flex flex-col min-h-screen">
         <AntdRegistry>
-          <header className="sticky top-0 z-50 bg-white/75 backdrop-blur-sm">
-            <Header />
-          </header>
-          <main className="flex-1 overflow-x-hidden">
+          <Header />
+          <main className="flex-1 overflow-x-hidden pt-[80px]">
             {children}
           </main>
           <footer className="mt-auto">

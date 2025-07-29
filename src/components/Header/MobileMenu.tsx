@@ -72,14 +72,18 @@ export default function MobileMenu({ navItems, calLink }: MobileMenuProps) {
 
     return <div
         id="mobile-menu-overlay"
-        className={`fixed inset-0 bg-black/50 z-[9998] transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
+        className={`fixed inset-0 bg-black/50 z-[9999] transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        }`}
         onClick={handleCloseMobileMenu}
         style={{ height: '100vh', width: '100vw' }}
     >
         {/* Mobile Menu Container */}
         <div
             id="mobile-menu-container"
-            className={`fixed top-0 right-0 w-full h-screen bg-white transition-transform duration-300 ease-in-out overflow-y-auto p-[16px] flex flex-col ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+            className={`fixed top-0 right-0 w-full h-screen bg-white/95 backdrop-blur-md transition-transform duration-300 ease-in-out overflow-y-auto p-[16px] flex flex-col ${
+                isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
             onClick={(e) => e.stopPropagation()}
             style={{ height: '100vh', width: '100vw' }}
         >
@@ -93,21 +97,25 @@ export default function MobileMenu({ navItems, calLink }: MobileMenuProps) {
                     className="flex flex-col gap-1 w-6 h-6 justify-center items-center"
                     onClick={handleCloseMobileMenu}
                 >
-                    <span className="w-[18px] h-[2px] bg-black/80 rounded transform rotate-45 translate-x-[6px] translate-y-[6px]"></span>
-                    <span className="w-[18px] h-[2px] bg-black/80 rounded opacity-0"></span>
-                    <span className="w-[18px] h-[2px] bg-black/80 rounded transform -rotate-45 translate-x-[6px] -translate-y-[6px]"></span>
+                    <span className="w-[18px] h-[2px] bg-black/80 rounded transform rotate-45 translate-x-[6px] translate-y-[6px] transition-all duration-200"></span>
+                    <span className="w-[18px] h-[2px] bg-black/80 rounded opacity-0 transition-all duration-200"></span>
+                    <span className="w-[18px] h-[2px] bg-black/80 rounded transform -rotate-45 translate-x-[6px] -translate-y-[6px] transition-all duration-200"></span>
                 </button>
             </div>
 
             {/* Menu Navigation */}
             <nav className="flex flex-col gap-[8px] flex-1">
-                {navItems.map((item) => (
+                {navItems.map((item, index) => (
                     <a
                         key={item.label}
                         href={item.href}
                         target={item.target}
-                        className="text-black/80 text-[14px] py-[8px] transition-colors hover:text-black/60"
+                        className="text-black/80 text-[14px] py-[8px] transition-all duration-200 hover:text-black/60 hover:bg-gray-50 rounded-lg px-2"
                         onClick={handleLinkClick}
+                        style={{
+                            animationDelay: `${index * 50}ms`,
+                            animation: isMobileMenuOpen ? 'slideInFromRight 0.3s ease-out forwards' : 'none'
+                        }}
                     >
                         {item.label}
                     </a>
@@ -116,14 +124,32 @@ export default function MobileMenu({ navItems, calLink }: MobileMenuProps) {
                 {/* Demo Button */}
                 <div className="mt-8">
                     <button
-                        className="w-full py-[10px] px-5 bg-gray-50 border border-gray-300 rounded-[10px] text-base font-medium text-black/80 transition-colors hover:bg-gray-200"
+                        className="w-full py-[10px] px-5 bg-gray-50 border border-gray-300 rounded-[10px] text-base font-medium text-black/80 transition-all duration-200 hover:bg-gray-200 hover:shadow-sm"
                         data-cal-link={calLink}
                         onClick={handleLinkClick}
+                        style={{
+                            animationDelay: `${navItems.length * 50}ms`,
+                            animation: isMobileMenuOpen ? 'slideInFromRight 0.3s ease-out forwards' : 'none'
+                        }}
                     >
                         Book a demo
                     </button>
                 </div>
             </nav>
+
+            {/* Add CSS animation */}
+            <style jsx>{`
+                @keyframes slideInFromRight {
+                    from {
+                        opacity: 0;
+                        transform: translateX(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+            `}</style>
         </div>
     </div>
 }
