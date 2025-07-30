@@ -18,9 +18,10 @@ import imgScenarioUnderstandYourAIAgentWorkflow from '@/assets/scenario-understa
 import FeaturedScopeQL from "@/components/FeaturedScopeQL"
 import FAQItem from "@/components/FAQItem"
 import ExploreMore from "@/components/ExploreMore"
-import { MdCheckCircle } from "react-icons/md"
 import { makeMetadata } from "@/utils/metadata"
 import { calLink } from "@/constant"
+import { FiCheckCircle } from "react-icons/fi";
+
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "ScopeDB"
@@ -417,7 +418,7 @@ export default async function Home() {
           <ul>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px pt-[12px]">
-                <MdCheckCircle width={20} height={20} />
+                <FiCheckCircle width={16} height={16} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Execution Flow
                 </h4>
@@ -429,7 +430,7 @@ export default async function Home() {
             </li>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px] max-w-[500px]">
-                <MdCheckCircle width={20} height={20} />
+                <FiCheckCircle width={16} height={16} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Syntax Integrity
                 </h4>
@@ -440,7 +441,7 @@ export default async function Home() {
             </li>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px]">
-                <MdCheckCircle width={20} height={20} />
+                <FiCheckCircle width={16} height={16} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Compressible Expressions
                 </h4>

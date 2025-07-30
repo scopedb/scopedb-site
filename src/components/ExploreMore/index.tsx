@@ -1,8 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import FormattedDate from "@/components/FormattedData"
-import { LuArrowUpRight, LuChevronRight, LuMail } from "react-icons/lu"
 import { BlogPost, loadFeaturedBlogContent } from "@/utils/loader"
+import { FiArrowUpRight } from "react-icons/fi";
+import { FiMail } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
+
 
 interface ExploreMoreProps {
   showXlCols?: boolean;
@@ -80,7 +83,7 @@ export default async function ExploreMore({ showXlCols = false, showBlog = true 
             target="_blank"
             rel="noopener noreferrer"
           >
-            Join Discord <LuArrowUpRight className="w-[14px] h-[14px]" />
+            Join Discord <FiArrowUpRight className="w-[16px] h-[16px]" />
           </a>
         </div>
 
@@ -96,7 +99,7 @@ export default async function ExploreMore({ showXlCols = false, showBlog = true 
             className="text-sm text-[var(--text-primary)] flex gap-1 items-center hover:underline"
             href="mailto:contact@scopedb.io"
           >
-            <LuMail className="w-[18px] h-[18px]" /> contact@scopedb.io
+            <FiMail className="w-[16px] h-[16px]" /> contact@scopedb.io
           </a>
         </div>
 
@@ -115,7 +118,7 @@ export default async function ExploreMore({ showXlCols = false, showBlog = true 
             target="_blank"
             rel="noopener noreferrer"
           >
-            ScopeDB Docs <LuChevronRight className="w-[18px] h-[18px]" />
+            ScopeDB Docs <FiArrowRight className="w-[16px] h-[16px]" />
           </a>
         </div>
       </div>
