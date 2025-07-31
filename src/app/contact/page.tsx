@@ -1,10 +1,11 @@
 import { Metadata } from "next"
-import { MdCheckCircle } from "react-icons/md"
-import { LuCalendarDays } from "react-icons/lu"
 import ContactForm from "@/components/ContactForm"
 import ExploreMore from "@/components/ExploreMore"
 import { makeMetadata } from "@/utils/metadata"
 import { calLink, contactLink } from "@/constant"
+import { FiCheckCircle } from "react-icons/fi";
+import { FiCalendar } from "react-icons/fi";
+
 
 export async function generateMetadata(): Promise<Metadata> {
     const title = "Contact Us"
@@ -37,19 +38,19 @@ export default async function ContactPage() {
                     >
                         <li>
                             <span className="flex items-center gap-[12px]">
-                                <MdCheckCircle width={20} height={20} />
+                                <FiCheckCircle width={16} height={16} />
                                 Request a demo
                             </span>
                         </li>
                         <li>
                             <span className="flex items-center gap-[12px]">
-                                <MdCheckCircle width={20} height={20} />
+                                <FiCheckCircle width={16} height={16} />
                                 Understand what problems ScopedDB can actually solve.
                             </span>
                         </li>
                         <li>
                             <span className="flex items-center gap-[12px]">
-                                <MdCheckCircle width={20} height={20} />
+                                <FiCheckCircle width={16} height={16} />
                                 Get onboarding help
                             </span>
                         </li>
@@ -60,7 +61,7 @@ export default async function ContactPage() {
                         data-cal-link={calLink}
                     >
                         <span className="flex items-center gap-[10px] text-[14px] text-[white]">
-                            <LuCalendarDays width={16} height={16} />
+                            <FiCalendar width={16} height={16} />
                             Book A Demo
                         </span>
                     </button>

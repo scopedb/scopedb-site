@@ -16,36 +16,15 @@ interface HeaderNavProps {
 }
 
 export default function HeaderNav({ navItems, calLink }: HeaderNavProps) {
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollThreshold = 100;
-            setIsScrolled(window.scrollY > scrollThreshold);
-        };
-
-        let ticking = false;
-        const requestTick = () => {
-            if (!ticking) {
-                requestAnimationFrame(handleScroll);
-                ticking = true;
-                setTimeout(() => {
-                    ticking = false;
-                }, 16);
-            }
-        };
-
-        window.addEventListener('scroll', requestTick);
-        return () => window.removeEventListener('scroll', requestTick);
-    }, []);
-
     const openMobileMenu = () => {
         window.dispatchEvent(new CustomEvent('openMobileMenu'));
     };
 
     return (
-        <header id="header" className={`transition-all duration-300 ease-in-out ${isScrolled ? 'fixed top-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-sm' : ''
-            }`}>
+        <header 
+            id="header" 
+            className="fixed top-0 left-0 right-0 z-[100] bg-white"
+        >
             <nav className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] py-[16px] flex justify-between items-center relative">
                 <div>
                     <Link href="/">
@@ -60,7 +39,7 @@ export default function HeaderNav({ navItems, calLink }: HeaderNavProps) {
                             key={item.label}
                             href={item.href}
                             target={item.target}
-                            className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:font-medium"
+                            className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:font-medium transition-colors duration-200"
                         >
                             {item.label}
                         </Link>

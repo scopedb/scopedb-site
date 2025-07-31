@@ -18,9 +18,10 @@ import imgScenarioUnderstandYourAIAgentWorkflow from '@/assets/scenario-understa
 import FeaturedScopeQL from "@/components/FeaturedScopeQL"
 import FAQItem from "@/components/FAQItem"
 import ExploreMore from "@/components/ExploreMore"
-import { MdCheckCircle } from "react-icons/md"
 import { makeMetadata } from "@/utils/metadata"
 import { calLink } from "@/constant"
+import { FiCheckCircle } from "react-icons/fi";
+
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "ScopeDB"
@@ -44,12 +45,12 @@ export default async function Home() {
   const introductoryLink = "/blog/manage-observability-data-in-petabytes"
 
   return <div className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] pb-[100px] relative">
-    <section className="max-w-[536px] xl:max-w-[620px] 2xl:max-w-[736px] pt-[100px] pb-[16px] md:pt-[260px] md:pb-[520px] xl:pr-0">
+    <section className="max-w-[536px] xl:max-w-[620px] 2xl:max-w-[736px] pt-[40px] pb-[16px] md:pt-[180px] md:pb-[520px] xl:pr-0">
       <Image
         priority
         src={imgHeroBanner}
         alt="ScopeDB Banner"
-        className="absolute top-[-80px] right-[-87px] hidden lg:block xl:block max-w-[836px] z-0"
+        className="absolute top-[-60px] right-[-87px] hidden lg:block xl:block max-w-[836px] z-0"
       />
       <h2 className="text-[40px] md:text-[56px] text-[var(--text-brand)] leading-[1.2] font-semibold z-10 relative">
         Insight In No Time
@@ -78,7 +79,7 @@ export default async function Home() {
       </div>
     </section>
 
-    <section className="relative mt-[140px] px-0 md:px-4">
+    <section className="relative mt-[100px] px-0 md:px-4">
       <div className="flex items-center justify-center absolute top-[-78px] left-0 w-full">
         <Image
           priority
@@ -417,7 +418,7 @@ export default async function Home() {
           <ul>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px pt-[12px]">
-                <MdCheckCircle width={20} height={20} />
+                <FiCheckCircle width={16} height={16} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Execution Flow
                 </h4>
@@ -429,7 +430,7 @@ export default async function Home() {
             </li>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px] max-w-[500px]">
-                <MdCheckCircle width={20} height={20} />
+                <FiCheckCircle width={16} height={16} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Syntax Integrity
                 </h4>
@@ -440,7 +441,7 @@ export default async function Home() {
             </li>
             <li>
               <div className="flex items-center gap-[8px] pb-[8px]">
-                <MdCheckCircle width={20} height={20} />
+                <FiCheckCircle width={16} height={16} />
                 <h4 className="text-[16px] text-[var(--text-primary)] font-medium">
                   Compressible Expressions
                 </h4>

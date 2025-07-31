@@ -1,10 +1,11 @@
 import { Metadata } from "next"
-import { FaRss } from "react-icons/fa"
 import FeaturedPosts from "@/components/FeaturedPosts"
 import BlogCategories from "@/components/BlogCategories"
 import { loadBlogContentByCategory } from "@/utils/loader"
 import { Suspense } from "react"
 import { makeMetadata } from "@/utils/metadata"
+import { FiRss } from "react-icons/fi";
+
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "ScopeDB Blog"
@@ -29,7 +30,7 @@ export default async function BlogIndex() {
             className="w-[36px] h-[36px] bg-[#fff] border text-[var(--text-secondary)] border-[#F1F1F1] rounded-full flex items-center justify-center hover:bg-[#F1F1F1] transition-colors"
             title="Subscribe to RSS feed"
           >
-            <FaRss size={12} />
+            <FiRss size={16} />
           </a>
         </div>
       </div>

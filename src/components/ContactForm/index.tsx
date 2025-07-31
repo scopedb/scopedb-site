@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { LuChevronDown } from 'react-icons/lu'
+import { FiChevronDown } from "react-icons/fi";
 
 interface FormData {
     name: string;
@@ -133,8 +133,8 @@ export default function ContactForm({ contactLink }: { contactLink: string }) {
                         <option value="201-1000">201-1000</option>
                         <option value="1000+">1000+</option>
                     </select>
-                    <LuChevronDown
-                        className="absolute right-[12px] top-[50%] translate-y-[-50%] w-[20px] h-[20px] text-[var(--color-primary)] pointer-events-none"
+                    <FiChevronDown
+                        className="absolute right-[12px] top-[50%] translate-y-[-50%] w-[16px] h-[16px] text-[var(--color-primary)] pointer-events-none"
                     />
                 </div>
             </div>
