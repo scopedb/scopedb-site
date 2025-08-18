@@ -10,13 +10,7 @@ cover: '/content/blog/manage-observability-data-in-petabytes/cover.png'
 
 ScopeDB is a database built directly on top of S3 and unleashes the power of cloud elasticity and workload isolation. ScopeDB servers are launched with a single, stateless Rust binary; thus, it does not need to manage local disks, data sharding, or complex leader election. ScopeDB achieves ten times cost efficiency and performance improvement compared to databases built with shared-nothing architecture by delegating data replication to S3 and dynamically adjusting the number of servers based on the workload.
 
-If you're eager to dive right in, you can try out our playground:
-
-```shell
-git clone https://github.com/scopedb/community.git
-docker compose -f ./community/playground/docker-compose.yml up -d
-docker run -it --rm --entrypoint /bin/scopeql --network host scopedb/scopedb
-```
+If you're eager to dive right in, [drop us an email](mailto:tison@scopedb.io) to access the free trial endpoint.
 
 Otherwise, let's begin with the story!
 
@@ -234,10 +228,4 @@ We've nearly reached the end, and some of you may be disappointed that we omit m
 
 We'll talk about that more in future blog posts; stay tuned!
 
-If you just want to get your hands dirty, you can try out our playground:
-
-```shell
-git clone https://github.com/scopedb/community.git
-docker compose -f ./community/playground/docker-compose.yml up -d
-docker run -it --rm --entrypoint /bin/scopeql --network host scopedb/scopedb
-```
+If you just want to get your hands dirty, [drop us an email](mailto:tison@scopedb.io) to access the free trial endpoint.
