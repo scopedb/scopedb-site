@@ -13,11 +13,12 @@ const TabButton = ({ activeTab, label, onClick }: { activeTab: string; label: st
             aria-selected={activeTab === label}
             onClick={handleClick}
             className={clsx(
-                "inline-flex whitespace-nowrap border-b-[4px] border-transparent py-[6px] px-[12px]",
-                "text-14 font-normal text-[rgba(0,0,0,0.6)]",
-                "transition-all duration-200 ease-in-out",
-                "hover:border-b-[rgba(0,0,0,0.1)]",
-                "aria-selected:border-b-[rgba(0,0,0,0.90)] aria-selected:text-[rgba(0,0,0,0.9)]",
+                "inline-flex whitespace-nowrap rounded-lg py-[4px] px-[12px]",
+                "text-14 font-normal transition-all duration-200 ease-in-out cursor-pointer",
+                "min-w-[88px] justify-center",
+                activeTab === label 
+                    ? "bg-white text-[rgba(0,0,0,0.8)] shadow-[0px_0px_4px_2px_rgba(0,0,0,0.02)]" 
+                    : "text-[rgba(0,0,0,0.4)] hover:text-[#000000cc]"
             )}
         >
             {label}
@@ -43,7 +44,7 @@ export const Tabs = ({ children }: { children: any }) => {
     return (
         <div className="flex flex-col overflow-hidden">
             <div>
-                <nav className="flex pb-0">
+                <nav className="inline-flex bg-[rgba(0,0,0,0.05)] rounded-[12px] p-1 gap-1">
                     {children.map((child: any) => {
                         const { label } = child.props;
                         return (

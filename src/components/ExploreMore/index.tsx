@@ -66,7 +66,7 @@ export default async function ExploreMore({ showXlCols = false, showBlog = true 
       )}
 
       <div
-        className={`flex flex-col md:flex-row gap-8 md:gap-4 mt-20 ${showXlCols ? "xl:max-w-none" : "max-w-[1200px]"}`}
+        className={`flex flex-col md:flex-row gap-8 md:gap-4 mt-20 md:px-[12px] ${showXlCols ? "xl:max-w-none" : "max-w-[1200px]"}`}
       >
         {/* Join the community */}
         <div className="flex-1">
