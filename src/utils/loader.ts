@@ -26,8 +26,8 @@ export interface BlogPost {
 
 export async function loadFeaturedBlogContent() {
     const featuredBlogSlugs = [
+        "insight-in-no-time",
         "manage-observability-data-in-petabytes",
-        "algebraic-data-type-variant-data",
         "scopeql-origins",
     ]
 
