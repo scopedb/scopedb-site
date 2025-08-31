@@ -1,19 +1,27 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ShikiHighlighter, {
     createHighlighterCore,
     createOnigurumaEngine,
 } from 'react-shiki/core';
+import type { HighlighterCore, LanguageRegistration } from "shiki"
 import scopeql from "@/shiki-scopeql-grammar.json"
-import type { LanguageRegistration } from "@shikijs/types"
 import dedent from "dedent"
 
-const highlighter = await createHighlighterCore({
-    themes: [import('@shikijs/themes/min-light')],
-    langs: [import('@shikijs/langs/sql'), scopeql as LanguageRegistration],
-    engine: createOnigurumaEngine(import('shiki/wasm'))
-})
+// Create highlighter lazily
+let highlighterPromise: Promise<HighlighterCore> | null = null;
+
+async function getHighlighter() {
+    if (!highlighterPromise) {
+        highlighterPromise = createHighlighterCore({
+            themes: [import('@shikijs/themes/min-light')],
+            langs: [import('@shikijs/langs/sql'), scopeql as LanguageRegistration],
+            engine: createOnigurumaEngine(import('shiki/wasm'))
+        });
+    }
+    return highlighterPromise;
+}
 
 const categories = [{
     title: "Basic",
@@ -146,7 +154,7 @@ const categories = [{
     `
 }]
 
-function ScopeQLSection({ activeTab }: { activeTab: number }) {
+function ScopeQLSection({ activeTab, highlighter }: { activeTab: number, highlighter: HighlighterCore | null }) {
     return <div className="flex-1 bg-[#FFFFFF]  rounded-[12px] p-[16px] mb-[12px]"
         style={{
             boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02)"
@@ -155,21 +163,25 @@ function ScopeQLSection({ activeTab }: { activeTab: number }) {
             <h3 className="text-[var(--text-tertiary)] text-[13px]">ScopeQL</h3>
         </div>
         <div className="font-[14px] overflow-x-auto w-full">
-            <ShikiHighlighter
-                highlighter={highlighter}
-                theme="min-light"
-                language={"scopeql"}
-                showLanguage={false}
-                addDefaultStyles={false}
-                className='p-0 text-[14px]'
-            >
-                {categories[activeTab].scopeql.trim()}
-            </ShikiHighlighter>
+            {highlighter ? (
+                <ShikiHighlighter
+                    highlighter={highlighter}
+                    theme="min-light"
+                    language={"scopeql"}
+                    showLanguage={false}
+                    addDefaultStyles={false}
+                    className='p-0 text-[14px]'
+                >
+                    {categories[activeTab].scopeql.trim()}
+                </ShikiHighlighter>
+            ) : (
+                <div className="p-0 text-[14px] text-gray-500">Loading syntax highlighting...</div>
+            )}
         </div>
     </div>
 }
 
-function SQLSection({ activeTab }: { activeTab: number }) {
+function SQLSection({ activeTab, highlighter }: { activeTab: number, highlighter: HighlighterCore | null }) {
     return <div className="flex-1 bg-[#FFFFFF] rounded-[16px] p-[20px]"
         style={{
             boxShadow: "0px 0px 8px 8px rgba(0, 0, 0, 0.02)"
@@ -178,22 +190,29 @@ function SQLSection({ activeTab }: { activeTab: number }) {
             <h3 className="text-[var(--text-tertiary)] text-[13px]">SQL</h3>
         </div>
         <div className="font-[14px] overflow-x-auto w-full">
-            <ShikiHighlighter
-                highlighter={highlighter}
-                theme="min-light"
-                language="sql"
-                showLanguage={false}
-                addDefaultStyles={false}
-                className='p-0 text-[14px]'
-            >
-                {categories[activeTab].sql.trim()}
-            </ShikiHighlighter>
+            {highlighter ? (
+                <ShikiHighlighter
+                    highlighter={highlighter}
+                    theme="min-light"
+                    language="sql"
+                    showLanguage={false}
+                    addDefaultStyles={false}
+                    className='p-0 text-[14px]'
+                >
+                    {categories[activeTab].sql.trim()}
+                </ShikiHighlighter>
+            ) : (
+                <div className="p-0 text-[14px] text-gray-500">Loading syntax highlighting...</div>
+            )}
         </div>
     </div>
 }
 
 export default function FeaturedScopeQL() {
     const [activeTab, setActiveTab] = useState(0);
+
+    const [highlighter, setHighlighter] = useState<HighlighterCore | null>(null);
+    useEffect(() => { getHighlighter().then(setHighlighter).catch(console.error) }, []);
 
     return (
         <div className="bg-[#F9F9F9] rounded-[16px] p-[10px] md:p-[16px] flex flex-col w-full max-w-[720px] xl:max-w-[720px]">
@@ -211,8 +230,8 @@ export default function FeaturedScopeQL() {
             </div>
 
             <div className="mt-[16px] flex flex-col flex-1">
-                <ScopeQLSection activeTab={activeTab} />
-                <SQLSection activeTab={activeTab} />
+                <ScopeQLSection activeTab={activeTab} highlighter={highlighter} />
+                <SQLSection activeTab={activeTab} highlighter={highlighter} />
             </div>
         </div>
     );

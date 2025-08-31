@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -21,16 +20,11 @@ export default function HeaderNav({ navItems, calLink }: HeaderNavProps) {
     };
 
     return (
-        <header 
-            id="header" 
-            className="fixed top-0 left-0 right-0 z-[100] bg-white"
-        >
+        <header id="header" className="fixed top-0 left-0 right-0 z-[100] bg-white">
             <nav className="max-w-[1440px] mx-auto px-[12px] md:px-[24px] xl-[32px] py-[16px] flex justify-between items-center relative">
-                <div>
-                    <Link href="/">
-                        <Image src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} />
-                    </Link>
-                </div>
+                <Link href="/">
+                    <Image src="/scopedb-logo.png" alt="ScopeDB" width={120} height={35} />
+                </Link>
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex gap-8 text-[15px]">
