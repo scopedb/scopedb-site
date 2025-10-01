@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant prose-inline-code (&.prose :where(:not(pre)>code):not(:where([class~="not-prose"] *)));
+
 :root {
     --text-primary: rgb(0, 0, 0);
     --text-secondary: rgba(0, 0, 0, 0.6);

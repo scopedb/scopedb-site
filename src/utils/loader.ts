@@ -27,8 +27,8 @@ export interface BlogPost {
 export async function loadFeaturedBlogContent() {
     const featuredBlogSlugs = [
         "insight-in-no-time",
+        "schema-on-the-fly",
         "manage-observability-data-in-petabytes",
-        "scopeql-origins",
     ]
 
     const posts = await loadBlogContentByCategory('all')

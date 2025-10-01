@@ -72,6 +72,12 @@ export default async function BlogPost({ params }: {
                     prose-code:font-mono prose-code:text-[rgb(47,41,46)]
                     prose-code:text-[13px] prose-code:font-normal
                     prose-code:before:content-none prose-code:after:content-none
+                    prose-inline-code:py-[2px] prose-inline-code:rounded-[6px]
+                    prose-inline-code:font-mono prose-inline-code:text-[rgba(0,0,0,0.8)]
+                    prose-inline-code:text-[13px] prose-inline-code:font-normal
+                    prose-inline-code:px-[4px]
+                    prose-inline-code:bg-gray-100
+                    prose-inline-code:before:content-none prose-inline-code:after:content-none
                     prose-pre:bg-white prose-pre:p-[20px]
                     prose-pre:rounded-[12px] prose-pre:my-[24px]
                     prose-pre:text-[14px] prose-pre:leading-[1.4]
