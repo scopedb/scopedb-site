@@ -2,7 +2,7 @@
 title: "Insight In No Time: Three ScopeDB Design Principles (Part 1)"
 description: |
     ScopeDB allows users to get insights in no time by eliminating the ETL process and enabling direct data analysis and exploration for multiple scenarios.
-pubDate: 2025-08-31
+pubDate: 2025-09-01
 category: product
 cover: '/content/blog/insight-in-no-time/cover.png'
 ---
@@ -15,7 +15,7 @@ ScopeDB allows users to get insights in no time by eliminating the ETL process a
 2. Users can apply transformations on the fly during ingestion, with the unified query language ScopeQL.
 3. Users can run various analytical queries efficiently, including both real-time serving and batch processing.
 
-## What Slow Down Your Data Pipeline
+## What Slows Down Your Data Pipeline
 
 Let's start with a picture of how current data engineering work:
 
@@ -61,16 +61,16 @@ cable.Start(ctx)
 defer cable.Close()
 
 type CustomData struct {
-    Timestamp int64  `json:"time"`
-    Name      string `json:"name,omitempty"`
-    Var       any    `json:"var"`
+    Timestamp int64          `json:"time"`
+    Name      string         `json:"name,omitempty"`
+    Var       map[string]any `json:"var"`
 }
 
 // waiting for the event being recorded durably
 err := <-cable.Send(CustomData{
     Timestamp: 335503360000000,
     Name:      "scopedb",
-    Var:       42,
+    Var:       map[string]any{"date": 1759052663727198000},
 })
 if err != nil { ... }
 
@@ -78,15 +78,15 @@ if err != nil { ... }
 cable.Send(CustomData{
     Timestamp: 335503360000000,
     Name:      "percas",
-    Var:       "Schema On The Fly",
+    Var:       map[string]any{"desc": "cache service"},
 })
 ```
 
 The sent data is interpreted as one single object column that has multiple fields. For example, the above two records will be interpreted as follows:
 
 ```json
-{ "time": 335503360000000, "name": "scopedb", "var": 42 }
-{ "time": 335503360000000, "name": "percas", "var": "Schema On The Fly" }
+{ "time": 335503360000000, "name": "scopedb", "var": { "date": 1759052663727198000 } }
+{ "time": 335503360000000, "name": "percas", "var": { "desc": "cache service" } }
 ```
 
 To turn the data into target table's columns, the data cable allows users to specify arbitrary ScopeQL transformations during ingestion. For example, the following transformation extracts the timestamp, name, and var fields from the object column and applies filtering conditions to ensure data quality:
