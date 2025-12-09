@@ -48,7 +48,7 @@ export default function BlogCategories({ posts }: { posts: BlogPost[] }) {
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredPosts.map((post) => (
                     <li key={post.slug}>
-                        <div className="bg-white border border-[#f1f1f1] rounded-[12px] p-3 w-full h-full">
+                        <div className="bg-white border border-[#f1f1f1] rounded-[20px] p-3 w-full h-full">
                             <Link href={`/blog/${post.slug}`}>
                                 {post.cover && (
                                     <Image
