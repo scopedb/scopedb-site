@@ -10,7 +10,7 @@ export default async function FeaturedPosts() {
             <ul className="grid grid-cols-1 lg:grid-cols-5 gap-5 auto-rows-fr">
                 {featuredPosts.map((post, index) => (
                     <li key={post.slug} className={index === 0 ? "lg:col-span-3 lg:row-span-2" : "lg:col-span-2"}>
-                        <div className="bg-white border border-[#F1F1F1] rounded-[12px] p-3 w-full h-full">
+                        <div className="bg-white border border-[#F1F1F1] rounded-[20px] p-3 w-full h-full">
                             <Link href={`/blog/${post.slug}`}>
                                 {post.cover && (
                                     <Image

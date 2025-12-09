@@ -86,7 +86,7 @@ export default async function BlogPost({ params }: {
                     [&_pre]:overflow-x-scroll [&_pre]:whitespace-pre
                     [&_pre]:scrollbar-thin [&_pre]:scrollbar-track-transparent
                     [&_pre]:scrollbar-thumb-gray-300
-                    prose-img:rounded-[8px] prose-img:my-[32px] prose-img:shadow-lg
+                    prose-img:rounded-[8px] prose-img:my-[32px] prose-img:shadow-[0_0px_20px_rgba(0,0,0,0.06)]
                     prose-img:w-full prose-img:h-auto
                     prose-table:my-[32px] prose-table:w-full prose-table:border-collapse
                     prose-th:border prose-th:border-[rgba(0,0,0,0.1)] prose-th:p-[12px]

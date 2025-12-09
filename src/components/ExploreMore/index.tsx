@@ -22,7 +22,7 @@ export default async function ExploreMore({ showXlCols = false, showBlog = true 
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredPosts.map((post) => (
                 <li key={post.slug} className="post-item">
-                  <div className="bg-white border border-[#f1f1f1] rounded-[12px] p-3 w-full h-full">
+                  <div className="bg-white border border-[#f1f1f1] rounded-[20px] p-3 w-full h-full">
                     <Link href={`/blog/${post.slug}/`}>
                       {post.cover && (
                         <Image
@@ -30,7 +30,7 @@ export default async function ExploreMore({ showXlCols = false, showBlog = true 
                           alt={post.title}
                           width={400}
                           height={250}
-                          className="rounded-[12px] mb-5"
+                          className="rounded-[12px] mb-5 w-full h-auto"
                         />
                       )}
                       <div className="flex flex-col gap-2 my-3">
